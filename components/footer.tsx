@@ -2,150 +2,113 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Phone, Linkedin, Twitter, Facebook } from 'lucide-react'
+import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight, Leaf } from 'lucide-react'
 
-const footerSections = [
+const footerLinks = [
   {
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
       { label: 'Our Work', href: '/our-work' },
-      { label: 'Our Results', href: '/our-results' },
-      { label: 'Our Impact', href: '/our-impact' },
+      { label: 'Results', href: '/our-results' },
+      { label: 'Impact', href: '/our-impact' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Case Studies', href: '/resources' },
-      { label: 'Insights & Blog', href: '/insights' },
-      { label: 'Publications', href: '/resources' },
-      { label: 'Newsletters', href: '/newsletter' },
-    ],
-  },
-  {
-    title: 'Connect',
-    links: [
-      { label: 'Contact Us', href: '/contact' },
-      { label: 'Subscribe', href: '/newsletter' },
-      { label: 'Support', href: '/contact' },
-      { label: 'Partnerships', href: '/contact' },
+      { label: 'Insights', href: '/insights' },
+      { label: 'Library', href: '/resources' },
+      { label: 'Newsletter', href: '/newsletter' },
+      { label: 'Case Studies', href: '/our-results' },
     ],
   },
 ]
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-dark-green text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-green to-primary-blue rounded-lg flex items-center justify-center text-white text-lg">
-                🌾
+    <footer className="bg-primary text-primary-ivory pt-24 pb-12 relative overflow-hidden">
+      {/* Decorative Background Element */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-gold opacity-[0.03] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+      
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-4 space-y-8">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-ivory/10 rounded-full flex items-center justify-center">
+                <Leaf className="text-secondary" size={24} />
               </div>
-              <span className="font-serif font-bold text-xl">Agri Experience</span>
-            </div>
-            <p className="text-cream text-sm leading-relaxed">
-              Transforming seed systems and strengthening agricultural value chains across Africa.
+              <span className="font-serif font-bold text-2xl tracking-tight italic">Agri Experience</span>
+            </Link>
+            <p className="text-primary-ivory/60 leading-relaxed font-light text-lg">
+              Transforming seed systems and agricultural value chains across Africa through expert consultancy and sustainable community development.
             </p>
             <div className="flex gap-4">
-              <a
-                href="#"
-                className="p-2 hover:bg-primary-green rounded-lg transition-colors"
-              >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 hover:bg-primary-green rounded-lg transition-colors"
-              >
-                <Twitter size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 hover:bg-primary-green rounded-lg transition-colors"
-              >
-                <Facebook size={18} />
-              </a>
+              {[Linkedin, Twitter, Facebook].map((Icon, i) => (
+                <Link 
+                  key={i} 
+                  href="#" 
+                  className="w-10 h-10 rounded-full bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1"
+                >
+                  <Icon size={18} />
+                </Link>
+              ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Footer Links */}
-          {footerSections.map((section, idx) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-            >
-              <h3 className="font-semibold text-lg mb-4">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.links.map((link, liIdx) => (
-                  <li key={`${section.title}-${liIdx}`}> 
-                    <Link
+          {/* Links Columns */}
+          {footerLinks.map((column, i) => (
+            <div key={i} className="md:col-span-2 space-y-6">
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em]">{column.title}</h4>
+              <ul className="space-y-4">
+                {column.links.map((link, j) => (
+                  <li key={j}>
+                    <Link 
                       href={link.href}
-                      className="text-cream hover:text-white transition-colors duration-200 text-sm"
+                      className="text-primary-ivory/60 hover:text-secondary transition-colors font-light"
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
+
+          {/* Contact Column */}
+          <div className="md:col-span-4 space-y-6">
+            <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em]">Our Presence</h4>
+            <div className="space-y-6">
+              <div className="flex gap-4 items-start group">
+                <div className="w-10 h-10 rounded-xl bg-primary-ivory/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/20 transition-colors">
+                  <MapPin className="text-secondary" size={18} />
+                </div>
+                <div className="text-primary-ivory/60 font-light leading-relaxed">
+                  Headquarters: Nairobi, Kenya<br />
+                  Operations across 21 African countries
+                </div>
+              </div>
+              <Link 
+                href="/contact" 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-ivory/5 border border-primary-ivory/10 rounded-full text-sm font-bold hover:bg-primary-ivory hover:text-primary transition-all group"
+              >
+                Work With Us
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 pb-12 border-b border-primary-green/20"
-        >
-          <div className="flex gap-3">
-            <MapPin size={20} className="text-primary-green flex-shrink-0 mt-1" />
-            <div>
-              <p className="font-semibold mb-1">Visit Us</p>
-              <p className="text-cream text-sm">Multiple offices across East, West & Southern Africa</p>
-            </div>
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-primary-ivory/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-primary-ivory/40 text-sm font-light">
+            © {new Date().getFullYear()} Agri Experience. All rights reserved.
           </div>
-          <div className="flex gap-3">
-            <Mail size={20} className="text-primary-green flex-shrink-0 mt-1" />
-            <div>
-              <p className="font-semibold mb-1">Email</p>
-              <p className="text-cream text-sm">info@agri-experience.com</p>
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <Phone size={20} className="text-primary-green flex-shrink-0 mt-1" />
-            <div>
-              <p className="font-semibold mb-1">Call</p>
-              <p className="text-cream text-sm">+254 (0) 700 000 000</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-cream text-sm">
-          <p>&copy; 2024 Agri Experience. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-white transition-colors">
-              Sitemap
-            </Link>
+          <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-primary-ivory/40">
+            <Link href="/privacy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-secondary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

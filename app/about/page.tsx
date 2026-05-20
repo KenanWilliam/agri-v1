@@ -3,7 +3,7 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { CheckCircle, Heart, Target, Lightbulb } from 'lucide-react'
+import { CheckCircle, Heart, Target, Lightbulb, Users, Globe, Award, Leaf } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AboutPage() {
@@ -40,87 +40,81 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main>
-        {/* Hero */}
-        <section className="w-full min-h-[400px] flex items-center bg-gradient-to-br from-mint via-background to-cream pt-20 pb-20">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+      <main className="bg-primary-ivory min-h-screen">
+        {/* Editorial Hero */}
+        <section className="relative w-full pt-40 pb-24 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--sage-green)_0%,transparent_50%)] opacity-30"></div>
+          <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl font-serif font-bold text-dark-green"
+              transition={{ duration: 0.8 }}
+              className="space-y-8 text-center"
             >
-              Who We Are
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-dark-blue-gray max-w-2xl mx-auto"
-            >
-              20+ years of transforming agricultural value chains across Africa through expertise, innovation, and deep community partnerships.
-            </motion.p>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase">
+                <Award size={14} />
+                Our Legacy of Impact
+              </div>
+              <h1 className="text-primary italic">Deep Roots in African Soil</h1>
+              <p className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto leading-relaxed font-light">
+                Over 20 years of transforming agricultural value chains across the continent through expertise, innovation, and deep community partnerships.
+              </p>
+            </motion.div>
           </div>
         </section>
 
-        {/* Mission, Vision, Values */}
-        <section className="w-full py-16 md:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  title: 'Our Mission',
-                  content:
-                    'To strengthen seed systems and agricultural value chains across sub-Saharan Africa, enhancing farmer productivity, market access, and community resilience.',
-                  color: 'from-primary',
-                },
-                {
-                  title: 'Our Vision',
-                  content:
-                    'A thriving African agricultural sector where smallholder farmers access quality seeds, viable markets, and sustainable livelihoods.',
-                  color: 'from-secondary',
-                },
-                {
-                  title: 'Our Values',
-                  content:
-                    'Community engagement, professional excellence, data-driven decisions, cultural sensitivity, and long-term sustainability.',
-                  color: 'from-accent',
-                },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className={`p-8 rounded-2xl bg-gradient-to-br ${item.color} to-transparent bg-opacity-10 border-2 border-current`}
-                >
-                  <h3 className="text-2xl font-serif font-bold text-dark-green mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-dark-blue-gray leading-relaxed">{item.content}</p>
-                </motion.div>
-              ))}
+        {/* Mission & Vision Bento */}
+        <section className="w-full py-24 bg-white relative">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="bento-card bg-primary text-white p-12 space-y-6"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                  <Target className="text-secondary" size={24} />
+                </div>
+                <h2 className="text-white text-4xl italic">Our Mission</h2>
+                <p className="text-white/80 text-lg leading-relaxed">
+                  To strengthen seed systems and agricultural value chains across sub-Saharan Africa, enhancing farmer productivity, market access, and community resilience.
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="bento-card bg-secondary/5 border-secondary/20 p-12 space-y-6"
+              >
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
+                  <Leaf className="text-secondary" size={24} />
+                </div>
+                <h2 className="text-primary text-4xl italic">Our Vision</h2>
+                <p className="text-foreground/70 text-lg leading-relaxed">
+                  A thriving African agricultural sector where smallholder farmers access quality seeds, viable markets, and sustainable livelihoods.
+                </p>
+              </motion.div>
             </div>
 
-            {/* Core Values */}
-            <div>
-              <h2 className="text-4xl font-serif font-bold text-dark-green mb-12 text-center">
-                Our Core Values
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Core Values Grid */}
+            <div className="space-y-16">
+              <div className="text-center space-y-4">
+                <h2 className="text-primary">Our Core Values</h2>
+                <p className="text-foreground/50 font-bold uppercase tracking-widest text-xs">The principles that guide our work</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {values.map((value, idx) => {
                   const Icon = value.icon
                   return (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: idx * 0.1 }}
-                      className="p-6 rounded-xl bg-mint border border-primary/20 hover:border-primary/50 transition-all duration-300"
+                      whileHover={{ y: -10 }}
+                      className="p-8 rounded-3xl bg-primary-ivory border border-primary/5 hover:border-primary/20 transition-all text-center space-y-4"
                     >
-                      <Icon className="w-8 h-8 text-primary mb-4" />
-                      <h4 className="font-bold text-lg text-dark-green mb-2">{value.title}</h4>
-                      <p className="text-sm text-dark-blue-gray">{value.desc}</p>
+                      <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center mx-auto mb-6">
+                        <Icon className="text-primary" size={24} />
+                      </div>
+                      <h4 className="text-xl text-primary">{value.title}</h4>
+                      <p className="text-sm text-foreground/60 leading-relaxed">{value.desc}</p>
                     </motion.div>
                   )
                 })}
@@ -129,39 +123,33 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="w-full py-16 md:py-24 bg-gradient-to-br from-mint via-cream to-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark-green mb-4">
-                Leadership Team
-              </h2>
-              <p className="text-lg text-dark-blue-gray">
-                Seasoned professionals committed to agricultural transformation
+        {/* Leadership Glass Panel Section */}
+        <section className="w-full py-24 bg-primary text-white overflow-hidden relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--primary-gold)_0%,transparent_40%)] opacity-20"></div>
+          
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-20 space-y-4">
+              <h2 className="text-white">Leadership Team</h2>
+              <p className="text-primary-ivory/60 max-w-2xl mx-auto italic text-lg">
+                Seasoned professionals committed to agricultural transformation across the continent.
               </p>
-            </motion.div>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {team.map((member, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="rounded-xl overflow-hidden bg-white border border-mint shadow-md hover:shadow-lg transition-all duration-300"
+                  whileHover={{ y: -10 }}
+                  className="glass-panel border-white/10 rounded-3xl overflow-hidden group"
                 >
-                  <div className="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-6xl">
-                    👤
+                  <div className="h-64 bg-white/5 flex items-center justify-center text-6xl relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary-gold/10 group-hover:bg-primary-gold/20 transition-colors"></div>
+                    <Users size={64} className="text-white/20" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-dark-green mb-1">{member.name}</h3>
-                    <p className="text-primary font-semibold text-sm mb-3">{member.role}</p>
-                    <p className="text-sm text-dark-blue-gray">{member.bio}</p>
+                  <div className="p-8 space-y-2">
+                    <h3 className="text-xl text-white italic">{member.name}</h3>
+                    <p className="text-secondary font-bold text-xs uppercase tracking-widest">{member.role}</p>
+                    <p className="text-sm text-primary-ivory/60 font-light pt-2">{member.bio}</p>
                   </div>
                 </motion.div>
               ))}
@@ -169,62 +157,31 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* History Timeline */}
-        <section className="w-full py-16 md:py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-dark-green mb-12 text-center"
-            >
-              Our Journey
-            </motion.h2>
+        {/* Timeline Section */}
+        <section className="w-full py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-20 space-y-4">
+              <h2 className="text-primary">Our Journey</h2>
+              <p className="text-foreground/50 font-bold uppercase tracking-widest text-xs">Two decades of growth</p>
+            </div>
 
-            <div className="space-y-8">
+            <div className="space-y-12">
               {[
-                {
-                  year: '2003',
-                  title: 'Foundation',
-                  desc: 'Founded with a mission to strengthen seed systems in East Africa',
-                },
-                {
-                  year: '2008',
-                  title: 'Regional Expansion',
-                  desc: 'Extended operations to West and Southern Africa',
-                },
-                {
-                  year: '2015',
-                  title: 'Innovation Hub',
-                  desc: 'Launched research division focusing on market-driven solutions',
-                },
-                {
-                  year: '2020',
-                  title: 'Digital Transformation',
-                  desc: 'Implemented digital tools for farmer engagement and data collection',
-                },
-                {
-                  year: '2024',
-                  title: 'Pan-African Leader',
-                  desc: 'Operating in 21 countries, impacting over 500,000 farmers',
-                },
+                { year: '2003', title: 'Foundation', desc: 'Founded with a mission to strengthen seed systems in East Africa' },
+                { year: '2008', title: 'Regional Expansion', desc: 'Extended operations to West and Southern Africa' },
+                { year: '2015', title: 'Innovation Hub', desc: 'Launched research division focusing on market-driven solutions' },
+                { year: '2024', title: 'Pan-African Leader', desc: 'Operating in 21 countries, impacting over 500,000 farmers' },
               ].map((milestone, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="flex gap-6 items-start"
+                  className="flex gap-12 items-center"
                 >
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary text-white font-bold text-sm">
-                      {idx + 1}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-bold text-primary">{milestone.year}</p>
-                    <h3 className="text-xl font-bold text-dark-green mt-1">{milestone.title}</h3>
-                    <p className="text-dark-blue-gray mt-2">{milestone.desc}</p>
+                  <div className="text-5xl font-data text-secondary/20 w-32 shrink-0">{milestone.year}</div>
+                  <div className="relative flex-1 p-8 rounded-3xl bg-primary-ivory border border-primary/5">
+                    <h3 className="text-xl text-primary mb-2 italic">{milestone.title}</h3>
+                    <p className="text-foreground/70 font-light">{milestone.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -233,20 +190,18 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 md:py-24 bg-gradient-to-r from-dark-green to-dark-blue-gray text-white">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold">
-              Partner With Us
-            </h2>
-            <p className="text-xl text-cream">
-              Let&apos;s collaborate to transform agricultural systems and create sustainable impact.
+        <section className="w-full py-32 bg-primary-ivory">
+          <div className="max-w-4xl mx-auto px-6 text-center space-y-10">
+            <h2 className="text-primary italic">Partner With Us</h2>
+            <p className="text-2xl text-foreground/70 font-light leading-relaxed">
+              Let&apos;s collaborate to transform agricultural systems and create sustainable impact for generations to come.
             </p>
-            <Link
-              href="/contact"
-              className="inline-block px-8 py-4 bg-primary hover:bg-primary/90 text-dark-green rounded-full font-semibold transition-all duration-300 hover:scale-105"
-            >
-              Get In Touch
-            </Link>
+            <div className="pt-6">
+              <Link href="/contact" className="btn-premium">
+                Get In Touch
+                <ArrowRight size={20} />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

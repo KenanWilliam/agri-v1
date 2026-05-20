@@ -1,98 +1,113 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { label: 'Home', href: '/', mobile: true },
-  { label: 'About', href: '/about', mobile: true },
-  { label: 'Our Work', href: '/our-work', mobile: true },
-  { label: 'Our Results', href: '/our-results', mobile: true },
-  { label: 'Our Impact', href: '/our-impact', mobile: true },
-  { label: 'Resources', href: '/resources', mobile: true },
-  { label: 'Insights', href: '/insights', mobile: true },
-  { label: 'Contact', href: '/contact', mobile: true },
+  { label: 'About', href: '/about' },
+  { label: 'Work', href: '/our-work' },
+  { label: 'Impact', href: '/our-impact' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-primary/10 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="inline-flex items-center leading-none">
-          <img src="/newsletters.svg" alt="Agri Experience" className="block h-9 w-auto object-contain" />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item, idx) => (
-            <Link
-              key={`${item.href}-${idx}`}
-              href={item.href}
-              className="px-4 py-2 text-sm font-medium text-dark-green hover:text-primary transition-colors duration-200 relative group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* CTA + Mobile Menu */}
-        <div className="flex items-center gap-4">
-          {/* Newsletter CTA - Desktop */}
-          <Link
-            href="/newsletter"
-            className="hidden md:inline-flex px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 text-sm"
-          >
-            Newsletter
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 transition-all duration-500">
+      <header 
+        className={`w-full max-w-5xl rounded-full border transition-all duration-500 ${
+          scrolled 
+            ? 'glass-panel border-primary/10 py-2 px-6 shadow-2xl' 
+            : 'bg-transparent border-transparent py-4 px-6'
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="relative w-10 h-10 bg-primary rounded-full flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
+              <img src="/newsletters.svg" alt="" className="w-6 h-6 invert brightness-0" />
+            </div>
+            <span className="font-serif font-bold text-xl text-primary tracking-tight hidden sm:block">
+              Agri Experience
+            </span>
           </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 hover:bg-primary/10 rounded-lg transition-colors duration-200 text-dark-green"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {navItems.map((item, idx) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-primary transition-all relative group"
+              >
+                {item.label}
+                <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA + Mobile Menu */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/newsletter"
+              className="hidden md:inline-flex px-6 py-2.5 bg-primary text-white rounded-full text-sm font-semibold hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5 transition-all"
+            >
+              Get Updates
+            </Link>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-primary hover:bg-primary/5 rounded-full transition-colors"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden border-t border-primary/10 bg-white"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="absolute top-20 left-4 right-4 glass-panel rounded-3xl p-6 lg:hidden shadow-2xl border-primary/10"
           >
-            <nav className="max-w-7xl mx-auto px-4 py-4 space-y-2">
-              {navItems.map((item, idx) => (
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => (
                 <Link
-                  key={`${item.href}-${idx}`}
+                  key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-2 text-dark-green hover:bg-mint rounded-lg transition-colors duration-200 font-medium"
+                  className="px-6 py-4 text-lg font-serif font-semibold text-primary hover:bg-primary/5 rounded-2xl transition-all"
                 >
                   {item.label}
                 </Link>
               ))}
+              <hr className="my-2 border-primary/10" />
               <Link
                 href="/newsletter"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-center hover:bg-primary/90"
+                className="w-full py-4 bg-primary text-white rounded-2xl font-bold text-center shadow-lg"
               >
-                Newsletter
+                Newsletter Signup
               </Link>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </div>
   )
 }

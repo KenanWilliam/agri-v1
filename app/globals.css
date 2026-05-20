@@ -3,88 +3,59 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Agri Experience Color Palette */
+/* Premium Agri Experience Color Palette - High-End Nature */
 :root {
-  /* Primary Colors */
-  --primary-green: #3ab44a;
-  --primary-blue: #2484c6;
+  /* Primary Palette */
+  --primary-forest: #064E3B;
+  --primary-gold: #B45309;
+  --primary-ivory: #FDFCF0;
   
   /* Supporting Colors */
-  --dark-green: #0f3d1e;
-  --cream: #f5efe0;
-  --dark-blue-gray: #1c2b22;
-  --mint: #eef5f1;
-  --gold-accent: #c8a44a;
+  --dark-charcoal: #1C2B22;
+  --sage-green: #E5E7EB;
+  --warm-gray: #71717A;
   
   /* Design System Colors */
-  --background: #ffffff;
-  --foreground: #1c2b22;
-  --card: #ffffff;
-  --card-foreground: #1c2b22;
-  --popover: #ffffff;
-  --popover-foreground: #1c2b22;
-  --primary: #3ab44a;
-  --primary-foreground: #ffffff;
-  --secondary: #2484c6;
-  --secondary-foreground: #ffffff;
-  --muted: #eef5f1;
-  --muted-foreground: #556b63;
-  --accent: #c8a44a;
-  --accent-foreground: #1c2b22;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #eef5f1;
-  --input: #f5efe0;
-  --ring: #3ab44a;
-  --chart-1: #3ab44a;
-  --chart-2: #2484c6;
-  --chart-3: #c8a44a;
-  --chart-4: #0f3d1e;
-  --chart-5: #eef5f1;
-  --radius: 0.625rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #1c2b22;
-  --sidebar-primary: #3ab44a;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #2484c6;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #eef5f1;
-  --sidebar-ring: #3ab44a;
+  --background: #FDFCF0; /* Ivory */
+  --foreground: #1C2B22; /* Charcoal Green */
+  --card: #FFFFFF;
+  --card-foreground: #1C2B22;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C2B22;
+  --primary: #064E3B; /* Forest Green */
+  --primary-foreground: #FDFCF0;
+  --secondary: #B45309; /* Gold */
+  --secondary-foreground: #FDFCF0;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #B45309;
+  --accent-foreground: #FDFCF0;
+  --destructive: #EF4444;
+  --destructive-foreground: #FDFCF0;
+  --border: #E2E8F0;
+  --input: #F1F5F9;
+  --ring: #064E3B;
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: #0f3d1e;
-  --foreground: #f5efe0;
-  --card: #1c2b22;
-  --card-foreground: #f5efe0;
-  --popover: #1c2b22;
-  --popover-foreground: #f5efe0;
-  --primary: #3ab44a;
-  --primary-foreground: #0f3d1e;
-  --secondary: #2484c6;
-  --secondary-foreground: #ffffff;
-  --muted: #2a3d32;
-  --muted-foreground: #a8b5ad;
-  --accent: #c8a44a;
-  --accent-foreground: #0f3d1e;
-  --destructive: #ef4444;
-  --destructive-foreground: #0f3d1e;
-  --border: #2a3d32;
-  --input: #2a3d32;
-  --ring: #3ab44a;
-  --chart-1: #3ab44a;
-  --chart-2: #2484c6;
-  --chart-3: #c8a44a;
-  --chart-4: #eef5f1;
-  --chart-5: #f5efe0;
-  --sidebar: #1c2b22;
-  --sidebar-foreground: #f5efe0;
-  --sidebar-primary: #3ab44a;
-  --sidebar-primary-foreground: #0f3d1e;
-  --sidebar-accent: #2484c6;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #2a3d32;
-  --sidebar-ring: #3ab44a;
+  --background: #062016;
+  --foreground: #FDFCF0;
+  --card: #082D1F;
+  --card-foreground: #FDFCF0;
+  --popover: #082D1F;
+  --popover-foreground: #FDFCF0;
+  --primary: #10B981;
+  --primary-foreground: #062016;
+  --secondary: #D97706;
+  --secondary-foreground: #FDFCF0;
+  --muted: #0D3B2B;
+  --muted-foreground: #94A3B8;
+  --accent: #D97706;
+  --accent-foreground: #062016;
+  --border: #0D3B2B;
+  --input: #0D3B2B;
+  --ring: #10B981;
 }
 
 @theme inline {
@@ -111,114 +82,86 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    position: relative;
+  }
+
+  /* Noise Overlay for Premium Texture */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
   
   /* Professional Typography */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold tracking-tight;
+    @apply font-serif font-bold tracking-tight text-primary;
+    line-height: 1.1;
+  }
+
+  h1 { @apply text-5xl md:text-7xl lg:text-8xl; }
+  h2 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+
+  p {
+    @apply leading-relaxed text-foreground/80;
   }
   
   /* Smooth Transitions */
   * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Remove any gradients from backgrounds */
-  button:not([class*="bg-gradient"]),
-  a:not([class*="bg-gradient"]) {
-    @apply transition-all duration-300;
+    transition-duration: 300ms;
   }
 }
 
-/* Custom Animations for Professional Look */
-@keyframes fadeInUp {
+@layer components {
+  .btn-premium {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50;
+  }
+
+  .btn-premium-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-primary text-primary rounded-full font-semibold transition-all hover:bg-primary/5 active:scale-[0.98];
+  }
+
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+
+  .bento-card {
+    @apply relative overflow-hidden rounded-3xl border border-primary/5 bg-white p-8 transition-all hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5;
+  }
+}
+
+/* Custom Keyframes */
+@keyframes revealText {
   from {
-    opacity: 0;
-    transform: translateY(12px);
+    clip-path: inset(0 100% 0 0);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
   }
 }
 
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-@keyframes subtleFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-slide-in-down {
-  animation: slideInDown 0.5s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.4s ease-out forwards;
-}
-
-.animate-float {
-  animation: subtleFloat 3s ease-in-out infinite;
+.animate-reveal {
+  animation: revealText 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }

@@ -28,9 +28,8 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Agri Experience - Seed Systems & Agricultural Development',
-  description: 'Transforming seed systems across Africa. Expert consultancy for sustainable agricultural development across 21 African countries.',
-  generator: 'v0.app',
+  title: 'Agri Experience | Seed Systems & Agricultural Development',
+  description: 'Expert consultancy transforming agricultural value chains and seed systems across 21 African countries. Sustainable development for growing communities.',
   icons: {
     icon: '/favicon.svg',
     apple: '/apple-icon.png',
