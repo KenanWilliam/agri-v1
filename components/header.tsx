@@ -1,0 +1,102 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, ChevronDown } from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+const navItems = [
+  { label: 'Home', href: '/', mobile: true },
+  { label: 'About', href: '/about', mobile: true },
+  { label: 'Our Work', href: '/our-work', mobile: true },
+  { label: 'Our Results', href: '/our-results', mobile: true },
+  { label: 'Our Impact', href: '/our-impact', mobile: true },
+  { label: 'Resources', href: '/resources', mobile: true },
+  { label: 'Insights', href: '/insights', mobile: true },
+  { label: 'Contact', href: '/contact', mobile: true },
+]
+
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-mint shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 font-serif font-bold text-2xl">
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white text-lg">
+            🌾
+          </div>
+          <span className="text-dark-green hidden sm:inline">Agri Experience</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-4 py-2 text-sm font-medium text-dark-green hover:text-primary transition-colors duration-200 relative group"
+            >
+              {item.label}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA + Mobile Menu */}
+        <div className="flex items-center gap-4">
+          {/* Newsletter CTA - Desktop */}
+          <Link
+            href="/newsletter"
+            className="hidden md:inline-flex px-6 py-2 bg-gradient-to-r from-primary to-primary/80 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm"
+          >
+            Newsletter
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 hover:bg-mint rounded-lg transition-colors"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden border-t border-mint bg-white"
+          >
+            <nav className="max-w-7xl mx-auto px-4 py-4 space-y-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-4 py-2 text-dark-green hover:bg-mint rounded-lg transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="/newsletter"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-2 bg-gradient-to-r from-primary to-primary/80 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-center"
+              >
+                Newsletter
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  )
+}
