@@ -82,17 +82,34 @@ export default function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em]">Our Presence</h4>
             <div className="space-y-6">
               <div className="flex gap-4 items-start group">
-                <div className="w-10 h-10 rounded-xl bg-primary-ivory/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/20 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
                   <MapPin className="text-secondary" size={18} />
                 </div>
-                <div className="text-primary-ivory/60 font-light leading-relaxed">
-                  Headquarters: Nairobi, Kenya<br />
-                  Operations across 21 African countries
+                <div className="text-primary-ivory leading-relaxed font-medium">
+                  Watermark Business Park,<br />
+                  Spring Court, Ground Floor,<br />
+                  Ndege Road, Karen, Nairobi, Kenya
+                </div>
+              </div>
+              <div className="flex gap-4 items-start group">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
+                  <Mail className="text-secondary" size={18} />
+                </div>
+                <div className="text-primary-ivory font-medium">
+                  info@agri-experience.com
+                </div>
+              </div>
+              <div className="flex gap-4 items-start group">
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
+                  <Phone className="text-secondary" size={18} />
+                </div>
+                <div className="text-primary-ivory font-medium">
+                  +254 (20) 2626888
                 </div>
               </div>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-ivory/5 border border-primary-ivory/10 rounded-full text-sm font-bold hover:bg-primary-ivory hover:text-primary transition-all group"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-secondary text-white rounded-full text-sm font-bold hover:scale-105 transition-all group shadow-lg shadow-secondary/20"
               >
                 Work With Us
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
