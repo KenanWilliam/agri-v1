@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import * as d3 from 'd3'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MapPin, Briefcase, Users, TrendingUp, Info, Globe } from 'lucide-react'
+import { X, MapPin, Briefcase, Users, TrendingUp, Info, Globe, RefreshCcw, ArrowRight } from 'lucide-react'
 
 interface Country {
   name: string
@@ -12,118 +13,281 @@ interface Country {
   impact: string[]
   focus: string[]
   engagement: number
-  path: string
 }
 
-const countriesData: Country[] = [
-  { name: 'Kenya', code: 'KE', region: 'East Africa', projects: 12, impact: ['Seed regulations', 'Farmer networks', 'Quality assurance'], focus: ['Seed certification', 'Market linkages'], engagement: 120000, path: "M439.5,296.8l-1.6-1.9l-2.4-0.1l-2,1.3l-2.1,3.4l-1.3,0.1l-1.6-2l-2.8,0.7l-0.8,3.2l0.4,4.4l3.1,4.4l4,1l3.5-3.3l3.6-4.5l3.1-0.7L439.5,296.8z" },
-  { name: 'Uganda', code: 'UG', region: 'East Africa', projects: 8, impact: ['Value chain', 'Certification', 'Market access'], focus: ['Value chain dev', 'Training'], engagement: 85000, path: "M422.3,293.4l-0.8,3.1l-3.2,0.8l-1.6,2.1l0,3.3l2.8,0.7l1.6,1.9l2,1.3l2.1-3.4l1.3-0.1l0.8-3.2l-0.4-4.4L422.3,293.4z" },
-  { name: 'Tanzania', code: 'TZ', region: 'East Africa', projects: 10, impact: ['Seed production', 'Distribution', 'Training'], focus: ['Production systems', 'Extension'], engagement: 95000, path: "M421.3,312.8l-1.1,5.9l2.7,4.3l7,1l5.4,3.7l6.6-0.3l3.4-3.3l0.3-6.6l-3.3-3.4l-3.6,4.5l-3.5,3.3l-4-1l-3.1-4.4l-3.1,0.7L421.3,312.8z" },
-  { name: 'Ethiopia', code: 'ET', region: 'East Africa', projects: 9, impact: ['Policy reform', 'Farmer support'], focus: ['Policy', 'Networks'], engagement: 75000, path: "M433.1,250.2l-5.6,3.6l-2.1,6.5l-0.6,6.9l5.3,7l2.8,0.7l3.1,0.7l4.5,2.1l4.4,0.4l3.3-3.1l3.3-3.3l-0.3-6.6l-3.3-3.4l-3.3-3.3l-3.3,0.3l-3.4,3.3l-3.3-3.4L433.1,250.2z" },
-  { name: 'Nigeria', code: 'NG', region: 'West Africa', projects: 8, impact: ['Market size', 'Innovation hub'], focus: ['Innovation', 'Scale'], engagement: 92000, path: "M278.4,260.4l-6.6,0.3l-3.4,3.3l-0.3,6.6l3.3,3.4l3.3,3.3l3.3-0.3l3.4-3.3l3.3,3.4l6.6-0.3l3.4-3.3l0.3-6.6l-3.3-3.4l-3.3-3.3l-3.3,0.3l-3.4,3.3L278.4,260.4z" },
-  { name: 'Ghana', code: 'GH', region: 'West Africa', projects: 7, impact: ['Tech adoption', 'Farmer networks'], focus: ['Digital', 'Networks'], engagement: 68000, path: "M248.4,275.4l-3.3,0.3l-3.4,3.3l-3.3-3.4l-6.6,0.3l-3.4,3.3l-0.3,6.6l3.3,3.4l3.3,3.3l3.3-0.3l3.4-3.3l3.3,3.4l6.6-0.3l3.4-3.3l0.3-6.6L248.4,275.4z" },
-  // Adding placeholders for all 21 countries with representative paths to demonstrate functionality
-  { name: 'Rwanda', code: 'RW', region: 'East Africa', projects: 7, impact: ['Variety research', 'Extension services'], focus: ['Research', 'Capacity'], engagement: 65000, path: "M416,310l-2,2l0,3l2,2l3,0l2-2l0-3l-2-2L416,310z" },
-  { name: 'Malawi', code: 'MW', region: 'Southern Africa', projects: 6, impact: ['Seed systems', 'Quality control'], focus: ['Quality', 'Logistics'], engagement: 55000, path: "M425,345l-1,4l3,2l4-2l0-4l-3-2L425,345z" },
-  { name: 'Zambia', code: 'ZM', region: 'Southern Africa', projects: 8, impact: ['Market development', 'Capacity building'], focus: ['Markets', 'Training'], engagement: 70000, path: "M390,360l-5,5l2,10l10,5l8-8l-2-10L390,360z" },
-  { name: 'Zimbabwe', code: 'ZW', region: 'Southern Africa', projects: 7, impact: ['Value addition', 'Trade'], focus: ['Processing', 'Export'], engagement: 60000, path: "M405,385l-4,4l2,8l8,4l6-6l-2-8L405,385z" },
-  { name: 'Mozambique', code: 'MZ', region: 'Southern Africa', projects: 5, impact: ['Infrastructure', 'Logistics'], focus: ['Supply chain', 'Tech'], engagement: 45000, path: "M435,365l-5,10l4,15l10,5l5-10l-4-15L435,365z" },
-  { name: 'Madagascar', code: 'MG', region: 'Southern Africa', projects: 4, impact: ['Conservation', 'Climate adaptation'], focus: ['Climate', 'Sustainability'], engagement: 40000, path: "M490,370l-3,10l5,20l8,5l3-10l-5-20L490,370z" },
-  { name: 'Senegal', code: 'SN', region: 'West Africa', projects: 6, impact: ['Market analysis', 'Youth engagement'], focus: ['Youth', 'Markets'], engagement: 50000, path: "M170,235l-5,5l2,8l8,4l5-5l-2-8L170,235z" },
-  { name: 'Burkina Faso', code: 'BF', region: 'West Africa', projects: 5, impact: ['Seed multiplication', 'Farmer schools'], focus: ['Production', 'Education'], engagement: 48000, path: "M235,245l-6,3l2,7l9,2l4-4l-2-6L235,245z" },
-  { name: 'Mali', code: 'ML', region: 'West Africa', projects: 4, impact: ['Regional trade', 'Nutrition'], focus: ['Trade', 'Food security'], engagement: 35000, path: "M210,210l-8,8l4,15l15,10l10-10l-4-15L210,210z" },
-  { name: 'Niger', code: 'NE', region: 'West Africa', projects: 5, impact: ['Drought resilience', 'Varieties'], focus: ['Climate', 'Resilience'], engagement: 42000, path: "M280,215l-10,5l5,15l15,10l10-10l-5-15L280,215z" },
-  { name: 'Cameroon', code: 'CM', region: 'Central Africa', projects: 5, impact: ['Value chain', 'Processing'], focus: ['Value-add', 'Business'], engagement: 52000, path: "M325,295l-5,5l3,12l12,3l5-5l-3-12L325,295z" },
-  { name: 'DRC', code: 'CD', region: 'Central Africa', projects: 6, impact: ['Crop improvement', 'Supply chain'], focus: ['Research', 'Logistics'], engagement: 58000, path: "M360,315l-15,15l5,30l30,15l20-20l-5-30L360,315z" },
-  { name: 'South Sudan', code: 'SS', region: 'East Africa', projects: 3, impact: ['Food security', 'Recovery'], focus: ['Emergency', 'Recovery'], engagement: 28000, path: "M395,265l-8,6l3,12l15,3l8-8l-3-12L395,265z" },
-  { name: 'Botswana', code: 'BW', region: 'Southern Africa', projects: 3, impact: ['Sustainable agriculture'], focus: ['Sustainability'], engagement: 22000, path: "M385,410l-6,6l3,12l15,3l6-6l-3-12L385,410z" },
-  { name: 'Namibia', code: 'NA', region: 'Southern Africa', projects: 3, impact: ['Regional markets'], focus: ['Regional trade'], engagement: 20000, path: "M355,405l-6,12l4,15l15,4l6-12l-4-15L355,405z" },
-]
+const countriesData: Record<string, Country> = {
+  'Kenya': { name: 'Kenya', code: 'KE', region: 'East Africa', projects: 12, impact: ['Seed regulations', 'Farmer networks', 'Quality assurance'], focus: ['Seed certification', 'Market linkages'], engagement: 120000 },
+  'Uganda': { name: 'Uganda', code: 'UG', region: 'East Africa', projects: 8, impact: ['Value chain', 'Certification', 'Market access'], focus: ['Value chain dev', 'Training'], engagement: 85000 },
+  'Tanzania': { name: 'Tanzania', code: 'TZ', region: 'East Africa', projects: 10, impact: ['Seed production', 'Distribution', 'Training'], focus: ['Production systems', 'Extension'], engagement: 95000 },
+  'Rwanda': { name: 'Rwanda', code: 'RW', region: 'East Africa', projects: 7, impact: ['Variety research', 'Extension services'], focus: ['Research', 'Capacity'], engagement: 65000 },
+  'Ethiopia': { name: 'Ethiopia', code: 'ET', region: 'East Africa', projects: 9, impact: ['Policy reform', 'Farmer support'], focus: ['Policy', 'Networks'], engagement: 75000 },
+  'Malawi': { name: 'Malawi', code: 'MW', region: 'Southern Africa', projects: 6, impact: ['Seed systems', 'Quality control'], focus: ['Quality', 'Logistics'], engagement: 55000 },
+  'Zambia': { name: 'Zambia', code: 'ZM', region: 'Southern Africa', projects: 8, impact: ['Market development', 'Capacity building'], focus: ['Markets', 'Training'], engagement: 70000 },
+  'Zimbabwe': { name: 'Zimbabwe', code: 'ZW', region: 'Southern Africa', projects: 7, impact: ['Value addition', 'Trade'], focus: ['Processing', 'Export'], engagement: 60000 },
+  'Mozambique': { name: 'Mozambique', code: 'MZ', region: 'Southern Africa', projects: 5, impact: ['Infrastructure', 'Logistics'], focus: ['Supply chain', 'Tech'], engagement: 45000 },
+  'Madagascar': { name: 'Madagascar', code: 'MG', region: 'Southern Africa', projects: 4, impact: ['Conservation', 'Climate adaptation'], focus: ['Climate', 'Sustainability'], engagement: 40000 },
+  'Senegal': { name: 'Senegal', code: 'SN', region: 'West Africa', projects: 6, impact: ['Market analysis', 'Youth engagement'], focus: ['Youth', 'Markets'], engagement: 50000 },
+  'Burkina Faso': { name: 'Burkina Faso', code: 'BF', region: 'West Africa', projects: 5, impact: ['Seed multiplication', 'Farmer schools'], focus: ['Production', 'Education'], engagement: 48000 },
+  'Mali': { name: 'Mali', code: 'ML', region: 'West Africa', projects: 4, impact: ['Regional trade', 'Nutrition'], focus: ['Trade', 'Food security'], engagement: 35000 },
+  'Niger': { name: 'Niger', code: 'NE', region: 'West Africa', projects: 5, impact: ['Drought resilience', 'Varieties'], focus: ['Climate', 'Resilience'], engagement: 42000 },
+  'Ghana': { name: 'Ghana', code: 'GH', region: 'West Africa', projects: 7, impact: ['Tech adoption', 'Farmer networks'], focus: ['Digital', 'Networks'], engagement: 68000 },
+  'Cameroon': { name: 'Cameroon', code: 'CM', region: 'Central Africa', projects: 5, impact: ['Value chain', 'Processing'], focus: ['Value-add', 'Business'], engagement: 52000 },
+  'Democratic Republic of the Congo': { name: 'DRC', code: 'CD', region: 'Central Africa', projects: 6, impact: ['Crop improvement', 'Supply chain'], focus: ['Research', 'Logistics'], engagement: 58000 },
+  'Nigeria': { name: 'Nigeria', code: 'NG', region: 'West Africa', projects: 8, impact: ['Market size', 'Innovation hub'], focus: ['Innovation', 'Scale'], engagement: 92000 },
+  'South Sudan': { name: 'South Sudan', code: 'SS', region: 'East Africa', projects: 3, impact: ['Food security', 'Recovery'], focus: ['Emergency', 'Recovery'], engagement: 28000 },
+  'Botswana': { name: 'Botswana', code: 'BW', region: 'Southern Africa', projects: 3, impact: ['Sustainable agriculture'], focus: ['Sustainability'], engagement: 22000 },
+  'Namibia': { name: 'Namibia', code: 'NA', region: 'Southern Africa', projects: 3, impact: ['Regional markets'], focus: ['Regional trade'], engagement: 20000 },
+}
 
 export default function InteractiveMap() {
+  const svgRef = useRef<SVGSVGElement>(null)
+  const gRef = useRef<SVGGElement>(null)
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null)
-  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null)
+  const [hoveredName, setHoveredName] = useState<string | null>(null)
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    if (!svgRef.current) return
+
+    const width = 800
+    const height = 800
+    const svg = d3.select(svgRef.current)
+    const g = d3.select(gRef.current)
+
+    // Clear previous content
+    g.selectAll('*').remove()
+
+    // Map projection
+    const projection = d3.geoMercator()
+      .scale(width / 1.5)
+      .center([15, 5])
+      .translate([width / 2, height / 2])
+
+    const pathGenerator = d3.geoPath().projection(projection)
+
+    // Zoom behavior
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([1, 12])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform)
+      })
+
+    svg.call(zoom)
+
+    // Fetch GeoJSON
+    d3.json('https://raw.githubusercontent.com/Anis-Koubaa/GeoJSON-Africa/master/Africa.geojson').then((data: any) => {
+      const countries = g.selectAll('path')
+        .data(data.features)
+        .enter()
+        .append('path')
+        .attr('d', pathGenerator as any)
+        .attr('class', (d: any) => {
+          const name = d.properties.name
+          return countriesData[name] ? 'country-active' : 'country-base'
+        })
+        .style('fill', (d: any) => {
+          const name = d.properties.name
+          return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
+        })
+        .style('stroke', 'rgba(253, 252, 240, 0.2)')
+        .style('stroke-width', '0.5px')
+        .style('transition', 'fill 0.3s ease, stroke 0.3s ease, opacity 0.5s ease')
+        .style('cursor', (d: any) => countriesData[d.properties.name] ? 'pointer' : 'default')
+        .on('mouseenter', function(event, d: any) {
+          const name = d.properties.name
+          if (countriesData[name]) {
+            setHoveredName(name)
+            d3.select(this)
+              .style('fill', 'rgba(180, 83, 9, 0.4)')
+              .style('stroke', '#B45309')
+              .style('stroke-width', '1px')
+              .style('filter', 'drop-shadow(0 0 8px rgba(180, 83, 9, 0.3))')
+          }
+        })
+        .on('mousemove', (event) => {
+          setTooltipPos({ x: event.clientX, y: event.clientY })
+        })
+        .on('mouseleave', function(event, d: any) {
+          setHoveredName(null)
+          const name = d.properties.name
+          if (!selectedCountry || selectedCountry.name !== name) {
+             d3.select(this)
+              .style('fill', countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)')
+              .style('stroke', 'rgba(253, 252, 240, 0.2)')
+              .style('stroke-width', '0.5px')
+              .style('filter', 'none')
+          }
+        })
+        .on('click', (event, d: any) => {
+          const country = countriesData[d.properties.name]
+          if (country) {
+            handleCountryClick(d, country)
+          } else {
+            resetZoom()
+          }
+        })
+
+      // Initial reveal
+      countries.style('opacity', 0)
+        .transition()
+        .duration(1000)
+        .delay((d, i) => i * 10)
+        .style('opacity', 1)
+    })
+
+    const handleCountryClick = (d: any, country: Country) => {
+      setSelectedCountry(country)
+      
+      const bounds = pathGenerator.bounds(d)
+      const dx = bounds[1][0] - bounds[0][0]
+      const dy = bounds[1][1] - bounds[0][1]
+      const x = (bounds[0][0] + bounds[1][0]) / 2
+      const y = (bounds[0][1] + bounds[1][1]) / 2
+      const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
+      const translate = [width / 2 - scale * x, height / 2 - scale * y]
+
+      svg.transition()
+        .duration(1200)
+        .ease(d3.easeCubicInOut)
+        .call(
+          zoom.transform,
+          d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
+        )
+
+      // Dim others
+      g.selectAll('path')
+        .transition()
+        .duration(600)
+        .style('opacity', (node: any) => node.properties.name === d.properties.name ? 1 : 0.2)
+        .style('fill', (node: any) => node.properties.name === d.properties.name ? '#B45309' : 'rgba(6, 78, 59, 0.05)')
+    }
+
+    const resetZoom = () => {
+      setSelectedCountry(null)
+      svg.transition()
+        .duration(1200)
+        .ease(d3.easeCubicInOut)
+        .call(zoom.transform, d3.zoomIdentity)
+
+      g.selectAll('path')
+        .transition()
+        .duration(600)
+        .style('opacity', 1)
+        .style('fill', (d: any) => {
+          const name = d.properties.name
+          return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
+        })
+        .style('stroke', 'rgba(253, 252, 240, 0.2)')
+        .style('stroke-width', '0.5px')
+        .style('filter', 'none')
+    }
+
+    // Attach reset to background click
+    svg.on('click', (event) => {
+      if (event.target === svgRef.current) resetZoom()
+    })
+
+    // Clean up
+    return () => {
+      svg.on('.zoom', null)
+      svg.on('click', null)
+    }
+  }, [])
+
+  const resetMap = () => {
+    if (!svgRef.current) return
+    const svg = d3.select(svgRef.current)
+    const g = d3.select(gRef.current)
+    setSelectedCountry(null)
+    
+    svg.transition()
+      .duration(1200)
+      .ease(d3.easeCubicInOut)
+      .call(d3.zoom<SVGSVGElement, unknown>().transform, d3.zoomIdentity)
+
+    g.selectAll('path')
+      .transition()
+      .duration(600)
+      .style('opacity', 1)
+      .style('fill', (d: any) => {
+        const name = d.properties.name
+        return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
+      })
+      .style('stroke', 'rgba(253, 252, 240, 0.2)')
+      .style('stroke-width', '0.5px')
+      .style('filter', 'none')
+  }
 
   return (
     <section className="w-full py-24 relative overflow-hidden bg-primary-ivory">
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Noise Texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noiseFilterMap">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilterMap)" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           
           {/* Map Section */}
-          <div className="flex-1 w-full max-w-3xl">
+          <div className="flex-1 w-full relative">
             <div className="mb-12 space-y-4">
-              <h2 className="text-primary italic">Our African Outreach</h2>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+                <Globe size={14} />
+                African Outreach
+              </div>
+              <h2 className="text-primary italic">Our Footprint Across the Continent</h2>
               <p className="text-xl text-foreground/60 font-light max-w-xl">
-                A physical presence across 21 nations. Click on a highlighted country to explore our deep roots and local impact.
+                Cinematic exploration of our deep-rooted agricultural initiatives. Click on a highlighted nation to fly into the details.
               </p>
             </div>
 
-            <div className="relative">
-              {/* Detailed Africa SVG Map */}
+            <div className="relative aspect-square max-w-[800px] mx-auto overflow-visible">
               <svg 
-                viewBox="100 0 500 600" 
-                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(6,78,59,0.15)]"
-                xmlns="http://www.w3.org/2000/svg"
+                ref={svgRef}
+                viewBox="0 0 800 800" 
+                className="w-full h-full drop-shadow-[0_20px_50px_rgba(6,78,59,0.15)]"
               >
-                {/* Background Outline of Africa */}
-                <path 
-                  d="M208,35c-15,6-31,18-38,33c-7,15-8,32-4,47c4,15,13,29,26,38c13,9,30,13,46,12c16-1,31-6,44-15c13-9,23-22,29-37 c6-15,7-31,3-46c-4-15-13-28-26-38C275,21,259,16,243,17C227,18,212,24,208,35z M143,117c-25,12-42,39-43,67c-1,28,14,56,38,71 c24,15,55,17,81,5c26-12,45-38,47-66c2-28-11-56-34-73c-23-17-54-21-81-11c-2,1-4,2-7,4c-1,0-1,1-2,1c-10,6-18,14-23,24c0,1,0,1,0,1 c-2,3-3,7-4,10c-1,3-1,7-1,10c1,14,7,26,17,35c10,9,24,13,38,10c14-3,25-11,31-23c6-12,6-26,0-38c-6-12-18-21-31-23 c-13-2-27,2-37,11c-10,9-15,22-14,35c1,13,8,25,19,32c11,7,25,8,37,3c12-5,20-16,22-29c2-13-3-26-13-35c-10-9-24-11-36-7 c-12,4-20,15-21,28c-1,13,6,25,16,32c10,7,24,8,35,3c11-5,18-16,19-28c1-12-5-24-15-30c-10-6-23-7-33-2 c-10,5-16,16-16,27c0,11,6,22,16,28c10,6,22,5,31-1c9-6,14-16,13-26c-1-10-8-19-17-23c-9-4-21-2-28,5c-7,7-10,18-8,27 c2,9,10,17,19,19c9,2,20-2,26-10c6-8,8-19,4-28c-4-9-13-15-23-15c-10,0-19,7-21,17c-2,10,4,20,13,24c9,4,20,2,26-6c6-8,6-20-1-27 c-7-7-19-8-26-2c-7,6-9,17-4,25c5,8,16,10,24,5c8-5,11-16,6-24c-5-8-16-9-23-4c-7,5-9,15-4,22c5,7,15,9,22,4c7-5,9-14,4-21 c-5-7-14-9-21-4c-7,5-9,14-4,21c5,7,14,9,21,4c7-5,9-14,4-21" 
-                  fill="currentColor" 
-                  className="text-primary/5"
-                  transform="scale(2) translate(-50, -50)"
-                />
-                
-                {/* Detailed Country Paths */}
-                {countriesData.map((country, idx) => {
-                  const isSelected = selectedCountry?.code === country.code
-                  const isHovered = hoveredCountry === country.code
-
-                  return (
-                    <motion.path
-                      key={country.code}
-                      d={country.path}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ 
-                        opacity: 1, 
-                        scale: isSelected ? 1.05 : 1,
-                        fill: isSelected ? '#B45309' : isHovered ? '#064E3B' : 'rgba(6,78,59,0.1)'
-                      }}
-                      transition={{ duration: 0.4 }}
-                      stroke={isSelected ? '#B45309' : isHovered ? '#064E3B' : '#FFFFFF'}
-                      strokeWidth={isSelected ? 1.5 : 0.5}
-                      onMouseEnter={() => setHoveredCountry(country.code)}
-                      onMouseLeave={() => setHoveredCountry(null)}
-                      onClick={() => setSelectedCountry(country)}
-                      className="cursor-pointer transition-all duration-300"
-                    />
-                  )
-                })}
-
-                {/* Markers for specific projects within countries */}
-                {selectedCountry && (
-                  <motion.g
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    <circle 
-                      cx="420" cy="300" r="3" 
-                      fill="#B45309" 
-                      className="animate-ping" 
-                    />
-                  </motion.g>
-                )}
+                <g ref={gRef}></g>
               </svg>
 
-              {/* Float Label */}
+              {/* Reset Button */}
               <AnimatePresence>
-                {hoveredCountry && !selectedCountry && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="absolute top-0 right-0 bg-primary text-white px-6 py-3 rounded-2xl shadow-2xl font-bold italic"
+                {selectedCountry && (
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    onClick={resetMap}
+                    className="absolute bottom-4 left-4 bg-primary text-white px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2 hover:bg-secondary transition-colors z-20"
                   >
-                    {countriesData.find(c => c.code === hoveredCountry)?.name}
+                    <RefreshCcw size={18} />
+                    Back to Continent
+                  </motion.button>
+                )}
+              </AnimatePresence>
+
+              {/* Tooltip */}
+              <AnimatePresence>
+                {hoveredName && !selectedCountry && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                    animate={{ opacity: 1, scale: 1, y: -40 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    style={{ 
+                      position: 'fixed',
+                      left: tooltipPos.x,
+                      top: tooltipPos.y,
+                      pointerEvents: 'none'
+                    }}
+                    className="bg-primary text-white px-4 py-2 rounded-xl shadow-2xl font-bold italic text-sm z-50 flex items-center gap-2"
+                  >
+                    <MapPin size={14} className="text-secondary" />
+                    {hoveredName}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -131,19 +295,19 @@ export default function InteractiveMap() {
           </div>
 
           {/* Immersive Details Panel */}
-          <div className="w-full lg:w-[450px] min-h-[600px]">
+          <div className="w-full lg:w-[450px] min-h-[600px] perspective-1000">
             <AnimatePresence mode="wait">
               {selectedCountry ? (
                 <motion.div
                   key={selectedCountry.code}
-                  initial={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="glass-panel rounded-[40px] p-10 h-full border-primary/5 shadow-2xl relative overflow-hidden flex flex-col"
+                  initial={{ opacity: 0, x: 50, rotateY: 10, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, x: 0, rotateY: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, x: 50, rotateY: -10, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="glass-panel rounded-[40px] p-10 h-full border-primary/5 shadow-2xl relative overflow-hidden flex flex-col z-10 bg-white/70 backdrop-blur-xl"
                 >
                   {/* Background Decoration */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                   
                   <div className="flex justify-between items-start mb-12">
                     <div className="space-y-2">
@@ -154,7 +318,7 @@ export default function InteractiveMap() {
                       <h3 className="text-4xl text-primary italic leading-none">{selectedCountry.name}</h3>
                     </div>
                     <button 
-                      onClick={() => setSelectedCountry(null)}
+                      onClick={resetMap}
                       className="p-3 bg-primary/5 hover:bg-primary/10 rounded-full text-primary transition-all hover:rotate-90"
                     >
                       <X size={24} />
@@ -208,25 +372,26 @@ export default function InteractiveMap() {
                   <div className="pt-10 mt-auto">
                     <Link 
                       href={`/our-results?country=${selectedCountry.code}`}
-                      className="w-full flex justify-center items-center gap-3 py-5 bg-primary text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-primary/20 transition-all active:scale-[0.98]"
+                      className="group w-full flex justify-center items-center gap-3 py-5 bg-primary text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-primary/20 transition-all active:scale-[0.98]"
                     >
-                      View Full Report
+                      View Detailed Country Report
+                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </motion.div>
               ) : (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="h-full flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-primary/10 rounded-[40px] bg-white/40"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="h-full flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-primary/10 rounded-[40px] bg-white/40 backdrop-blur-sm"
                 >
                   <div className="w-24 h-24 bg-primary/5 rounded-full flex items-center justify-center mb-8 relative">
                     <Globe className="text-primary/10 animate-pulse" size={48} />
-                    <div className="absolute inset-0 border-2 border-primary/5 rounded-full animate-ping"></div>
+                    <div className="absolute inset-0 border-2 border-primary/5 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <h4 className="text-2xl text-primary italic mb-4">Select a Nation to Explore</h4>
                   <p className="text-base text-foreground/40 max-w-[280px] font-light leading-relaxed">
-                    Interactive mapping of our agricultural initiatives across the African continent.
+                    Cinematic mapping of our pan-African agricultural initiatives. Click on a highlighted country to view specific project data.
                   </p>
                 </motion.div>
               )}

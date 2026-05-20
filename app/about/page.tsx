@@ -3,7 +3,7 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { CheckCircle, Heart, Target, Lightbulb, Users, Globe, Award, Leaf } from 'lucide-react'
+import { CheckCircle, Heart, Target, Lightbulb, Users, Globe, Award, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AboutPage() {
