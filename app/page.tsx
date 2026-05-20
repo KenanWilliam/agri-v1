@@ -230,7 +230,7 @@ export default function Home() {
             >
               <h2 className="text-white mb-6">Ready to Grow Together?</h2>
               <p className="text-2xl text-primary-ivory/80 mb-12 font-light leading-relaxed">
-                Join our network of transformative agricultural projects across Africa. Let's build sustainable systems that last for generations.
+                Join our network of transformative agricultural projects across Africa. Let&apos;s build sustainable systems that last for generations.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link

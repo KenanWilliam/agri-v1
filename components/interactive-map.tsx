@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import * as d3 from 'd3'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MapPin, Briefcase, Users, TrendingUp, Info, Globe, RefreshCcw, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 interface Country {
   name: string
@@ -45,9 +46,41 @@ export default function InteractiveMap() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
+  const selectedCountryRef = useRef<Country | null>(null)
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
 
   useEffect(() => {
-    if (!svgRef.current) return
+    selectedCountryRef.current = selectedCountry
+  }, [selectedCountry])
+
+  const resetMap = useCallback(() => {
+    if (!svgRef.current || !gRef.current || !zoomRef.current) return
+    const svg = d3.select(svgRef.current)
+    const g = d3.select(gRef.current)
+    selectedCountryRef.current = null
+    setSelectedCountry(null)
+    setHoveredName(null)
+    
+    svg.transition()
+      .duration(1200)
+      .ease(d3.easeCubicInOut)
+      .call(zoomRef.current.transform, d3.zoomIdentity)
+
+    g.selectAll('path')
+      .transition()
+      .duration(600)
+      .style('opacity', 1)
+      .style('fill', (d: any) => {
+        const name = d.properties.name
+        return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
+      })
+      .style('stroke', 'rgba(253, 252, 240, 0.2)')
+        .style('stroke-width', '0.5px')
+        .style('filter', 'none')
+  }, [])
+
+  useEffect(() => {
+    if (!svgRef.current || !gRef.current) return
 
     const width = 800
     const height = 800
@@ -72,71 +105,13 @@ export default function InteractiveMap() {
         g.attr('transform', event.transform)
       })
 
+    zoomRef.current = zoom
     svg.call(zoom)
 
-    // Fetch GeoJSON
-    d3.json('https://raw.githubusercontent.com/Anis-Koubaa/GeoJSON-Africa/master/Africa.geojson').then((data: any) => {
-      const countries = g.selectAll('path')
-        .data(data.features)
-        .enter()
-        .append('path')
-        .attr('d', pathGenerator as any)
-        .attr('class', (d: any) => {
-          const name = d.properties.name
-          return countriesData[name] ? 'country-active' : 'country-base'
-        })
-        .style('fill', (d: any) => {
-          const name = d.properties.name
-          return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
-        })
-        .style('stroke', 'rgba(253, 252, 240, 0.2)')
-        .style('stroke-width', '0.5px')
-        .style('transition', 'fill 0.3s ease, stroke 0.3s ease, opacity 0.5s ease')
-        .style('cursor', (d: any) => countriesData[d.properties.name] ? 'pointer' : 'default')
-        .on('mouseenter', function(event, d: any) {
-          const name = d.properties.name
-          if (countriesData[name]) {
-            setHoveredName(name)
-            d3.select(this)
-              .style('fill', 'rgba(180, 83, 9, 0.4)')
-              .style('stroke', '#B45309')
-              .style('stroke-width', '1px')
-              .style('filter', 'drop-shadow(0 0 8px rgba(180, 83, 9, 0.3))')
-          }
-        })
-        .on('mousemove', (event) => {
-          setTooltipPos({ x: event.clientX, y: event.clientY })
-        })
-        .on('mouseleave', function(event, d: any) {
-          setHoveredName(null)
-          const name = d.properties.name
-          if (!selectedCountry || selectedCountry.name !== name) {
-             d3.select(this)
-              .style('fill', countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)')
-              .style('stroke', 'rgba(253, 252, 240, 0.2)')
-              .style('stroke-width', '0.5px')
-              .style('filter', 'none')
-          }
-        })
-        .on('click', (event, d: any) => {
-          const country = countriesData[d.properties.name]
-          if (country) {
-            handleCountryClick(d, country)
-          } else {
-            resetZoom()
-          }
-        })
-
-      // Initial reveal
-      countries.style('opacity', 0)
-        .transition()
-        .duration(1000)
-        .delay((d, i) => i * 10)
-        .style('opacity', 1)
-    })
-
     const handleCountryClick = (d: any, country: Country) => {
+      selectedCountryRef.current = country
       setSelectedCountry(country)
+      setHoveredName(null)
       
       const bounds = pathGenerator.bounds(d)
       const dx = bounds[1][0] - bounds[0][0]
@@ -162,61 +137,86 @@ export default function InteractiveMap() {
         .style('fill', (node: any) => node.properties.name === d.properties.name ? '#B45309' : 'rgba(6, 78, 59, 0.05)')
     }
 
-    const resetZoom = () => {
-      setSelectedCountry(null)
-      svg.transition()
-        .duration(1200)
-        .ease(d3.easeCubicInOut)
-        .call(zoom.transform, d3.zoomIdentity)
-
-      g.selectAll('path')
-        .transition()
-        .duration(600)
-        .style('opacity', 1)
+    // Fetch GeoJSON
+    d3.json('https://raw.githubusercontent.com/LiaScript/GeoJson/master/africa.geo.json').then((data: any) => {
+      if (!data || !data.features) {
+        console.error('InteractiveMap: GeoJSON data missing features.')
+        return
+      }
+      const countries = g.selectAll('path')
+        .data(data.features)
+        .enter()
+        .append('path')
+        .attr('d', pathGenerator as any)
+        .attr('class', (d: any) => {
+          const name = d.properties.name
+          return countriesData[name] ? 'country-active' : 'country-base'
+        })
         .style('fill', (d: any) => {
           const name = d.properties.name
           return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
         })
         .style('stroke', 'rgba(253, 252, 240, 0.2)')
         .style('stroke-width', '0.5px')
-        .style('filter', 'none')
-    }
+        .style('transition', 'fill 0.3s ease, stroke 0.3s ease, opacity 0.5s ease')
+        .style('cursor', (d: any) => countriesData[d.properties.name] ? 'pointer' : 'default')
+        .on('mouseenter', function(event, d: any) {
+          const name = d.properties.name
+          if (countriesData[name] && !selectedCountryRef.current) {
+            setHoveredName(name)
+            d3.select(this)
+              .style('fill', 'rgba(180, 83, 9, 0.4)')
+              .style('stroke', '#B45309')
+              .style('stroke-width', '1px')
+              .style('filter', 'drop-shadow(0 0 8px rgba(180, 83, 9, 0.3))')
+          }
+        })
+        .on('mousemove', (event) => {
+          if (!selectedCountryRef.current) {
+            setTooltipPos({ x: event.clientX, y: event.clientY })
+          }
+        })
+        .on('mouseleave', function(event, d: any) {
+          setHoveredName(null)
+          if (selectedCountryRef.current) return
+          const name = d.properties.name
+          d3.select(this)
+            .style('fill', countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)')
+            .style('stroke', 'rgba(253, 252, 240, 0.2)')
+            .style('stroke-width', '0.5px')
+            .style('filter', 'none')
+        })
+        .on('click', (event, d: any) => {
+          const country = countriesData[d.properties.name]
+          if (country) {
+            handleCountryClick(d, country)
+          } else {
+            resetMap()
+          }
+        })
+
+      // Initial reveal
+      countries.style('opacity', 0)
+        .transition()
+        .duration(1000)
+        .delay((d, i) => i * 10)
+        .style('opacity', 1)
+    }).catch((error) => {
+      console.error('InteractiveMap: Failed to load GeoJSON.', error)
+    })
 
     // Attach reset to background click
     svg.on('click', (event) => {
-      if (event.target === svgRef.current) resetZoom()
+      if (event.target === svgRef.current) resetMap()
     })
 
     // Clean up
     return () => {
       svg.on('.zoom', null)
       svg.on('click', null)
+      zoomRef.current = null
     }
-  }, [])
-
-  const resetMap = () => {
-    if (!svgRef.current) return
-    const svg = d3.select(svgRef.current)
-    const g = d3.select(gRef.current)
-    setSelectedCountry(null)
-    
-    svg.transition()
-      .duration(1200)
-      .ease(d3.easeCubicInOut)
-      .call(d3.zoom<SVGSVGElement, unknown>().transform, d3.zoomIdentity)
-
-    g.selectAll('path')
-      .transition()
-      .duration(600)
-      .style('opacity', 1)
-      .style('fill', (d: any) => {
-        const name = d.properties.name
-        return countriesData[name] ? 'rgba(6, 78, 59, 0.4)' : 'rgba(6, 78, 59, 0.05)'
-      })
-      .style('stroke', 'rgba(253, 252, 240, 0.2)')
-      .style('stroke-width', '0.5px')
-      .style('filter', 'none')
-  }
+  }, [resetMap])
 
   return (
     <section className="w-full py-24 relative overflow-hidden bg-primary-ivory">

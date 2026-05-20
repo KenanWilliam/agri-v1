@@ -64,6 +64,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.2.6",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/d3": "^7.4.3",
     "@types/node": "^22",

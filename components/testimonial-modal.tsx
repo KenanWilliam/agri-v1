@@ -127,7 +127,7 @@ export default function TestimonialModal() {
                   transition={{ delay: 0.1, duration: 0.4 }}
                   className="text-2xl md:text-3xl font-serif font-bold text-dark-green leading-relaxed"
                 >
-                  "{current.quote}"
+                  &ldquo;{current.quote}&rdquo;
                 </motion.blockquote>
 
                 {/* Author Info */}
