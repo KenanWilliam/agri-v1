@@ -207,17 +207,14 @@ export default function InteractiveMap() {
                             onMouseLeave={() => setHoveredCountry(null)}
                             whileHover={{ scale: 1.15 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`relative h-20 rounded-lg font-bold text-sm transition-all duration-300 flex flex-col items-center justify-center border-2 ${regionBgColors[country.region]} ${
-                              selectedCountry?.code === country.code
-                                ? 'ring-4 ring-primary shadow-lg scale-110'
-                                : ''
-                          } ${hoveredCountry === country.code ? 'shadow-md brightness-110' : ''}`}
+                            className={`relative h-20 rounded-lg font-bold text-sm transition-all duration-300 flex flex-col items-center justify-center border-2 ${regionBgColors[country.region]} ${selectedCountry?.code === country.code ? 'ring-4 ring-primary shadow-lg scale-110' : ''} ${hoveredCountry === country.code ? 'shadow-md brightness-110' : ''}`}
                           >
                             <div className="text-lg">🌾</div>
                             <div className="font-serif font-bold text-xs mt-1">{country.code}</div>
                             <div className="text-xs opacity-75 font-data">{country.projects}</div>
                           </motion.button>
-                        )})
+                        )
+                      })}
                     </AnimatePresence>
                   </div>
                 </div>
