@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { label: 'Home', href: '/', mobile: true },
@@ -24,10 +23,8 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-primary/10 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-serif font-bold text-2xl group">
-          <img src="/nav-logo.svg" alt="Agri Experience" className="w-10 h-10 object-contain" />
-          <span className="text-dark-green hidden sm:inline font-semibold">Agri Experience</span>
-        </Link>
+        <Link href="/" className="inline-flex items-center leading-none">
+          <img src="/newsletters.svg" alt="Agri Experience" className="block h-9 w-auto object-contain" />
         </Link>
 
         {/* Desktop Navigation */}
