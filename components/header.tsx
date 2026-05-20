@@ -25,21 +25,16 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-serif font-bold text-2xl group">
-          <svg 
-            viewBox="0 0 100 100" 
-            className="w-10 h-10 fill-primary transition-transform duration-300 group-hover:rotate-3"
-          >
-            <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1" />
-            <path d="M50 20 L70 75 L30 75 Z" fill="currentColor" />
-          </svg>
+          <img src="/nav-logo.svg" alt="Agri Experience" className="w-10 h-10 object-contain" />
           <span className="text-dark-green hidden sm:inline font-semibold">Agri Experience</span>
+        </Link>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
+          {navItems.map((item, idx) => (
             <Link
-              key={item.href}
+              key={`${item.href}-${idx}`}
               href={item.href}
               className="px-4 py-2 text-sm font-medium text-dark-green hover:text-primary transition-colors duration-200 relative group"
             >
@@ -80,9 +75,9 @@ export default function Header() {
             className="lg:hidden border-t border-primary/10 bg-white"
           >
             <nav className="max-w-7xl mx-auto px-4 py-4 space-y-2">
-              {navItems.map((item) => (
+              {navItems.map((item, idx) => (
                 <Link
-                  key={item.href}
+                  key={`${item.href}-${idx}`}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-2 text-dark-green hover:bg-mint rounded-lg transition-colors duration-200 font-medium"
