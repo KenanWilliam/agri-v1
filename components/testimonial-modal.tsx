@@ -18,55 +18,46 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      'Agri Experience transformed our seed sector approach. Their expertise in value chain integration helped us reach 50,000 farmers within the first year.',
-    author: 'Dr. Sarah Mwangi',
-    role: 'Director',
-    organization: 'African Seed Consortium',
+      'Partnering with Agri Experience to assist to grow the Kenyan seed industry made my work ever so enriching as it brought on board global and regional perspectives with which to benchmark our reform initiatives. Our partnership and collaboration with Agri Experience has been instrumental in enabling review of seed regulations meant to facilitate the growth and development of the Kenyan seed industry. The wealth of experience and the ability to link actors across the seed industry spectrum is one strength on which Agri Experience stands out.',
+    author: 'David Ombalo Otieno',
+    role: 'Principal Agricultural Officer',
+    organization: 'Kenya Ministry of Agriculture, Livestock and Fisheries (Agricultural Policy Research and Regulation)',
     image: '🌾',
   },
   {
     id: 2,
     quote:
-      'Their consultancy services are unparalleled. The team brought deep knowledge of regional markets and practical solutions that actually work.',
-    author: 'James Kipchoge',
-    role: 'Agricultural Manager',
-    organization: 'East Africa Farmers Alliance',
+      'The Agri Experience team has a passion for agricultural development matched by decades of professional experience. Their commitment to delivering top quality work on every project makes them a joy to work with.',
+    author: 'Dr. Edward Mabaya',
+    role: 'Principal Investigator, The African Seed Access Index (TASAI)',
+    organization: 'Cornell University',
     image: '🌱',
   },
   {
     id: 3,
     quote:
-      'Working with Agri Experience elevated our entire seed production system. Their strategic guidance and on-ground support were instrumental to our success.',
-    author: 'Grace Okonkwo',
-    role: 'CEO',
-    organization: 'West Africa Seeds Ltd',
+      'The partnership with Agri Experience has been a very valuable one. Through quality interactive teaching for about a decade, an experienced practitioner at Agri Experience has equipped multiple cohorts of our PhD students in plant breeding with knowledge and skills in seed business management. Our fruitful collaboration with Agri Experience has allowed the majority of our graduates, in partnerships with the private sector, to release improved varieties of staple crops soon after graduation. This has given credence to our philosophy of training African plant breeders on African crops, in Africa, for Africa, for maximum impact on agricultural productivity.',
+    author: 'Eric Danquah, PhD',
+    role: 'Professor and Founding Director',
+    organization: 'WACCI, University of Ghana',
     image: '🌻',
   },
   {
     id: 4,
-    quote:
-      'The team&apos;s understanding of African agricultural contexts is exceptional. They don&apos;t just provide reports—they build lasting partnerships.',
-    author: 'Prof. David Kabir',
-    role: 'Head of Agricultural Development',
-    organization: 'Sahel Innovations',
+      quote:
+      'Agri Experience has made great strides working with partners to revolutionize the Kenyan seed sector. With experienced, motivated and skilled staff, Agri Experience has supported innovative approaches such as the use of scratch-off labels to mark seed packets, thus ensuring traceability, and farmer use of appropriate and authentic seed. There is now better coordination in the seed sector through the Seed Trade Association of Kenya, better working relationships with the regulatory body and the government, and more space to operate for the private sector seed companies - a great achievement!',
+    author: 'Ali Hassan Mohammed',
+    role: 'Portfolio Director',
+    organization: 'Kenya Markets Trust',
     image: '🌾',
   },
   {
     id: 5,
     quote:
-      'Our organization gained invaluable insights from their training programs. The capacity building approach was culturally sensitive and highly effective.',
-    author: 'Amara Diallo',
-    role: 'Program Director',
-    organization: 'Farmer Empowerment Network',
-    image: '🌻',
-  },
-  {
-    id: 6,
-    quote:
-      'Agri Experience helped us navigate complex regulatory landscapes across multiple countries. Their network and expertise are truly unique.',
-    author: 'Mohamed Hassan',
-    role: 'Operations Director',
-    organization: 'East Africa Seeds Initiative',
+      'Agri Experience is always miles ahead in being innovative. Many participants during our seed company meeting were swept off their feet when Agri Experience walked everyone through their work showing how, by the click of a button, a farmer in any part of Kenya can know the top recommended crop varieties for their ecology, the latest varieties, and special traits of varieties. We hope they can extend similar services to many more countries.',
+    author: 'Dr. George Bigirwa',
+    role: 'Head of Seed Research and Systems Development',
+    organization: 'Alliance for a Green Revolution in Africa',
     image: '🌱',
   },
 ]

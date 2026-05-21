@@ -3,73 +3,56 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { Heart, Globe, Sprout, Leaf } from 'lucide-react'
+import { Heart, Globe, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function OurImpactPage() {
   const impactAreas = [
     {
       icon: Leaf,
-      title: 'Environmental Sustainability',
-      description: 'Promoting climate-smart agriculture and biodiversity conservation',
+      title: 'Social Impact',
+      description: 'Improve smallholder farmer and seed producer productivity.',
       highlights: [
-        'Conservation agriculture practices adopted by 100,000+ farmers',
-        'Climate-resilient seed varieties distributed',
-        'Water-efficient farming techniques promoted',
+        'Focus on practical, field-based solutions',
+        'Improve access to high quality seed',
+        'Support sustainable livelihood gains',
       ],
     },
     {
       icon: Heart,
-      title: 'Social Impact',
-      description: 'Improving food security, nutrition, and community resilience',
+      title: 'Capacity Development',
+      description: 'Build local talent among permanent seed sector stakeholders.',
       highlights: [
-        'Year-round food availability for farming households',
-        'Women farmer empowerment initiatives',
-        'Youth engagement in agriculture',
+        'Strengthen local institutions and service providers',
+        'Equip leaders and technical teams',
+        'Invest in long-term sector capability',
       ],
     },
     {
       icon: Globe,
-      title: 'Economic Growth',
-      description: 'Creating sustainable livelihoods and market opportunities',
+      title: 'Organizational Strength',
+      description: 'Maintain the financial stability needed to sustain our work.',
       highlights: [
-        'Average household income increase of 35%+',
-        'Job creation across value chains',
-        'Small business development support',
+        'Deliver high-quality, experience-based analysis',
+        'Provide actionable recommendations',
+        'Support implementation with partners',
       ],
     },
-    {
-      icon: Sprout,
-      title: 'Agricultural Development',
-      description: 'Strengthening agricultural systems and food security',
-      highlights: [
-        'Improved crop productivity',
-        'Diversified income sources',
-        'Enhanced market access',
-      ],
-    },
-  ]
-
-  const sdgs = [
-    { num: '1', name: 'No Poverty', color: 'from-red-400 to-red-600' },
-    { num: '2', name: 'Zero Hunger', color: 'from-yellow-400 to-yellow-600' },
-    { num: '5', name: 'Gender Equality', color: 'from-red-300 to-red-500' },
-    { num: '8', name: 'Decent Work', color: 'from-red-500 to-red-700' },
-    { num: '13', name: 'Climate Action', color: 'from-green-500 to-green-700' },
   ]
 
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-white min-h-screen">
         {/* Hero */}
-        <section className="w-full min-h-[400px] flex items-center bg-gradient-to-br from-mint via-background to-cream pt-20 pb-20">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-6 w-full">
+        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl font-serif font-bold text-dark-green"
+              className="text-5xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
             >
               Our Impact
             </motion.h1>
@@ -77,16 +60,16 @@ export default function OurImpactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-dark-blue-gray max-w-2xl mx-auto"
+              className="text-lg lg:text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed"
             >
-              Creating positive change across environmental, social, and economic dimensions.
+              As a social enterprise, we are focused on a triple bottom line that prioritizes impact, capacity, and sustainability.
             </motion.p>
           </div>
         </section>
 
         {/* Impact Areas */}
-        <section className="w-full py-16 md:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
+        <section className="w-full py-16 lg:py-24 bg-white relative">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {impactAreas.map((area, idx) => {
                 const Icon = area.icon
@@ -96,18 +79,18 @@ export default function OurImpactPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="p-8 rounded-2xl bg-gradient-to-br from-mint to-cream border-2 border-primary/20 hover:border-primary/50 transition-all"
+                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-all"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <Icon className="text-primary" size={24} />
+                    <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
+                      <Icon className="text-primary-green" size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-dark-green mb-2">{area.title}</h3>
-                    <p className="text-dark-blue-gray mb-6">{area.description}</p>
-                    <ul className="space-y-3">
+                    <h3 className="text-2xl font-serif font-bold text-deep-forest mb-4">{area.title}</h3>
+                    <p className="text-charcoal/80 font-light leading-relaxed mb-8">{area.description}</p>
+                    <ul className="space-y-4">
                       {area.highlights.map((highlight, hidx) => (
-                        <li key={hidx} className="flex gap-3 text-sm">
-                          <span className="text-primary font-bold flex-shrink-0">✓</span>
-                          <span className="text-dark-blue-gray">{highlight}</span>
+                        <li key={hidx} className="flex gap-4 items-start">
+                          <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                          <span className="text-charcoal/80 font-light leading-relaxed">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -118,145 +101,71 @@ export default function OurImpactPage() {
           </div>
         </section>
 
-        {/* SDG Alignment */}
-        <section className="w-full py-16 md:py-24 bg-gradient-to-br from-mint to-cream">
-          <div className="max-w-6xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark-green mb-4">
-                Supporting UN SDGs
-              </h2>
-              <p className="text-lg text-dark-blue-gray max-w-2xl mx-auto">
-                Our work directly contributes to achieving the Sustainable Development Goals
+        {/* Collaboration */}
+        <section className="w-full py-16 lg:py-24 bg-white border-t border-mist">
+          <div className="max-w-5xl mx-auto px-6 text-center space-y-12">
+            <div className="space-y-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest"
+              >
+                How We Create Impact
+              </motion.h2>
+              <p className="text-lg lg:text-xl text-charcoal/80 font-light leading-relaxed max-w-3xl mx-auto">
+                We prioritize working with key local officials and other seed sector stakeholders, and leverage our experience and network of collaborators
+                to bring about meaningful and sustainable systemic change.
               </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {sdgs.map((sdg, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className={`rounded-xl p-6 bg-gradient-to-br ${sdg.color} text-white flex flex-col items-center justify-center min-h-[200px] cursor-pointer hover:scale-105 transition-transform`}
-                >
-                  <div className="text-5xl font-data mb-3">{sdg.num}</div>
-                  <p className="text-sm font-semibold text-center">{sdg.name}</p>
-                </motion.div>
-              ))}
             </div>
-          </div>
-        </section>
-
-        {/* Impact Stories */}
-        <section className="w-full py-16 md:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-dark-green mb-12 text-center"
-            >
-              Stories of Change
-            </motion.h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: 'Grace Kipchoge',
-                  location: 'Kenya',
-                  story:
-                    'From struggling smallholder to successful seed producer earning 3x her previous income. Now mentors 50 other farmers.',
-                },
-                {
-                  name: 'Kofi Mensah',
-                  location: 'Ghana',
-                  story:
-                    'Women farmer group went from traditional methods to certified producers. Income increased by 250% in 2 years.',
-                },
-                {
-                  name: 'Amina Hassan',
-                  location: 'Senegal',
-                  story:
-                    'Youth-led enterprise now supplies seeds to 5 neighboring communities. Created 15 jobs in her village.',
-                },
-              ].map((story, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/10"
-                >
-                  <div className="text-5xl mb-4">👩‍🌾</div>
-                  <h3 className="text-xl font-bold text-dark-green mb-1">{story.name}</h3>
-                  <p className="text-primary text-sm font-semibold mb-4">{story.location}</p>
-                  <p className="text-dark-blue-gray leading-relaxed">{story.story}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Metrics */}
-        <section className="w-full py-16 md:py-24 bg-dark-green text-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-serif font-bold mb-12 text-center"
-            >
-              Impact by Numbers
-            </motion.h2>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { value: '500K+', label: 'Farmers Impacted' },
-                { value: '40%', label: 'Average Yield Increase' },
-                { value: '35%', label: 'Income Growth' },
-                { value: '100K', label: 'Women Empowered' },
-              ].map((metric, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-4xl md:text-5xl font-data text-primary mb-2">{metric.value}</div>
-                  <p className="text-cream text-sm md:text-base">{metric.label}</p>
-                </motion.div>
-              ))}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+              <div className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-deep-forest mb-6">Typical Partners</h3>
+                <ul className="space-y-4 text-charcoal/80 font-light leading-relaxed">
+                  <li>&bull; Donors and development partners</li>
+                  <li>&bull; Research organizations and ministry officials</li>
+                  <li>&bull; Regulators and technology licensing entities</li>
+                  <li>&bull; Seed companies, agrodealers, and associations</li>
+                </ul>
+              </div>
+              <div className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-deep-forest mb-6">What We Deliver</h3>
+                <ul className="space-y-4 text-charcoal/80 font-light leading-relaxed">
+                  <li>&bull; Experience-based field analysis</li>
+                  <li>&bull; Practical recommendations</li>
+                  <li>&bull; Implementation support</li>
+                  <li>&bull; Sustainable, systemic change</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 md:py-24 bg-gradient-to-r from-primary to-secondary text-white">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold">
+        <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
+          
+          <div className="max-w-4xl mx-auto px-6 text-center space-y-10 relative z-10">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white">
               Be Part of the Impact
             </h2>
-            <p className="text-xl text-cream/90">
+            <p className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed">
               Join us in transforming agricultural systems and improving livelihoods across Africa.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/our-work"
-                className="inline-block px-8 py-4 bg-white text-dark-green rounded-full font-semibold hover:bg-cream transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
               >
                 Explore Our Work
               </Link>
               <Link
                 href="/contact"
-                className="inline-block px-8 py-4 bg-white/20 text-white rounded-full font-semibold hover:bg-white/30 transition-all duration-300 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-bold transition-all hover:bg-white/10 backdrop-blur-sm"
               >
                 Partner With Us
+                <ArrowRight size={20} />
               </Link>
             </div>
           </div>

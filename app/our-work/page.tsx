@@ -3,149 +3,146 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { CheckCircle, Briefcase, Users, TrendingUp, ArrowRight, Award, Globe, Shield, Zap } from 'lucide-react'
+import { Leaf, MonitorSmartphone, ClipboardCheck, Tractor, Users, Briefcase, Globe, Target, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function OurWorkPage() {
-  const services = [
+  const cards = [
     {
-      icon: Briefcase,
-      title: 'Strategic Consultancy',
-      description: 'Comprehensive seed sector assessments and strategic roadmaps for agricultural development',
-      details: [
-        'Market analysis and competitive positioning',
-        'Regulatory landscape assessment',
-        'Stakeholder engagement strategy',
-        'Implementation planning',
-      ],
+      title: 'Digital Platforms',
+      description: 'Smart, scalable digital solutions that connect data, people, and decisions across the agricultural value chain.',
+      icon: MonitorSmartphone,
+      color: 'primary-green',
+      link: '/our-work/digital-platforms',
     },
     {
-      icon: Shield,
-      title: 'Policy & Advocacy',
-      description: 'Strengthening the legal frameworks that ensure seed quality and protect agricultural biodiversity',
-      details: [
-        'Seed law development',
-        'Quality assurance frameworks',
-        'Intellectual property rights',
-        'Policy advocacy support',
-      ],
+      title: 'Technical Studies',
+      description: 'In-depth analysis and feasibility studies that turn complex challenges into clear, actionable insights.',
+      icon: ClipboardCheck,
+      color: 'primary-blue',
+      link: '/our-work/technical-studies',
     },
     {
-      icon: TrendingUp,
-      title: 'Value Chain Integration',
-      description: 'End-to-end solutions for strengthening agricultural value chains',
-      details: [
-        'Producer organization development',
-        'Market linkages',
-        'Quality standards implementation',
-        'Post-harvest technology',
-      ],
-    },
-    {
-      icon: Zap,
-      title: 'Innovation Support',
-      description: 'Modernizing agricultural systems through digital tools and logistics',
-      details: [
-        'Digital extension services',
-        'Supply chain transparency',
-        'E-commerce for farmers',
-        'Data-driven decision support',
-      ],
+      title: 'Project Implementation',
+      description: 'From strategy to execution, we manage and implement projects that deliver measurable results on the ground.',
+      icon: Tractor,
+      color: 'deep-forest',
+      link: '/our-work/project-implementation',
     },
   ]
 
-  const projects = [
-    {
-      country: 'Kenya',
-      title: 'Eastern Africa Seed System Transformation',
-      description: 'Supporting 50,000 smallholder farmers with quality seeds and market access',
-      impact: '12 projects',
-    },
-    {
-      country: 'Ghana',
-      title: 'West African Seed Network Development',
-      description: 'Building seed producer networks and improving supply chain efficiency',
-      impact: '7 projects',
-    },
-    {
-      country: 'Tanzania',
-      title: 'Southern Highland Value Chain Initiative',
-      description: 'Connecting highland seed producers with regional markets',
-      impact: '10 projects',
-    },
-    {
-      country: 'Senegal',
-      title: 'Sahel Seed Security Program',
-      description: 'Climate-resilient seed varieties for semi-arid regions',
-      impact: '6 projects',
-    },
+  const stats = [
+    { value: '120+', label: 'Experts & Partners', icon: Users },
+    { value: '250+', label: 'Projects Delivered', icon: Briefcase },
+    { value: '35+', label: 'Countries Impacted', icon: Globe },
+    { value: '100%', label: 'Commitment to Impact', icon: Target },
   ]
 
   return (
     <>
       <Header />
-      <main className="bg-primary-ivory min-h-screen">
-        {/* Premium Hero */}
-        <section className="relative w-full pt-40 pb-24 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--sage-green)_0%,transparent_50%)] opacity-30"></div>
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8 text-center"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase">
-                <Globe size={14} />
-                Our Pan-African Services
-              </div>
-              <h1 className="text-primary italic">Transformative Expertise</h1>
-              <p className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto leading-relaxed font-light">
-                Comprehensive consultancy and implementation services strengthening the foundations of African agriculture.
-              </p>
-            </motion.div>
+      <main className="bg-white min-h-screen">
+        {/* Top Section */}
+        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden">
+          {/* Subtle background decorative shapes */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+              
+              {/* Left Side: Title */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex-1 space-y-6"
+              >
+                <div className="inline-flex items-center gap-2 text-primary-green font-bold text-sm tracking-[0.2em] uppercase">
+                  <Leaf size={18} />
+                  Our Practice
+                </div>
+                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                  Solutions that cultivate impact.
+                </h1>
+              </motion.div>
+
+              {/* Right Side: Description */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex-1 lg:pt-16 relative"
+              >
+                {/* Vertical divider line for desktop */}
+                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-mist"></div>
+                <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
+                  At Agri-Experience, we combine knowledge, technology, and field expertise to deliver end-to-end solutions for a smarter, more sustainable agricultural future.
+                </p>
+              </motion.div>
+
+            </div>
           </div>
         </section>
 
-        {/* Core Services Bento */}
-        <section className="w-full py-24 bg-white relative">
+        {/* Cards Section */}
+        <section className="w-full pb-24 relative z-10">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-20 space-y-4">
-              <h2 className="text-primary">Our Core Expertise</h2>
-              <p className="text-foreground/50 font-bold uppercase tracking-widest text-xs">How we drive change</p>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {cards.map((card, idx) => {
+                const Icon = card.icon;
+                
+                // Determine specific color classes based on the assigned color name
+                let borderClass = 'border-primary-green/20';
+                let textClass = 'text-primary-green';
+                let bgClass = 'bg-primary-green';
+                let iconBgClass = 'bg-primary-green/5';
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {services.map((service, idx) => {
-                const Icon = service.icon
+                if (card.color === 'primary-blue') {
+                  borderClass = 'border-primary-blue/20';
+                  textClass = 'text-primary-blue';
+                  bgClass = 'bg-primary-blue';
+                  iconBgClass = 'bg-primary-blue/5';
+                } else if (card.color === 'deep-forest') {
+                  borderClass = 'border-deep-forest/20';
+                  textClass = 'text-deep-forest';
+                  bgClass = 'bg-deep-forest';
+                  iconBgClass = 'bg-deep-forest/5';
+                }
+
                 return (
                   <motion.div
                     key={idx}
-                    whileHover={{ y: -5 }}
-                    className="bento-card border-primary/10 p-10 flex flex-col gap-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
+                    className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-all group`}
                   >
-                    <div className="flex justify-between items-start">
-                      <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center">
-                        <Icon className="text-primary" size={32} />
+                    <div className="space-y-8">
+                      {/* Top icon and arrow */}
+                      <div className="flex justify-between items-start">
+                        <div className={`w-16 h-16 rounded-full ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
+                          <Icon size={28} />
+                        </div>
+                        <div className={`w-10 h-10 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
+                          <ArrowRight size={18} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
+                        </div>
                       </div>
-                      <Award className="text-secondary/20" size={32} />
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <h3 className="text-2xl text-primary italic">{service.title}</h3>
-                      <p className="text-foreground/70 font-light leading-relaxed">{service.description}</p>
+                      
+                      {/* Content */}
+                      <div className="space-y-4">
+                        <h3 className={`text-2xl font-serif font-bold ${textClass}`}>{card.title}</h3>
+                        <p className="text-charcoal/70 font-light leading-relaxed">
+                          {card.description}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="space-y-4 pt-4 border-t border-primary/5">
-                      <p className="text-xs font-bold text-secondary uppercase tracking-widest">Service Delivery</p>
-                      <ul className="grid grid-cols-1 gap-3">
-                        {service.details.map((detail, didx) => (
-                          <li key={didx} className="flex gap-3 items-center text-sm text-foreground/60">
-                            <CheckCircle size={16} className="text-primary/40 shrink-0" />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Bottom Link */}
+                    <div className="mt-8 flex justify-between items-center">
+                      <span className={`font-bold text-sm ${textClass}`}>Learn more</span>
+                      <div className={`w-10 h-10 rounded-full ${bgClass} text-white flex items-center justify-center`}>
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </motion.div>
                 )
@@ -154,79 +151,33 @@ export default function OurWorkPage() {
           </div>
         </section>
 
-        {/* Featured Projects Grid */}
-        <section className="w-full py-24 bg-primary text-white overflow-hidden relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-gold)_0%,transparent_40%)] opacity-20"></div>
-          
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20 space-y-4">
-              <h2 className="text-white">Featured Impact</h2>
-              <p className="text-primary-ivory/60 max-w-2xl mx-auto italic text-lg">
-                Direct evidence of our transformation efforts across different regional contexts.
-              </p>
+        {/* Stats Bottom Banner */}
+        <section className="w-full">
+          <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] py-12 px-6 overflow-hidden relative">
+             {/* Decorative wave background */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <filter id="noiseFilterMap">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                </filter>
+                <rect width="100%" height="100%" filter="url(#noiseFilterMap)" />
+              </svg>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -10 }}
-                  className="glass-panel border-white/10 rounded-3xl p-10 space-y-6"
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="px-4 py-1.5 rounded-full bg-white/10 text-secondary text-xs font-bold tracking-widest uppercase border border-white/10">
-                      {project.country}
-                    </span>
-                    <span className="text-primary-ivory/40 text-sm font-bold tracking-tighter italic">{project.impact}</span>
+            
+            <div className="max-w-7xl mx-auto relative z-10 flex flex-wrap justify-center lg:justify-between items-center gap-8 lg:gap-12">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex items-center gap-4 min-w-[200px]">
+                  <stat.icon className="text-primary-green opacity-80" size={32} />
+                  <div>
+                    <div className="text-3xl font-serif font-bold text-white leading-none">{stat.value}</div>
+                    <div className="text-xs text-white/70 tracking-wide mt-1">{stat.label}</div>
                   </div>
-                  <h3 className="text-2xl text-white italic leading-tight">{project.title}</h3>
-                  <p className="text-primary-ivory/70 font-light leading-relaxed">{project.description}</p>
-                  <Link href="/our-results" className="inline-flex items-center gap-2 text-secondary text-sm font-bold hover:gap-4 transition-all">
-                    Explore Case Study <ArrowRight size={18} />
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Methodology Section */}
-        <section className="w-full py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-20 space-y-4">
-              <h2 className="text-primary">Our Proven Methodology</h2>
-              <p className="text-foreground/50 font-bold uppercase tracking-widest text-xs">Standardized excellence</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {[
-                { num: '01', title: 'Deep Assessment', desc: 'Thorough analysis of current systems and local challenges.' },
-                { num: '02', title: 'Bespoke Design', desc: 'Co-developing solutions with local stakeholders.' },
-                { num: '03', title: 'Agile Implementation', desc: 'Hands-on support ensuring effective execution.' },
-                { num: '04', title: 'Sustained Impact', desc: 'Continuous monitoring and adaptive management.' },
-              ].map((step, idx) => (
-                <div key={idx} className="relative p-8 rounded-3xl bg-primary-ivory border border-primary/5 space-y-4">
-                  <div className="text-4xl font-data text-secondary/20">{step.num}</div>
-                  <h4 className="text-xl text-primary italic">{step.title}</h4>
-                  <p className="text-sm text-foreground/60 leading-relaxed font-light">{step.desc}</p>
+                  {/* Vertical separator (hidden on mobile, visible on desktop between items) */}
+                  {i < stats.length - 1 && (
+                    <div className="hidden lg:block w-px h-12 bg-white/10 ml-8 lg:ml-12"></div>
+                  )}
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="w-full py-32 bg-primary-ivory">
-          <div className="max-w-4xl mx-auto px-6 text-center space-y-10">
-            <h2 className="text-primary italic">Ready to Begin?</h2>
-            <p className="text-2xl text-foreground/70 font-light leading-relaxed">
-              Let&apos;s discuss how our expertise can accelerate your agricultural development goals.
-            </p>
-            <div className="pt-6">
-              <Link href="/contact" className="btn-premium">
-                Schedule a Consultation
-                <ArrowRight size={20} />
-              </Link>
             </div>
           </div>
         </section>
