@@ -27,7 +27,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-ivory pt-24 pb-12 relative overflow-hidden">
+    <footer className="bg-deep-forest text-primary-ivory pt-24 pb-12 relative overflow-hidden">
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-gold opacity-[0.03] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
       
@@ -87,9 +87,9 @@ export default function Footer() {
                   <MapPin className="text-secondary" size={18} />
                 </div>
                 <div className="text-primary-ivory leading-relaxed font-medium">
-                  Watermark Business Park,<br />
-                  Spring Court, Ground Floor,<br />
-                  Ndege Road, Karen, Nairobi, Kenya
+                  Watermark Business Park - Spring Court Ground Floor,<br />
+                  Karen, Nairobi, Kenya<br />
+                  P.O. Box 1720 - 00606
                 </div>
               </div>
               <div className="flex gap-4 items-start group">
@@ -105,7 +105,8 @@ export default function Footer() {
                   <Phone className="text-secondary" size={18} />
                 </div>
                 <div className="text-primary-ivory font-medium">
-                  +254 (20) 2626888
+                  +254 (20) 2626888<br />
+                  +254 (719) 554 154
                 </div>
               </div>
               <Link 
