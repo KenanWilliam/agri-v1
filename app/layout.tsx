@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   title: 'Agri Experience | Seed Systems & Agricultural Development',
   description: 'Expert consultancy transforming agricultural value chains and seed systems across 21 African countries. Sustainable development for growing communities.',
   icons: {
-    icon: '/svg/Favicon.svg',
+    icon: '/favicon.svg',
   },
 }
 

@@ -37,10 +37,12 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           {/* Logo Only - No Wordmark */}
-          <Link href="/" className="flex items-center group">
-            <div className="relative h-10 w-auto transition-transform group-hover:scale-110">
-              <img src="/svg/Newsletters.svg" alt="Agri Experience" className="h-full w-auto object-contain" />
-            </div>
+          <Link href="/" aria-label="Agri Experience" className="flex items-center group">
+            <img
+              src="/Newsletters.svg"
+              alt="Agri Experience"
+              className="h-12 w-auto block transition-transform group-hover:scale-110"
+            />
           </Link>
 
           {/* Desktop Navigation */}

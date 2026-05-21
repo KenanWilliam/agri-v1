@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight, Leaf } from 'lucide-react'
+import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight } from 'lucide-react'
 
 const footerLinks = [
   {
@@ -36,12 +36,13 @@ export default function Footer() {
           
           {/* Brand Column */}
           <div className="md:col-span-4 space-y-8">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary-ivory/10 rounded-full flex items-center justify-center">
-                <Leaf className="text-secondary" size={24} />
-              </div>
-              <span className="font-serif font-bold text-2xl tracking-tight italic">Agri Experience</span>
-            </Link>
+          <Link href="/" aria-label="Agri Experience" className="flex items-center">
+            <img
+              src="/Newsletters.svg"
+              alt="Agri Experience"
+              className="h-12 w-auto block"
+            />
+          </Link>
             <p className="text-primary-ivory/60 leading-relaxed font-light text-lg">
               Transforming seed systems and agricultural value chains across Africa through expert consultancy and sustainable community development.
             </p>
