@@ -77,10 +77,6 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8 text-center"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary-green/20 bg-primary-green/5 text-primary-green text-xs font-bold tracking-widest uppercase">
-                <Award size={14} />
-                Seed Sector Consultancy Firm
-              </div>
               <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">Old and New by Design</h1>
               <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Agri Experience is both an old and new company. Old because the direct experience of our group of principals dates back to 1991. New because Agri Experience, Ltd. was founded in 2012.
@@ -91,7 +87,7 @@ export default function AboutPage() {
 
         {/* Mission & Vision Bento */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
               <motion.div
                 whileHover={{ y: -5 }}
@@ -134,7 +130,7 @@ export default function AboutPage() {
                     <motion.div
                       key={idx}
                       whileHover={{ y: -10 }}
-                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-all text-center space-y-4"
+                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out text-center space-y-4"
                     >
                       <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mx-auto mb-6">
                         <Icon className="text-primary-green" size={32} />
@@ -153,7 +149,7 @@ export default function AboutPage() {
         <section className="w-full py-24 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
             <div className="text-center mb-20 space-y-4">
               <h2 className="text-white">Team Members</h2>
               <p className="text-white/60 max-w-2xl mx-auto text-lg font-light">
@@ -228,7 +224,7 @@ export default function AboutPage() {
               Let&apos;s collaborate to transform agricultural systems and create sustainable impact for generations to come.
             </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
                 Get In Touch
                 <ArrowRight size={20} />
               </Link>

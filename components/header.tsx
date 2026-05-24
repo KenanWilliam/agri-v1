@@ -29,9 +29,9 @@ export default function Header() {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 transition-all duration-500">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 transition-colors transition-shadow duration-300 ease-in-out duration-500">
       <header 
-        className={`w-full max-w-6xl rounded-full transition-all duration-500 ${
+        className={`w-full max-w-6xl rounded-full transition-colors transition-shadow duration-300 ease-in-out duration-500 ${
           scrolled 
             ? 'backdrop-blur-[48px] bg-white/5 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.1)] saturate-[1.8] py-2 px-6' 
             : 'bg-transparent py-4 px-6'
@@ -54,7 +54,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-[13px] font-bold uppercase tracking-wider transition-all relative group ${isActive ? 'text-deep-forest' : 'text-charcoal/80 hover:text-deep-forest'}`}
+                  className={`px-3 py-2 text-[13px] font-bold uppercase tracking-wider transition-colors transition-shadow duration-300 ease-in-out relative group ${isActive ? 'text-deep-forest' : 'text-charcoal/80 hover:text-deep-forest'}`}
                 >
                   {item.label}
                   <span className={`absolute bottom-1 left-3 right-3 h-0.5 bg-deep-forest transition-transform origin-center ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
@@ -67,7 +67,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <Link
               href="/newsletter"
-              className="hidden md:inline-flex px-6 py-2.5 bg-deep-forest text-white rounded-full text-sm font-semibold hover:shadow-xl hover:shadow-deep-forest/20 hover:-translate-y-0.5 transition-all"
+              className="hidden md:inline-flex px-6 py-2.5 bg-deep-forest text-white rounded-full text-sm font-semibold hover:shadow-xl hover:shadow-deep-forest/20 hover:-translate-y-0.5 transition-colors transition-shadow duration-300 ease-in-out"
             >
               Get Updates
             </Link>
@@ -99,7 +99,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`px-6 py-4 text-lg font-bold rounded-2xl transition-all ${isActive ? 'text-white bg-deep-forest' : 'text-charcoal hover:bg-black/5'}`}
+                    className={`px-6 py-4 text-lg font-bold rounded-2xl transition-colors transition-shadow duration-300 ease-in-out ${isActive ? 'text-white bg-deep-forest' : 'text-charcoal hover:bg-black/5'}`}
                   >
                     {item.label}
                   </Link>

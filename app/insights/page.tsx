@@ -63,7 +63,7 @@ export default function InsightsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="rounded-[32px] overflow-hidden bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-all"
+                  className="rounded-[32px] overflow-hidden bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out"
                 >
                   <div className="p-8 lg:p-10 space-y-6 flex flex-col h-full">
                     <div className="flex-1 space-y-4">
@@ -105,7 +105,7 @@ export default function InsightsPage() {
             <div className="pt-6">
               <Link
                 href="/our-results"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
               >
                 View Results
                 <ArrowRight size={20} />

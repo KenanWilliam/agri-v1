@@ -3,10 +3,11 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import InteractiveMap from '@/components/interactive-map'
-import TestimonialModal from '@/components/testimonial-modal'
+import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -14,32 +15,40 @@ export default function Home() {
       <Header />
       <main className="overflow-hidden bg-background">
         {/* Premium Hero Section */}
-        <section className="relative w-full min-h-screen flex items-center pt-24 pb-12 lg:pt-32">
+        <section className="relative w-full h-[100dvh] min-h-[650px] flex flex-col justify-center overflow-hidden pt-[104px]">
           {/* Background Image */}
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/hero-bg.png')" }}
-          ></div>
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src="/hero-bg.png"
+              alt="Agri Experience Hero Background"
+              fill
+              priority
+              quality={100}
+              className="object-cover object-center lg:object-[center_30%]"
+            />
+          </div>
           
           {/* Left Gradient Overlay to ensure text readability */}
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
           
-          <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-16 pb-12">
-            <div className="max-w-2xl space-y-8">
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+            <div className="max-w-3xl space-y-4 sm:space-y-5 lg:space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-deep-forest leading-[1.1]"
+                className="font-serif font-bold tracking-tight text-deep-forest leading-[1.15]"
               >
-                Cultivating Sustainable Seed Systems Across Africa
+                Cultivating Sustainable <br />
+                Seed Systems <br />
+                Across Africa
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-lg md:text-xl text-charcoal leading-relaxed font-light"
+                className="text-charcoal leading-relaxed font-light max-w-2xl"
               >
                 Empowering farmers through innovation, expertise, and digital excellence.
               </motion.p>
@@ -48,11 +57,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="pt-4"
+                className="pt-1 sm:pt-2"
               >
-                <Link href="/our-impact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+                <Link href="/our-impact" className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20 text-sm sm:text-base">
                   Explore Our Impact
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} className="sm:w-5 sm:h-5" />
                 </Link>
               </motion.div>
 
@@ -61,20 +70,20 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.6 }}
-                className="flex flex-wrap gap-x-8 gap-y-4 pt-12 mt-12 border-t border-mist"
+                className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-4 pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-mist"
               >
                 {[
                   { value: '500K+', label: 'Farmers Reached', icon: Leaf },
                   { value: '150+', label: 'Seed Partners', icon: Shield },
                   { value: '25', label: 'African Countries', icon: Globe },
                 ].map((stat, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full border-2 border-primary-green/20 flex items-center justify-center text-deep-forest bg-mist">
-                      <stat.icon size={20} />
+                  <div key={i} className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-primary-green/20 flex items-center justify-center text-deep-forest bg-mist shrink-0">
+                      <stat.icon size={18} className="sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-deep-forest leading-none">{stat.value}</div>
-                      <div className="text-xs text-charcoal/70 tracking-wide mt-1">{stat.label}</div>
+                      <div className="text-base sm:text-lg font-bold text-deep-forest leading-none">{stat.value}</div>
+                      <div className="text-[10px] sm:text-xs text-charcoal/70 tracking-wide mt-1 whitespace-nowrap">{stat.label}</div>
                     </div>
                   </div>
                 ))}
@@ -85,7 +94,7 @@ export default function Home() {
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
               <div className="max-w-2xl space-y-4">
                 <h2 className="text-deep-forest">Our Expertise</h2>
@@ -93,7 +102,7 @@ export default function Home() {
                   We focus on positive, sustainable systemic change with a highly customized approach for each assignment.
                 </p>
               </div>
-              <Link href="/our-work" className="group flex items-center gap-2 text-deep-forest font-bold hover:gap-4 transition-all">
+              <Link href="/our-work" className="group flex items-center gap-2 text-deep-forest font-bold hover:gap-4 transition-colors transition-shadow duration-300 ease-in-out">
                 View All Services <ArrowRight size={20} />
               </Link>
             </div>
@@ -112,10 +121,6 @@ export default function Home() {
                   <p className="text-white/80 text-lg max-w-md font-light">
                     We do not accept assignments that simply check a client&apos;s project or task box. We prioritize long-term, system-wide improvement.
                   </p>
-                </div>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-bold uppercase tracking-wider">Strategy</span>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-bold uppercase tracking-wider">Implementation</span>
                 </div>
               </motion.div>
 
@@ -181,14 +186,14 @@ export default function Home() {
 
         {/* Testimonials */}
         <section className="w-full py-16 lg:py-24 bg-mist">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16 space-y-4">
               <h2 className="text-deep-forest">Trusted by Global Leaders</h2>
               <p className="text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
                 Our impact is measured through the success of our partners and the resilience of the communities we serve.
               </p>
             </div>
-            <TestimonialModal />
+            <ClientLogos />
           </div>
         </section>
 
@@ -212,13 +217,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
                   href="/contact"
-                  className="px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-primary-green/20"
+                  className="px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out shadow-2xl shadow-primary-green/20"
                 >
                   Start a Partnership
                 </Link>
                 <Link
                   href="/resources"
-                  className="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm"
+                  className="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-colors transition-shadow duration-300 ease-in-out backdrop-blur-sm"
                 >
                   View Case Studies
                 </Link>

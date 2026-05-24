@@ -31,7 +31,7 @@ export default function Footer() {
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-gold opacity-[0.03] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
       
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
           
           {/* Brand Column */}
@@ -51,7 +51,7 @@ export default function Footer() {
                 <Link 
                   key={i} 
                   href="#" 
-                  className="w-10 h-10 rounded-full bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1"
+                  className="w-10 h-10 rounded-full bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors transition-shadow duration-300 ease-in-out hover:-translate-y-1"
                 >
                   <Icon size={18} />
                 </Link>
@@ -68,7 +68,7 @@ export default function Footer() {
                   <li key={j}>
                     <Link 
                       href={link.href}
-                      className="text-primary-ivory/60 hover:text-secondary transition-colors font-light"
+                      className="text-primary-ivory/60 hover:text-primary-green transition-colors font-light"
                     >
                       {link.label}
                     </Link>
@@ -83,8 +83,8 @@ export default function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-[0.2em]">Our Presence</h4>
             <div className="space-y-6">
               <div className="flex gap-4 items-start group">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
-                  <MapPin className="text-secondary" size={18} />
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-green/40 transition-colors">
+                  <MapPin className="text-primary-green" size={18} />
                 </div>
                 <div className="text-primary-ivory leading-relaxed font-medium">
                   Watermark Business Park - Spring Court Ground Floor,<br />
@@ -93,16 +93,16 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex gap-4 items-start group">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
-                  <Mail className="text-secondary" size={18} />
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-green/40 transition-colors">
+                  <Mail className="text-primary-green" size={18} />
                 </div>
                 <div className="text-primary-ivory font-medium">
                   info@agri-experience.com
                 </div>
               </div>
               <div className="flex gap-4 items-start group">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/40 transition-colors">
-                  <Phone className="text-secondary" size={18} />
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-green/40 transition-colors">
+                  <Phone className="text-primary-green" size={18} />
                 </div>
                 <div className="text-primary-ivory font-medium">
                   +254 (20) 2626888<br />
@@ -111,7 +111,7 @@ export default function Footer() {
               </div>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center gap-2 px-8 py-3 bg-secondary text-white rounded-full text-sm font-bold hover:scale-105 transition-all group shadow-lg shadow-secondary/20"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-green text-white rounded-full text-sm font-bold hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out group shadow-lg shadow-primary-green/20"
               >
                 Work With Us
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -126,8 +126,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Agri Experience. All rights reserved.
           </div>
           <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-primary-ivory/40">
-            <Link href="/privacy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-secondary transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-primary-green transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-primary-green transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

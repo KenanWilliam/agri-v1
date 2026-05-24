@@ -41,8 +41,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}>
-      <body className="font-dm-sans antialiased text-foreground">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
+    >
+      <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
