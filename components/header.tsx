@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -39,9 +40,12 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           <Link href="/" aria-label="Agri Experience" className="flex items-center group">
-            <img
+            <Image
               src="/Newsletters.svg"
               alt="Agri Experience Logo"
+              width={500}
+              height={240}
+              priority
               className="h-14 w-auto block transition-transform group-hover:scale-105"
             />
           </Link>

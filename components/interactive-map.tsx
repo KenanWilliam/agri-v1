@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import * as d3 from 'd3'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -715,7 +715,10 @@ export default function InteractiveMap() {
 
   const selectedCountryRef = useRef<DetailedCountryRecord | null>(null)
 
-  const activeProjects = selectedCountry ? buildCountryProjects(selectedCountry) : []
+  const activeProjects = useMemo(
+    () => (selectedCountry ? buildCountryProjects(selectedCountry) : []),
+    [selectedCountry]
+  )
   const selectedProject = activeProjects[selectedProjectIndex] ?? activeProjects[0] ?? null
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { useState } from 'react'
 
 interface ClientLogo {
@@ -48,10 +49,12 @@ export default function ClientLogos() {
 
             {/* Logo Image */}
             <div className="relative z-10 p-4 flex items-center justify-center min-h-[120px]">
-              <img
+              <Image
                 src={client.src}
                 alt={client.alt}
-                className={`h-12 max-w-[120px] object-contain transition-colors transition-shadow duration-300 ease-in-out duration-300 ${
+                width={120}
+                height={48}
+                className={`h-12 max-w-[120px] w-auto object-contain transition-colors transition-shadow duration-300 ease-in-out duration-300 ${
                   hoveredIndex === index
                     ? 'grayscale-0 opacity-100'
                     : 'grayscale opacity-60 hover:opacity-75'

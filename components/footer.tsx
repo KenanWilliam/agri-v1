@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight } from 'lucide-react'
 
@@ -37,9 +38,11 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-4 space-y-8">
           <Link href="/" aria-label="Agri Experience" className="flex items-center">
-            <img
+            <Image
               src="/Newsletters.svg"
               alt="Agri Experience"
+              width={500}
+              height={240}
               className="h-12 w-auto block"
             />
           </Link>

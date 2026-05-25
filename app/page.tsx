@@ -17,22 +17,22 @@ export default function Home() {
         {/* Premium Hero Section */}
         <section className="relative w-full h-[100dvh] min-h-[650px] flex flex-col justify-center overflow-hidden pt-[104px]">
           {/* Background Image */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 z-0 overflow-hidden bg-mist">
             <Image
               src="/hero-bg.png"
               alt="Agri Experience Hero Background"
               fill
               priority
               quality={100}
-              className="object-cover object-center lg:object-[center_30%]"
+              className="object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
             />
           </div>
           
           {/* Left Gradient Overlay to ensure text readability */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-3/4 lg:w-2/3 3xl:w-1/2 4xl:w-[45%]"></div>
           
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
-            <div className="max-w-3xl space-y-4 sm:space-y-5 lg:space-y-6">
+          <div className="relative z-10 max-w-6xl 3xl:max-w-7xl 4xl:max-w-[1600px] mx-auto px-4 sm:px-6 w-full">
+            <div className="max-w-3xl 3xl:max-w-4xl space-y-4 sm:space-y-5 lg:space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
