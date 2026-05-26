@@ -54,7 +54,7 @@ export default function Footer() {
                 <Link 
                   key={i} 
                   href="#" 
-                  className="w-10 h-10 rounded-full bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors transition-shadow duration-300 ease-in-out hover:-translate-y-1"
+                  className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors transition-shadow duration-300 ease-in-out hover:-translate-y-1"
                 >
                   <Icon size={18} />
                 </Link>
@@ -114,7 +114,7 @@ export default function Footer() {
               </div>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-green text-white rounded-full text-sm font-bold hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out group shadow-lg shadow-primary-green/20"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-green text-white rounded text-sm font-bold hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out group shadow-lg shadow-primary-green/20"
               >
                 Work With Us
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -224,7 +224,7 @@ export default function AboutPage() {
               Let&apos;s collaborate to transform agricultural systems and create sustainable impact for generations to come.
             </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
                 Get In Touch
                 <ArrowRight size={20} />
               </Link>

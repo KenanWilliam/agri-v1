@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import * as d3 from 'd3'
+import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
@@ -22,6 +22,16 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import africaGeoJson from '@/africa.json'
+
+const ContinentMap = dynamic(() => import('./leaflet-continent-map'), { 
+  ssr: false, 
+  loading: () => <div className="w-full h-full flex items-center justify-center text-charcoal/50 animate-pulse">Loading Map...</div> 
+})
+
+const CountryMap = dynamic(() => import('./leaflet-country-map'), { 
+  ssr: false, 
+  loading: () => <div className="w-full h-full flex items-center justify-center text-charcoal/50 animate-pulse">Loading Map...</div> 
+})
 
 type Region = 'East Africa' | 'West Africa' | 'Central Africa' | 'Southern Africa'
 
@@ -703,17 +713,11 @@ const buildCountryProjects = (country: DetailedCountryRecord): CountryProject[] 
 
 export default function InteractiveMap() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const detailSvgRef = useRef<SVGSVGElement>(null)
-  const gRef = useRef<SVGGElement>(null)
-
   const [selectedCountry, setSelectedCountry] = useState<DetailedCountryRecord | null>(null)
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
   const [originRect, setOriginRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null)
-
-  const selectedCountryRef = useRef<DetailedCountryRecord | null>(null)
 
   const activeProjects = useMemo(
     () => (selectedCountry ? buildCountryProjects(selectedCountry) : []),
@@ -721,330 +725,31 @@ export default function InteractiveMap() {
   )
   const selectedProject = activeProjects[selectedProjectIndex] ?? activeProjects[0] ?? null
 
-  useEffect(() => {
-    selectedCountryRef.current = selectedCountry
-  }, [selectedCountry])
-
-  // EFFECT 1: Render the main Africa map
-  useEffect(() => {
-    if (!svgRef.current || !gRef.current) return
-
-    const features = (africaGeoJson as any).features ?? []
-    const width = 1200
-    const height = 900
-    const svg = d3.select(svgRef.current)
-    const g = d3.select(gRef.current)
-
-    g.selectAll('*').remove()
-
-    // Reduced padding for a more expansive map feel
-    const projection = d3.geoMercator().fitExtent([[10, 10], [width - 10, height - 10]], africaGeoJson as any)
-    const pathGenerator = d3.geoPath().projection(projection)
-
-    const countryLayer = g.append('g').attr('class', 'countries')
-
-    countryLayer
-      .selectAll('path')
-      .data(features)
-      .enter()
-      .append('path')
-      .attr('d', pathGenerator as any)
-      .attr('class', (feature: any) => (countriesByGeoName[feature.properties.name] ? 'country-active' : 'country-base'))
-      .style('fill', (feature: any) => {
-        const country = countriesByGeoName[feature.properties.name]
-        if (!country) return 'rgba(15, 61, 49, 0.04)'
-        if (selectedCountry) {
-          return country.name === selectedCountry.name ? 'rgba(15, 61, 49, 0.95)' : 'rgba(15, 61, 49, 0.08)'
-        }
-        return regionFill(country.region)
-      })
-      .style('stroke', (feature: any) => {
-        const country = countriesByGeoName[feature.properties.name]
-        return selectedCountry && country?.name === selectedCountry.name ? '#fff1c6' : 'rgba(255, 255, 255, 0.95)'
-      })
-      .style('stroke-width', (feature: any) => {
-        const country = countriesByGeoName[feature.properties.name]
-        return selectedCountry && country?.name === selectedCountry.name ? '1.8px' : '0.8px'
-      })
-      .style('transition', 'fill 0.4s ease, stroke 0.4s ease, opacity 0.4s ease')
-      .style('cursor', (feature: any) => (countriesByGeoName[feature.properties.name] ? 'pointer' : 'default'))
-      .on('mouseenter', function(event, feature: any) {
-        const country = countriesByGeoName[feature.properties.name]
-        if (country && !selectedCountryRef.current) {
-          setHoveredName(country.name)
-          d3.select(this)
-            .style('fill', 'rgba(180, 83, 9, 0.5)')
-            .style('stroke', '#B45309')
-            .style('stroke-width', '1.2px')
-            .style('filter', 'drop-shadow(0 0 12px rgba(180, 83, 9, 0.35))')
-        }
-      })
-      .on('mousemove', (event) => {
-        if (!selectedCountryRef.current) {
-          setTooltipPos({ x: event.clientX, y: event.clientY })
-        }
-      })
-      .on('mouseleave', function(event, feature: any) {
-        setHoveredName(null)
-        if (selectedCountryRef.current) return
-
-        const country = countriesByGeoName[feature.properties.name]
-        d3.select(this)
-          .style('fill', country ? regionFill(country.region) : 'rgba(15, 61, 49, 0.04)')
-          .style('stroke', 'rgba(255, 255, 255, 0.95)')
-          .style('stroke-width', '0.8px')
-          .style('filter', 'none')
-      })
-      .on('click', function (event, feature: any) {
-        const country = countriesByGeoName[feature.properties.name]
-        if (country) {
-          if (containerRef.current) {
-            const containerRect = containerRef.current.getBoundingClientRect()
-            const pathRect = (this as SVGPathElement).getBoundingClientRect()
-            setOriginRect({
-              top: pathRect.top - containerRect.top,
-              left: pathRect.left - containerRect.left,
-              width: pathRect.width,
-              height: pathRect.height,
-            })
-          }
-          setSelectedCountry(country)
-          selectedCountryRef.current = country
-          setSelectedProjectIndex(0)
-          setHoveredName(null)
-        } else {
-          setSelectedCountry(null)
-          selectedCountryRef.current = null
-          setSelectedProjectIndex(0)
-          setOriginRect(null)
-        }
-      })
-
-    const labelLayer = g.append('g').attr('class', 'country-labels')
-
-    labelLayer
-      .selectAll('text')
-      .data(features.filter((feature: any) => countriesByGeoName[feature.properties.name]))
-      .enter()
-      .append('text')
-      .text((feature: any) => countriesByGeoName[feature.properties.name].name)
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'middle')
-      .attr('transform', (feature: any) => {
-        const [x, y] = pathGenerator.centroid(feature)
-        return `translate(${x}, ${y})`
-      })
-      .style('pointer-events', 'none')
-      .style('fill', '#0f3d31')
-      .style('font-size', '12px')
-      .style('font-weight', '800')
-      .style('letter-spacing', '0.08em')
-      .style('text-transform', 'uppercase')
-      .style('paint-order', 'stroke')
-      .style('stroke', 'rgba(255, 255, 255, 0.96)')
-      .style('stroke-width', '5px')
-      .style('opacity', selectedCountry ? 0.15 : 0.95)
-
-    countryLayer
-      .style('opacity', 0)
-      .transition()
-      .duration(900)
-      .delay((_feature, index) => index * 8)
-      .style('opacity', 1)
-
-    svg.on('click', (event) => {
-      if (event.target === svgRef.current) {
-        setSelectedCountry(null)
-        selectedCountryRef.current = null
-        setSelectedProjectIndex(0)
-        setHoveredName(null)
-        setOriginRect(null)
-      }
-    })
-
-    return () => {
-      svg.on('click', null)
-    }
-  }, [selectedCountry])
-
-  // EFFECT 2: Render base localized map architecture
-  useEffect(() => {
-    if (!detailSvgRef.current || !selectedCountry) return
-
-    const svg = d3.select(detailSvgRef.current)
-    svg.selectAll('*').remove()
-
-    const feature = ((africaGeoJson as any).features ?? []).find((item: any) => item.properties.name === (selectedCountry.geoName ?? selectedCountry.name))
-    if (!feature) return
-
-    const width = 800
-    const height = 600
-    const projection = d3.geoMercator().fitExtent([[60, 60], [width - 60, height - 60]], feature)
-    const pathGenerator = d3.geoPath().projection(projection)
-
-    // Build the zoomable layer
-    const zoomLayer = svg.append('g').attr('class', 'zoom-layer')
-
-    // Add graticule for extreme mapping detail
-    const graticule = d3.geoGraticule().step([1.5, 1.5])
-    zoomLayer.append('path')
-      .datum(graticule)
-      .attr('d', pathGenerator as any)
-      .style('fill', 'none')
-      .style('stroke', 'rgba(15, 61, 49, 0.06)')
-      .style('stroke-width', '1px')
-
-    // Add the country path
-    zoomLayer
-      .append('path')
-      .datum(feature)
-      .attr('d', pathGenerator as any)
-      .style('fill', regionFill(selectedCountry.region))
-      .style('stroke', '#c8a44a')
-      .style('stroke-width', '2px')
-      .style('filter', 'drop-shadow(0 14px 24px rgba(15, 61, 49, 0.12))')
-
-    // Store base data onto DOM node for Effect 3 to use easily
-    svg.node()!.setAttribute('data-cx', String(pathGenerator.centroid(feature)[0]))
-    svg.node()!.setAttribute('data-cy', String(pathGenerator.centroid(feature)[1]))
-
-    const markers = buildCountryProjects(selectedCountry)
-
-    // Draw markers inside the zoom layer
-    const markerGroups = zoomLayer.selectAll('.marker-group')
-      .data(markers)
-      .enter()
-      .append('g')
-      .attr('class', 'marker-group')
-      .style('cursor', 'pointer')
-      .on('click', (event, d) => setSelectedProjectIndex(markers.indexOf(d)))
-
-    markerGroups.each(function(d, i) {
-      const g = d3.select(this)
-      const cityKey = d.location.split(' / ')[0]
-      const coords = cityCoordinates[cityKey]
-      
-      let [x, y] = [Number(svg.node()!.getAttribute('data-cx')), Number(svg.node()!.getAttribute('data-cy'))]
-      if (coords) {
-        const projected = projection(coords)
-        if (projected) {
-          x = projected[0]
-          y = projected[1]
-        }
-      } else {
-        x += (i * 25 - 25)
-        y += (i * 20 - 20)
-      }
-
-      g.append('line')
-        .attr('class', 'marker-line')
-        .attr('x1', x)
-        .attr('y1', y - 6)
-        .attr('x2', x)
-        .attr('y2', y - 18)
-        .style('stroke', 'rgba(15, 61, 49, 0.4)')
-        .style('stroke-width', '1.5px')
-        .style('stroke-dasharray', '2,2')
-
-      g.append('circle')
-        .attr('class', 'marker-circle')
-        .attr('cx', x)
-        .attr('cy', y)
-        .attr('r', 5)
-        .style('fill', '#0f3d31')
-        .style('stroke', '#fff7e6')
-        .style('stroke-width', '2px')
-        .style('transition', 'fill 0.3s ease')
-
-      g.append('text')
-        .attr('class', 'marker-text')
-        .attr('x', x)
-        .attr('y', y - 22)
-        .attr('text-anchor', 'middle')
-        .text(cityKey)
-        .style('fill', '#0f3d31')
-        .style('font-size', '10px')
-        .style('font-weight', '800')
-        .style('letter-spacing', '0.05em')
-        .style('paint-order', 'stroke')
-        .style('stroke', 'rgba(255, 255, 255, 0.98)')
-        .style('stroke-width', '4px')
-    })
-  }, [selectedCountry])
-
-  // EFFECT 3: Animate D3 Zoom into the specific project
-  useEffect(() => {
-    if (!detailSvgRef.current || !selectedCountry) return
-
-    const svg = d3.select(detailSvgRef.current)
-    const zoomLayer = svg.select('.zoom-layer')
-    if (zoomLayer.empty()) return
-
-    const width = 800
-    const height = 600
-    const feature = ((africaGeoJson as any).features ?? []).find((item: any) => item.properties.name === (selectedCountry.geoName ?? selectedCountry.name))
-    const projection = d3.geoMercator().fitExtent([[60, 60], [width - 60, height - 60]], feature)
-
-    const project = activeProjects[selectedProjectIndex]
-    const coords = cityCoordinates[project?.location.split(' / ')[0]]
-
-    let k = 1
-    let tx = 0
-    let ty = 0
-
-    if (coords) {
-      k = 2.4 // deep zoom scale
-      const projected = projection(coords)
-      if (projected) {
-        tx = width / 2 - projected[0] * k
-        ty = height / 2 - projected[1] * k
-      }
-    }
-
-    // Animate the pan & zoom
-    zoomLayer.transition()
-      .duration(900)
-      .ease(d3.easeCubicInOut)
-      .attr('transform', `translate(${tx},${ty}) scale(${k})`)
-
-    // Update marker styles dynamically to combat scale distortion
-    zoomLayer.selectAll('.marker-group').each(function(d, i) {
-      const g = d3.select(this)
-      const isActive = i === selectedProjectIndex
-
-      g.select('.marker-circle')
-        .transition().duration(600)
-        .style('fill', isActive ? '#c8a44a' : '#0f3d31')
-        .attr('r', isActive ? 8 / k : 5 / k)
-        .style('stroke-width', `${2 / k}px`)
-
-      g.select('.marker-line')
-        .transition().duration(600)
-        .style('stroke', isActive ? '#c8a44a' : 'rgba(15, 61, 49, 0.4)')
-        .style('stroke-width', `${1.5 / k}px`)
-        .attr('y1', (Number(g.select('.marker-circle').attr('cy')) - (isActive ? 9/k : 6/k)))
-        .attr('y2', (Number(g.select('.marker-circle').attr('cy')) - (isActive ? 22/k : 18/k)))
-
-      g.select('.marker-text')
-        .transition().duration(600)
-        .style('fill', isActive ? '#c8a44a' : '#0f3d31')
-        .style('font-size', isActive ? `${12 / k}px` : `${10 / k}px`)
-        .style('stroke-width', `${4 / k}px`)
-        .attr('y', (Number(g.select('.marker-circle').attr('cy')) - (isActive ? 26/k : 22/k)))
-    })
-
-  }, [selectedCountry, selectedProjectIndex, activeProjects])
-
   const closeCountryOverlay = () => {
     setSelectedCountry(null)
-    selectedCountryRef.current = null
     setSelectedProjectIndex(0)
     setHoveredName(null)
     setOriginRect(null)
   }
 
+  const handleCountryClick = (country: DetailedCountryRecord, event: MouseEvent) => {
+    if (containerRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect()
+      // Use rough click coordinates for the origin animation since we don't have the SVG path bounds anymore
+      setOriginRect({
+        top: event.clientY - containerRect.top - 50,
+        left: event.clientX - containerRect.left - 50,
+        width: 100,
+        height: 100,
+      })
+    }
+    setSelectedCountry(country)
+    setSelectedProjectIndex(0)
+    setHoveredName(null)
+  }
+
   return (
-    <section className="w-full relative bg-primary-ivory min-h-[900px] flex flex-col pt-16 pb-24 overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] pb-5 px-5 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <filter id="noiseFilterMap">
@@ -1054,58 +759,60 @@ export default function InteractiveMap() {
         </svg>
       </div>
 
-      <div className="max-w-6xl w-full mx-auto px-6 relative z-10 flex-shrink-0 mb-8">
-        <div className="max-w-3xl space-y-5">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-mist/60 text-deep-forest text-xs font-bold uppercase tracking-[0.25em]">
-            <Globe size={14} />
-            Africa portfolio map
-          </div>
-          <h2 className="text-deep-forest">Our Footprint Across the Continent</h2>
-          <p className="text-lg lg:text-xl text-charcoal/75 font-light leading-relaxed max-w-2xl">
-            Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier physically grows into focus—diving deep into specific regional impact and deliverables.
-          </p>
-        </div>
-      </div>
-
       {/* Main Interactive Workspace */}
-      <div className="relative flex-1 w-full max-w-6xl mx-auto px-6 z-10" ref={containerRef}>
+      <div className="relative flex-1 h-full z-10 w-full overflow-hidden" ref={containerRef}>
         
-        {/* The Giant Main Map */}
-        <div className="w-full h-full min-h-[750px] bg-white/70 rounded-[40px] overflow-hidden shadow-[0_20px_60px_rgba(15,61,49,0.06)] border border-mist relative">
-          <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <filter id="noiseFilterMapCore">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-              </filter>
-              <rect width="100%" height="100%" filter="url(#noiseFilterMapCore)" />
-            </svg>
-          </div>
-
-          <div className="absolute top-6 left-6 z-10 space-y-1">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">Continent map</div>
-            <div className="text-sm text-charcoal/65 max-w-sm">Select a country to expand the highly detailed dossier overlay.</div>
-          </div>
-
-          <svg ref={svgRef} viewBox="0 0 1200 900" className="w-full h-full drop-shadow-sm">
-            <g ref={gRef} />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noiseFilterMapCore">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilterMapCore)" />
           </svg>
-
-          <AnimatePresence>
-            {hoveredName && !selectedCountry && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: -40 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
-                className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
-              >
-                <MapPin size={16} className="text-accent-gold" />
-                {hoveredName}
-                <span className="opacity-50 font-normal ml-2">Click to expand</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
+
+        <div className="absolute inset-0 z-0">
+          <ContinentMap 
+            africaGeoJson={africaGeoJson}
+            countriesByGeoName={countriesByGeoName}
+            selectedCountry={selectedCountry}
+            onCountryClick={handleCountryClick}
+            setHoveredName={setHoveredName}
+            setTooltipPos={setTooltipPos}
+          />
+        </div>
+
+        {/* Heading Text Overlay */}
+        <div className="absolute top-8 left-8 lg:top-12 lg:left-12 z-20 max-w-sm pointer-events-none">
+          <div className="space-y-5 pointer-events-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-white/90 backdrop-blur-md text-deep-forest text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
+              <Globe size={14} />
+              Africa portfolio map
+            </div>
+            <div className="bg-white/80 p-6 -ml-4 rounded-3xl backdrop-blur-md shadow-lg border border-white/50 space-y-4">
+              <h2 className="text-deep-forest text-4xl lg:text-5xl tracking-tight leading-[1.1]">Our Footprint<br/>Across the Continent</h2>
+              <p className="text-base lg:text-lg text-charcoal/80 font-medium leading-relaxed">
+                Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier physically grows into focus—diving deep into specific regional impact and deliverables.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {hoveredName && !selectedCountry && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: -40 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
+              className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
+            >
+              <MapPin size={16} className="text-accent-gold" />
+              {hoveredName}
+              <span className="opacity-50 font-normal ml-2">Click to expand</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* The Growing Dossier Overlay */}
         <AnimatePresence>
@@ -1176,7 +883,17 @@ export default function InteractiveMap() {
                         Interactive Local Map
                       </div>
                     </div>
-                    <svg ref={detailSvgRef} viewBox="0 0 800 600" className="relative z-0 w-full h-full max-h-full drop-shadow-2xl" />
+                    
+                    <div className="absolute inset-0 z-0">
+                      <CountryMap 
+                        africaGeoJson={africaGeoJson}
+                        selectedCountry={selectedCountry}
+                        activeProjects={activeProjects}
+                        selectedProjectIndex={selectedProjectIndex}
+                        setSelectedProjectIndex={setSelectedProjectIndex}
+                        cityCoordinates={cityCoordinates}
+                      />
+                    </div>
                   </div>
 
                   {/* RIGHT: Latent Details */}
@@ -1328,7 +1045,7 @@ export default function InteractiveMap() {
                         </div>
                         <Link
                           href={`/our-results?country=${selectedCountry.code}`}
-                          className="relative z-10 shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-deep-forest transition-transform hover:scale-105 shadow-md"
+                          className="relative z-10 shrink-0 inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-bold text-deep-forest transition-transform hover:scale-105 shadow-md"
                         >
                           View Report
                           <ArrowRight size={16} />

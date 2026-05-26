@@ -173,11 +173,11 @@
 
 @layer components {
   .btn-premium {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded font-semibold transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50;
   }
 
   .btn-premium-outline {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-primary text-primary rounded-full font-semibold transition-all hover:bg-primary/5 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-primary text-primary rounded font-semibold transition-all hover:bg-primary/5 active:scale-[0.98];
   }
 
   .glass-panel {

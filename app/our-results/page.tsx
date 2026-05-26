@@ -185,7 +185,7 @@ export default function OurResultsPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
               >
                 Get In Touch
                 <ArrowRight size={20} />

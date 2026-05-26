@@ -59,7 +59,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="pt-1 sm:pt-2"
               >
-                <Link href="/our-impact" className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20 text-sm sm:text-base">
+                <Link href="/our-impact" className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20 text-sm sm:text-base">
                   Explore Our Impact
                   <ArrowRight size={18} className="sm:w-5 sm:h-5" />
                 </Link>
@@ -217,13 +217,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
                   href="/contact"
-                  className="px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out shadow-2xl shadow-primary-green/20"
-                >
-                  Start a Partnership
-                </Link>
-                <Link
-                  href="/resources"
-                  className="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-colors transition-shadow duration-300 ease-in-out backdrop-blur-sm"
+                  className="px-10 py-5 bg-primary-green text-white rounded font-bold text-lg hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out shadow-2xl shadow-primary-green/20"
+                  >
+                  Work With Us
+                  </Link>
+                  <Link
+                  href="/contact"
+                  className="px-10 py-5 border-2 border-white/30 text-white rounded font-bold text-lg hover:bg-white/10 transition-colors transition-shadow duration-300 ease-in-out backdrop-blur-sm"
                 >
                   View Case Studies
                 </Link>

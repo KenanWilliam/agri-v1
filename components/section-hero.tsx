@@ -7,7 +7,7 @@ type SectionHeroProps = {
   eyebrow?: ReactNode
   title: ReactNode
   subtitle?: ReactNode
-  /** Center the text by default; pass 'left' for left-aligned variant */
+  /** Center the text by default; pass 'left' for the left-aligned variant */
   align?: 'center' | 'left'
   children?: ReactNode
   className?: string
@@ -15,7 +15,7 @@ type SectionHeroProps = {
 
 /**
  * SectionHero — unified hero used by every non-home page.
- * Sits below the fixed nav and adds consistent vertical rhythm + entrance animation.
+ * Sits below the fixed nav and adds consistent vertical rhythm plus entrance animation.
  */
 export default function SectionHero({
   eyebrow,

@@ -82,7 +82,7 @@ export default function TestimonialModal() {
         onClick={() => setIsOpen(true)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded-full font-semibold hover:shadow-lg transition-colors transition-shadow duration-300 ease-in-out duration-300"
+        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded font-semibold hover:shadow-lg transition-colors transition-shadow duration-300 ease-in-out duration-300"
       >
         <Quote size={20} />
         Read Client Stories
@@ -146,13 +146,13 @@ export default function TestimonialModal() {
                   <div className="flex gap-2">
                     <button
                       onClick={prev}
-                      className="p-3 rounded-full bg-white border-2 border-primary text-primary hover:bg-primary/10 transition-colors transition-shadow duration-300 ease-in-out duration-300"
+                      className="p-3 rounded bg-white border-2 border-primary text-primary hover:bg-primary/10 transition-colors transition-shadow duration-300 ease-in-out duration-300"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
                       onClick={next}
-                      className="p-3 rounded-full bg-white border-2 border-primary text-primary hover:bg-primary/10 transition-colors transition-shadow duration-300 ease-in-out duration-300"
+                      className="p-3 rounded bg-white border-2 border-primary text-primary hover:bg-primary/10 transition-colors transition-shadow duration-300 ease-in-out duration-300"
                     >
                       <ChevronRight size={20} />
                     </button>
@@ -186,4 +186,6 @@ export default function TestimonialModal() {
       </Dialog>
     </>
   )
+}
+
 }

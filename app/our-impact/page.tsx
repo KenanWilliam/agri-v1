@@ -2,9 +2,12 @@
 
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import InteractiveMap from '@/components/interactive-map'
 import { motion } from 'framer-motion'
 import { Heart, Globe, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+
+
 
 export default function OurImpactPage() {
   const impactAreas = [
@@ -44,6 +47,8 @@ export default function OurImpactPage() {
     <>
       <Header />
       <main className="bg-white min-h-screen">
+        <InteractiveMap />
+        
         {/* Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
@@ -156,14 +161,15 @@ export default function OurImpactPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/our-work"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
-              >
-                Explore Our Work
-              </Link>
-              <Link
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                >
+                Work With Us
+                <ArrowRight size={20} />
+                </Link>
+                <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-bold transition-colors transition-shadow duration-300 ease-in-out hover:bg-white/10 backdrop-blur-sm"
-              >
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:bg-white/10 backdrop-blur-sm"
+                >
                 Partner With Us
                 <ArrowRight size={20} />
               </Link>

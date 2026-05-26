@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -11,33 +11,18 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Our Work', href: '/our-work' },
-  { label: 'Our Results', href: '/our-results' },
+  { label: 'Our Team', href: '/our-team' },
   { label: 'Our Impact', href: '/our-impact' },
   { label: 'Resources', href: '/resources' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 transition-colors transition-shadow duration-300 ease-in-out duration-500">
-      <header 
-        className={`w-full max-w-6xl rounded-full transition-colors transition-shadow duration-300 ease-in-out duration-500 ${
-          scrolled 
-            ? 'backdrop-blur-[48px] bg-white/5 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.1)] saturate-[1.8] py-2 px-6' 
-            : 'bg-transparent py-4 px-6'
-        }`}
-      >
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center bg-white h-[64px] lg:h-[80px] shadow-sm">
+      <header className="w-full max-w-7xl px-6">
         <div className="flex items-center justify-between">
           <Link href="/" aria-label="Agri Experience" className="flex items-center group">
             <Image
@@ -46,22 +31,25 @@ export default function Header() {
               width={500}
               height={240}
               priority
-              className="h-14 w-auto block transition-transform group-hover:scale-105"
+              className="h-[48px] lg:h-[60px] w-auto block transition-transform group-hover:scale-105"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Desktop Navigation - AngelList Style Pill */}
+          <nav className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5">
             {navItems.map((item) => {
               const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-[13px] font-bold uppercase tracking-wider transition-colors transition-shadow duration-300 ease-in-out relative group ${isActive ? 'text-deep-forest' : 'text-charcoal/80 hover:text-deep-forest'}`}
+                  className={`px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 ${
+                    isActive 
+                      ? 'bg-white text-deep-forest shadow-sm' 
+                      : 'text-charcoal/80 hover:text-deep-forest hover:bg-black/5'
+                  }`}
                 >
                   {item.label}
-                  <span className={`absolute bottom-1 left-3 right-3 h-0.5 bg-deep-forest transition-transform origin-center ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
                 </Link>
               )
             })}
@@ -70,15 +58,15 @@ export default function Header() {
           {/* CTA + Mobile Menu */}
           <div className="flex items-center gap-4">
             <Link
-              href="/newsletter"
-              className="hidden md:inline-flex px-6 py-2.5 bg-deep-forest text-white rounded-full text-sm font-semibold hover:shadow-xl hover:shadow-deep-forest/20 hover:-translate-y-0.5 transition-colors transition-shadow duration-300 ease-in-out"
+              href="/contact"
+              className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
-              Get Updates
+              Contact Us
             </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
+              className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -93,17 +81,21 @@ export default function Header() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-20 left-4 right-4 backdrop-blur-[48px] bg-white/5 saturate-[1.8] rounded-3xl p-6 lg:hidden shadow-[0_16px_48px_rgba(0,0,0,0.1)] border border-white/10"
+            className="absolute top-20 left-4 right-4 bg-white rounded p-6 lg:hidden shadow-xl border border-black/5"
           >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`px-6 py-4 text-lg font-bold rounded-2xl transition-colors transition-shadow duration-300 ease-in-out ${isActive ? 'text-white bg-deep-forest' : 'text-charcoal hover:bg-black/5'}`}
+                    className={`px-6 py-4 text-lg font-medium rounded transition-colors duration-200 ${
+                      isActive 
+                        ? 'text-deep-forest bg-black/5' 
+                        : 'text-charcoal hover:bg-black/5'
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -111,11 +103,11 @@ export default function Header() {
               })}
               <hr className="my-2 border-black/10" />
               <Link
-                href="/newsletter"
+                href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-4 bg-deep-forest text-white rounded-2xl font-bold text-center shadow-lg"
+                className="w-full py-4 bg-deep-forest text-white rounded font-medium text-center shadow-md"
               >
-                Newsletter Signup
+                Contact Us
               </Link>
             </nav>
           </motion.div>

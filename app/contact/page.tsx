@@ -132,7 +132,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-colors transition-shadow duration-300 ease-in-out duration-300"
+                    className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-colors transition-shadow duration-300 ease-in-out duration-300"
                   >
                     {submitted ? '✓ Message Sent!' : 'Send Message'}
                     {!submitted && <Send size={18} />}
