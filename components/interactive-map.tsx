@@ -749,7 +749,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] pb-5 px-5 overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <filter id="noiseFilterMap">
@@ -773,6 +773,7 @@ export default function InteractiveMap() {
 
         <div className="absolute inset-0 z-0">
           <ContinentMap 
+            key={selectedCountry ? 'country-selected' : 'continent-view'}
             africaGeoJson={africaGeoJson}
             countriesByGeoName={countriesByGeoName}
             selectedCountry={selectedCountry}
@@ -783,7 +784,7 @@ export default function InteractiveMap() {
         </div>
 
         {/* Heading Text Overlay */}
-        <div className="absolute top-8 left-8 lg:top-12 lg:left-12 z-20 max-w-sm pointer-events-none">
+        <div className="absolute top-16 left-8 lg:top-20 lg:left-12 z-20 max-w-sm pointer-events-none">
           <div className="space-y-5 pointer-events-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-white/90 backdrop-blur-md text-deep-forest text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
               <Globe size={14} />
@@ -801,9 +802,10 @@ export default function InteractiveMap() {
         <AnimatePresence>
           {hoveredName && !selectedCountry && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: -40 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
               className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
             >
@@ -825,18 +827,16 @@ export default function InteractiveMap() {
                 width: originRect.width,
                 height: originRect.height,
                 opacity: 0,
-                scale: 0.8,
                 borderRadius: '100px',
               }}
               animate={{
-                top: 16,
-                right: 16,
-                left: 16, // take up full width
-                width: 'calc(100% - 32px)', 
-                height: 'calc(100% - 32px)',
+                top: 20,
+                right: 20,
+                left: 20,
+                width: 'calc(100% - 40px)', 
+                height: 'calc(100% - 40px)',
                 opacity: 1,
-                scale: 1,
-                borderRadius: '36px',
+                borderRadius: '32px',
               }}
               exit={{
                 top: originRect.top,
@@ -844,10 +844,9 @@ export default function InteractiveMap() {
                 width: originRect.width,
                 height: originRect.height,
                 opacity: 0,
-                scale: 0.8,
                 borderRadius: '100px',
               }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="absolute bg-white shadow-[0_40px_100px_rgba(15,61,49,0.18)] border border-mist flex flex-col z-30 overflow-hidden"
               style={{ minWidth: '550px' }}
             >

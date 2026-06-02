@@ -19,12 +19,19 @@ function CountryMapController({ feature, activeProjects, selectedProjectIndex, c
   const hasFittedBounds = useRef(false)
 
   useEffect(() => {
+    if (!map) return
+    
     let timeout: NodeJS.Timeout
+    const container = map.getContainer()
+    if (!container) return
+    
     const observer = new ResizeObserver(() => {
-      map.invalidateSize()
+      if (map && map.getContainer()) {
+        map.invalidateSize()
+      }
       clearTimeout(timeout)
       timeout = setTimeout(() => {
-        if (feature) {
+        if (feature && map && map.getContainer()) {
           const geoJsonLayer = L.geoJSON(feature)
           const bounds = geoJsonLayer.getBounds()
           if (bounds.isValid()) {
@@ -34,7 +41,7 @@ function CountryMapController({ feature, activeProjects, selectedProjectIndex, c
       }, 150)
     })
     
-    observer.observe(map.getContainer())
+    observer.observe(container)
     return () => {
       observer.disconnect()
       clearTimeout(timeout)

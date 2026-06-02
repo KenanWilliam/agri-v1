@@ -54,7 +54,7 @@ export default function Footer() {
                 <Link 
                   key={i} 
                   href="#" 
-                  className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors transition-shadow duration-300 ease-in-out hover:-translate-y-1"
+                  className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors duration-300 ease-in-out"
                 >
                   <Icon size={18} />
                 </Link>

@@ -3,7 +3,7 @@
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { CheckCircle, Heart, Target, Lightbulb, Users, Award, Leaf, ArrowRight } from 'lucide-react'
+import { CheckCircle, Heart, Target, Lightbulb, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AboutPage() {
@@ -27,39 +27,6 @@ export default function AboutPage() {
       icon: Lightbulb,
       title: 'Field-Based Expertise',
       desc: 'High-quality, experience-based analysis, recommendations, and implementation support.',
-    },
-  ]
-
-  const team = [
-    {
-      name: 'Aline O\'Connor',
-      role: 'Founder',
-      bio:
-        'Seed industry practitioner with close to 30 years of experience in the US and Africa, including 9 years as CEO of a large US crop seed company. Worked on seed systems in Africa since 2007.',
-    },
-    {
-      name: 'Mulemia Maina',
-      role: 'Seed Systems Specialist',
-      bio:
-        'Two decades at the Rockefeller Foundation and AGRA, with a deep seed systems network across the continent. Managed over 350 seed-related grants and is fluent in English, French, and Kiswahili.',
-    },
-    {
-      name: 'Jayne Ngugi',
-      role: 'Finance & Administration',
-      bio:
-        'Leads finance, control, and administration services with a strong private sector background and a commitment to integrity and professionalism.',
-    },
-    {
-      name: 'Ronald Misigo',
-      role: 'ICT Solutions Lead',
-      bio:
-        'Seed systems specialist leading ICT solutions for clients, with strong research and communication skills and a track record of seed-focused tools for stakeholders.',
-    },
-    {
-      name: 'Denis Langat',
-      role: 'Project Monitoring',
-      bio:
-        'Supports client activities through research, documentation, record keeping, monitoring, data collection, and analysis.',
     },
   ]
 
@@ -145,37 +112,30 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Leadership Glass Panel Section */}
-        <section className="w-full py-24 bg-deep-forest text-white overflow-hidden relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
-          
-          <div className="max-w-6xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20 space-y-4">
-              <h2 className="text-white">Team Members</h2>
-              <p className="text-white/60 max-w-2xl mx-auto text-lg font-light">
-                Our core team brings decades of seed sector experience across Africa and beyond.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {team.map((member, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -10 }}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] overflow-hidden group shadow-lg"
-                >
-                  <div className="h-48 bg-white/5 flex items-center justify-center text-6xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-accent-gold/5 group-hover:bg-accent-gold/20 transition-colors"></div>
-                    <Users size={48} className="text-white/20" />
-                  </div>
-                  <div className="p-8 space-y-3">
-                    <h3 className="text-xl text-white font-serif font-bold">{member.name}</h3>
-                    <p className="text-accent-gold font-bold text-xs uppercase tracking-widest">{member.role}</p>
-                    <p className="text-sm text-white/70 font-light leading-relaxed">{member.bio}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+        {/* Team Link Section */}
+        <section className="w-full py-20 lg:py-28 bg-primary-green/5 border-b border-primary-green/10">
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-white rounded-[32px] border border-primary-green/10 shadow-lg"
+            >
+              <div className="space-y-4">
+                <h3 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest">Meet Our Dedicated Team</h3>
+                <p className="text-lg text-charcoal/70 font-light leading-relaxed max-w-lg">
+                  Discover the experienced professionals behind Agri Experience who bring decades of expertise to every project.
+                </p>
+              </div>
+              <Link 
+                href="/our-team" 
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-lg font-bold whitespace-nowrap transition-all duration-300 hover:shadow-xl hover:shadow-primary-green/20 hover:scale-105"
+              >
+                View Team
+                <ArrowRight size={20} />
+              </Link>
+            </motion.div>
           </div>
         </section>
 

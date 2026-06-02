@@ -32,15 +32,22 @@ function MapController({ selectedCountry, geoJsonLayerRef, africaGeoJson }: any)
 
   // Handle container resize
   useEffect(() => {
+    if (!map) return
+    
     let timeout: NodeJS.Timeout
+    const container = map.getContainer()
+    if (!container) return
+    
     const observer = new ResizeObserver(() => {
       clearTimeout(timeout)
       timeout = setTimeout(() => {
-        map.invalidateSize()
+        if (map && map.getContainer()) {
+          map.invalidateSize()
+        }
       }, 150)
     })
     
-    observer.observe(map.getContainer())
+    observer.observe(container)
     return () => {
       observer.disconnect()
       clearTimeout(timeout)
