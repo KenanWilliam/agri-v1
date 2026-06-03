@@ -36,19 +36,26 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation - AngelList Style Pill */}
-          <nav className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5">
+          <nav className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative">
             {navItems.map((item) => {
               const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 ${
+                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 z-10 ${
                     isActive 
-                      ? 'bg-white text-deep-forest shadow-sm' 
+                      ? 'text-deep-forest' 
                       : 'text-charcoal/80 hover:text-deep-forest hover:bg-black/5'
                   }`}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-nav-pill"
+                      className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
                   {item.label}
                 </Link>
               )
