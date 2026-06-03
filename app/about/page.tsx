@@ -37,7 +37,7 @@ export default function AboutPage() {
         {/* Editorial Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
         {/* Mission & Vision Bento */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
               <motion.div
                 whileHover={{ y: -5 }}
@@ -114,7 +114,7 @@ export default function AboutPage() {
 
         {/* Team Link Section */}
         <section className="w-full py-20 lg:py-28 bg-primary-green/5 border-b border-primary-green/10">
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-[1400px] mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +141,7 @@ export default function AboutPage() {
 
         {/* Supporting Consultants Section */}
         <section className="w-full py-16 lg:py-24 bg-white border-b border-mist">
-          <div className="max-w-5xl mx-auto px-6 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-deep-forest">Supporting Consultants</h2>
               <p className="text-charcoal/80 font-light text-lg">

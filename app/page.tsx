@@ -2,7 +2,6 @@
 
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-import InteractiveMap from '@/components/interactive-map'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
@@ -31,7 +30,7 @@ export default function Home() {
           {/* Left Gradient Overlay to ensure text readability */}
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-3/4 lg:w-2/3 3xl:w-1/2 4xl:w-[45%]"></div>
           
-          <div className="relative z-10 max-w-6xl 3xl:max-w-7xl 4xl:max-w-[1600px] mx-auto px-4 sm:px-6 w-full">
+          <div className="relative z-10 max-w-[1800px] 3xl:max-w-[1800px] 4xl:max-w-[1600px] mx-auto px-4 sm:px-6 w-full">
             <div className="max-w-3xl 3xl:max-w-4xl space-y-4 sm:space-y-5 lg:space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -94,7 +93,7 @@ export default function Home() {
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
               <div className="max-w-2xl space-y-4">
                 <h2 className="text-deep-forest">Our Expertise</h2>
@@ -179,14 +178,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Interactive Map Section */}
-        <section className="bg-white py-16 lg:py-24 border-t border-mist">
-          <InteractiveMap />
-        </section>
-
         {/* Testimonials */}
         <section className="w-full py-16 lg:py-24 bg-mist">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="text-center mb-16 space-y-4">
               <h2 className="text-deep-forest">Trusted by Global Leaders</h2>
               <p className="text-xl text-charcoal/70 font-light max-w-2xl mx-auto">

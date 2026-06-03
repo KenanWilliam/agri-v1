@@ -26,7 +26,7 @@ export default function ContactPage() {
     {
       region: 'Head Office',
       country: 'Kenya',
-      address: 'Watermark Business Park - Spring Court Ground Floor, Karen. P.O. Box 1720 - 00606, Nairobi, Kenya',
+      address: 'Watermark Business Park - Spring Court First Floor, Karen. P.O. Box 1720 - 00606, Nairobi, Kenya',
       email: 'info@agri-experience.com',
       phone: '+254 (20) 2626888',
       mobile: '+254 (719) 554 154',
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
         {/* Contact Form & Info */}
         <section className="w-full py-16 lg:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
               {/* Form */}
               <motion.div

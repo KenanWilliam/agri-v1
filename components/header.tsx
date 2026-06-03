@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center bg-white h-[64px] lg:h-[80px] shadow-sm">
-      <header className="w-full max-w-7xl px-6">
+      <header className="w-full max-w-[1800px] px-6">
         <div className="flex items-center justify-between">
           <Link href="/" aria-label="Agri Experience" className="flex items-center group">
             <Image

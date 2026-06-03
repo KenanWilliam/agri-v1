@@ -23,12 +23,7 @@ import {
 import Link from 'next/link'
 import africaGeoJson from '@/africa.json'
 
-const ContinentMap = dynamic(() => import('./leaflet-continent-map'), { 
-  ssr: false, 
-  loading: () => <div className="w-full h-full flex items-center justify-center text-charcoal/50 animate-pulse">Loading Map...</div> 
-})
-
-const CountryMap = dynamic(() => import('./leaflet-country-map'), { 
+const UnifiedMap = dynamic(() => import('./leaflet-unified-map'), { 
   ssr: false, 
   loading: () => <div className="w-full h-full flex items-center justify-center text-charcoal/50 animate-pulse">Loading Map...</div> 
 })
@@ -717,32 +712,19 @@ export default function InteractiveMap() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
-  const [originRect, setOriginRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null)
 
   const activeProjects = useMemo(
     () => (selectedCountry ? buildCountryProjects(selectedCountry) : []),
     [selectedCountry]
   )
-  const selectedProject = activeProjects[selectedProjectIndex] ?? activeProjects[0] ?? null
-
+  
   const closeCountryOverlay = () => {
     setSelectedCountry(null)
     setSelectedProjectIndex(0)
     setHoveredName(null)
-    setOriginRect(null)
   }
 
   const handleCountryClick = (country: DetailedCountryRecord, event: MouseEvent) => {
-    if (containerRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect()
-      // Use rough click coordinates for the origin animation since we don't have the SVG path bounds anymore
-      setOriginRect({
-        top: event.clientY - containerRect.top - 50,
-        left: event.clientX - containerRect.left - 50,
-        width: 100,
-        height: 100,
-      })
-    }
     setSelectedCountry(country)
     setSelectedProjectIndex(0)
     setHoveredName(null)
@@ -760,298 +742,263 @@ export default function InteractiveMap() {
       </div>
 
       {/* Main Interactive Workspace */}
-      <div className="relative flex-1 h-full z-10 w-full overflow-hidden" ref={containerRef}>
+      <div className="relative flex-1 flex w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
         
-        <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <filter id="noiseFilterMapCore">
-              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noiseFilterMapCore)" />
-          </svg>
-        </div>
-
-        <div className="absolute inset-0 z-0">
-          <ContinentMap 
-            key={selectedCountry ? 'country-selected' : 'continent-view'}
-            africaGeoJson={africaGeoJson}
-            countriesByGeoName={countriesByGeoName}
-            selectedCountry={selectedCountry}
-            onCountryClick={handleCountryClick}
-            setHoveredName={setHoveredName}
-            setTooltipPos={setTooltipPos}
-          />
-        </div>
-
-        {/* Heading Text Overlay */}
-        <div className="absolute top-16 left-8 lg:top-20 lg:left-12 z-20 max-w-sm pointer-events-none">
-          <div className="space-y-5 pointer-events-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-white/90 backdrop-blur-md text-deep-forest text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
-              <Globe size={14} />
-              Africa portfolio map
-            </div>
-            <div className="bg-white/80 p-6 -ml-4 rounded-3xl backdrop-blur-md shadow-lg border border-white/50 space-y-4">
-              <h2 className="text-deep-forest text-4xl lg:text-5xl tracking-tight leading-[1.1]">Our Footprint<br/>Across the Continent</h2>
-              <p className="text-base lg:text-lg text-charcoal/80 font-medium leading-relaxed">
-                Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier physically grows into focus—diving deep into specific regional impact and deliverables.
-              </p>
-            </div>
+        {/* Map Canvas - scales with flex-1 */}
+        <div className="flex-1 relative h-full transition-all duration-500 ease-in-out">
+          <div className="absolute inset-0 pointer-events-none opacity-[0.02] z-0">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <filter id="noiseFilterMapCore">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#noiseFilterMapCore)" />
+            </svg>
           </div>
+
+          <div className="absolute inset-0 z-0">
+            <UnifiedMap 
+              africaGeoJson={africaGeoJson}
+              countriesByGeoName={countriesByGeoName}
+              selectedCountry={selectedCountry}
+              hoveredName={hoveredName}
+              activeProjects={activeProjects}
+              selectedProjectIndex={selectedProjectIndex}
+              setSelectedProjectIndex={setSelectedProjectIndex}
+              onCountryClick={handleCountryClick}
+              setHoveredName={setHoveredName}
+              setTooltipPos={setTooltipPos}
+              cityCoordinates={cityCoordinates}
+            />
+          </div>
+
+          {/* Heading Text Overlay */}
+          <AnimatePresence>
+            {!selectedCountry && (
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="absolute top-16 left-8 lg:top-20 lg:left-12 z-20 max-w-sm pointer-events-none"
+              >
+                <div className="space-y-5 pointer-events-auto">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-white/90 backdrop-blur-md text-deep-forest text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
+                    <Globe size={14} />
+                    Africa portfolio map
+                  </div>
+                  <div className="bg-white/80 p-6 -ml-4 rounded-3xl backdrop-blur-md shadow-lg border border-white/50 space-y-4">
+                    <h2 className="text-deep-forest text-4xl lg:text-5xl tracking-tight leading-[1.1]">Our Footprint<br/>Across the Continent</h2>
+                    <p className="text-base lg:text-lg text-charcoal/80 font-medium leading-relaxed">
+                      Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {hoveredName && !selectedCountry && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
+                className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
+              >
+                <MapPin size={16} className="text-accent-gold" />
+                {hoveredName}
+                <span className="opacity-50 font-normal ml-2">Click to expand</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
+        {/* Sidebar Dossier Slide-Out */}
         <AnimatePresence>
-          {hoveredName && !selectedCountry && (
+          {selectedCountry && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
-              className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
-            >
-              <MapPin size={16} className="text-accent-gold" />
-              {hoveredName}
-              <span className="opacity-50 font-normal ml-2">Click to expand</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* The Growing Dossier Overlay */}
-        <AnimatePresence>
-          {selectedCountry && originRect && (
-            <motion.div
-              initial={{
-                position: 'absolute',
-                top: originRect.top,
-                left: originRect.left,
-                width: originRect.width,
-                height: originRect.height,
-                opacity: 0,
-                borderRadius: '100px',
-              }}
-              animate={{
-                top: 20,
-                right: 20,
-                left: 20,
-                width: 'calc(100% - 40px)', 
-                height: 'calc(100% - 40px)',
-                opacity: 1,
-                borderRadius: '32px',
-              }}
-              exit={{
-                top: originRect.top,
-                left: originRect.left,
-                width: originRect.width,
-                height: originRect.height,
-                opacity: 0,
-                borderRadius: '100px',
-              }}
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 420, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="absolute bg-white shadow-[0_40px_100px_rgba(15,61,49,0.18)] border border-mist flex flex-col z-30 overflow-hidden"
-              style={{ minWidth: '550px' }}
+              className="relative bg-white shadow-[-10px_0_40px_rgba(15,61,49,0.1)] border-l border-mist flex flex-col z-30 overflow-hidden flex-shrink-0"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.65),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0))] pointer-events-none" />
-
-              {/* Dossier Header */}
-              <div className="flex-shrink-0 flex items-start justify-between gap-4 p-6 border-b border-mist/60 bg-white/50 backdrop-blur-md relative z-10">
-                <div className="space-y-3">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-mist px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-deep-forest">
-                    <Globe size={14} />
-                    {selectedCountry.region}
+              <div className="w-[420px] h-full flex flex-col">
+                {/* Dossier Header */}
+                <div className="flex-shrink-0 flex items-start justify-between gap-4 p-6 border-b border-mist/60 bg-white/80 backdrop-blur-md relative z-10">
+                  <div className="space-y-3">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-mist px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-deep-forest">
+                      <Globe size={14} />
+                      {selectedCountry.region}
+                    </div>
+                    <h3 className="text-deep-forest text-3xl">{selectedCountry.name}</h3>
                   </div>
-                  <h3 className="text-deep-forest text-3xl">{selectedCountry.name}</h3>
+                  <button
+                    onClick={closeCountryOverlay}
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-mist bg-white text-deep-forest transition-colors transition-shadow duration-300 ease-in-out hover:bg-mist hover:scale-105 shadow-sm"
+                    aria-label="Close country dossier"
+                  >
+                    <X size={20} />
+                  </button>
                 </div>
-                <button
-                  onClick={closeCountryOverlay}
-                  className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-mist bg-white text-deep-forest transition-colors transition-shadow duration-300 ease-in-out hover:bg-mist hover:scale-105 shadow-sm"
-                  aria-label="Close country dossier"
-                >
-                  <X size={24} />
-                </button>
-              </div>
 
-              {/* 2-Column Layout */}
-              <div className="flex-1 overflow-hidden relative z-10">
-                <div className="flex flex-col lg:grid lg:grid-cols-[1.4fr_1fr] h-full">
-                  
-                  {/* LEFT: Zoomed Country Map */}
-                  <div className="relative h-[40vh] min-h-[300px] lg:h-full lg:min-h-0 border-b lg:border-b-0 lg:border-r border-mist/60 bg-[url('/noise.svg')] bg-repeat p-4 flex flex-col items-center justify-center overflow-hidden shrink-0">
-                    <div className="absolute left-4 top-4 lg:left-6 lg:top-6 flex flex-wrap gap-2 z-10 pointer-events-none">
-                      <div className="rounded-full bg-white/95 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-deep-forest shadow-sm flex items-center gap-2">
-                        <Crosshair size={14} className="text-accent-gold" />
-                        Interactive Local Map
+                {/* Right: Latent Details */}
+                <div className="flex-1 h-full overflow-y-auto p-6 custom-scrollbar bg-white/40">
+                  <div className="space-y-8">
+                
+                    <p className="text-base text-charcoal/80 font-light leading-relaxed">
+                      {selectedCountry.overview}
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="rounded-2xl bg-deep-forest p-4 text-white">
+                        <Briefcase className="text-accent-gold" size={18} />
+                        <div className="mt-3 text-3xl font-serif leading-none">{selectedCountry.projects}</div>
+                        <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold">Active projects</div>
+                      </div>
+                      <div className="rounded-2xl bg-mist p-4 text-deep-forest border border-mist">
+                        <Users className="text-deep-forest" size={18} />
+                        <div className="mt-3 text-3xl font-serif leading-none">{formatFarmers(selectedCountry.engagement)}</div>
+                        <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-charcoal/50 font-bold">Farmers / actors</div>
                       </div>
                     </div>
-                    
-                    <div className="absolute inset-0 z-0">
-                      <CountryMap 
-                        africaGeoJson={africaGeoJson}
-                        selectedCountry={selectedCountry}
-                        activeProjects={activeProjects}
-                        selectedProjectIndex={selectedProjectIndex}
-                        setSelectedProjectIndex={setSelectedProjectIndex}
-                        cityCoordinates={cityCoordinates}
-                      />
-                    </div>
-                  </div>
 
-                  {/* RIGHT: Latent Details */}
-                  <div className="flex-1 h-full overflow-y-auto p-6 lg:p-8 custom-scrollbar bg-white/40">
-                    <div className="space-y-8">
-                  
-                      <p className="text-lg text-charcoal/80 font-light leading-relaxed">
-                        {selectedCountry.overview}
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="rounded-[24px] bg-deep-forest p-5 text-white">
-                          <Briefcase className="text-accent-gold" size={20} />
-                          <div className="mt-4 text-4xl font-serif leading-none">{selectedCountry.projects}</div>
-                          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60 font-bold">Active projects</div>
-                        </div>
-                        <div className="rounded-[24px] bg-mist p-5 text-deep-forest border border-mist">
-                          <Users className="text-deep-forest" size={20} />
-                          <div className="mt-4 text-4xl font-serif leading-none">{formatFarmers(selectedCountry.engagement)}</div>
-                          <div className="mt-2 text-xs uppercase tracking-[0.2em] text-charcoal/50 font-bold">Farmers / actors</div>
-                        </div>
+                    {/* Granular Project View */}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40">Select a project to zoom map</div>
+                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold bg-accent-gold/10 px-2 py-1 rounded-full">{activeProjects.length} available</div>
                       </div>
+                      
+                      <div className="grid gap-3">
+                        {activeProjects.map((project, index) => {
+                          const isActive = index === selectedProjectIndex
 
-                      {/* Granular Project View */}
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">Select a project to zoom map</div>
-                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-accent-gold bg-accent-gold/10 px-3 py-1.5 rounded-full">{activeProjects.length} available</div>
-                        </div>
-                        
-                        <div className="grid gap-3">
-                          {activeProjects.map((project, index) => {
-                            const isActive = index === selectedProjectIndex
-
-                            return (
-                              <div key={index} className={`rounded-[24px] border transition-colors transition-shadow duration-300 ease-in-out duration-500 overflow-hidden ${isActive ? 'border-deep-forest shadow-[0_12px_40px_rgba(15,61,49,0.08)] bg-white' : 'border-mist bg-white/40 hover:border-deep-forest/30 hover:bg-white cursor-pointer'}`} onClick={() => !isActive && setSelectedProjectIndex(index)}>
-                                
-                                {/* Card Header (always visible) */}
-                                <div className={`p-5 flex items-start justify-between gap-4 ${isActive ? 'bg-deep-forest text-white' : 'text-charcoal/80'}`}>
-                                  <div className="space-y-1.5">
-                                    <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] ${isActive ? 'text-accent-gold' : 'text-charcoal/40'}`}>
-                                      <MapPin size={12} />
-                                      {project.location}
-                                    </div>
-                                    <div className={`font-serif text-xl leading-tight ${isActive ? 'text-white' : 'text-deep-forest'}`}>{project.title}</div>
+                          return (
+                            <div key={index} className={`rounded-2xl border transition-colors transition-shadow duration-300 ease-in-out overflow-hidden ${isActive ? 'border-deep-forest shadow-[0_8px_24px_rgba(15,61,49,0.08)] bg-white' : 'border-mist bg-white/40 hover:border-deep-forest/30 hover:bg-white cursor-pointer'}`} onClick={() => !isActive && setSelectedProjectIndex(index)}>
+                              
+                              {/* Card Header (always visible) */}
+                              <div className={`p-4 flex items-start justify-between gap-3 ${isActive ? 'bg-deep-forest text-white' : 'text-charcoal/80'}`}>
+                                <div className="space-y-1">
+                                  <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] ${isActive ? 'text-accent-gold' : 'text-charcoal/40'}`}>
+                                    <MapPin size={10} />
+                                    {project.location}
                                   </div>
-                                  <div className={`shrink-0 flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold ${isActive ? 'bg-white/10 text-white' : 'bg-mist text-deep-forest'}`}>
-                                    {index + 1}
-                                  </div>
+                                  <div className={`font-serif text-lg leading-tight ${isActive ? 'text-white' : 'text-deep-forest'}`}>{project.title}</div>
                                 </div>
+                                <div className={`shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold ${isActive ? 'bg-white/10 text-white' : 'bg-mist text-deep-forest'}`}>
+                                  {index + 1}
+                                </div>
+                              </div>
 
-                                {/* Granular Data Body (expanded when active) */}
-                                <AnimatePresence>
-                                  {isActive && (
-                                    <motion.div
-                                      initial={{ height: 0, opacity: 0 }}
-                                      animate={{ height: 'auto', opacity: 1 }}
-                                      exit={{ height: 0, opacity: 0 }}
-                                      className="overflow-hidden bg-white"
-                                    >
-                                      <div className="p-5 space-y-6">
-                                        {/* Core Meta */}
-                                        <div className="flex flex-wrap gap-4 pt-2">
-                                          {project.timeline && (
-                                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-3 py-2 rounded-lg">
-                                              <Calendar size={14} /> {project.timeline}
-                                            </div>
-                                          )}
-                                          {project.budget_scope && (
-                                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-3 py-2 rounded-lg">
-                                              <Layers3 size={14} /> {project.budget_scope}
-                                            </div>
-                                          )}
-                                        </div>
-
-                                        {/* Text Content */}
-                                        <div className="space-y-4 text-sm text-charcoal/75 leading-relaxed">
-                                          <p>{project.summary}</p>
-                                          <div className="rounded-2xl border border-accent-gold/30 bg-accent-gold/5 p-4 text-deep-forest shadow-inner">
-                                            <span className="font-bold uppercase tracking-widest text-[10px] opacity-50 block mb-2">Primary Outcome</span>
-                                            {project.outcome}
+                              {/* Granular Data Body (expanded when active) */}
+                              <AnimatePresence>
+                                {isActive && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="overflow-hidden bg-white"
+                                  >
+                                    <div className="p-4 space-y-5">
+                                      {/* Core Meta */}
+                                      <div className="flex flex-wrap gap-2 pt-1">
+                                        {project.timeline && (
+                                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-2 py-1 rounded-md">
+                                            <Calendar size={12} /> {project.timeline}
                                           </div>
+                                        )}
+                                        {project.budget_scope && (
+                                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-2 py-1 rounded-md">
+                                            <Layers3 size={12} /> {project.budget_scope}
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      {/* Text Content */}
+                                      <div className="space-y-3 text-[13px] text-charcoal/75 leading-relaxed">
+                                        <p>{project.summary}</p>
+                                        <div className="rounded-xl border border-accent-gold/30 bg-accent-gold/5 p-3 text-deep-forest shadow-inner">
+                                          <span className="font-bold uppercase tracking-widest text-[9px] opacity-50 block mb-1.5">Primary Outcome</span>
+                                          {project.outcome}
                                         </div>
+                                      </div>
 
-                                        {/* Granular Details Grid */}
-                                        <div className="grid gap-5 sm:grid-cols-2">
-                                          {project.key_deliverables && (
-                                            <div className="space-y-3">
-                                              <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-2">Key Deliverables</div>
-                                              <ul className="space-y-2">
-                                                {project.key_deliverables.map((item) => (
-                                                  <li key={item} className="flex items-start gap-2 text-sm text-charcoal/80">
-                                                    <Target size={14} className="mt-0.5 text-accent-gold shrink-0" />
-                                                    {item}
-                                                  </li>
-                                                ))}
-                                              </ul>
-                                            </div>
-                                          )}
-
-                                          <div className="space-y-3">
-                                            <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-2">Implementation Methods</div>
-                                            <div className="flex flex-wrap gap-2">
-                                              {project.methods.map((method) => (
-                                                <span key={method} className="rounded-full bg-mist/70 px-3 py-1.5 text-[11px] font-bold tracking-wide text-deep-forest">
-                                                  {method}
-                                                </span>
+                                      {/* Granular Details Grid */}
+                                      <div className="grid gap-4">
+                                        {project.key_deliverables && (
+                                          <div className="space-y-2">
+                                            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-1.5">Key Deliverables</div>
+                                            <ul className="space-y-1.5">
+                                              {project.key_deliverables.map((item) => (
+                                                <li key={item} className="flex items-start gap-1.5 text-[13px] text-charcoal/80">
+                                                  <Target size={12} className="mt-0.5 text-accent-gold shrink-0" />
+                                                  {item}
+                                                </li>
                                               ))}
-                                            </div>
+                                            </ul>
                                           </div>
-                                        </div>
+                                        )}
 
-                                        {/* Partners */}
-                                        <div className="space-y-3 pt-2">
-                                          <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal/40">Executing Partners</div>
-                                          <div className="flex flex-wrap gap-2">
-                                            {project.partners.map((partner) => (
-                                              <span key={partner} className="rounded-lg border border-mist bg-white px-3 py-1.5 text-xs font-semibold text-charcoal/80 shadow-sm">
-                                                {partner}
+                                        <div className="space-y-2">
+                                          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-1.5">Implementation Methods</div>
+                                          <div className="flex flex-wrap gap-1.5">
+                                            {project.methods.map((method) => (
+                                              <span key={method} className="rounded-full bg-mist/70 px-2 py-1 text-[10px] font-bold tracking-wide text-deep-forest">
+                                                {method}
                                               </span>
                                             ))}
                                           </div>
                                         </div>
-
                                       </div>
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
 
-                              </div>
-                            )
-                          })}
-                        </div>
+                                      {/* Partners */}
+                                      <div className="space-y-2 pt-1">
+                                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40">Executing Partners</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                          {project.partners.map((partner) => (
+                                            <span key={partner} className="rounded-md border border-mist bg-white px-2 py-1 text-[11px] font-semibold text-charcoal/80 shadow-sm">
+                                              {partner}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+
+                            </div>
+                          )
+                        })}
                       </div>
-
-                      {/* Open Full Report Call to Action */}
-                      <div className="mt-8 flex items-center justify-between gap-4 rounded-[24px] bg-deep-forest p-6 text-white shadow-xl relative overflow-hidden">
-                        <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-                          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <filter id="noiseFilterMapFooter">
-                              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                            </filter>
-                            <rect width="100%" height="100%" filter="url(#noiseFilterMapFooter)" />
-                          </svg>
-                        </div>
-                        <div className="relative z-10">
-                          <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 mb-1">Deep Dive</div>
-                          <div className="text-lg font-medium">Read the full {selectedCountry.name} results report</div>
-                        </div>
-                        <Link
-                          href={`/our-results?country=${selectedCountry.code}`}
-                          className="relative z-10 shrink-0 inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-bold text-deep-forest transition-transform hover:scale-105 shadow-md"
-                        >
-                          View Report
-                          <ArrowRight size={16} />
-                        </Link>
-                      </div>
-
                     </div>
+
+                    {/* Open Full Report Call to Action */}
+                    <div className="mt-6 flex flex-col gap-3 rounded-2xl bg-deep-forest p-5 text-white shadow-xl relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <filter id="noiseFilterMapFooter">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                          </filter>
+                          <rect width="100%" height="100%" filter="url(#noiseFilterMapFooter)" />
+                        </svg>
+                      </div>
+                      <div className="relative z-10">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-1">Deep Dive</div>
+                        <div className="text-base font-medium leading-tight">Read the full {selectedCountry.name} results report</div>
+                      </div>
+                      <Link
+                        href={`/our-results?country=${selectedCountry.code}`}
+                        className="relative z-10 inline-flex w-fit items-center gap-2 rounded bg-white px-4 py-2 text-xs font-bold text-deep-forest transition-transform hover:scale-105 shadow-md mt-1"
+                      >
+                        View Report
+                        <ArrowRight size={14} />
+                      </Link>
+                    </div>
+
                   </div>
                 </div>
               </div>

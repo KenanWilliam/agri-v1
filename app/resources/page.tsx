@@ -39,7 +39,7 @@ export default function ResourcesPage() {
 
         {/* Downloads */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -74,7 +74,7 @@ export default function OurTeamPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-gold)_0%,transparent_50%)] opacity-20"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-10"></div>
           
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function OurTeamPage() {
 
         {/* Team Members Grid Section */}
         <section className="w-full py-24 lg:py-32 bg-white relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-[1800px] mx-auto px-6 relative z-10">
             <div className="text-center mb-24 space-y-4">
               <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif font-bold">Meet Our Team</h2>
               <p className="text-charcoal/70 max-w-2xl mx-auto text-lg font-light">
@@ -179,7 +179,7 @@ export default function OurTeamPage() {
         <section className="w-full py-20 lg:py-28 bg-white border-t border-mist relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-green/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
           
-          <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="max-w-[1800px] mx-auto px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

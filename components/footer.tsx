@@ -32,7 +32,7 @@ export default function Footer() {
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-gold opacity-[0.03] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
       
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-[1800px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
           
           {/* Brand Column */}

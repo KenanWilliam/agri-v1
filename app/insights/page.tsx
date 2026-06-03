@@ -55,7 +55,7 @@ export default function InsightsPage() {
 
         {/* Insights */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {insights.map((item, idx) => (
                 <motion.article

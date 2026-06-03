@@ -74,7 +74,7 @@ export default function OurImpactPage() {
 
         {/* Impact Areas */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {impactAreas.map((area, idx) => {
                 const Icon = area.icon
@@ -108,7 +108,7 @@ export default function OurImpactPage() {
 
         {/* Collaboration */}
         <section className="w-full py-16 lg:py-24 bg-white border-t border-mist">
-          <div className="max-w-5xl mx-auto px-6 text-center space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 text-center space-y-12">
             <div className="space-y-6">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
