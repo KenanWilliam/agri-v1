@@ -36,6 +36,18 @@ export default function OurTeamPage() {
       image: '/team/denis.png',
     },
     {
+      name: 'Moses Adundo',
+      role: 'Data Entry Clerk',
+      bio: '',
+      image: '/team/placeholder.jpg',
+    },
+    {
+      name: 'Claire Wanjiru',
+      role: 'Executive Assistant',
+      bio: '',
+      image: '/team/placeholder.jpg',
+    },
+    {
       name: 'Nicholas Kilonzo',
       role: 'Valued Support Staff',
       bio: '',
