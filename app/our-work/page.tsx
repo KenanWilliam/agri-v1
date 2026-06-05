@@ -1,9 +1,7 @@
 'use client'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
-import { Leaf, MonitorSmartphone, ClipboardCheck, Tractor, Users, Briefcase, Globe, Target, ArrowRight } from 'lucide-react'
+import { Leaf, MonitorSmartphone, ClipboardCheck, Tractor, Users, Briefcase, Globe, Target, ArrowRight, BookOpen, LineChart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function OurWorkPage() {
@@ -29,6 +27,27 @@ export default function OurWorkPage() {
       color: 'deep-forest',
       link: '/our-work/project-implementation',
     },
+    {
+      title: 'Client Advisory and Analytical Work',
+      description: 'Strategic guidance and in-depth analysis to navigate complex agricultural value chains and optimize seed systems.',
+      icon: LineChart,
+      color: 'accent-gold',
+      link: '/our-work/client-advisory',
+    },
+    {
+      title: 'Capacity-building',
+      description: 'Empowering stakeholders through targeted training, skill development, and knowledge transfer to ensure sustainable growth.',
+      icon: BookOpen,
+      color: 'charcoal',
+      link: '/our-work/capacity-building',
+    },
+    {
+      title: 'Stakeholder Convenings and Learning Trips',
+      description: 'Facilitating impactful gatherings and immersive learning experiences to foster collaboration and share best practices.',
+      icon: Globe,
+      color: 'lighter-dark-green',
+      link: '/our-work/stakeholder-convenings',
+    },
   ]
 
   const stats = [
@@ -39,9 +58,7 @@ export default function OurWorkPage() {
   ]
 
   return (
-    <>
-      <Header />
-      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-h-screen">
         {/* Top Section */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden">
           {/* Subtle background decorative shapes */}
@@ -107,6 +124,21 @@ export default function OurWorkPage() {
                   textClass = 'text-deep-forest';
                   bgClass = 'bg-deep-forest';
                   iconBgClass = 'bg-deep-forest/5';
+                } else if (card.color === 'accent-gold') {
+                  borderClass = 'border-accent-gold/20';
+                  textClass = 'text-accent-gold';
+                  bgClass = 'bg-accent-gold';
+                  iconBgClass = 'bg-accent-gold/5';
+                } else if (card.color === 'charcoal') {
+                  borderClass = 'border-charcoal/20';
+                  textClass = 'text-charcoal';
+                  bgClass = 'bg-charcoal';
+                  iconBgClass = 'bg-charcoal/5';
+                } else if (card.color === 'lighter-dark-green') {
+                  borderClass = 'border-lighter-dark-green/20';
+                  textClass = 'text-lighter-dark-green';
+                  bgClass = 'bg-lighter-dark-green';
+                  iconBgClass = 'bg-lighter-dark-green/5';
                 }
 
                 return (
@@ -181,8 +213,6 @@ export default function OurWorkPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main>    </>
   )
 }

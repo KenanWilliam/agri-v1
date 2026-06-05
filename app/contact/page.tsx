@@ -1,7 +1,5 @@
 'use client'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { useState } from 'react'
@@ -34,9 +32,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <>
-      <Header />
-      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-h-screen">
         {/* Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
@@ -228,8 +224,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main>    </>
   )
 }

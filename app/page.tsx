@@ -1,7 +1,5 @@
 'use client'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
@@ -10,9 +8,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      <main className="overflow-hidden bg-background">
+    <>      <main className="overflow-hidden bg-background">
         {/* Premium Hero Section */}
         <section className="relative w-full h-[100dvh] min-h-[650px] flex flex-col justify-center overflow-hidden pt-[104px]">
           {/* Background Image */}
@@ -225,8 +221,6 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main>    </>
   )
 }

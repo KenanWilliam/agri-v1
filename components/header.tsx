@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -18,7 +18,16 @@ const navItems = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null)
+  const [clickedPath, setClickedPath] = useState<string | null>(null)
   const pathname = usePathname()
+
+  // Clear the optimistic click state once Next.js has successfully navigated to the new path
+  useEffect(() => {
+    setClickedPath(null)
+  }, [pathname])
+
+  const activePath = clickedPath || pathname
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center bg-white h-[64px] lg:h-[80px] shadow-sm">
@@ -36,24 +45,40 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation - AngelList Style Pill */}
-          <nav className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative">
+          <nav 
+            className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
+            onMouseLeave={() => setHoveredPath(null)}
+          >
             {navItems.map((item) => {
-              const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
+              const isActive = activePath === item.href || (activePath.startsWith(item.href) && item.href !== '/')
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 z-10 ${
+                  onClick={() => setClickedPath(item.href)}
+                  onMouseEnter={() => setHoveredPath(item.href)}
+                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 ${
                     isActive 
-                      ? 'text-deep-forest' 
-                      : 'text-charcoal/80 hover:text-deep-forest hover:bg-black/5'
+                      ? 'text-deep-forest z-20' 
+                      : 'text-charcoal/80 hover:text-deep-forest z-10'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-nav-pill"
                       className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  {hoveredPath === item.href && (
+                    <motion.div
+                      layoutId="hover-nav-pill"
+                      className="absolute inset-0 bg-black/5 rounded-full -z-20"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
                   {item.label}

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Playfair_Display, DM_Sans, Bebas_Neue, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 const playfairDisplay = Playfair_Display({ 
   subsets: ['latin'],
@@ -47,7 +49,9 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
     >
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
+        <Header />
         {children}
+        <Footer />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

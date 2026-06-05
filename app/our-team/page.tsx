@@ -1,7 +1,5 @@
 'use client'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { motion } from 'framer-motion'
 import { Sparkles, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -11,28 +9,28 @@ export default function OurTeamPage() {
   const team = [
     {
       name: 'Mulemia Maina',
-      role: 'Seed Systems Specialist',
+      role: 'Managing Director',
       bio:
         'Two decades at the Rockefeller Foundation and AGRA, with a deep seed systems network across the continent. Managed over 350 seed-related grants and is fluent in English, French, and Kiswahili.',
       image: '/team/mulemia.png',
     },
     {
       name: 'Jayne Ngugi',
-      role: 'Finance & Administration',
+      role: 'Director, Finance & Administration',
       bio:
         'Leads finance, control, and administration services with a strong private sector background and a commitment to integrity and professionalism.',
       image: '/team/jayne.png',
     },
     {
       name: 'Ronald Misigo',
-      role: 'ICT Solutions Lead',
+      role: 'Senior Consultant - Seed Systems & Digital Agriculture',
       bio:
         'Seed systems specialist leading ICT solutions for clients, with strong research and communication skills and a track record of seed-focused tools for stakeholders.',
       image: '/team/ronald.png',
     },
     {
       name: 'Denis Langat',
-      role: 'Project Monitoring',
+      role: 'Client Assignment  Assistant',
       bio:
         'Supports client activities through research, documentation, record keeping, monitoring, data collection, and analysis.',
       image: '/team/denis.png',
@@ -66,9 +64,7 @@ export default function OurTeamPage() {
   }
 
   return (
-    <>
-      <Header />
-      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-h-screen">
         {/* Hero Section */}
         <section className="relative w-full pt-32 lg:pt-48 pb-24 overflow-hidden bg-deep-forest text-white">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-gold)_0%,transparent_50%)] opacity-20"></div>
@@ -269,8 +265,6 @@ export default function OurTeamPage() {
             </motion.div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main>    </>
   )
 }

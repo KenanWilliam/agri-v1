@@ -1,7 +1,5 @@
 'use client'
 
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import InteractiveMap from '@/components/interactive-map'
 import { motion } from 'framer-motion'
 import { Heart, Globe, Leaf, ArrowRight } from 'lucide-react'
@@ -44,9 +42,7 @@ export default function OurImpactPage() {
   ]
 
   return (
-    <>
-      <Header />
-      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-h-screen">
         <InteractiveMap />
         
         {/* Hero */}
@@ -176,8 +172,6 @@ export default function OurImpactPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main>    </>
   )
 }
