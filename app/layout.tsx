@@ -30,10 +30,52 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Agri Experience | Seed Systems & Agricultural Development',
-  description: 'Expert consultancy transforming agricultural value chains and seed systems across 21 African countries. Sustainable development for growing communities.',
+  metadataBase: new URL('https://agri-experience.com'),
+  title: {
+    default: 'Agri Experience | Seed Systems & Agricultural Development',
+    template: '%s | Agri Experience',
+  },
+  description: 'Expert consultancy transforming agricultural value chains and seed systems across sub-Saharan Africa. Sustainable development for growing communities.',
+  keywords: ['Agriculture', 'Seed Systems', 'Agricultural Development', 'Sub-Saharan Africa', 'Kenya', 'Agri Experience', 'Value Chains'],
+  authors: [{ name: 'Agri Experience' }],
+  creator: 'Agri Experience',
+  publisher: 'Agri Experience',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://agri-experience.com',
+    siteName: 'Agri Experience',
+    title: 'Agri Experience | Seed Systems & Agricultural Development',
+    description: 'Expert consultancy transforming agricultural value chains and seed systems across sub-Saharan Africa. Sustainable development for growing communities.',
+    images: [
+      {
+        url: '/hero-bg.png',
+        width: 1200,
+        height: 630,
+        alt: 'Agri Experience - Agricultural Development',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Agri Experience | Seed Systems & Agricultural Development',
+    description: 'Expert consultancy transforming agricultural value chains and seed systems across sub-Saharan Africa.',
+    images: ['/hero-bg.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: '/favicon.svg',
+    apple: '/apple-icon.png',
   },
 }
 
