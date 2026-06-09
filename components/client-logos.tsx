@@ -56,13 +56,15 @@ const bottomRowCategories: Category[] = [
       { name: 'USTA', src: '/usta-logo.png', alt: 'USTA' },
       { name: 'NASTAG', src: '/nastag-logo.png', alt: 'NASTAG' },
       { name: 'CIMMYT', src: '/cimmyt-logo.svg', alt: 'CIMMYT' },
+      { name: 'Agrodealers', alt: 'Agrodealers' },
+      { name: 'Seed Companies', alt: 'Seed Companies' },
     ]
   }
 ]
 
 const TextLogo = ({ name }: { name: string }) => (
   <div className="flex items-center justify-center h-20 md:h-24 px-4 md:px-6 shrink-0 group">
-    <span className="font-serif text-3xl md:text-4xl font-bold tracking-tighter text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest [@media(hover:none)]:text-deep-forest">
+    <span className="font-serif text-3xl md:text-4xl font-bold tracking-tighter whitespace-nowrap text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest [@media(hover:none)]:text-deep-forest">
       {name}
     </span>
   </div>
@@ -107,9 +109,14 @@ const CategoryBlock = ({ category }: { category: Category }) => (
 )
 
 export default function ClientLogos() {
-  // Multiply arrays to ensure seamless looping even on ultrawide screens
-  const topRepeated = Array(4).fill(topRowCategories).flat()
-  const bottomRepeated = Array(4).fill(bottomRowCategories).flat()
+  // Create a base array wide enough to fill an ultrawide screen
+  const baseTop = Array(2).fill(topRowCategories).flat()
+  const baseBottom = Array(2).fill(bottomRowCategories).flat()
+
+  // Duplicate it exactly once to create two perfect identical halves. 
+  // This allows us to translate by exactly -50% for a seamless infinite loop.
+  const topRepeated = [...baseTop, ...baseTop]
+  const bottomRepeated = [...baseBottom, ...baseBottom]
 
   return (
     <div className="w-full overflow-hidden flex flex-col gap-8 md:gap-14 py-8 md:py-12 relative mask-edges">
@@ -140,11 +147,13 @@ export default function ClientLogos() {
         .animate-marquee-right {
           animation: marquee-right 60s linear infinite;
           will-change: transform;
+          backface-visibility: hidden;
         }
 
         .animate-marquee-left {
           animation: marquee-left 60s linear infinite;
           will-change: transform;
+          backface-visibility: hidden;
         }
 
         @media (hover: hover) and (pointer: fine) {

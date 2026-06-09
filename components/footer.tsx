@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Facebook, Twitter, Linkedin, Mail, MapPin, Phone, ArrowRight } from 'lucide-react'
+import { Linkedin, Mail, MapPin, Phone, ArrowRight } from 'lucide-react'
 
 const footerLinks = [
   {
@@ -50,15 +50,13 @@ export default function Footer() {
               Transforming seed systems and agricultural value chains across Africa through expert consultancy and sustainable community development.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Twitter, Facebook].map((Icon, i) => (
-                <Link 
-                  key={i} 
-                  href="#" 
-                  className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors duration-300 ease-in-out"
-                >
-                  <Icon size={18} />
-                </Link>
-              ))}
+              <Link 
+                href="#" 
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors duration-300 ease-in-out"
+              >
+                <Linkedin size={18} />
+              </Link>
             </div>
           </div>
 
