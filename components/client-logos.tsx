@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 interface ClientLogo {
@@ -48,7 +45,7 @@ const bottomRowCategories: Category[] = [
     title: 'Breeding Institutions',
     logos: [
       { name: 'TARI', src: '/tari-logo.png', alt: 'TARI' },
-      { name: 'KALRO', alt: 'KALRO' }, 
+      { name: 'KALRO', src: '/kalro-logo.png', alt: 'KALRO' }, 
     ]
   },
   {
@@ -65,7 +62,7 @@ const bottomRowCategories: Category[] = [
 
 const TextLogo = ({ name }: { name: string }) => (
   <div className="flex items-center justify-center h-20 px-4 shrink-0 group">
-    <span className="font-serif text-3xl font-bold tracking-tighter text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest">
+    <span className="font-serif text-3xl font-bold tracking-tighter text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest [@media(hover:none)]:text-deep-forest">
       {name}
     </span>
   </div>
@@ -78,20 +75,27 @@ const ImageLogo = ({ logo }: { logo: ClientLogo }) => (
       alt={logo.alt}
       width={200}
       height={100}
-      className="h-full w-auto object-contain transition-all duration-300 ease-in-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+      unoptimized={true}
+      className="h-full w-auto object-contain transition-all duration-300 ease-in-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 [@media(hover:none)]:grayscale-0 [@media(hover:none)]:opacity-100"
     />
   </div>
 )
 
 const CategoryBlock = ({ category }: { category: Category }) => (
-  <div className="flex items-center shrink-0 pr-16 md:pr-24">
-    <div className="flex items-center gap-8 md:gap-12 bg-white/50 backdrop-blur-sm border border-primary-green/10 rounded-3xl p-6 md:p-8 shadow-sm">
-      <div className="flex flex-col items-center justify-center pr-8 md:pr-12 border-r-2 border-mist">
-        <span className="text-xs md:text-sm font-bold text-primary-green tracking-[0.25em] uppercase whitespace-nowrap">
+  <div className="flex items-center shrink-0 pr-6 md:pr-10">
+    <div className="relative flex items-center gap-6 md:gap-10 bg-white/60 backdrop-blur-xl border border-white/80 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] rounded-[2.5rem] p-5 md:p-8 transition-all duration-500 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.12)] hover:bg-white/80 overflow-hidden group/block">
+      {/* Subtle shine effect */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-white/50 to-transparent opacity-0 group-hover/block:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      
+      <div className="flex flex-col items-center justify-center pr-6 md:pr-10 relative">
+        <span className="text-xs md:text-sm font-semibold text-primary-green/90 tracking-[0.2em] uppercase whitespace-nowrap">
           {category.title}
         </span>
+        {/* Elegant divider */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gradient-to-b from-transparent via-primary-green/20 to-transparent" />
       </div>
-      <div className="flex items-center gap-8 md:gap-16">
+      
+      <div className="flex items-center gap-8 md:gap-14 relative z-10">
         {category.logos.map((logo, idx) => (
           <div key={`${logo.name}-${idx}`}>
             {logo.src ? <ImageLogo logo={logo} /> : <TextLogo name={logo.name} />}
@@ -103,43 +107,61 @@ const CategoryBlock = ({ category }: { category: Category }) => (
 )
 
 export default function ClientLogos() {
+  // Multiply arrays to ensure seamless looping even on ultrawide screens
+  const topRepeated = Array(4).fill(topRowCategories).flat()
+  const bottomRepeated = Array(4).fill(bottomRowCategories).flat()
+
   return (
-    <div className="w-full overflow-hidden flex flex-col gap-12 md:gap-16 py-8 relative mask-edges">
+    <div className="w-full overflow-hidden flex flex-col gap-10 md:gap-14 py-12 relative mask-edges">
       
-      {/* CSS for edge masking (fade out left/right) */}
       <style dangerouslySetInnerHTML={{__html: `
         .mask-edges {
-          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        
+        @keyframes marquee-right {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+        
+        @keyframes marquee-left {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .animate-marquee-right {
+          animation: marquee-right 60s linear infinite;
+          will-change: transform;
+        }
+
+        .animate-marquee-left {
+          animation: marquee-left 60s linear infinite;
+          will-change: transform;
+        }
+
+        .marquee-container:hover .animate-marquee-right,
+        .marquee-container:hover .animate-marquee-left {
+          animation-play-state: paused;
         }
       `}} />
 
       {/* Top Row (Moves Right) */}
-      <div className="flex w-full overflow-hidden">
-        <motion.div
-          className="flex items-center shrink-0"
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{ ease: "linear", duration: 50, repeat: Infinity }}
-        >
-          {/* Duplicate the array twice for smooth infinite scrolling */}
-          {[...topRowCategories, ...topRowCategories].map((category, index) => (
+      <div className="flex w-full overflow-hidden marquee-container">
+        <div className="flex items-center shrink-0 w-max animate-marquee-right">
+          {topRepeated.map((category, index) => (
             <CategoryBlock key={`top-${index}`} category={category} />
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom Row (Moves Left) */}
-      <div className="flex w-full overflow-hidden">
-        <motion.div
-          className="flex items-center shrink-0"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 50, repeat: Infinity }}
-        >
-          {/* Duplicate the array twice for smooth infinite scrolling */}
-          {[...bottomRowCategories, ...bottomRowCategories].map((category, index) => (
+      <div className="flex w-full overflow-hidden marquee-container">
+        <div className="flex items-center shrink-0 w-max animate-marquee-left">
+          {bottomRepeated.map((category, index) => (
             <CategoryBlock key={`bottom-${index}`} category={category} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   )
