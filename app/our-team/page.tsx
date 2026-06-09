@@ -143,7 +143,7 @@ export default function OurTeamPage() {
       {/* Horizontal Scrolling Carousel with Secondary Navigation */}
       <section className="w-full pb-32 pt-16 relative group/section">
         {/* Navigation Buttons (Centered absolutely) */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 right-4 md:right-8 z-30 flex justify-between pointer-events-none">
+        <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 right-4 md:right-8 z-30 flex justify-between pointer-events-none [@media(pointer:coarse)]:hidden">
           <button 
             onClick={() => setCurrentIndex(prev => Math.max(prev - 1, 0))}
             disabled={currentIndex === 0}
@@ -165,13 +165,28 @@ export default function OurTeamPage() {
         <div className="w-full overflow-hidden px-6 md:px-12 lg:px-20 py-24 flex items-center">
           <motion.div 
             ref={trackRef}
-            className="flex gap-4 md:gap-6 lg:gap-8 w-max items-center"
+            className="flex gap-4 md:gap-6 lg:gap-8 w-max items-center cursor-grab active:cursor-grabbing touch-pan-y"
+            drag="x"
+            dragConstraints={{ left: -((maxIndex || 0) * (cardWidth || 0)), right: 0 }}
+            dragElastic={0.1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = offset.x + velocity.x * 0.2;
+              const threshold = cardWidth ? cardWidth / 4 : 50;
+              const cardsToSwipe = cardWidth ? Math.max(1, Math.round(Math.abs(swipe) / cardWidth)) : 1;
+              
+              if (swipe < -threshold && currentIndex < maxIndex) {
+                setCurrentIndex(prev => Math.min(prev + cardsToSwipe, maxIndex));
+              } else if (swipe > threshold && currentIndex > 0) {
+                setCurrentIndex(prev => Math.max(prev - cardsToSwipe, 0));
+              }
+            }}
             animate={{ x: -(currentIndex * cardWidth) }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
           >
             {fullTeam.map((member, idx) => {
               // The magic switching logic: alternate heights based on absolute distance to currentIndex
-              const isUp = Math.abs(idx - currentIndex) % 2 === 0;
+              // (idx - currentIndex) % 2 !== 0 ensures the first card always starts in the downward position
+              const isUp = Math.abs(idx - currentIndex) % 2 !== 0;
               return (
                 <motion.div
                   key={idx}
@@ -199,10 +214,10 @@ export default function OurTeamPage() {
                     )}
 
                     {/* Dark Overlay for Text */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/90 via-deep-forest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/90 via-deep-forest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 [@media(pointer:coarse)]:hidden" />
 
                     {/* Hover Info (Wave Animation) */}
-                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10 pointer-events-none">
+                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10 pointer-events-none [@media(pointer:coarse)]:hidden">
                       <div className="text-white text-3xl md:text-4xl font-serif font-bold mb-2">
                         <WaveText text={member.name} delayOffset={0} />
                       </div>
@@ -210,6 +225,12 @@ export default function OurTeamPage() {
                         <WaveText text={member.role} delayOffset={0.1} />
                       </div>
                     </div>
+                  </div>
+
+                  {/* Touch device label below card */}
+                  <div className="hidden [@media(pointer:coarse)]:block mt-6 text-left px-2">
+                    <h3 className="text-2xl font-serif font-bold text-deep-forest">{member.name}</h3>
+                    <p className="text-sm font-bold uppercase tracking-[0.15em] text-charcoal/60 mt-1">{member.role}</p>
                   </div>
                 </motion.div>
               )
