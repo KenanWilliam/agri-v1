@@ -61,19 +61,19 @@ const bottomRowCategories: Category[] = [
 ]
 
 const TextLogo = ({ name }: { name: string }) => (
-  <div className="flex items-center justify-center h-20 px-4 shrink-0 group">
-    <span className="font-serif text-3xl font-bold tracking-tighter text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest [@media(hover:none)]:text-deep-forest">
+  <div className="flex items-center justify-center h-20 md:h-24 px-4 md:px-6 shrink-0 group">
+    <span className="font-serif text-3xl md:text-4xl font-bold tracking-tighter text-charcoal/40 transition-colors duration-300 group-hover:text-deep-forest [@media(hover:none)]:text-deep-forest">
       {name}
     </span>
   </div>
 )
 
 const ImageLogo = ({ logo }: { logo: ClientLogo }) => (
-  <div className="flex items-center justify-center relative group shrink-0 h-16 md:h-20 w-auto min-w-[100px] max-w-[200px]">
+  <div className="flex items-center justify-center relative group shrink-0 h-16 md:h-24 w-auto min-w-[110px] md:min-w-[140px] max-w-[180px] md:max-w-[240px]">
     <Image
       src={logo.src!}
       alt={logo.alt}
-      width={200}
+      width={240}
       height={100}
       unoptimized={true}
       className="h-full w-auto object-contain transition-all duration-300 ease-in-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 [@media(hover:none)]:grayscale-0 [@media(hover:none)]:opacity-100"
@@ -82,20 +82,20 @@ const ImageLogo = ({ logo }: { logo: ClientLogo }) => (
 )
 
 const CategoryBlock = ({ category }: { category: Category }) => (
-  <div className="flex items-center shrink-0 pr-6 md:pr-10">
-    <div className="relative flex items-center gap-6 md:gap-10 bg-white/60 backdrop-blur-xl border border-white/80 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] rounded-[2.5rem] p-5 md:p-8 transition-all duration-500 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.12)] hover:bg-white/80 overflow-hidden group/block">
+  <div className="flex items-center shrink-0 pr-4 md:pr-10">
+    <div className="relative flex items-center gap-4 md:gap-12 bg-white/60 backdrop-blur-xl border border-white/80 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 transition-all duration-500 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.12)] hover:bg-white/80 overflow-hidden group/block">
       {/* Subtle shine effect */}
       <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-white/50 to-transparent opacity-0 group-hover/block:opacity-100 transition-opacity duration-500 pointer-events-none" />
       
-      <div className="flex flex-col items-center justify-center pr-6 md:pr-10 relative">
-        <span className="text-xs md:text-sm font-semibold text-primary-green/90 tracking-[0.2em] uppercase whitespace-nowrap">
+      <div className="flex flex-col items-center justify-center pr-4 md:pr-10 relative">
+        <span className="text-[10px] md:text-sm font-semibold text-primary-green/90 tracking-[0.2em] uppercase whitespace-nowrap">
           {category.title}
         </span>
         {/* Elegant divider */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gradient-to-b from-transparent via-primary-green/20 to-transparent" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-8 md:h-12 bg-gradient-to-b from-transparent via-primary-green/20 to-transparent" />
       </div>
       
-      <div className="flex items-center gap-8 md:gap-14 relative z-10">
+      <div className="flex items-center gap-6 md:gap-16 relative z-10">
         {category.logos.map((logo, idx) => (
           <div key={`${logo.name}-${idx}`}>
             {logo.src ? <ImageLogo logo={logo} /> : <TextLogo name={logo.name} />}
@@ -112,12 +112,19 @@ export default function ClientLogos() {
   const bottomRepeated = Array(4).fill(bottomRowCategories).flat()
 
   return (
-    <div className="w-full overflow-hidden flex flex-col gap-10 md:gap-14 py-12 relative mask-edges">
+    <div className="w-full overflow-hidden flex flex-col gap-8 md:gap-14 py-8 md:py-12 relative mask-edges">
       
       <style dangerouslySetInnerHTML={{__html: `
         .mask-edges {
-          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+        }
+
+        @media (min-width: 768px) {
+          .mask-edges {
+            mask-image: linear-gradient(to right, transparent, black 150px, black calc(100% - 150px), transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 150px, black calc(100% - 150px), transparent);
+          }
         }
         
         @keyframes marquee-right {
@@ -140,9 +147,11 @@ export default function ClientLogos() {
           will-change: transform;
         }
 
-        .marquee-container:hover .animate-marquee-right,
-        .marquee-container:hover .animate-marquee-left {
-          animation-play-state: paused;
+        @media (hover: hover) and (pointer: fine) {
+          .marquee-container:hover .animate-marquee-right,
+          .marquee-container:hover .animate-marquee-left {
+            animation-play-state: paused;
+          }
         }
       `}} />
 
