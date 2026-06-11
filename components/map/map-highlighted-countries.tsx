@@ -177,7 +177,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           if (minX !== Infinity) {
             // Padding accounts for the 420px sidebar on the right side
             map.fitBounds([[minX, minY], [maxX, maxY]] as mapboxgl.LngLatBoundsLike, {
-              padding: { top: 100, bottom: 100, left: 100, right: 420 + 100 },
+              padding: { top: 100, bottom: 100, left: 100, right: 100 },
               duration: 1500,
               essential: true
             });
@@ -185,7 +185,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             map.flyTo({
               center: e.lngLat,
               zoom: 4.5,
-              padding: { right: 420 },
+              padding: { top: 0, bottom: 0, left: 0, right: 0 },
               essential: true,
               duration: 1500
             });

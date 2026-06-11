@@ -31,7 +31,7 @@ export const MapActiveProjectFlyTo: React.FC<MapActiveProjectFlyToProps> = ({
           map.flyTo({
             center: [coords[0], coords[1]],
             zoom: Math.max(map.getZoom(), 6),
-            padding: { right: 420 },
+            padding: { top: 0, bottom: 0, left: 0, right: 0 },
             duration: 1200,
             essential: true
           });

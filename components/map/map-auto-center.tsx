@@ -22,6 +22,7 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       map.flyTo({
         center: [20, 0],
         zoom: 2.8,
+        padding: { top: 0, bottom: 0, left: 0, right: 0 },
         essential: true,
         duration: 2000
       });
