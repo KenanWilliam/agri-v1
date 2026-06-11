@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useMap } from './map-context';
+import mapboxgl from 'mapbox-gl';
 
 export interface MapAutoCenterProps {
   selectedCountryName?: string;
@@ -26,34 +27,36 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       });
     };
 
-    const handleInteraction = () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(resetCenter, 3000); // 3 seconds of inactivity
+    const handleInteraction = (e: any) => {
+      // Only reset the timer if the movement was caused by the user (has an originalEvent)
+      if (e && e.originalEvent) {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(resetCenter, 3000); // 3 seconds of inactivity
+      }
     };
 
-    const stopTimer = () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    const stopTimer = (e: any) => {
+      if (e && e.originalEvent) {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      }
     };
 
-    // Listen for drag, zoom, and pitch events to reset the timer
-    map.on('dragstart', stopTimer);
-    map.on('dragend', handleInteraction);
+    // Listen for move and zoom events
+    map.on('movestart', stopTimer);
+    map.on('moveend', handleInteraction);
     map.on('zoomstart', stopTimer);
     map.on('zoomend', handleInteraction);
-    map.on('pitchstart', stopTimer);
-    map.on('pitchend', handleInteraction);
 
-    // Initial timer
-    handleInteraction();
+    // Set an initial timer so it centers if the user loads the page and does nothing
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(resetCenter, 3000);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      map.off('dragstart', stopTimer);
-      map.off('dragend', handleInteraction);
+      map.off('movestart', stopTimer);
+      map.off('moveend', handleInteraction);
       map.off('zoomstart', stopTimer);
       map.off('zoomend', handleInteraction);
-      map.off('pitchstart', stopTimer);
-      map.off('pitchend', handleInteraction);
     };
   }, [map, selectedCountryName]);
 
