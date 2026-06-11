@@ -5,6 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Sparkles, MapPin, ArrowRight, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel"
 
 interface TeamMember {
   name: string
@@ -43,10 +49,19 @@ const WaveText = ({ text, delayOffset = 0 }: { text: string; delayOffset?: numbe
 
 export default function OurTeamPage() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+  const [api, setApi] = useState<CarouselApi>()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [cardWidth, setCardWidth] = useState(0)
-  const [maxIndex, setMaxIndex] = useState(0)
-  const trackRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!api) return
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCurrentIndex(api.selectedScrollSnap())
+
+    api.on('select', () => {
+      setCurrentIndex(api.selectedScrollSnap())
+    })
+  }, [api])
 
   const fullTeam: TeamMember[] = [
     {
@@ -100,26 +115,6 @@ export default function OurTeamPage() {
     },
   ]
 
-  useEffect(() => {
-    const updateWidth = () => {
-      if (trackRef.current && trackRef.current.children[0]) {
-        const child = trackRef.current.children[0] as HTMLElement;
-        const gap = window.innerWidth >= 1024 ? 48 : window.innerWidth >= 768 ? 32 : 16;
-        const width = child.offsetWidth + gap;
-        setCardWidth(width);
-        
-        // Calculate max index to prevent scrolling past the end
-        const visibleWidth = window.innerWidth - (window.innerWidth >= 1024 ? 160 : 48); // accounting for px-6/px-20 padding
-        const visibleCards = Math.max(1, Math.floor(visibleWidth / width));
-        setMaxIndex(Math.max(0, fullTeam.length - visibleCards));
-      }
-    };
-    
-    setTimeout(updateWidth, 100); // Wait for initial render
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  }, [fullTeam.length]);
-
   return (
     <main className="bg-[#FAFAFA] min-h-screen">
       
@@ -141,102 +136,96 @@ export default function OurTeamPage() {
       </section>
 
       {/* Horizontal Scrolling Carousel with Secondary Navigation */}
-      <section className="w-full pb-32 pt-16 relative group/section">
-        {/* Navigation Buttons (Centered absolutely) */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 right-4 md:right-8 z-30 flex justify-between pointer-events-none [@media(pointer:coarse)]:hidden">
-          <button 
-            onClick={() => setCurrentIndex(prev => Math.max(prev - 1, 0))}
-            disabled={currentIndex === 0}
-            className="w-16 h-16 md:w-20 md:h-20 pointer-events-auto bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-0 disabled:pointer-events-none shadow-xl"
-            aria-label="Previous"
-          >
-            <ArrowLeft className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
-          </button>
-          <button 
-            onClick={() => setCurrentIndex(prev => Math.min(prev + 1, maxIndex))}
-            disabled={currentIndex >= maxIndex}
-            className="w-16 h-16 md:w-20 md:h-20 pointer-events-auto bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-0 disabled:pointer-events-none shadow-xl"
-            aria-label="Next"
-          >
-            <ArrowRight className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
-          </button>
-        </div>
+      <section className="w-full min-h-[calc(100vh-80px)] flex flex-col justify-center py-12 relative group/section">
+        <Carousel
+          setApi={setApi}
+          opts={{
+            align: 'start',
+            containScroll: 'trimSnaps',
+            dragFree: false
+          }}
+          className="w-full flex flex-col justify-center"
+        >
+          <div className="w-full flex items-center">
+            <CarouselContent className="-ml-4 md:-ml-6 lg:-ml-8 py-12">
+              {fullTeam.map((member, idx) => {
+                // The magic switching logic: alternate heights based on absolute distance to currentIndex
+                // (idx - currentIndex) % 2 !== 0 ensures the first card always starts in the downward position
+                const isUp = Math.abs(idx - currentIndex) % 2 !== 0;
+                return (
+                  <CarouselItem key={idx} className="pl-4 md:pl-6 lg:pl-8 basis-auto">
+                    <div className={`${idx === 0 ? 'pl-6 md:pl-12 lg:pl-20' : ''} ${idx === fullTeam.length - 1 ? 'pr-6 md:pr-12 lg:pr-20' : ''}`}>
+                      <motion.div
+                        initial="initial"
+                        whileHover="hover"
+                        animate={{ y: isUp ? -24 : 24 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+                        className="shrink-0 cursor-pointer"
+                        onClick={() => setSelectedMember(member)}
+                      >
+                        <div className="relative w-[280px] h-[45vh] min-h-[350px] max-h-[450px] md:w-[350px] md:h-[50vh] md:max-h-[550px] lg:w-[400px] lg:h-[55vh] lg:max-h-[600px] xl:w-[450px] xl:h-[60vh] xl:max-h-[650px] rounded-[2rem] overflow-hidden group shadow-lg">
+                          {/* Image */}
+                          {member.image && member.image !== '/team/placeholder.jpg' ? (
+                            <Image 
+                              src={member.image} 
+                              alt={member.name} 
+                              fill 
+                              className="object-cover transition-transform duration-700" 
+                              sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 450px"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 bg-[#EFEFEF] flex items-center justify-center">
+                              <span className="text-8xl font-serif text-charcoal/10 font-bold">{member.name.charAt(0)}</span>
+                            </div>
+                          )}
 
-        <div className="w-full overflow-hidden px-6 md:px-12 lg:px-20 py-24 flex items-center">
-          <motion.div 
-            ref={trackRef}
-            className="flex gap-4 md:gap-6 lg:gap-8 w-max items-center cursor-grab active:cursor-grabbing touch-pan-y"
-            drag="x"
-            dragConstraints={{ left: -((maxIndex || 0) * (cardWidth || 0)), right: 0 }}
-            dragElastic={0.1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = offset.x + velocity.x * 0.2;
-              const threshold = cardWidth ? cardWidth / 4 : 50;
-              const cardsToSwipe = cardWidth ? Math.max(1, Math.round(Math.abs(swipe) / cardWidth)) : 1;
-              
-              if (swipe < -threshold && currentIndex < maxIndex) {
-                setCurrentIndex(prev => Math.min(prev + cardsToSwipe, maxIndex));
-              } else if (swipe > threshold && currentIndex > 0) {
-                setCurrentIndex(prev => Math.max(prev - cardsToSwipe, 0));
-              }
-            }}
-            animate={{ x: -(currentIndex * cardWidth) }}
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-          >
-            {fullTeam.map((member, idx) => {
-              // The magic switching logic: alternate heights based on absolute distance to currentIndex
-              // (idx - currentIndex) % 2 !== 0 ensures the first card always starts in the downward position
-              const isUp = Math.abs(idx - currentIndex) % 2 !== 0;
-              return (
-                <motion.div
-                  key={idx}
-                  initial="initial"
-                  whileHover="hover"
-                  animate={{ y: isUp ? -24 : 24 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-                  className="shrink-0 cursor-pointer"
-                  onClick={() => setSelectedMember(member)}
-                >
-                  <div className="relative w-[300px] h-[400px] md:w-[400px] md:h-[550px] lg:w-[450px] lg:h-[650px] rounded-[2rem] overflow-hidden group shadow-lg">
-                    {/* Image */}
-                    {member.image && member.image !== '/team/placeholder.jpg' ? (
-                      <Image 
-                        src={member.image} 
-                        alt={member.name} 
-                        fill 
-                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                        sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 450px"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#EFEFEF] flex items-center justify-center">
-                        <span className="text-8xl font-serif text-charcoal/10 font-bold">{member.name.charAt(0)}</span>
-                      </div>
-                    )}
+                          {/* Dark Overlay for Text */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/90 via-deep-forest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 [@media(pointer:coarse)]:hidden" />
 
-                    {/* Dark Overlay for Text */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/90 via-deep-forest/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 [@media(pointer:coarse)]:hidden" />
+                          {/* Hover Info (Wave Animation) */}
+                          <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10 pointer-events-none [@media(pointer:coarse)]:hidden">
+                            <div className="text-white text-3xl md:text-4xl font-serif font-bold mb-2">
+                              <WaveText text={member.name} delayOffset={0} />
+                            </div>
+                            <div className="text-primary-green/90 text-sm md:text-base font-bold uppercase tracking-[0.15em]">
+                              <WaveText text={member.role} delayOffset={0.1} />
+                            </div>
+                          </div>
+                        </div>
 
-                    {/* Hover Info (Wave Animation) */}
-                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10 pointer-events-none [@media(pointer:coarse)]:hidden">
-                      <div className="text-white text-3xl md:text-4xl font-serif font-bold mb-2">
-                        <WaveText text={member.name} delayOffset={0} />
-                      </div>
-                      <div className="text-primary-green/90 text-sm md:text-base font-bold uppercase tracking-[0.15em]">
-                        <WaveText text={member.role} delayOffset={0.1} />
-                      </div>
+                        {/* Touch device label below card */}
+                        <div className="hidden [@media(pointer:coarse)]:block mt-6 text-left px-2">
+                          <h3 className="text-2xl font-serif font-bold text-deep-forest">{member.name}</h3>
+                          <p className="text-sm font-bold uppercase tracking-[0.15em] text-charcoal/60 mt-1">{member.role}</p>
+                        </div>
+                      </motion.div>
                     </div>
-                  </div>
+                  </CarouselItem>
+                )
+              })}
+            </CarouselContent>
+          </div>
 
-                  {/* Touch device label below card */}
-                  <div className="hidden [@media(pointer:coarse)]:block mt-6 text-left px-2">
-                    <h3 className="text-2xl font-serif font-bold text-deep-forest">{member.name}</h3>
-                    <p className="text-sm font-bold uppercase tracking-[0.15em] text-charcoal/60 mt-1">{member.role}</p>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
+          {/* Navigation Buttons (Centered Below) */}
+          <div className="flex justify-center gap-6 mt-8 z-30 pointer-events-auto">
+            <button 
+              onClick={() => api?.scrollPrev()}
+              disabled={!api?.canScrollPrev()}
+              className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
+              aria-label="Previous"
+            >
+              <ArrowLeft className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
+            </button>
+            <button 
+              onClick={() => api?.scrollNext()}
+              disabled={!api?.canScrollNext()}
+              className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
+              aria-label="Next"
+            >
+              <ArrowRight className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
+            </button>
+          </div>
+        </Carousel>
       </section>
 
       {/* Modal Overlay (Yemanja 2 Style) */}

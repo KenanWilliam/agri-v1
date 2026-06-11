@@ -23,14 +23,11 @@ import {
 import Link from 'next/link'
 import africaGeoJson from '@/africa.json'
 
-const UnifiedMap = dynamic(() => import('./leaflet-unified-map'), { 
-  ssr: false, 
-  loading: () => <div className="w-full h-full flex items-center justify-center text-charcoal/50 animate-pulse">Loading Map...</div> 
-})
+import { InteractiveMapbox } from './map/interactive-mapbox'
 
 type Region = 'East Africa' | 'West Africa' | 'Central Africa' | 'Southern Africa'
 
-interface CountryProject {
+export interface CountryProject {
   title: string
   location: string
   summary: string
@@ -43,7 +40,7 @@ interface CountryProject {
   key_deliverables?: string[]
 }
 
-interface CountryRecord {
+export interface CountryRecord {
   name: string
   geoName?: string
   code: string
@@ -57,11 +54,11 @@ interface CountryRecord {
   stats: Array<{ label: string; value: string }>
 }
 
-interface DetailedCountryRecord extends CountryRecord {
+export interface DetailedCountryRecord extends CountryRecord {
   projectBlueprints?: CountryProject[]
 }
 
-const regionFill = (region: Region) => {
+export const regionFill = (region: Region) => {
   switch (region) {
     case 'West Africa':
       return 'rgba(180, 83, 9, 0.30)'
@@ -74,9 +71,9 @@ const regionFill = (region: Region) => {
   }
 }
 
-const formatFarmers = (engagement: number) => `${Math.round(engagement / 1000)}K+`
+export const formatFarmers = (engagement: number) => `${Math.round(engagement / 1000)}K+`
 
-const cityCoordinates: Record<string, [number, number]> = {
+export const cityCoordinates: Record<string, [number, number]> = {
   'Nairobi': [36.8219, -1.2921],
   'Kisumu': [34.7617, -0.0917],
   'Nakuru': [36.0800, -0.3031],
@@ -724,10 +721,13 @@ export default function InteractiveMap() {
     setHoveredName(null)
   }
 
-  const handleCountryClick = (country: DetailedCountryRecord, event: MouseEvent) => {
-    setSelectedCountry(country)
-    setSelectedProjectIndex(0)
-    setHoveredName(null)
+  const handleCountryClickWrapper = (countryName: string) => {
+    const country = countriesByGeoName[countryName] || countriesData[countryName]
+    if (country) {
+      setSelectedCountry(country)
+      setSelectedProjectIndex(0)
+      setHoveredName(null)
+    }
   }
 
   return (
@@ -756,18 +756,11 @@ export default function InteractiveMap() {
           </div>
 
           <div className="absolute inset-0 z-0">
-            <UnifiedMap 
-              africaGeoJson={africaGeoJson}
-              countriesByGeoName={countriesByGeoName}
-              selectedCountry={selectedCountry}
-              hoveredName={hoveredName}
-              activeProjects={activeProjects}
-              selectedProjectIndex={selectedProjectIndex}
-              setSelectedProjectIndex={setSelectedProjectIndex}
-              onCountryClick={handleCountryClick}
+            <InteractiveMapbox 
+              onCountryClick={handleCountryClickWrapper}
               setHoveredName={setHoveredName}
               setTooltipPos={setTooltipPos}
-              cityCoordinates={cityCoordinates}
+              selectedCountryName={selectedCountry?.name}
             />
           </div>
 
