@@ -42,7 +42,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     }
 
     const defaultOptions: Omit<mapboxgl.MapboxOptions, 'container'> = {
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/light-v11',
       center: [20, 0], // Center approximately on Africa
       zoom: 2.8,       // Zoom to view the continent
       projection: { name: 'globe' }, // Ensure globe projection is used

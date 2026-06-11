@@ -761,6 +761,10 @@ export default function InteractiveMap() {
               setHoveredName={setHoveredName}
               setTooltipPos={setTooltipPos}
               selectedCountryName={selectedCountry?.name}
+              activeProjects={activeProjects}
+              selectedProjectIndex={selectedProjectIndex}
+              setSelectedProjectIndex={setSelectedProjectIndex}
+              cityCoordinates={cityCoordinates}
             />
           </div>
 

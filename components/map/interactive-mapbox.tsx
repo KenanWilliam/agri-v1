@@ -3,15 +3,16 @@
 import React, { useState } from 'react';
 import { MapProvider } from './map-context';
 import { MapControls } from './map-controls';
-import { MapThemeSwitcher } from './map-theme-switcher';
 import { MapSearch } from './map-search';
 import { MapMarker } from './map-marker';
 import { MapPopup } from './map-popup';
 import { MapHighlightedCountries } from './map-highlighted-countries';
 import { MapAutoCenter } from './map-auto-center';
+import { MapActiveProjectFlyTo } from './map-active-project-fly-to';
 import { Building, Store, Coffee, Car, AlertCircle, MapPin, Navigation, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import type { CountryProject } from '../interactive-map';
 
 interface SelectedLocation {
   lng: number;
@@ -37,13 +38,21 @@ interface InteractiveMapboxProps {
   setHoveredName?: (name: string | null) => void;
   setTooltipPos?: (pos: { x: number; y: number }) => void;
   selectedCountryName?: string;
+  activeProjects?: CountryProject[];
+  selectedProjectIndex?: number;
+  setSelectedProjectIndex?: (index: number) => void;
+  cityCoordinates?: Record<string, [number, number]>;
 }
 
 export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
   onCountryClick,
   setHoveredName,
   setTooltipPos,
-  selectedCountryName
+  selectedCountryName,
+  activeProjects = [],
+  selectedProjectIndex = 0,
+  setSelectedProjectIndex,
+  cityCoordinates = {}
 }) => {
   const [selectedLocation, setSelectedLocation] = useState<SelectedLocation | null>(null);
 
@@ -57,15 +66,53 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
     <div className="w-full h-full relative">
       <MapProvider>
         <MapAutoCenter selectedCountryName={selectedCountryName} />
+        <MapActiveProjectFlyTo 
+          selectedCountryName={selectedCountryName}
+          activeProjects={activeProjects}
+          selectedProjectIndex={selectedProjectIndex}
+          cityCoordinates={cityCoordinates}
+        />
         <MapControls />
-        <MapThemeSwitcher />
+        
         <MapSearch onLocationSelect={setSelectedLocation} />
+        
         <MapHighlightedCountries 
           onCountryClick={onCountryClick}
           setHoveredName={setHoveredName}
           setTooltipPos={setTooltipPos}
+          selectedCountryName={selectedCountryName}
         />
 
+        {/* Render Project Markers when a country is selected */}
+        {selectedCountryName && activeProjects.map((project, index) => {
+          const cityKey = project.location.split(' / ')[0];
+          const coords = cityCoordinates[cityKey];
+          const isActive = index === selectedProjectIndex;
+          
+          if (!coords) return null;
+
+          return (
+            <MapMarker key={index} lng={coords[0]} lat={coords[1]}>
+              <div 
+                className="relative group cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (setSelectedProjectIndex) setSelectedProjectIndex(index);
+                }}
+              >
+                {/* Custom Dot Marker */}
+                <div className={`w-4 h-4 rounded-full border-2 transition-all duration-300 shadow-md ${isActive ? 'bg-accent-gold border-white scale-125' : 'bg-deep-forest border-white/90 hover:scale-110'}`} />
+                
+                {/* Label */}
+                <div className={`absolute top-[-24px] left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold px-2 py-0.5 rounded shadow-sm transition-all duration-300 ${isActive ? 'bg-white text-accent-gold opacity-100' : 'bg-white/80 text-deep-forest opacity-0 group-hover:opacity-100'}`}>
+                  {cityKey}
+                </div>
+              </div>
+            </MapMarker>
+          );
+        })}
+
+        {/* Global Search Location Marker */}
         {selectedLocation && (
           <>
             <MapMarker lng={selectedLocation.lng} lat={selectedLocation.lat}>
