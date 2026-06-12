@@ -101,7 +101,7 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
                 }}
               >
                 {/* Custom Dot Marker */}
-                <div className={`w-4 h-4 rounded-full border-2 transition-all duration-300 shadow-md ${isActive ? 'bg-accent-gold border-white scale-125' : 'bg-deep-forest border-white/90 hover:scale-110'}`} />
+                <div className={`w-2 h-2 rounded-full border-1 transition-all duration-200 shadow-md ${isActive ? 'bg-accent-gold border-white scale-125' : 'bg-deep-forest border-white/90 hover:scale-110'}`} />
                 
                 {/* Label */}
                 <div className={`absolute top-[-24px] left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold px-2 py-0.5 rounded shadow-sm transition-all duration-300 ${isActive ? 'bg-white text-accent-gold opacity-100' : 'bg-white/80 text-deep-forest opacity-0 group-hover:opacity-100'}`}>
