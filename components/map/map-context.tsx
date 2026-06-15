@@ -46,6 +46,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
       center: [20, 0], // Center approximately on Africa
       zoom: 2.8,       // Zoom to view the continent
       projection: { name: 'globe' }, // Ensure globe projection is used
+      scrollZoom: false, // Allow page scrolling over the map
     };
 
     const mapInstance = new mapboxgl.Map({
@@ -55,8 +56,49 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     });
 
     mapInstance.on('style.load', () => {
-      // Enable atmosphere styling (fog) for a realistic globe effect
-      mapInstance.setFog({});
+      // Enable atmosphere styling (fog) for a realistic, clean Earth globe effect
+      mapInstance.setFog({
+        'range': [0.5, 10],
+        'color': '#ffffff', // atmosphere color
+        'high-color': '#2484c6', // atmosphere outer glow (adds a blue Earth aura!)
+        'space-color': '#f5efe0', // space background (ivory color instead of starry black space!)
+        'horizon-blend': 0.02,
+        'star-intensity': 0.0 // get rid of starry background completely!
+      });
+
+      // Style waterbodies to a beautiful soft steel/marine blue
+      if (mapInstance.getLayer('water')) {
+        mapInstance.setPaintProperty('water', 'fill-color', '#cbe3f7');
+      }
+
+      // Hide roads, POIs, and transit lines to declutter and look like a premium thematic atlas
+      const layersToHide = [
+        'road-label',
+        'road-number-shield',
+        'transit-label',
+        'poi-label',
+        'airport-label',
+        'state-label',
+        'settlement-minor-label'
+      ];
+      
+      layersToHide.forEach(layer => {
+        if (mapInstance.getLayer(layer)) {
+          mapInstance.setLayoutProperty(layer, 'visibility', 'none');
+        }
+      });
+
+      // Improve typography and color of major labels
+      if (mapInstance.getLayer('country-label')) {
+        mapInstance.setPaintProperty('country-label', 'text-color', '#1c2b22');
+        mapInstance.setPaintProperty('country-label', 'text-halo-color', 'rgba(255, 255, 255, 0.85)');
+        mapInstance.setPaintProperty('country-label', 'text-halo-width', 1.5);
+      }
+
+      if (mapInstance.getLayer('settlement-major-label')) {
+        mapInstance.setPaintProperty('settlement-major-label', 'text-color', '#0f3d1e');
+        mapInstance.setPaintProperty('settlement-major-label', 'text-halo-color', 'rgba(255, 255, 255, 0.9)');
+      }
     });
 
     mapInstance.on('load', () => {

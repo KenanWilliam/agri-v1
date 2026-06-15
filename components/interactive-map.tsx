@@ -706,7 +706,7 @@ const buildCountryProjects = (country: DetailedCountryRecord): CountryProject[] 
 export default function InteractiveMap() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [selectedCountry, setSelectedCountry] = useState<DetailedCountryRecord | null>(null)
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
 
@@ -717,7 +717,7 @@ export default function InteractiveMap() {
   
   const closeCountryOverlay = () => {
     setSelectedCountry(null)
-    setSelectedProjectIndex(0)
+    setSelectedProjectIndex(null)
     setHoveredName(null)
   }
 
@@ -725,7 +725,7 @@ export default function InteractiveMap() {
     const country = countriesByGeoName[countryName] || countriesData[countryName]
     if (country) {
       setSelectedCountry(country)
-      setSelectedProjectIndex(0)
+      setSelectedProjectIndex(null)
       setHoveredName(null)
     }
   }
@@ -777,14 +777,14 @@ export default function InteractiveMap() {
                 exit={{ opacity: 0, x: -20 }}
                 className="absolute top-16 left-8 lg:top-20 lg:left-12 z-20 max-w-sm pointer-events-none"
               >
-                <div className="space-y-5 pointer-events-auto">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-mist bg-white/90 backdrop-blur-md text-deep-forest text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
-                    <Globe size={14} />
+                <div className="space-y-4 pointer-events-auto">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/85 bg-white/80 backdrop-blur-md text-deep-forest text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm">
+                    <Globe size={12} className="text-primary-green animate-spin-slow" />
                     Africa portfolio map
                   </div>
-                  <div className="bg-white/80 p-6 -ml-4 rounded-3xl backdrop-blur-md shadow-lg border border-white/50 space-y-4">
-                    <h2 className="text-deep-forest text-4xl lg:text-5xl tracking-tight leading-[1.1]">Our Footprint<br/>Across the Continent</h2>
-                    <p className="text-base lg:text-lg text-charcoal/80 font-medium leading-relaxed">
+                  <div className="bg-white/75 p-6 -ml-4 rounded-2xl backdrop-blur-md shadow-xl border border-white/60 space-y-3 max-w-sm">
+                    <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold">Our Footprint<br/>Across the Continent</h2>
+                    <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed">
                       Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
                     </p>
                   </div>
@@ -796,16 +796,18 @@ export default function InteractiveMap() {
           <AnimatePresence>
             {hoveredName && !selectedCountry && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                initial={{ opacity: 0, scale: 0.95, y: -5 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -5 }}
+                transition={{ duration: 0.15, ease: 'easeOut' }}
                 style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
-                className="bg-deep-forest text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm z-50 flex items-center gap-3"
+                className="bg-deep-forest/95 backdrop-blur-md text-white px-4 py-2.5 rounded-xl shadow-xl border border-white/10 z-50 flex items-center gap-2.5 font-sans text-xs font-semibold"
               >
-                <MapPin size={16} className="text-accent-gold" />
-                {hoveredName}
-                <span className="opacity-50 font-normal ml-2">Click to expand</span>
+                <MapPin size={14} className="text-accent-gold animate-pulse" />
+                <span className="tracking-wide">{hoveredName}</span>
+                <span className="text-[9px] font-mono font-bold uppercase tracking-widest bg-accent-gold/25 text-accent-gold px-1.5 py-0.5 rounded ml-1">
+                  Explore
+                </span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -833,7 +835,7 @@ export default function InteractiveMap() {
                   </div>
                   <button
                     onClick={closeCountryOverlay}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-mist bg-white text-deep-forest transition-colors transition-shadow duration-300 ease-in-out hover:bg-mist hover:scale-105 shadow-sm"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-mist bg-white text-deep-forest transition duration-200 hover:bg-mist hover:scale-105 shadow-sm"
                     aria-label="Close country dossier"
                   >
                     <X size={20} />
@@ -851,12 +853,12 @@ export default function InteractiveMap() {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="rounded-2xl bg-deep-forest p-4 text-white">
                         <Briefcase className="text-accent-gold" size={18} />
-                        <div className="mt-3 text-3xl font-serif leading-none">{selectedCountry.projects}</div>
+                        <div className="mt-3 text-3xl font-mono tracking-tight font-bold leading-none">{selectedCountry.projects}</div>
                         <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold">Active projects</div>
                       </div>
                       <div className="rounded-2xl bg-mist p-4 text-deep-forest border border-mist">
                         <Users className="text-deep-forest" size={18} />
-                        <div className="mt-3 text-3xl font-serif leading-none">{formatFarmers(selectedCountry.engagement)}</div>
+                        <div className="mt-3 text-3xl font-mono tracking-tight font-bold leading-none">{formatFarmers(selectedCountry.engagement)}</div>
                         <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-charcoal/50 font-bold">Farmers / actors</div>
                       </div>
                     </div>
@@ -873,7 +875,7 @@ export default function InteractiveMap() {
                           const isActive = index === selectedProjectIndex
 
                           return (
-                            <div key={index} className={`rounded-2xl border transition-colors transition-shadow duration-300 ease-in-out overflow-hidden ${isActive ? 'border-deep-forest shadow-[0_8px_24px_rgba(15,61,49,0.08)] bg-white' : 'border-mist bg-white/40 hover:border-deep-forest/30 hover:bg-white cursor-pointer'}`} onClick={() => !isActive && setSelectedProjectIndex(index)}>
+                            <div key={index} className={`rounded-2xl border transition duration-200 overflow-hidden ${isActive ? 'border-deep-forest shadow-[0_8px_24px_rgba(15,61,49,0.08)] bg-white' : 'border-mist bg-white/40 hover:border-deep-forest/30 hover:bg-white cursor-pointer'}`} onClick={() => !isActive && setSelectedProjectIndex(index)}>
                               
                               {/* Card Header (always visible) */}
                               <div className={`p-4 flex items-start justify-between gap-3 ${isActive ? 'bg-deep-forest text-white' : 'text-charcoal/80'}`}>
@@ -884,7 +886,7 @@ export default function InteractiveMap() {
                                   </div>
                                   <div className={`font-serif text-lg leading-tight ${isActive ? 'text-white' : 'text-deep-forest'}`}>{project.title}</div>
                                 </div>
-                                <div className={`shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold ${isActive ? 'bg-white/10 text-white' : 'bg-mist text-deep-forest'}`}>
+                                <div className={`shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-mono font-bold ${isActive ? 'bg-white/10 text-white' : 'bg-mist text-deep-forest'}`}>
                                   {index + 1}
                                 </div>
                               </div>

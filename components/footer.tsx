@@ -51,9 +51,11 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <Link 
-                href="#" 
+                href="https://www.linkedin.com/company/agri-experience-ltd/posts/?feedView=all" 
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition-colors duration-300 ease-in-out"
+                className="w-10 h-10 rounded bg-primary-ivory/5 border border-primary-ivory/10 flex items-center justify-center hover:bg-primary-green hover:text-white transition duration-200"
               >
                 <Linkedin size={18} />
               </Link>
@@ -112,7 +114,7 @@ export default function Footer() {
               </div>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-green text-white rounded text-sm font-bold hover:scale-105 transition-colors transition-shadow duration-300 ease-in-out group shadow-lg shadow-primary-green/20"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-green text-white rounded text-sm font-bold hover:scale-105 transition duration-200 group shadow-lg shadow-primary-green/20"
               >
                 Work With Us
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -18,31 +18,8 @@ export default function ResourcesPage() {
   return (
     <>
       <main className="bg-white min-h-screen">
-        {/* Hero */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 w-full">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
-            >
-              Resources
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg lg:text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed"
-            >
-              Access public-domain reports and case studies from Agri Experience assignments.
-            </motion.p>
-          </div>
-        </section>
-
         {/* Downloads */}
-        <section className="w-full py-16 lg:py-24 bg-white relative">
+        <section className="w-full pt-32 lg:pt-48 pb-16 lg:pb-24 bg-white relative">
           <div className="max-w-[1800px] mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -84,7 +61,7 @@ export default function ResourcesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: (idx % 10) * 0.05 }}
-                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out flex flex-col"
+                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200 flex flex-col"
                 >
                   <div className="mb-4 flex items-start justify-between gap-4">
                     <h3 className="text-xl font-serif font-bold text-deep-forest">{download.title}</h3>
@@ -132,7 +109,7 @@ export default function ResourcesPage() {
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
               >
                 Contact Us
                 <ArrowRight size={20} />

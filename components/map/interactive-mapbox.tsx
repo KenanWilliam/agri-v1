@@ -39,8 +39,8 @@ interface InteractiveMapboxProps {
   setTooltipPos?: (pos: { x: number; y: number }) => void;
   selectedCountryName?: string;
   activeProjects?: CountryProject[];
-  selectedProjectIndex?: number;
-  setSelectedProjectIndex?: (index: number) => void;
+  selectedProjectIndex?: number | null;
+  setSelectedProjectIndex?: (index: number | null) => void;
   cityCoordinates?: Record<string, [number, number]>;
 }
 
@@ -50,7 +50,7 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
   setTooltipPos,
   selectedCountryName,
   activeProjects = [],
-  selectedProjectIndex = 0,
+  selectedProjectIndex = null,
   setSelectedProjectIndex,
   cityCoordinates = {}
 }) => {

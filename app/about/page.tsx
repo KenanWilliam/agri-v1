@@ -1,30 +1,40 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle, Heart, Target, Lightbulb, Leaf, ArrowRight } from 'lucide-react'
+import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AboutPage() {
   const values = [
     {
+      icon: Award,
+      title: 'Excellence',
+      desc: 'Deliver high-quality, evidence-based analysis, recommendations, and implementation support in all our agricultural initiatives.',
+    },
+    {
       icon: Heart,
-      title: 'Smallholder Productivity',
-      desc: 'Improve smallholder farmer and seed producer productivity (social impact).',
+      title: 'Passion',
+      desc: 'Driven by a deep commitment to improving smallholder productivity and agricultural value chains across Africa.',
     },
     {
-      icon: Target,
-      title: 'Capacity Development',
-      desc: 'Build local talent in the sector among the permanent stakeholders.',
+      icon: Handshake,
+      title: 'Respect',
+      desc: 'Honor our partnerships with local stakeholders, government officials, and communities, valuing their local expertise.',
     },
     {
-      icon: CheckCircle,
-      title: 'Organizational Strength',
-      desc: 'Be financially stable in order to sustain our work.',
+      icon: Users,
+      title: 'Teamwork',
+      desc: 'Collaborate closely with clients, partners, and local groups to build sustainable capacity and achieve shared goals.',
     },
     {
-      icon: Lightbulb,
-      title: 'Field-Based Expertise',
-      desc: 'High-quality, experience-based analysis, recommendations, and implementation support.',
+      icon: BookOpen,
+      title: 'Continuous Learning',
+      desc: 'Constantly expand our field-based expertise and adapt to evolving agricultural practices and systems.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Integrity',
+      desc: 'Conduct our work with financial transparency, accountability, and the highest ethical and professional standards.',
     },
   ]
 
@@ -86,14 +96,14 @@ export default function AboutPage() {
                 <p className="text-charcoal/50 font-bold uppercase tracking-widest text-xs">The principles that guide our work</p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {values.map((value, idx) => {
                   const Icon = value.icon
                   return (
                     <motion.div
                       key={idx}
                       whileHover={{ y: -10 }}
-                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out text-center space-y-4"
+                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200 text-center space-y-4"
                     >
                       <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mx-auto mb-6">
                         <Icon className="text-primary-green" size={32} />
@@ -180,7 +190,7 @@ export default function AboutPage() {
               Let&apos;s collaborate to transform agricultural systems and create sustainable impact for generations to come.
             </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
                 Get In Touch
                 <ArrowRight size={20} />
               </Link>

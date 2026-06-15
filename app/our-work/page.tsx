@@ -147,7 +147,7 @@ export default function OurWorkPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
-                    className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out group`}
+                    className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition duration-200 group`}
                   >
                     <div className="space-y-8">
                       {/* Top icon and arrow */}

@@ -80,7 +80,7 @@ export default function OurImpactPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-colors transition-shadow duration-300 ease-in-out"
+                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200"
                   >
                     <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
                       <Icon className="text-primary-green" size={32} />
@@ -157,14 +157,14 @@ export default function OurImpactPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/our-work"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
                 >
                 Work With Us
                 <ArrowRight size={20} />
                 </Link>
                 <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded font-bold transition-colors transition-shadow duration-300 ease-in-out hover:bg-white/10 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded font-bold transition duration-200 hover:bg-white/10 backdrop-blur-sm"
                 >
                 Partner With Us
                 <ArrowRight size={20} />

@@ -33,7 +33,7 @@ export default function Header() {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center bg-white h-[64px] lg:h-[80px] shadow-sm">
       <header className="w-full max-w-[1800px] px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" aria-label="Agri Experience" className="flex items-center group">
+          <Link href="/" onClick={() => setClickedPath('/')} aria-label="Agri Experience" className="flex items-center group">
             <Image
               src="/Newsletters.svg"
               alt="Agri Experience Logo"
@@ -57,30 +57,26 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setClickedPath(item.href)}
                   onMouseEnter={() => setHoveredPath(item.href)}
-                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-200 ${
-                    isActive 
-                      ? 'text-deep-forest z-20' 
+                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-150 ${
+                    isActive
+                      ? 'text-deep-forest z-20'
                       : 'text-charcoal/80 hover:text-deep-forest z-10'
                   }`}
                 >
+                  {/* Active pill — animates position with layoutId */}
                   {isActive && (
                     <motion.div
                       layoutId="active-nav-pill"
                       className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                  {hoveredPath === item.href && (
-                    <motion.div
-                      layoutId="hover-nav-pill"
-                      className="absolute inset-0 bg-black/5 rounded-full -z-20"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
+                  {/* Hover pill — always rendered, toggled via opacity to avoid remount flash */}
+                  <motion.div
+                    className="absolute inset-0 bg-black/5 rounded-full -z-20 pointer-events-none"
+                    animate={{ opacity: hoveredPath === item.href && !isActive ? 1 : 0 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
+                  />
                   {item.label}
                 </Link>
               )
@@ -91,6 +87,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <Link
               href="/contact"
+              onClick={() => setClickedPath('/contact')}
               className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
               Contact Us

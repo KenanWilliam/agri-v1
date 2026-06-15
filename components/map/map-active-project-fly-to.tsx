@@ -7,7 +7,7 @@ import type { CountryProject } from '../interactive-map';
 export interface MapActiveProjectFlyToProps {
   selectedCountryName?: string;
   activeProjects: CountryProject[];
-  selectedProjectIndex: number;
+  selectedProjectIndex: number | null;
   cityCoordinates: Record<string, [number, number]>;
 }
 
@@ -20,19 +20,21 @@ export const MapActiveProjectFlyTo: React.FC<MapActiveProjectFlyToProps> = ({
   const { map } = useMap();
 
   useEffect(() => {
-    if (map && selectedCountryName && activeProjects.length > 0) {
+    if (map && selectedCountryName && activeProjects.length > 0 && selectedProjectIndex !== null && selectedProjectIndex !== -1) {
       const activeProject = activeProjects[selectedProjectIndex];
       if (activeProject) {
         const cityKey = activeProject.location.split(' / ')[0];
         const coords = cityCoordinates[cityKey];
         
         if (coords) {
-          // Add padding for the right dossier
+          const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+          // Add right padding of 380px to push target marker to the left of the 420px sidebar dossier
           map.flyTo({
             center: [coords[0], coords[1]],
-            zoom: Math.max(map.getZoom(), 6),
-            padding: { top: 0, bottom: 0, left: 0, right: 0 },
-            duration: 1200,
+            zoom: Math.max(map.getZoom(), 6.5),
+            padding: { top: 0, bottom: 0, left: 0, right: 380 },
+            duration: 1800,
+            easing: smoothEasing,
             essential: true
           });
         }
