@@ -22,7 +22,7 @@ interface TeamMember {
 
 const WaveText = ({ text, delayOffset = 0 }: { text: string; delayOffset?: number }) => {
   return (
-    <div className="flex flex-wrap overflow-hidden">
+    <div className="flex flex-wrap overflow-hidden pb-3 -mb-3">
       {text.split('').map((char, i) => (
         <motion.span
           key={i}
@@ -80,25 +80,34 @@ export default function OurTeamPage() {
     },
     {
       name: 'Ronald Misigo',
-      role: 'Senior Consultant',
-      bio: 'Seed systems specialist leading ICT solutions for clients, with strong research and communication skills and a track record of seed-focused tools for stakeholders.',
+      role: 'Technical Lead',
+      bio: 'Oversees the overall system architecture, technical design, and integration framework. Ensures scalability, security, interoperability, and alignment of all technical components across the platform.',
       image: '/team/ronald.png',
-      projects: ['ICT Solutions', 'Digital Agriculture', 'Research']
+      projects: ['System Architecture', 'Technical Design', 'Integration']
     },
     {
       name: 'Denis Langat',
-      role: 'Client Assignment Assistant',
-      bio: 'Supports client activities through research, documentation, record keeping, monitoring, data collection, and analysis.',
+      role: 'Data and M&E Specialist',
+      bio: 'Review PSTA-5 indicators, and monitoring frameworks. Ensure effective data capture, analysis, visualization, and reporting to support dashboard development.',
       image: '/team/denis.png',
-      projects: ['Data Collection', 'Research', 'Monitoring']
+      projects: ['PSTA-5 Indicators', 'Data Analysis', 'Dashboard Development']
     },
     {
       name: 'Moses Adundo',
-      role: 'Data Entry Clerk',
-      bio: 'Ensures data integrity and supports operational workflows with meticulous attention to detail.',
+      role: 'QA/Testing Specialist',
+      bio: 'Leads quality assurance and testing processes, including functional, integration, performance, and user acceptance testing. Ensures the system meets defined requirements, is free of critical defects, and performs reliably before deployment.',
       image: '/team/placeholder.jpg',
-      projects: ['Data Integrity', 'Operations']
+      projects: ['Quality Assurance', 'Testing Processes', 'User Acceptance Testing']
     },
+    /*
+    {
+      name: 'Kenan William',
+      role: 'UI/UX Designer',
+      bio: 'Responsible for user interface design, ensuring the platform is intuitive, user-friendly and accessible to diverse stakeholders',
+      image: '/team/placeholder.jpg',
+      projects: ['UI/UX Design', 'User Research', 'Accessibility']
+    },
+    */
     {
       name: 'Claire Wanjiru',
       role: 'Executive Assistant',
@@ -163,7 +172,7 @@ export default function OurTeamPage() {
                         className="shrink-0 cursor-pointer"
                         onClick={() => setSelectedMember(member)}
                       >
-                        <div className="relative w-[280px] h-[45vh] min-h-[350px] max-h-[450px] md:w-[350px] md:h-[50vh] md:max-h-[550px] lg:w-[400px] lg:h-[55vh] lg:max-h-[600px] xl:w-[450px] xl:h-[60vh] xl:max-h-[650px] rounded-[2rem] overflow-hidden group shadow-lg">
+                        <div className="relative w-[280px] h-[50vh] min-h-[400px] max-h-[500px] md:w-[350px] md:h-[55vh] md:max-h-[600px] lg:w-[400px] lg:h-[60vh] lg:max-h-[680px] xl:w-[450px] xl:h-[65vh] xl:max-h-[720px] rounded-[2rem] overflow-hidden group shadow-lg">
                           {/* Image */}
                           {member.image && member.image !== '/team/placeholder.jpg' ? (
                             <Image 
@@ -269,9 +278,6 @@ export default function OurTeamPage() {
                   </h2>
 
                   <div className="space-y-6 max-w-xl">
-                    <p className="text-primary-green font-bold uppercase tracking-[0.2em] text-sm">
-                      {selectedMember.role}
-                    </p>
                     <p className="text-charcoal/70 text-lg lg:text-xl font-light leading-relaxed">
                       {selectedMember.bio}
                     </p>
@@ -365,7 +371,7 @@ export default function OurTeamPage() {
                 <div className="space-y-4">
                   <h3 className="text-2xl font-serif font-bold text-deep-forest">Consultants</h3>
                   <ul className="space-y-3 text-charcoal/60 font-light text-lg">
-                    <li>Nicholas Kilonzo &mdash; Senior Consultant</li>
+                    <li>Nicholas Kilonzo</li>
                     <li>Extensive network of local experts</li>
                   </ul>
                 </div>

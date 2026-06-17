@@ -101,6 +101,7 @@ const ImageLogo = ({ logo }: { logo: ClientLogo }) => {
       height={100}
       unoptimized={true}
       priority // CRITICAL: Prevents lazy-load layout shifts that break the -50% calculation
+      style={{ width: 'auto' }}
       className="h-full w-auto object-contain transition-all duration-300 ease-in-out grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 [@media(hover:none)]:grayscale-0 [@media(hover:none)]:opacity-100"
     />
   )

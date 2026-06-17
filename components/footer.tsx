@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -27,6 +28,12 @@ const footerLinks = [
 ]
 
 export default function Footer() {
+  const [year, setYear] = useState(2026)
+
+  useEffect(() => {
+    setYear(new Date().getFullYear())
+  }, [])
+
   return (
     <footer className="bg-deep-forest text-primary-ivory pt-24 pb-12 relative overflow-hidden">
       {/* Decorative Background Element */}
@@ -43,6 +50,7 @@ export default function Footer() {
               alt="Agri Experience"
               width={500}
               height={240}
+              style={{ width: 'auto' }}
               className="h-12 w-auto block"
             />
           </Link>
@@ -125,8 +133,21 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-primary-ivory/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-primary-ivory/40 text-sm font-light">
-            © {new Date().getFullYear()} Agri Experience. All rights reserved.
+          <div className="text-primary-ivory/40 text-sm font-light text-center md:text-left space-y-2">
+            <div>© {year} Agri Experience. All rights reserved.</div>
+            <div className="text-xs text-primary-ivory/40 flex flex-wrap items-center justify-center md:justify-start gap-1.5">
+              <span>Cultivated from digital seeds by</span>
+              <a 
+                href="https://www.linkedin.com/in/kenanwilliam/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-ivory/5 border border-primary-ivory/10 hover:bg-primary-green hover:border-primary-green hover:text-white transition-all duration-300 font-medium group text-[11px] text-primary-ivory/60"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-green group-hover:bg-white transition-colors animate-pulse" />
+                Kenan William
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              </a>
+            </div>
           </div>
           <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-primary-ivory/40">
             <Link href="/privacy" className="hover:text-primary-green transition-colors">Privacy Policy</Link>

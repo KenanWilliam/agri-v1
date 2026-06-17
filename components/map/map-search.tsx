@@ -52,8 +52,9 @@ export const MapSearch: React.FC<MapSearchProps> = ({ onLocationSelect }) => {
       try {
         const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
         const africaBbox = '-17.53,-34.83,51.41,37.34';
+        const countriesLimit = 'KE,UG,TZ,RW,ET,MW,ZM,ZW,MZ,SN,BF,ML,GH,CM,CD,NG,SS,BI,LR,ZA,SL';
         const res = await fetch(
-          `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(debouncedQuery)}&bbox=${africaBbox}&access_token=${token}&session_token=${sessionToken.current}`
+          `https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(debouncedQuery)}&bbox=${africaBbox}&country=${countriesLimit}&access_token=${token}&session_token=${sessionToken.current}`
         );
         const data = await res.json();
         if (data.suggestions) {

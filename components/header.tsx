@@ -40,6 +40,7 @@ export default function Header() {
               width={500}
               height={240}
               priority
+              style={{ width: 'auto' }}
               className="h-[48px] lg:h-[60px] w-auto block transition-transform group-hover:scale-105"
             />
           </Link>

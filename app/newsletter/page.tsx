@@ -122,7 +122,7 @@ export default function NewsletterPage() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition duration-200"
+                      className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
                     >
                       Subscribe
                     </motion.button>

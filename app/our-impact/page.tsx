@@ -80,7 +80,7 @@ export default function OurImpactPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200"
+                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
                   >
                     <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
                       <Icon className="text-primary-green" size={32} />

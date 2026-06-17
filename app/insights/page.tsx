@@ -59,7 +59,7 @@ export default function InsightsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="rounded-[32px] overflow-hidden bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200"
+                  className="rounded-[32px] overflow-hidden bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
                 >
                   <div className="p-8 lg:p-10 space-y-6 flex flex-col h-full">
                     <div className="flex-1 space-y-4">

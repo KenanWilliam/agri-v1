@@ -89,7 +89,7 @@ export default function OurResultsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.05 }}
-                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200"
+                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
                 >
                   <h3 className="text-xl font-serif font-bold text-deep-forest mb-4">{download.title}</h3>
                   <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{download.client}</p>
@@ -141,7 +141,7 @@ export default function OurResultsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="bg-white rounded-[32px] p-8 lg:p-10 border border-mist shadow-sm hover:shadow-xl transition duration-200 space-y-6"
+                  className="bg-white rounded-[32px] p-8 lg:p-10 border border-mist shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 space-y-6"
                 >
                   <h3 className="text-xl font-serif font-bold text-deep-forest">{assignment.title}</h3>
                   <div className="space-y-4 text-sm text-charcoal/80 font-light leading-relaxed">

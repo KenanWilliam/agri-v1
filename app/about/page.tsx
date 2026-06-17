@@ -103,7 +103,7 @@ export default function AboutPage() {
                     <motion.div
                       key={idx}
                       whileHover={{ y: -10 }}
-                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200 text-center space-y-4"
+                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 text-center space-y-4"
                     >
                       <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mx-auto mb-6">
                         <Icon className="text-primary-green" size={32} />

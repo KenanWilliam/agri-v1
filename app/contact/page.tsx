@@ -128,7 +128,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition duration-200"
+                    className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
                   >
                     {submitted ? '✓ Message Sent!' : 'Send Message'}
                     {!submitted && <Send size={18} />}
@@ -160,7 +160,7 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: idx * 0.1 }}
-                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 transition duration-200"
+                      className="p-8 rounded-3xl bg-mist border border-mist hover:border-primary-green/20 transition-[background-color,border-color,box-shadow] duration-200"
                     >
                       <p className="text-sm font-bold text-primary-green tracking-widest uppercase mb-3">{office.region}</p>
                       <h3 className="text-2xl font-serif font-bold text-deep-forest mb-6">{office.country}</h3>

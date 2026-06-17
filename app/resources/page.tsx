@@ -61,7 +61,7 @@ export default function ResourcesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: (idx % 10) * 0.05 }}
-                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition duration-200 flex flex-col"
+                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 flex flex-col"
                 >
                   <div className="mb-4 flex items-start justify-between gap-4">
                     <h3 className="text-xl font-serif font-bold text-deep-forest">{download.title}</h3>

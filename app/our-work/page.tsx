@@ -142,41 +142,43 @@ export default function OurWorkPage() {
                 }
 
                 return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
-                    className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition duration-200 group`}
-                  >
-                    <div className="space-y-8">
-                      {/* Top icon and arrow */}
-                      <div className="flex justify-between items-start">
-                        <div className={`w-16 h-16 rounded-full ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
-                          <Icon size={28} />
+                  <Link key={idx} href={card.link} className="block h-full">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
+                      whileHover={{ y: -5 }}
+                      className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 group cursor-pointer`}
+                    >
+                      <div className="space-y-8">
+                        {/* Top icon and arrow */}
+                        <div className="flex justify-between items-start">
+                          <div className={`w-16 h-16 rounded-full ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
+                            <Icon size={28} />
+                          </div>
+                          <div className={`w-10 h-10 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
+                            <ArrowRight size={18} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
+                          </div>
                         </div>
-                        <div className={`w-10 h-10 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
-                          <ArrowRight size={18} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
+                        
+                        {/* Content */}
+                        <div className="space-y-4">
+                          <h3 className={`text-2xl font-serif font-bold ${textClass}`}>{card.title}</h3>
+                          <p className="text-charcoal/70 font-light leading-relaxed">
+                            {card.description}
+                          </p>
                         </div>
                       </div>
-                      
-                      {/* Content */}
-                      <div className="space-y-4">
-                        <h3 className={`text-2xl font-serif font-bold ${textClass}`}>{card.title}</h3>
-                        <p className="text-charcoal/70 font-light leading-relaxed">
-                          {card.description}
-                        </p>
-                      </div>
-                    </div>
 
-                    {/* Bottom Link */}
-                    <div className="mt-8 flex justify-between items-center">
-                      <span className={`font-bold text-sm ${textClass}`}>Learn more</span>
-                      <div className={`w-10 h-10 rounded-full ${bgClass} text-white flex items-center justify-center`}>
-                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      {/* Bottom Link */}
+                      <div className="mt-8 flex justify-between items-center">
+                        <span className={`font-bold text-sm ${textClass}`}>Learn more</span>
+                        <div className={`w-10 h-10 rounded-full ${bgClass} text-white flex items-center justify-center`}>
+                          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </Link>
                 )
               })}
             </div>
