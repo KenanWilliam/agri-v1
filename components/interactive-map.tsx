@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -705,10 +705,17 @@ const buildCountryProjects = (country: DetailedCountryRecord): CountryProject[] 
 
 export default function InteractiveMap() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
   const [selectedCountry, setSelectedCountry] = useState<DetailedCountryRecord | null>(null)
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
+
+  const updateTooltipPos = useCallback((pos: { x: number; y: number }) => {
+    if (tooltipRef.current) {
+      tooltipRef.current.style.left = `${pos.x}px`
+      tooltipRef.current.style.top = `${pos.y}px`
+    }
+  }, [])
 
   const activeProjects = useMemo(
     () => (selectedCountry ? buildCountryProjects(selectedCountry) : []),
@@ -759,7 +766,7 @@ export default function InteractiveMap() {
             <InteractiveMapbox 
               onCountryClick={handleCountryClickWrapper}
               setHoveredName={setHoveredName}
-              setTooltipPos={setTooltipPos}
+              setTooltipPos={updateTooltipPos}
               selectedCountryName={selectedCountry?.name}
               activeProjects={activeProjects}
               selectedProjectIndex={selectedProjectIndex}
@@ -793,24 +800,26 @@ export default function InteractiveMap() {
             )}
           </AnimatePresence>
 
-          <AnimatePresence>
-            {hoveredName && !selectedCountry && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: -5 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -5 }}
-                transition={{ duration: 0.15, ease: 'easeOut' }}
-                style={{ position: 'fixed', left: tooltipPos.x, top: tooltipPos.y, pointerEvents: 'none' }}
-                className="bg-deep-forest/95 backdrop-blur-md text-white px-4 py-2.5 rounded-xl shadow-xl border border-white/10 z-50 flex items-center gap-2.5 font-sans text-xs font-semibold"
-              >
-                <MapPin size={14} className="text-accent-gold animate-pulse" />
-                <span className="tracking-wide">{hoveredName}</span>
-                <span className="text-[9px] font-mono font-bold uppercase tracking-widest bg-accent-gold/25 text-accent-gold px-1.5 py-0.5 rounded ml-1">
-                  Explore
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div
+            ref={tooltipRef}
+            style={{ 
+              position: 'fixed', 
+              left: 0, 
+              top: 0, 
+              pointerEvents: 'none',
+              opacity: hoveredName && !selectedCountry ? 1 : 0,
+              transform: hoveredName && !selectedCountry ? 'scale(1) translate(0px, 0px)' : 'scale(0.95) translate(0px, -5px)',
+              transition: 'opacity 0.15s ease-out, transform 0.15s ease-out',
+              zIndex: 50
+            }}
+            className="bg-deep-forest/95 backdrop-blur-md text-white px-4 py-2.5 rounded-xl shadow-xl border border-white/10 flex items-center gap-2.5 font-sans text-xs font-semibold"
+          >
+            <MapPin size={14} className="text-accent-gold animate-pulse" />
+            <span className="tracking-wide">{hoveredName || ''}</span>
+            <span className="text-[9px] font-mono font-bold uppercase tracking-widest bg-accent-gold/25 text-accent-gold px-1.5 py-0.5 rounded ml-1">
+              Explore
+            </span>
+          </div>
         </div>
 
         {/* Sidebar Dossier Slide-Out */}
