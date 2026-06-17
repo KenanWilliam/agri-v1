@@ -28,11 +28,16 @@ export const MapActiveProjectFlyTo: React.FC<MapActiveProjectFlyToProps> = ({
         
         if (coords) {
           const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+          const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+          const padding = isMobile
+            ? { top: 0, bottom: 0, left: 0, right: 0 }
+            : { top: 0, bottom: 0, left: 0, right: 380 };
+
           // Add right padding of 380px to push target marker to the left of the 420px sidebar dossier
           map.flyTo({
             center: [coords[0], coords[1]],
             zoom: Math.max(map.getZoom(), 6.5),
-            padding: { top: 0, bottom: 0, left: 0, right: 380 },
+            padding,
             duration: 1800,
             easing: smoothEasing,
             essential: true

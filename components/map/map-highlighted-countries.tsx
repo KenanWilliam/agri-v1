@@ -226,20 +226,30 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
           if (minX !== Infinity) {
-            // Padding right: 460px to offset the 420px sidebar, centering the country beautifully in the viewport
+            // Padding right: 460px to offset the 420px sidebar on desktop, centering the country beautifully in the viewport
             // Set maxZoom: 5.5 to prevent sudden jarring focus jumps on smaller countries (like Rwanda/Burundi)
+            const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+            const padding = isMobile 
+              ? { top: 20, bottom: 20, left: 20, right: 20 }
+              : { top: 80, bottom: 80, left: 80, right: 460 };
+
             map.fitBounds([[minX, minY], [maxX, maxY]] as mapboxgl.LngLatBoundsLike, {
-              padding: { top: 80, bottom: 80, left: 80, right: 460 },
+              padding,
               duration: 2200,
               easing: smoothEasing,
               maxZoom: 5.5,
               essential: true
             });
           } else {
+            const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+            const padding = isMobile
+              ? { top: 0, bottom: 0, left: 0, right: 0 }
+              : { top: 0, bottom: 0, left: 0, right: 380 };
+
             map.flyTo({
               center: e.lngLat,
               zoom: 4.5,
-              padding: { top: 0, bottom: 0, left: 0, right: 380 },
+              padding,
               essential: true,
               duration: 2200,
               easing: smoothEasing
