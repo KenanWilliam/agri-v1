@@ -227,14 +227,19 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           if (minX !== Infinity) {
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             
-            // On mobile, the map container height changes immediately after clicking (because the header unmounts).
-            // Using massive bottom padding on a small container causes Mapbox math to invert and zoom to 0.
-            // Instead, we use standard padding and mathematically offset the camera center upwards by 25% of the screen!
+            // Mobile: The bottom sheet covers the lower 50vh.
+            // The visible map area is from top of map container to the top of the bottom sheet.
+            // We need the country to be centered in that visible strip.
+            // The map container fills from below the nav to the bottom of the viewport.
+            // The bottom sheet is 50vh, so the visible map strip = containerHeight - 50vh.
+            const containerHeight = map.getContainer().clientHeight;
+            const bottomSheetHeight = isMobile ? window.innerHeight * 0.5 : 0;
+            const visibleHeight = containerHeight - bottomSheetHeight;
+            
+            // Use real padding to frame the country in the visible area
             const padding = isMobile 
-              ? { top: 40, bottom: 40, left: 40, right: 40 }
-              : { top: 80, bottom: 80, left: 80, right: 460 };
-
-            const offset = isMobile ? [0, -window.innerHeight * 0.25] : [0, 0];
+              ? { top: 30, bottom: bottomSheetHeight + 20, left: 30, right: 30 }
+              : { top: 60, bottom: 60, left: 60, right: 460 };
 
             const bounds: mapboxgl.LngLatBoundsLike = [[minX, minY], [maxX, maxY]];
             const pitch = isMobile ? 0 : 45;
@@ -243,8 +248,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
               // Already zoomed into a country – use easeTo for a smooth glide without zoom-out arc
               const camera = map.cameraForBounds(bounds, {
                 padding,
-                offset: offset as [number, number],
-                maxZoom: 5.5,
+                maxZoom: isMobile ? 6 : 5.5,
                 pitch
               });
 
@@ -260,10 +264,9 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
               // First selection from continent view – use fitBounds for a cinematic entry
               map.fitBounds(bounds, {
                 padding,
-                offset: offset as [number, number],
                 duration: 2200,
                 easing: smoothEasing,
-                maxZoom: 5.5,
+                maxZoom: isMobile ? 6 : 5.5,
                 pitch,
                 essential: true
               });
@@ -272,22 +275,22 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             isZoomedInRef.current = true;
           } else {
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+            const bottomSheetHeight = isMobile ? window.innerHeight * 0.5 : 0;
             const padding = isMobile
-              ? { top: 40, bottom: 40, left: 40, right: 40 }
-              : { top: 0, bottom: 0, left: 0, right: 380 };
-            
-            const offset = isMobile ? [0, -window.innerHeight * 0.25] : [0, 0];
+              ? { top: 30, bottom: bottomSheetHeight + 20, left: 30, right: 30 }
+              : { top: 0, bottom: 0, left: 0, right: 460 };
 
             map.flyTo({
               center: e.lngLat,
               zoom: 4.5,
               padding,
-              offset: offset as [number, number],
               essential: true,
-              pitch: 45, // Add dramatic pitch on select
+              pitch: isMobile ? 0 : 45,
               duration: 2200,
               easing: smoothEasing
             });
+
+            isZoomedInRef.current = true;
           }
 
           if (onCountryClickRef.current) {

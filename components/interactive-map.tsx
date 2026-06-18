@@ -753,9 +753,9 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] overflow-hidden">
-      {/* Main Interactive Workspace */}
-      <div className="relative flex-1 flex flex-col w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
+    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[64px] lg:pt-[80px] overflow-hidden">
+      {/* Main Interactive Workspace — full bleed, edge to edge */}
+      <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
         {/* Mobile Header / Desktop Overlay */}
         <AnimatePresence>
@@ -764,10 +764,10 @@ export default function InteractiveMap() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="w-full lg:absolute lg:top-20 lg:left-12 z-20 lg:max-w-sm shrink-0 bg-white/60 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-b border-mist lg:border-none p-6 lg:p-0"
+              className="w-full lg:absolute lg:top-8 lg:left-8 z-20 lg:max-w-sm shrink-0 bg-white/60 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-b border-mist lg:border-none p-6 lg:p-0"
             >
               <div className="space-y-6">
-                <div className="lg:bg-white/75 lg:p-6 lg:-ml-4 lg:rounded-2xl lg:backdrop-blur-md lg:shadow-xl lg:border lg:border-white/60 space-y-5 lg:max-w-sm">
+                <div className="lg:bg-white/75 lg:p-6 lg:rounded-2xl lg:backdrop-blur-md lg:shadow-xl lg:border lg:border-white/60 space-y-5 lg:max-w-sm">
                   <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold text-center lg:text-left">Our Footprint<br className="hidden lg:block" />Across the Continent</h2>
                   <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed hidden sm:block text-center lg:text-left">
                     Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
@@ -827,16 +827,16 @@ export default function InteractiveMap() {
               exit={{ opacity: 0, y: 30, scale: 0.97 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className={[
-                // Mobile: bottom sheet
+                // Mobile: bottom sheet — fills width, sits at bottom
                 'absolute bottom-0 left-0 right-0 h-[50vh] z-30',
                 'rounded-t-3xl',
-                // Desktop: floating overlay card anchored right
-                'lg:bottom-auto lg:left-auto lg:right-8 lg:top-8',
-                'lg:w-[420px] lg:max-h-[calc(100%-64px)] lg:h-auto',
+                // Desktop: floating overlay card anchored right with full height usage
+                'lg:bottom-6 lg:left-auto lg:right-6 lg:top-6',
+                'lg:w-[400px] lg:h-auto',
                 'lg:rounded-2xl',
                 // Shared glass styling
-                'bg-white/80 lg:bg-white/70 backdrop-blur-2xl',
-                'border border-white/40 lg:border-white/30',
+                'bg-white/90 lg:bg-white/80 backdrop-blur-2xl',
+                'border border-white/50 lg:border-white/30',
                 'shadow-[0_-8px_40px_rgba(15,61,49,0.08)] lg:shadow-[0_20px_60px_-12px_rgba(15,61,49,0.25),0_0_0_1px_rgba(15,61,49,0.04)]',
                 'flex flex-col overflow-hidden',
               ].join(' ')}
