@@ -228,49 +228,57 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const containerHeight = map.getContainer().clientHeight;
             
-            // Mobile: Use light padding + offset to shift the camera center upward.
-            // The bottom sheet covers the lower 50vh, so we shift the center up by ~25% 
-            // of the container to place the country in the visible strip above the sheet.
-            // This avoids massive bottom padding which forces Mapbox to zoom out.
-            const padding = isMobile 
-              ? { top: 20, bottom: 20, left: 20, right: 20 }
-              : { top: 60, bottom: 60, left: 60, right: 460 };
-            
-            const offset: [number, number] = isMobile 
-              ? [0, -(containerHeight * 0.25)] 
-              : [0, 0];
-
             const bounds: mapboxgl.LngLatBoundsLike = [[minX, minY], [maxX, maxY]];
             const pitch = isMobile ? 0 : 45;
 
-            if (isZoomedInRef.current) {
-              // Already zoomed into a country – use easeTo for a smooth glide
-              const camera = map.cameraForBounds(bounds, {
-                padding,
-                offset,
-                maxZoom: isMobile ? 6.5 : 5.5,
-                pitch
-              });
+            // Desktop uses standard padding. Mobile uses light padding to get base zoom,
+            // then we mathematically shrink the zoom to fit the 50vh visible area.
+            const basePadding = isMobile 
+              ? { top: 20, bottom: 20, left: 20, right: 20 }
+              : { top: 60, bottom: 60, left: 60, right: 460 };
 
-              if (camera) {
+            const camera = map.cameraForBounds(bounds, { padding: basePadding });
+            
+            if (camera && camera.zoom !== undefined) {
+              if (isMobile) {
+                // The visible map area is the container height minus the 50vh bottom sheet
+                const bottomSheetHeight = window.innerHeight * 0.5;
+                const visibleHeight = Math.max(containerHeight - bottomSheetHeight, 100);
+                
+                // Adjust zoom mathematically so bounds fit in the smaller visible height
+                const ratio = visibleHeight / containerHeight;
+                camera.zoom = camera.zoom + Math.log2(ratio);
+              }
+              
+              // Cap zoom to prevent getting too close to tiny countries
+              camera.zoom = Math.min(camera.zoom, isMobile ? 5.5 : 5.5);
+
+              // Offset center UP by 25% to place the geographic center exactly in the visible strip
+              const offset: [number, number] = isMobile 
+                ? [0, -(containerHeight * 0.25)] 
+                : [0, 0];
+
+              if (isZoomedInRef.current) {
                 map.easeTo({
-                  ...camera,
+                  center: camera.center,
+                  zoom: camera.zoom,
+                  pitch,
+                  offset,
                   duration: 1200,
                   easing: smoothEasing,
                   essential: true
                 });
+              } else {
+                map.flyTo({
+                  center: camera.center,
+                  zoom: camera.zoom,
+                  pitch,
+                  offset,
+                  duration: 2200,
+                  easing: smoothEasing,
+                  essential: true
+                });
               }
-            } else {
-              // First selection from continent view – cinematic entry
-              map.fitBounds(bounds, {
-                padding,
-                offset,
-                duration: 2200,
-                easing: smoothEasing,
-                maxZoom: isMobile ? 6.5 : 5.5,
-                pitch,
-                essential: true
-              });
             }
 
             isZoomedInRef.current = true;
@@ -280,14 +288,10 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             const offset: [number, number] = isMobile 
               ? [0, -(containerHeight * 0.25)] 
               : [0, 0];
-            const padding = isMobile
-              ? { top: 20, bottom: 20, left: 20, right: 20 }
-              : { top: 0, bottom: 0, left: 0, right: 460 };
 
             map.flyTo({
               center: e.lngLat,
-              zoom: 4.5,
-              padding,
+              zoom: isMobile ? 3.5 : 4.5,
               offset,
               essential: true,
               pitch: isMobile ? 0 : 45,

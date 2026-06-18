@@ -818,14 +818,14 @@ export default function InteractiveMap() {
         </div>
 
         {/* Dossier — Bottom Sheet on Mobile, Floating Overlay on Desktop */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {selectedCountry && (
             <motion.div
               key={selectedCountry.name}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 30, scale: 0.97 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: '100%' }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300, mass: 0.8 }}
               className={[
                 // Mobile: bottom sheet — fills width, sits at bottom
                 'absolute bottom-0 left-0 right-0 h-[50vh] z-30',
