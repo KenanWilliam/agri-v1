@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { MapProvider } from './map-context';
 import { MapControls } from './map-controls';
-import { MapSearch } from './map-search';
 import { MapMarker } from './map-marker';
 import { MapPopup } from './map-popup';
 import { MapHighlightedCountries } from './map-highlighted-countries';
@@ -75,8 +74,6 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
           cityCoordinates={cityCoordinates}
         />
         <MapControls />
-        
-        <MapSearch onLocationSelect={setSelectedLocation} />
         
         <MapHighlightedCountries 
           onCountryClick={onCountryClick}

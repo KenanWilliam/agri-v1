@@ -25,6 +25,7 @@ import africaGeoJson from '@/africa.json'
 
 import { InteractiveMapbox } from './map/interactive-mapbox'
 import { MaplibreInteractiveMapbox } from './maplibre-interactive-map'
+import { MapSearch } from './map/map-search'
 
 type Region = 'East Africa' | 'West Africa' | 'Central Africa' | 'Southern Africa'
 
@@ -754,10 +755,36 @@ export default function InteractiveMap() {
   return (
     <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] overflow-hidden">
       {/* Main Interactive Workspace */}
-      <div className="relative flex-1 flex w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
+      <div className="relative flex-1 flex flex-col lg:block w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
         
+        {/* Mobile Header / Desktop Overlay */}
+        <AnimatePresence>
+          {!selectedCountry && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="w-full lg:absolute lg:top-20 lg:left-12 z-20 lg:max-w-sm shrink-0 bg-white/60 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-b border-mist lg:border-none p-6 lg:p-0"
+            >
+              <div className="space-y-6">
+                <div className="lg:bg-white/75 lg:p-6 lg:-ml-4 lg:rounded-2xl lg:backdrop-blur-md lg:shadow-xl lg:border lg:border-white/60 space-y-5 lg:max-w-sm">
+                  <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold text-center lg:text-left">Our Footprint<br className="hidden lg:block" />Across the Continent</h2>
+                  <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed hidden sm:block text-center lg:text-left">
+                    Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
+                  </p>
+                  
+                  {/* Premium Search Box */}
+                  <div className="w-full pointer-events-auto">
+                    <MapSearch onCountrySelect={handleCountryClickWrapper} countries={countrySeeds} />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Map Canvas - scales with flex-1 */}
-        <div className="flex-1 relative h-full transition-all duration-500 ease-in-out">
+        <div className="flex-1 relative h-full w-full transition-all duration-500 ease-in-out">
           <div className="absolute inset-0 z-0">
             <InteractiveMapbox 
               onMapReady={(m) => mapboxMapRef.current = m}
@@ -771,31 +798,6 @@ export default function InteractiveMap() {
               cityCoordinates={cityCoordinates}
             />
           </div>
-
-          {/* Heading Text Overlay */}
-          <AnimatePresence>
-            {!selectedCountry && (
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                className="absolute top-16 left-8 lg:top-20 lg:left-12 z-20 max-w-sm pointer-events-none"
-              >
-                <div className="space-y-4 pointer-events-auto">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/85 bg-white/80 backdrop-blur-md text-deep-forest text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm">
-                    <Globe size={12} className="text-primary-green animate-spin-slow" />
-                    Africa portfolio map
-                  </div>
-                  <div className="bg-white/75 p-6 -ml-4 rounded-2xl backdrop-blur-md shadow-xl border border-white/60 space-y-3 max-w-sm">
-                    <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold">Our Footprint<br/>Across the Continent</h2>
-                    <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed">
-                      Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           <div
             ref={tooltipRef}
@@ -815,17 +817,17 @@ export default function InteractiveMap() {
           </div>
         </div>
 
-        {/* Sidebar Dossier Slide-Out */}
+        {/* Dossier Slide-Out (Bottom Sheet on Mobile, Sidebar on Desktop) */}
         <AnimatePresence>
           {selectedCountry && (
             <motion.div
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 420, opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="relative bg-white shadow-[-10px_0_40px_rgba(15,61,49,0.1)] border-l border-mist flex flex-col z-30 overflow-hidden flex-shrink-0"
+              initial={{ y: "100%", x: 0, opacity: 0 }}
+              animate={{ y: 0, x: 0, opacity: 1 }}
+              exit={{ y: "100%", x: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="absolute bottom-0 left-0 right-0 h-[50vh] lg:relative lg:h-full lg:w-[420px] lg:bottom-auto lg:left-auto lg:right-auto bg-white shadow-[0_-10px_40px_rgba(15,61,49,0.1)] lg:shadow-[-10px_0_40px_rgba(15,61,49,0.1)] border-t lg:border-t-0 lg:border-l border-mist flex flex-col z-30 overflow-hidden rounded-t-3xl lg:rounded-none flex-shrink-0"
             >
-              <div className="w-[420px] h-full flex flex-col">
+              <div className="w-full h-full flex flex-col">
                 {/* Dossier Header */}
                 <div className="flex-shrink-0 flex items-start justify-between gap-4 p-6 border-b border-mist/60 bg-white/80 backdrop-blur-md relative z-10">
                   <div className="space-y-3">

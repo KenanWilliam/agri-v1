@@ -218,12 +218,19 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
 
           if (minX !== Infinity) {
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+            
+            // On mobile, the map container height changes immediately after clicking (because the header unmounts).
+            // Using massive bottom padding on a small container causes Mapbox math to invert and zoom to 0.
+            // Instead, we use standard padding and mathematically offset the camera center upwards by 25% of the screen!
             const padding = isMobile 
-              ? { top: 20, bottom: 20, left: 20, right: 20 }
+              ? { top: 40, bottom: 40, left: 40, right: 40 }
               : { top: 80, bottom: 80, left: 80, right: 460 };
+
+            const offset = isMobile ? [0, -window.innerHeight * 0.25] : [0, 0];
 
             map.fitBounds([[minX, minY], [maxX, maxY]] as mapboxgl.LngLatBoundsLike, {
               padding,
+              offset: offset as [number, number],
               duration: 2200,
               easing: smoothEasing,
               maxZoom: 5.5,
@@ -233,13 +240,16 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           } else {
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const padding = isMobile
-              ? { top: 0, bottom: 0, left: 0, right: 0 }
+              ? { top: 40, bottom: 40, left: 40, right: 40 }
               : { top: 0, bottom: 0, left: 0, right: 380 };
+            
+            const offset = isMobile ? [0, -window.innerHeight * 0.25] : [0, 0];
 
             map.flyTo({
               center: e.lngLat,
               zoom: 4.5,
               padding,
+              offset: offset as [number, number],
               essential: true,
               pitch: 45, // Add dramatic pitch on select
               duration: 2200,
