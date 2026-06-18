@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMap } from './map-context';
 import africaGeoJson from '@/africa.json';
 
@@ -12,30 +12,27 @@ export interface MapHighlightedCountriesProps {
 }
 
 const regionColors: Record<string, string> = {
-  'KE': 'rgba(15, 61, 49, 0.85)', // East Africa: Deep Forest (#0f3d1e)
-  'UG': 'rgba(15, 61, 49, 0.85)', 
-  'TZ': 'rgba(15, 61, 49, 0.85)',
-  'RW': 'rgba(15, 61, 49, 0.85)',
-  'ET': 'rgba(15, 61, 49, 0.85)',
-  'SS': 'rgba(15, 61, 49, 0.85)',
-  'BI': 'rgba(15, 61, 49, 0.85)',
-  
-  'MW': 'rgba(58, 180, 74, 0.85)', // Southern Africa: Primary Green (#3ab44a)
-  'ZM': 'rgba(58, 180, 74, 0.85)',
-  'ZW': 'rgba(58, 180, 74, 0.85)',
-  'MZ': 'rgba(58, 180, 74, 0.85)',
-  'ZA': 'rgba(58, 180, 74, 0.85)',
-  
-  'SN': 'rgba(200, 164, 74, 0.85)', // West Africa: Accent Gold (#c8a44a)
-  'BF': 'rgba(200, 164, 74, 0.85)',
-  'ML': 'rgba(200, 164, 74, 0.85)',
-  'GH': 'rgba(200, 164, 74, 0.85)',
-  'NG': 'rgba(200, 164, 74, 0.85)',
-  'LR': 'rgba(200, 164, 74, 0.85)',
-  'SL': 'rgba(200, 164, 74, 0.85)',
-  
-  'CM': 'rgba(36, 132, 198, 0.85)', // Central Africa: Primary Blue (#2484c6)
-  'CD': 'rgba(36, 132, 198, 0.85)'
+  'KE': '#0f3d1e', // East Africa: Deep Forest
+  'UG': '#0f3d1e', 
+  'TZ': '#0f3d1e',
+  'RW': '#0f3d1e',
+  'ET': '#0f3d1e',
+  'SS': '#0f3d1e',
+  'BI': '#0f3d1e',
+  'MW': '#c8a44a', // Southern Africa: Accent Gold (stands out against green terrain)
+  'ZM': '#c8a44a',
+  'ZW': '#c8a44a',
+  'MZ': '#c8a44a',
+  'ZA': '#c8a44a',
+  'SN': '#3ab44a', // West Africa: Primary Green (stands out beautifully against desert terrain)
+  'BF': '#3ab44a',
+  'ML': '#3ab44a',
+  'GH': '#3ab44a',
+  'NG': '#3ab44a',
+  'LR': '#3ab44a',
+  'SL': '#3ab44a',
+  'CM': '#2484c6', // Central Africa: Primary Blue
+  'CD': '#2484c6'
 };
 
 export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = ({
@@ -45,90 +42,53 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
   selectedCountryName
 }) => {
   const { map } = useMap();
-  const [localHoveredName, setLocalHoveredName] = useState<string | null>(null);
 
-  // Sync props to refs to avoid rebuilding mouse handlers and tearing down Mapbox events
   const onCountryClickRef = useRef(onCountryClick);
   const setHoveredNameRef = useRef(setHoveredName);
   const setTooltipPosRef = useRef(setTooltipPos);
-  const selectedCountryNameRef = useRef(selectedCountryName);
-  const localHoveredNameRef = useRef(localHoveredName);
+  
+  const hoveredCountryRef = useRef<string | null>(null);
+  const selectedCountryRef = useRef<string | null>(null);
 
   useEffect(() => {
     onCountryClickRef.current = onCountryClick;
     setHoveredNameRef.current = setHoveredName;
     setTooltipPosRef.current = setTooltipPos;
-    selectedCountryNameRef.current = selectedCountryName;
-    localHoveredNameRef.current = localHoveredName;
   });
 
-  // Helper to get the correct color expression based on selection & hover state
-  const getPaintExpression = (selected: string | undefined, hovered: string | null) => {
-    const matchExpr: any[] = ['match', ['get', 'iso_a2']];
-    
-    for (const [code, color] of Object.entries(regionColors)) {
-      const baseColor = selected ? 'rgba(28, 43, 34, 0.08)' : color;
-      
-      matchExpr.push(
-        code,
-        ['case',
-          ['==', ['get', 'name'], selected || ''],
-          color,
-          ['==', ['get', 'name'], hovered || ''],
-          color.replace('0.85', '0.98'),
-          baseColor
-        ]
+  // Handle selected state efficiently
+  useEffect(() => {
+    if (!map || !map.isStyleLoaded()) return;
+
+    if (selectedCountryRef.current && selectedCountryRef.current !== selectedCountryName) {
+      map.setFeatureState(
+        { source: 'africa-countries', id: selectedCountryRef.current },
+        { selected: false }
       );
     }
-    
-    matchExpr.push('rgba(0, 0, 0, 0)');
-    return matchExpr;
-  };
 
-  // Helper expressions for outline styling (adds green for hovered, gold for selected)
-  const getLineColor = (selected: string | undefined, hovered: string | null) => {
-    if (selected || hovered) {
-      return [
-        'case',
-        ['==', ['get', 'name'], selected || ''],
-        '#c8a44a', // Brand Gold border for active country
-        ['==', ['get', 'name'], hovered || ''],
-        '#3ab44a', // Brand Green border for hovered country
-        '#ffffff' // White border for other countries
-      ];
+    if (selectedCountryName) {
+      map.setFeatureState(
+        { source: 'africa-countries', id: selectedCountryName },
+        { selected: true }
+      );
+      selectedCountryRef.current = selectedCountryName;
+    } else {
+      selectedCountryRef.current = null;
     }
-    return '#ffffff';
-  };
 
-  const getLineWidth = (selected: string | undefined, hovered: string | null) => {
-    if (selected || hovered) {
-      return [
+    if (map.getLayer('africa-countries-fill')) {
+      map.setPaintProperty('africa-countries-fill', 'fill-opacity', [
         'case',
-        ['==', ['get', 'name'], selected || ''],
-        2.5, // Thicker border for active country
-        ['==', ['get', 'name'], hovered || ''],
-        1.5, // Subtle highlight for hovered country
-        1.0
-      ];
+        ['boolean', ['feature-state', 'selected'], false],
+        0.55, // Rich glass for selected
+        ['boolean', ['feature-state', 'hover'], false],
+        0.45, // Hover glass
+        0.35 // Base translucent glass remains consistent so they don't disappear
+      ]);
     }
-    return 1.0;
-  };
+  }, [map, selectedCountryName]);
 
-  const getLineOpacity = (selected: string | undefined, hovered: string | null) => {
-    if (selected || hovered) {
-      return [
-        'case',
-        ['==', ['get', 'name'], selected || ''],
-        1.0, // Fully opaque for active country
-        ['==', ['get', 'name'], hovered || ''],
-        1.0, // Fully opaque for hovered country
-        0.3 // Dimmed for other countries
-      ];
-    }
-    return 0.6;
-  };
-
-  // Effect 1: Initialize layers & setup event listeners once when map style loaded.
   useEffect(() => {
     if (!map) return;
 
@@ -136,33 +96,38 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       if (!map.getSource('africa-countries')) {
         map.addSource('africa-countries', {
           type: 'geojson',
-          data: africaGeoJson as any
+          data: africaGeoJson as any,
+          promoteId: 'name' // Use 'name' for integer-free feature states
         });
       }
 
+      const getBaseColorExpr = () => {
+        const matchExpr: any[] = ['match', ['get', 'iso_a2']];
+        for (const [code, color] of Object.entries(regionColors)) {
+          matchExpr.push(code, color);
+        }
+        matchExpr.push('rgba(255, 255, 255, 0)');
+        return matchExpr;
+      };
+
+      // We use a flat fill layer that drapes over the 3D terrain so topography is not obscured
       if (!map.getLayer('africa-countries-fill')) {
         map.addLayer({
           id: 'africa-countries-fill',
           type: 'fill',
           source: 'africa-countries',
           paint: {
-            'fill-color': getPaintExpression(selectedCountryNameRef.current, localHoveredNameRef.current) as any,
-            'fill-opacity': 0.8
+            'fill-color': getBaseColorExpr(), // Always use the beautiful region colors
+            'fill-opacity': [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              0.55, // Rich glass for selected
+              ['boolean', ['feature-state', 'hover'], false],
+              0.45, // Hover glass
+              0.35 // Rich translucent glass base to let topography show through beautifully
+            ]
           }
         }, 'waterway-label'); 
-      }
-
-      if (!map.getLayer('africa-countries-line')) {
-        map.addLayer({
-          id: 'africa-countries-line',
-          type: 'line',
-          source: 'africa-countries',
-          paint: {
-            'line-color': getLineColor(selectedCountryNameRef.current, localHoveredNameRef.current) as any,
-            'line-width': getLineWidth(selectedCountryNameRef.current, localHoveredNameRef.current) as any,
-            'line-opacity': getLineOpacity(selectedCountryNameRef.current, localHoveredNameRef.current) as any
-          }
-        });
       }
     };
 
@@ -172,23 +137,31 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       map.once('style.load', addLayers);
     }
     
-    map.on('style.load', addLayers);
-
-    // Event handlers using Refs for callbacks
     const handleMouseMove = (e: any) => {
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
         const isoA2 = feature.properties?.iso_a2;
-        const name = feature.properties?.name || null;
+        const name = feature.properties?.name;
         
         if (regionColors[isoA2]) {
           map.getCanvas().style.cursor = 'pointer';
           
-          // CRITICAL OPTIMIZATION: Only state transition when country name changes
-          if (name !== localHoveredNameRef.current) {
-            setLocalHoveredName(name);
+          if (name !== hoveredCountryRef.current) {
+            if (hoveredCountryRef.current) {
+              map.setFeatureState(
+                { source: 'africa-countries', id: hoveredCountryRef.current },
+                { hover: false }
+              );
+            }
+            if (name) {
+              map.setFeatureState(
+                { source: 'africa-countries', id: name },
+                { hover: true }
+              );
+            }
+            hoveredCountryRef.current = name || null;
             if (setHoveredNameRef.current) {
-              setHoveredNameRef.current(name);
+              setHoveredNameRef.current(name || null);
             }
           }
           
@@ -196,26 +169,28 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             setTooltipPosRef.current({ x: e.originalEvent.clientX + 15, y: e.originalEvent.clientY + 15 });
           }
         } else {
-          map.getCanvas().style.cursor = '';
-          if (localHoveredNameRef.current !== null) {
-            setLocalHoveredName(null);
-            if (setHoveredNameRef.current) {
-              setHoveredNameRef.current(null);
-            }
-          }
+          clearHover();
         }
+      } else {
+        clearHover();
       }
     };
 
-    const handleMouseLeave = () => {
+    const clearHover = () => {
       map.getCanvas().style.cursor = '';
-      if (localHoveredNameRef.current !== null) {
-        setLocalHoveredName(null);
+      if (hoveredCountryRef.current) {
+        map.setFeatureState(
+          { source: 'africa-countries', id: hoveredCountryRef.current },
+          { hover: false }
+        );
+        hoveredCountryRef.current = null;
         if (setHoveredNameRef.current) {
           setHoveredNameRef.current(null);
         }
       }
     };
+
+    const handleMouseLeave = () => clearHover();
 
     const handleClick = (e: any) => {
       if (e.features && e.features.length > 0) {
@@ -252,6 +227,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
               duration: 2200,
               easing: smoothEasing,
               maxZoom: 5.5,
+              pitch: 45, // Add dramatic pitch on select
               essential: true
             });
           } else {
@@ -265,6 +241,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
               zoom: 4.5,
               padding,
               essential: true,
+              pitch: 45, // Add dramatic pitch on select
               duration: 2200,
               easing: smoothEasing
             });
@@ -282,43 +259,11 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
     map.on('click', 'africa-countries-fill', handleClick);
 
     return () => {
-      map.off('style.load', addLayers);
       map.off('mousemove', 'africa-countries-fill', handleMouseMove);
       map.off('mouseleave', 'africa-countries-fill', handleMouseLeave);
       map.off('click', 'africa-countries-fill', handleClick);
     };
   }, [map]);
-
-  // Effect 2: Update layer paint property styling when hovered or selected name changes.
-  // This does NOT tear down/rebind any mouse listeners. It only updates colors instantly!
-  useEffect(() => {
-    if (!map) return;
-    
-    if (map.getLayer('africa-countries-fill')) {
-      map.setPaintProperty(
-        'africa-countries-fill', 
-        'fill-color', 
-        getPaintExpression(selectedCountryName, localHoveredName) as any
-      );
-    }
-    if (map.getLayer('africa-countries-line')) {
-      map.setPaintProperty(
-        'africa-countries-line', 
-        'line-color', 
-        getLineColor(selectedCountryName, localHoveredName) as any
-      );
-      map.setPaintProperty(
-        'africa-countries-line', 
-        'line-width', 
-        getLineWidth(selectedCountryName, localHoveredName) as any
-      );
-      map.setPaintProperty(
-        'africa-countries-line', 
-        'line-opacity', 
-        getLineOpacity(selectedCountryName, localHoveredName) as any
-      );
-    }
-  }, [map, selectedCountryName, localHoveredName]);
 
   return null;
 };

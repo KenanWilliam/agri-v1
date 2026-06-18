@@ -26,9 +26,10 @@ export const useMap = () => {
 interface MapProviderProps {
   children: React.ReactNode;
   initialOptions?: Omit<mapboxgl.MapboxOptions, 'container'>;
+  onMapReady?: (map: mapboxgl.Map) => void;
 }
 
-export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptions }) => {
+export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptions, onMapReady }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,9 +43,10 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     }
 
     const defaultOptions: Omit<mapboxgl.MapboxOptions, 'container'> = {
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [20, 0], // Center approximately on Africa
-      zoom: 2.8,       // Zoom to view the continent
+      style: 'mapbox://styles/mapbox/outdoors-v12',
+      bounds: [[-20, -35], [55, 38]], // Perfect bounding box of Africa
+      fitBoundsOptions: { padding: 60 }, // Ensure it doesn't clip the edges
+      pitch: 0,        // Completely flat top-down view until zoomed in
       projection: { name: 'globe' }, // Ensure globe projection is used
       scrollZoom: false, // Allow page scrolling over the map
     };
@@ -56,19 +58,26 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     });
 
     mapInstance.on('style.load', () => {
-      // Enable atmosphere styling (fog) for a realistic, clean Earth globe effect
+      // Add 3D Terrain for a rich geographical feel
+      mapInstance.addSource('mapbox-dem', {
+        'type': 'raster-dem',
+        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        'tileSize': 512,
+        'maxzoom': 14
+      });
+      mapInstance.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+      // Ensure the background behind the globe matches our clean UI without any atmospheric glow or halo
       mapInstance.setFog({
-        'range': [0.5, 10],
-        'color': '#ffffff', // atmosphere color
-        'high-color': '#2484c6', // atmosphere outer glow (adds a blue Earth aura!)
-        'space-color': '#f5efe0', // space background (ivory color instead of starry black space!)
-        'horizon-blend': 0.02,
-        'star-intensity': 0.0 // get rid of starry background completely!
+        color: 'transparent',
+        'high-color': 'transparent',
+        'space-color': 'transparent',
+        'star-intensity': 0
       });
 
-      // Style waterbodies to a beautiful soft steel/marine blue
+      // Style waterbodies to a deeper, richer marine blue to contrast the terrain
       if (mapInstance.getLayer('water')) {
-        mapInstance.setPaintProperty('water', 'fill-color', '#cbe3f7');
+        mapInstance.setPaintProperty('water', 'fill-color', '#a1c6e1');
       }
 
       // Hide roads, POIs, and transit lines to declutter and look like a premium thematic atlas
@@ -104,6 +113,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     mapInstance.on('load', () => {
       setMap(mapInstance);
       setIsLoaded(true);
+      if (onMapReady) onMapReady(mapInstance);
     });
 
     return () => {
@@ -111,7 +121,8 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
       setMap(null);
       setIsLoaded(false);
     };
-  }, [initialOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <MapContext.Provider value={{ map, mapContainer, isLoaded }}>

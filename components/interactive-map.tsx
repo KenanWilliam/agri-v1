@@ -24,6 +24,7 @@ import Link from 'next/link'
 import africaGeoJson from '@/africa.json'
 
 import { InteractiveMapbox } from './map/interactive-mapbox'
+import { MaplibreInteractiveMapbox } from './maplibre-interactive-map'
 
 type Region = 'East Africa' | 'West Africa' | 'Central Africa' | 'Southern Africa'
 
@@ -710,6 +711,8 @@ export default function InteractiveMap() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
 
+  const mapboxMapRef = useRef<any>(null)
+
   const updateTooltipPos = useCallback((pos: { x: number; y: number }) => {
     if (tooltipRef.current) {
       tooltipRef.current.style.left = `${pos.x}px`
@@ -726,6 +729,17 @@ export default function InteractiveMap() {
     setSelectedCountry(null)
     setSelectedProjectIndex(null)
     setHoveredName(null)
+    if (mapboxMapRef.current) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      mapboxMapRef.current.fitBounds([[-20, -35], [55, 38]], {
+        padding: isMobile 
+          ? { top: 20, bottom: 20, left: 20, right: 20 }
+          : { top: 60, bottom: 60, left: 60, right: 60 },
+        pitch: 0,
+        duration: 1800,
+        essential: true
+      });
+    }
   }
 
   const handleCountryClickWrapper = (countryName: string) => {
@@ -739,31 +753,14 @@ export default function InteractiveMap() {
 
   return (
     <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <filter id="noiseFilterMap">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseFilterMap)" />
-        </svg>
-      </div>
-
       {/* Main Interactive Workspace */}
       <div className="relative flex-1 flex w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
         
         {/* Map Canvas - scales with flex-1 */}
         <div className="flex-1 relative h-full transition-all duration-500 ease-in-out">
-          <div className="absolute inset-0 pointer-events-none opacity-[0.02] z-0">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <filter id="noiseFilterMapCore">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-              </filter>
-              <rect width="100%" height="100%" filter="url(#noiseFilterMapCore)" />
-            </svg>
-          </div>
-
           <div className="absolute inset-0 z-0">
             <InteractiveMapbox 
+              onMapReady={(m) => mapboxMapRef.current = m}
               onCountryClick={handleCountryClickWrapper}
               setHoveredName={setHoveredName}
               setTooltipPos={updateTooltipPos}
@@ -807,18 +804,14 @@ export default function InteractiveMap() {
               left: 0, 
               top: 0, 
               pointerEvents: 'none',
-              opacity: hoveredName && !selectedCountry ? 1 : 0,
-              transform: hoveredName && !selectedCountry ? 'scale(1) translate(0px, 0px)' : 'scale(0.95) translate(0px, -5px)',
-              transition: 'opacity 0.15s ease-out, transform 0.15s ease-out',
+              opacity: hoveredName && hoveredName !== selectedCountry?.name ? 1 : 0,
+              transform: hoveredName && hoveredName !== selectedCountry?.name ? 'scale(1) translate(-50%, 24px)' : 'scale(0.95) translate(-50%, 14px)',
+              transition: 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
               zIndex: 50
             }}
-            className="bg-deep-forest/95 backdrop-blur-md text-white px-4 py-2.5 rounded-xl shadow-xl border border-white/10 flex items-center gap-2.5 font-sans text-xs font-semibold"
+            className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full backdrop-blur-md border border-white/10 bg-deep-forest/40 text-white shadow-md flex items-center justify-center"
           >
-            <MapPin size={14} className="text-accent-gold animate-pulse" />
-            <span className="tracking-wide">{hoveredName || ''}</span>
-            <span className="text-[9px] font-mono font-bold uppercase tracking-widest bg-accent-gold/25 text-accent-gold px-1.5 py-0.5 rounded ml-1">
-              Explore
-            </span>
+            {hoveredName || ''}
           </div>
         </div>
 

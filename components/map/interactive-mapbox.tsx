@@ -42,6 +42,7 @@ interface InteractiveMapboxProps {
   selectedProjectIndex?: number | null;
   setSelectedProjectIndex?: (index: number | null) => void;
   cityCoordinates?: Record<string, [number, number]>;
+  onMapReady?: (map: any) => void;
 }
 
 export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
@@ -52,7 +53,8 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
   activeProjects = [],
   selectedProjectIndex = null,
   setSelectedProjectIndex,
-  cityCoordinates = {}
+  cityCoordinates = {},
+  onMapReady
 }) => {
   const [selectedLocation, setSelectedLocation] = useState<SelectedLocation | null>(null);
 
@@ -64,7 +66,7 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
 
   return (
     <div className="w-full h-full relative">
-      <MapProvider>
+      <MapProvider onMapReady={onMapReady}>
         <MapAutoCenter selectedCountryName={selectedCountryName} />
         <MapActiveProjectFlyTo 
           selectedCountryName={selectedCountryName}
@@ -94,17 +96,24 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
           return (
             <MapMarker key={index} lng={coords[0]} lat={coords[1]}>
               <div 
-                className="relative group cursor-pointer"
+                className="relative group cursor-pointer flex flex-col items-center"
                 onClick={(e) => {
                   e.stopPropagation();
                   if (setSelectedProjectIndex) setSelectedProjectIndex(index);
                 }}
               >
-                {/* Custom Dot Marker */}
-                <div className={`w-2 h-2 rounded-full border-1 transition-all duration-200 shadow-md ${isActive ? 'bg-accent-gold border-white scale-125' : 'bg-deep-forest border-white/90 hover:scale-110'}`} />
+                {/* Custom Elegant Ring Marker */}
+                <div className={`relative flex items-center justify-center w-6 h-6 transition-transform duration-500 ease-out ${isActive ? 'scale-110' : 'hover:scale-110'}`}>
+                  {/* Outer pulse ring for active state */}
+                  {isActive && <div className="absolute inset-0 rounded-full border border-accent-gold animate-ping opacity-20" />}
+                  {/* Outer glass ring */}
+                  <div className={`absolute inset-0 rounded-full border backdrop-blur-sm transition-colors duration-300 ${isActive ? 'border-accent-gold/40 bg-accent-gold/10' : 'border-white/30 bg-white/10 group-hover:border-white/60'}`} />
+                  {/* Inner solid core */}
+                  <div className={`w-2 h-2 rounded-full shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-colors duration-300 ${isActive ? 'bg-accent-gold' : 'bg-white group-hover:bg-accent-gold'}`} />
+                </div>
                 
-                {/* Label */}
-                <div className={`absolute top-[-24px] left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold px-2 py-0.5 rounded shadow-sm transition-all duration-300 ${isActive ? 'bg-white text-accent-gold opacity-100' : 'bg-white/80 text-deep-forest opacity-0 group-hover:opacity-100'}`}>
+                {/* Sophisticated Label */}
+                <div className={`absolute top-full mt-2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full backdrop-blur-md border transition-all duration-400 ease-out ${isActive ? 'bg-white/90 border-white text-deep-forest shadow-lg opacity-100 transform translate-y-0' : 'bg-deep-forest/40 border-white/10 text-white shadow-md opacity-0 transform -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                   {cityKey}
                 </div>
               </div>

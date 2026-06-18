@@ -21,12 +21,14 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       
       const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
-      map.flyTo({
-        center: [20, 2],
-        zoom: 2.8,
-        padding: { top: 0, bottom: 0, left: 0, right: 0 },
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      map.fitBounds([[-20, -35], [55, 38]], {
+        padding: isMobile 
+          ? { top: 20, bottom: 20, left: 20, right: 20 }
+          : { top: 60, bottom: 60, left: 60, right: 60 },
+        pitch: 0,
         essential: true,
-        duration: immediate ? 1100 : 2200, // snappier duration (1.1s) for immediate refocus
+        duration: immediate ? 1100 : 2200,
         easing: smoothEasing
       });
     };
