@@ -49,6 +49,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
   
   const hoveredCountryRef = useRef<string | null>(null);
   const selectedCountryRef = useRef<string | null>(null);
+  const isZoomedInRef = useRef<boolean>(false);
 
   useEffect(() => {
     onCountryClickRef.current = onCountryClick;
@@ -88,6 +89,13 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       ]);
     }
   }, [map, selectedCountryName]);
+
+  // Reset zoom tracking when selection is cleared (user closed the panel)
+  useEffect(() => {
+    if (!selectedCountryName) {
+      isZoomedInRef.current = false;
+    }
+  }, [selectedCountryName]);
 
   useEffect(() => {
     if (!map) return;
@@ -228,15 +236,40 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
 
             const offset = isMobile ? [0, -window.innerHeight * 0.25] : [0, 0];
 
-            map.fitBounds([[minX, minY], [maxX, maxY]] as mapboxgl.LngLatBoundsLike, {
-              padding,
-              offset: offset as [number, number],
-              duration: 2200,
-              easing: smoothEasing,
-              maxZoom: 5.5,
-              pitch: 45, // Add dramatic pitch on select
-              essential: true
-            });
+            const bounds: mapboxgl.LngLatBoundsLike = [[minX, minY], [maxX, maxY]];
+            const pitch = isMobile ? 0 : 45;
+
+            if (isZoomedInRef.current) {
+              // Already zoomed into a country – use easeTo for a smooth glide without zoom-out arc
+              const camera = map.cameraForBounds(bounds, {
+                padding,
+                offset: offset as [number, number],
+                maxZoom: 5.5,
+                pitch
+              });
+
+              if (camera) {
+                map.easeTo({
+                  ...camera,
+                  duration: 1200,
+                  easing: smoothEasing,
+                  essential: true
+                });
+              }
+            } else {
+              // First selection from continent view – use fitBounds for a cinematic entry
+              map.fitBounds(bounds, {
+                padding,
+                offset: offset as [number, number],
+                duration: 2200,
+                easing: smoothEasing,
+                maxZoom: 5.5,
+                pitch,
+                essential: true
+              });
+            }
+
+            isZoomedInRef.current = true;
           } else {
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const padding = isMobile

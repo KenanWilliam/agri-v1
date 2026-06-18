@@ -755,7 +755,7 @@ export default function InteractiveMap() {
   return (
     <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[104px] overflow-hidden">
       {/* Main Interactive Workspace */}
-      <div className="relative flex-1 flex flex-col lg:block w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
+      <div className="relative flex-1 flex flex-col w-full max-w-[1800px] mx-auto h-full overflow-hidden" ref={containerRef}>
         
         {/* Mobile Header / Desktop Overlay */}
         <AnimatePresence>
@@ -817,192 +817,225 @@ export default function InteractiveMap() {
           </div>
         </div>
 
-        {/* Dossier Slide-Out (Bottom Sheet on Mobile, Sidebar on Desktop) */}
-        <AnimatePresence>
+        {/* Dossier — Bottom Sheet on Mobile, Floating Overlay on Desktop */}
+        <AnimatePresence mode="wait">
           {selectedCountry && (
             <motion.div
-              initial={{ y: "100%", x: 0, opacity: 0 }}
-              animate={{ y: 0, x: 0, opacity: 1 }}
-              exit={{ y: "100%", x: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="absolute bottom-0 left-0 right-0 h-[50vh] lg:relative lg:h-full lg:w-[420px] lg:bottom-auto lg:left-auto lg:right-auto bg-white shadow-[0_-10px_40px_rgba(15,61,49,0.1)] lg:shadow-[-10px_0_40px_rgba(15,61,49,0.1)] border-t lg:border-t-0 lg:border-l border-mist flex flex-col z-30 overflow-hidden rounded-t-3xl lg:rounded-none flex-shrink-0"
+              key={selectedCountry.name}
+              initial={{ opacity: 0, y: 40, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.97 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className={[
+                // Mobile: bottom sheet
+                'absolute bottom-0 left-0 right-0 h-[50vh] z-30',
+                'rounded-t-3xl',
+                // Desktop: floating overlay card anchored right
+                'lg:bottom-auto lg:left-auto lg:right-8 lg:top-8',
+                'lg:w-[420px] lg:max-h-[calc(100%-64px)] lg:h-auto',
+                'lg:rounded-2xl',
+                // Shared glass styling
+                'bg-white/80 lg:bg-white/70 backdrop-blur-2xl',
+                'border border-white/40 lg:border-white/30',
+                'shadow-[0_-8px_40px_rgba(15,61,49,0.08)] lg:shadow-[0_20px_60px_-12px_rgba(15,61,49,0.25),0_0_0_1px_rgba(15,61,49,0.04)]',
+                'flex flex-col overflow-hidden',
+              ].join(' ')}
             >
-              <div className="w-full h-full flex flex-col">
-                {/* Dossier Header */}
-                <div className="flex-shrink-0 flex items-start justify-between gap-4 p-6 border-b border-mist/60 bg-white/80 backdrop-blur-md relative z-10">
-                  <div className="space-y-3">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-mist px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-deep-forest">
-                      <Globe size={14} />
-                      {selectedCountry.region}
-                    </div>
-                    <h3 className="text-deep-forest text-3xl">{selectedCountry.name}</h3>
+              {/* Drag indicator — mobile only */}
+              <div className="lg:hidden flex justify-center pt-3 pb-1">
+                <div className="w-10 h-1 rounded-full bg-charcoal/15" />
+              </div>
+
+              {/* Header */}
+              <div className="flex-shrink-0 flex items-start justify-between gap-3 px-6 pt-4 lg:pt-6 pb-4 relative">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-deep-forest/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-deep-forest/70">
+                    <Globe size={11} className="opacity-60" />
+                    {selectedCountry.region}
                   </div>
-                  <button
-                    onClick={closeCountryOverlay}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-mist bg-white text-deep-forest transition duration-200 hover:bg-mist hover:scale-105 shadow-sm"
-                    aria-label="Close country dossier"
-                  >
-                    <X size={20} />
-                  </button>
+                  <h3 className="text-deep-forest text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold">{selectedCountry.name}</h3>
                 </div>
+                <button
+                  onClick={closeCountryOverlay}
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-charcoal/5 text-charcoal/50 transition-all duration-200 hover:bg-charcoal/10 hover:text-charcoal hover:scale-110"
+                  aria-label="Close country dossier"
+                >
+                  <X size={16} strokeWidth={2.5} />
+                </button>
+              </div>
 
-                {/* Right: Latent Details */}
-                <div className="flex-1 h-full overflow-y-auto p-6 custom-scrollbar bg-white/40">
-                  <div className="space-y-8">
-                
-                    <p className="text-base text-charcoal/80 font-light leading-relaxed">
-                      {selectedCountry.overview}
-                    </p>
+              {/* Subtle separator */}
+              <div className="mx-6 h-px bg-gradient-to-r from-transparent via-charcoal/10 to-transparent" />
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="rounded-2xl bg-deep-forest p-4 text-white">
-                        <Briefcase className="text-accent-gold" size={18} />
-                        <div className="mt-3 text-3xl font-mono tracking-tight font-bold leading-none">{selectedCountry.projects}</div>
-                        <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold">Active projects</div>
-                      </div>
-                      <div className="rounded-2xl bg-mist p-4 text-deep-forest border border-mist">
-                        <Users className="text-deep-forest" size={18} />
-                        <div className="mt-3 text-3xl font-mono tracking-tight font-bold leading-none">{formatFarmers(selectedCountry.engagement)}</div>
-                        <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-charcoal/50 font-bold">Farmers / actors</div>
-                      </div>
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto px-6 py-5 custom-scrollbar">
+                <div className="space-y-6">
+
+                  {/* Overview */}
+                  <p className="text-[13px] lg:text-sm text-charcoal/70 font-light leading-relaxed">
+                    {selectedCountry.overview}
+                  </p>
+
+                  {/* Stats row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl bg-deep-forest p-4 text-white relative overflow-hidden">
+                      <div className="absolute -right-3 -top-3 w-16 h-16 rounded-full bg-white/[0.04]" />
+                      <Briefcase className="text-accent-gold/80" size={16} />
+                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{selectedCountry.projects}</div>
+                      <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-white/50 font-bold">Projects</div>
                     </div>
+                    <div className="rounded-xl bg-deep-forest/[0.04] p-4 text-deep-forest border border-deep-forest/[0.06] relative overflow-hidden">
+                      <div className="absolute -right-3 -top-3 w-16 h-16 rounded-full bg-deep-forest/[0.03]" />
+                      <Users className="text-deep-forest/60" size={16} />
+                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{formatFarmers(selectedCountry.engagement)}</div>
+                      <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">Engagement</div>
+                    </div>
+                  </div>
 
-                    {/* Granular Project View */}
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40">Select a project to zoom map</div>
-                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold bg-accent-gold/10 px-2 py-1 rounded-full">{activeProjects.length} available</div>
-                      </div>
-                      
-                      <div className="grid gap-3">
-                        {activeProjects.map((project, index) => {
-                          const isActive = index === selectedProjectIndex
+                  {/* Project cards */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/35">Projects</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/80 bg-accent-gold/8 px-2 py-0.5 rounded-full">{activeProjects.length}</div>
+                    </div>
+                    
+                    <div className="grid gap-2.5">
+                      {activeProjects.map((project, index) => {
+                        const isActive = index === selectedProjectIndex
 
-                          return (
-                            <div key={index} className={`rounded-2xl border transition duration-200 overflow-hidden ${isActive ? 'border-deep-forest shadow-[0_8px_24px_rgba(15,61,49,0.08)] bg-white' : 'border-mist bg-white/40 hover:border-deep-forest/30 hover:bg-white cursor-pointer'}`} onClick={() => !isActive && setSelectedProjectIndex(index)}>
-                              
-                              {/* Card Header (always visible) */}
-                              <div className={`p-4 flex items-start justify-between gap-3 ${isActive ? 'bg-deep-forest text-white' : 'text-charcoal/80'}`}>
-                                <div className="space-y-1">
-                                  <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] ${isActive ? 'text-accent-gold' : 'text-charcoal/40'}`}>
-                                    <MapPin size={10} />
-                                    {project.location}
-                                  </div>
-                                  <div className={`font-serif text-lg leading-tight ${isActive ? 'text-white' : 'text-deep-forest'}`}>{project.title}</div>
+                        return (
+                          <div
+                            key={index}
+                            className={[
+                              'rounded-xl border transition-all duration-300 overflow-hidden cursor-pointer',
+                              isActive
+                                ? 'border-deep-forest/15 bg-white shadow-[0_4px_16px_rgba(15,61,49,0.06)]'
+                                : 'border-charcoal/[0.06] bg-white/50 hover:bg-white/80 hover:border-charcoal/10 hover:shadow-sm',
+                            ].join(' ')}
+                            onClick={() => setSelectedProjectIndex(isActive ? null : index)}
+                          >
+                            {/* Card header */}
+                            <div className={[
+                              'p-3.5 flex items-start justify-between gap-3 transition-colors duration-300',
+                              isActive ? 'bg-deep-forest text-white' : ''
+                            ].join(' ')}>
+                              <div className="space-y-0.5 min-w-0">
+                                <div className={[
+                                  'flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.18em]',
+                                  isActive ? 'text-accent-gold/80' : 'text-charcoal/30'
+                                ].join(' ')}>
+                                  <MapPin size={9} />
+                                  <span className="truncate">{project.location}</span>
                                 </div>
-                                <div className={`shrink-0 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-mono font-bold ${isActive ? 'bg-white/10 text-white' : 'bg-mist text-deep-forest'}`}>
-                                  {index + 1}
+                                <div className={[
+                                  'font-serif text-base leading-snug',
+                                  isActive ? 'text-white' : 'text-deep-forest'
+                                ].join(' ')}>
+                                  {project.title}
                                 </div>
                               </div>
-
-                              {/* Granular Data Body (expanded when active) */}
-                              <AnimatePresence>
-                                {isActive && (
-                                  <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    className="overflow-hidden bg-white"
-                                  >
-                                    <div className="p-4 space-y-5">
-                                      {/* Core Meta */}
-                                      <div className="flex flex-wrap gap-2 pt-1">
-                                        {project.timeline && (
-                                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-2 py-1 rounded-md">
-                                            <Calendar size={12} /> {project.timeline}
-                                          </div>
-                                        )}
-                                        {project.budget_scope && (
-                                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-deep-forest/60 bg-mist/50 px-2 py-1 rounded-md">
-                                            <Layers3 size={12} /> {project.budget_scope}
-                                          </div>
-                                        )}
-                                      </div>
-
-                                      {/* Text Content */}
-                                      <div className="space-y-3 text-[13px] text-charcoal/75 leading-relaxed">
-                                        <p>{project.summary}</p>
-                                        <div className="rounded-xl border border-accent-gold/30 bg-accent-gold/5 p-3 text-deep-forest shadow-inner">
-                                          <span className="font-bold uppercase tracking-widest text-[9px] opacity-50 block mb-1.5">Primary Outcome</span>
-                                          {project.outcome}
-                                        </div>
-                                      </div>
-
-                                      {/* Granular Details Grid */}
-                                      <div className="grid gap-4">
-                                        {project.key_deliverables && (
-                                          <div className="space-y-2">
-                                            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-1.5">Key Deliverables</div>
-                                            <ul className="space-y-1.5">
-                                              {project.key_deliverables.map((item) => (
-                                                <li key={item} className="flex items-start gap-1.5 text-[13px] text-charcoal/80">
-                                                  <Target size={12} className="mt-0.5 text-accent-gold shrink-0" />
-                                                  {item}
-                                                </li>
-                                              ))}
-                                            </ul>
-                                          </div>
-                                        )}
-
-                                        <div className="space-y-2">
-                                          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40 border-b border-mist pb-1.5">Implementation Methods</div>
-                                          <div className="flex flex-wrap gap-1.5">
-                                            {project.methods.map((method) => (
-                                              <span key={method} className="rounded-full bg-mist/70 px-2 py-1 text-[10px] font-bold tracking-wide text-deep-forest">
-                                                {method}
-                                              </span>
-                                            ))}
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      {/* Partners */}
-                                      <div className="space-y-2 pt-1">
-                                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/40">Executing Partners</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                          {project.partners.map((partner) => (
-                                            <span key={partner} className="rounded-md border border-mist bg-white px-2 py-1 text-[11px] font-semibold text-charcoal/80 shadow-sm">
-                                              {partner}
-                                            </span>
-                                          ))}
-                                        </div>
-                                      </div>
-
-                                    </div>
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-
+                              <div className={[
+                                'shrink-0 flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-mono font-bold',
+                                isActive ? 'bg-white/10 text-white/70' : 'bg-charcoal/[0.05] text-charcoal/30'
+                              ].join(' ')}>
+                                {index + 1}
+                              </div>
                             </div>
-                          )
-                        })}
-                      </div>
-                    </div>
 
-                    {/* Open Full Report Call to Action */}
-                    <div className="mt-6 flex flex-col gap-3 rounded-2xl bg-deep-forest p-5 text-white shadow-xl relative overflow-hidden">
-                      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                          <filter id="noiseFilterMapFooter">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                          </filter>
-                          <rect width="100%" height="100%" filter="url(#noiseFilterMapFooter)" />
-                        </svg>
-                      </div>
-                      <div className="relative z-10">
-                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-1">Deep Dive</div>
-                        <div className="text-base font-medium leading-tight">Read the full {selectedCountry.name} results report</div>
-                      </div>
-                      <Link
-                        href={`/our-results?country=${selectedCountry.code}`}
-                        className="relative z-10 inline-flex w-fit items-center gap-2 rounded bg-white px-4 py-2 text-xs font-bold text-deep-forest transition-transform hover:scale-105 shadow-md mt-1"
-                      >
-                        View Report
-                        <ArrowRight size={14} />
-                      </Link>
-                    </div>
+                            {/* Expanded content */}
+                            <AnimatePresence>
+                              {isActive && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: 'auto', opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="p-3.5 space-y-4 bg-white">
+                                    {/* Meta tags */}
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {project.timeline && (
+                                        <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.15em] text-charcoal/45 bg-charcoal/[0.04] px-2 py-0.5 rounded-md">
+                                          <Calendar size={10} /> {project.timeline}
+                                        </div>
+                                      )}
+                                      {project.budget_scope && (
+                                        <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.15em] text-charcoal/45 bg-charcoal/[0.04] px-2 py-0.5 rounded-md">
+                                          <Layers3 size={10} /> {project.budget_scope}
+                                        </div>
+                                      )}
+                                    </div>
 
+                                    {/* Summary + Outcome */}
+                                    <div className="space-y-2.5 text-[12px] text-charcoal/65 leading-relaxed">
+                                      <p>{project.summary}</p>
+                                      <div className="rounded-lg border border-accent-gold/20 bg-accent-gold/[0.04] p-2.5 text-deep-forest">
+                                        <span className="font-bold uppercase tracking-widest text-[8px] text-charcoal/30 block mb-1">Outcome</span>
+                                        <span className="text-[12px]">{project.outcome}</span>
+                                      </div>
+                                    </div>
+
+                                    {/* Deliverables */}
+                                    {project.key_deliverables && (
+                                      <div className="space-y-1.5">
+                                        <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Deliverables</div>
+                                        <ul className="space-y-1">
+                                          {project.key_deliverables.map((item) => (
+                                            <li key={item} className="flex items-start gap-1.5 text-[12px] text-charcoal/65">
+                                              <Target size={10} className="mt-0.5 text-accent-gold/60 shrink-0" />
+                                              {item}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+
+                                    {/* Methods */}
+                                    <div className="space-y-1.5">
+                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Methods</div>
+                                      <div className="flex flex-wrap gap-1">
+                                        {project.methods.map((method) => (
+                                          <span key={method} className="rounded-full bg-charcoal/[0.04] px-2 py-0.5 text-[10px] font-medium text-charcoal/50">
+                                            {method}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    {/* Partners */}
+                                    <div className="space-y-1.5">
+                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Partners</div>
+                                      <div className="flex flex-wrap gap-1">
+                                        {project.partners.map((partner) => (
+                                          <span key={partner} className="rounded-md border border-charcoal/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-medium text-charcoal/55">
+                                            {partner}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
+
+                  {/* CTA */}
+                  <Link
+                    href={`/our-results?country=${selectedCountry.code}`}
+                    className="group flex items-center justify-between w-full rounded-xl bg-deep-forest p-4 text-white transition-all duration-300 hover:shadow-lg hover:shadow-deep-forest/20 hover:scale-[1.01]"
+                  >
+                    <div className="space-y-0.5">
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">Deep Dive</div>
+                      <div className="text-sm font-medium">Full {selectedCountry.name} report</div>
+                    </div>
+                    <ArrowRight size={16} className="text-white/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
+                  </Link>
+
                 </div>
               </div>
             </motion.div>
