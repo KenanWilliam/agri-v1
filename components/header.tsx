@@ -30,8 +30,8 @@ export default function Header() {
   const activePath = clickedPath || pathname
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center bg-white h-[64px] lg:h-[80px] shadow-sm">
-      <header className="w-full max-w-[1800px] px-6">
+    <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 flex justify-center items-center h-[72px] lg:h-[88px]">
+      <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex items-center justify-between">
           <Link href="/" onClick={() => setClickedPath('/')} aria-label="Agri Experience" className="flex items-center group">
             <Image
@@ -41,7 +41,7 @@ export default function Header() {
               height={240}
               priority
               style={{ width: 'auto' }}
-              className="h-[48px] lg:h-[60px] w-auto block transition-transform group-hover:scale-105"
+              className="h-[56px] lg:h-[72px] w-auto block transition-transform group-hover:scale-105"
             />
           </Link>
 
@@ -89,14 +89,14 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setClickedPath('/contact')}
-              className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
+              className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
               Contact Us
             </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded transition-colors"
+              className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -121,7 +121,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`px-6 py-4 text-lg font-medium rounded transition-colors duration-200 ${
+                    className={`px-6 py-4 text-lg font-medium rounded-full transition-colors duration-200 ${
                       isActive 
                         ? 'text-deep-forest bg-black/5' 
                         : 'text-charcoal hover:bg-black/5'
@@ -135,7 +135,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-4 bg-deep-forest text-white rounded font-medium text-center shadow-md"
+                className="w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md"
               >
                 Contact Us
               </Link>

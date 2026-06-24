@@ -8,11 +8,12 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <>      <main className="overflow-hidden bg-background">
+    <>
+      <main className="overflow-hidden bg-background">
         {/* Premium Hero Section */}
-        <section className="relative w-full h-[100dvh] min-h-[650px] flex flex-col justify-center overflow-hidden pt-[104px]">
+        <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-16 bg-white">
           {/* Background Image */}
-          <div className="absolute inset-0 z-0 overflow-hidden bg-mist">
+          <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
             <Image
               src="/hero-bg.png"
               alt="Agri Experience Hero Background"
@@ -23,16 +24,17 @@ export default function Home() {
             />
           </div>
           
-          {/* Left Gradient Overlay to ensure text readability */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-3/4 lg:w-2/3 3xl:w-1/2 4xl:w-[45%]"></div>
+          {/* White Gradient Overlay to ensure dark text readability and blend into next section */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white from-[10%] via-white/80 via-[40%] to-transparent to-[75%] md:w-[80%]"></div>
           
-          <div className="relative z-10 max-w-[1800px] 3xl:max-w-[1800px] 4xl:max-w-[1600px] mx-auto px-4 sm:px-6 w-full">
-            <div className="max-w-3xl 3xl:max-w-4xl space-y-4 sm:space-y-5 lg:space-y-6">
+          {/* Centered Vertically Content Block */}
+          <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
+            <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-serif font-bold tracking-tight text-deep-forest leading-[1.15]"
+                className="font-serif tracking-tight text-[#1A4D2E] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1]"
               >
                 Cultivating Sustainable <br />
                 Seed Systems <br />
@@ -43,7 +45,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-charcoal leading-relaxed font-light max-w-2xl"
+                className="text-gray-800 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-base sm:text-lg lg:text-xl"
               >
                 Empowering farmers through innovation, expertise, and digital excellence.
               </motion.p>
@@ -52,36 +54,38 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="pt-1 sm:pt-2"
+                className="pt-2"
               >
-                <Link href="/our-impact" className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20 text-sm sm:text-base">
+                <Link href="/our-impact" className="inline-flex items-center justify-center gap-3 px-6 py-3 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base">
                   Explore Our Impact
-                  <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                  <ArrowRight size={18} />
                 </Link>
               </motion.div>
 
-              {/* Stats Bar */}
+              {/* Inline Horizontal Stats matching grad.png */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.6 }}
-                className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-4 pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-mist"
+                className="pt-4 lg:pt-6"
               >
-                {[
-                  { value: '500K+', label: 'Farmers Reached', icon: Leaf },
-                  { value: '150+', label: 'Seed Partners', icon: Shield },
-                  { value: '25', label: 'African Countries', icon: Globe },
-                ].map((stat, i) => (
-                  <div key={i} className="flex items-center gap-2 sm:gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-primary-green/20 flex items-center justify-center text-deep-forest bg-mist shrink-0">
-                      <stat.icon size={18} className="sm:w-5 sm:h-5" />
+                <div className="flex flex-wrap justify-start items-center gap-4 sm:gap-6 lg:gap-10 xl:gap-12">
+                  {[
+                    { value: '500K+', label: 'Farmers Reached', icon: Leaf },
+                    { value: '150+', label: 'Seed Partners', icon: Shield },
+                    { value: '25', label: 'African Countries', icon: Globe },
+                  ].map((stat, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-primary-green/20 flex items-center justify-center text-[#1A4D2E] bg-white shadow-sm shrink-0">
+                        <stat.icon size={18} className="lg:w-5 lg:h-5" />
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <div className="text-lg lg:text-xl font-bold text-[#1A4D2E] leading-none">{stat.value}</div>
+                        <div className="text-[9px] lg:text-[10px] font-bold tracking-[0.15em] text-gray-500 mt-1.5 whitespace-nowrap">{stat.label}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-base sm:text-lg font-bold text-deep-forest leading-none">{stat.value}</div>
-                      <div className="text-[10px] sm:text-xs text-charcoal/70 tracking-wide mt-1 whitespace-nowrap">{stat.label}</div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </motion.div>
             </div>
           </div>
@@ -89,7 +93,7 @@ export default function Home() {
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
               <div className="max-w-2xl space-y-4">
                 <h2 className="text-deep-forest">Our Expertise</h2>
@@ -105,70 +109,70 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               {/* Feature 1: Large */}
               <motion.div
-                whileHover={{ y: -5 }}
-                className="md:col-span-7 bento-card bg-deep-forest text-white flex flex-col justify-between min-h-[350px] lg:min-h-[400px]"
+                className="md:col-span-7 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[350px] lg:min-h-[400px]"
               >
                 <div className="space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center">
-                    <TrendingUp className="text-accent-gold" size={32} />
+                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center">
+                    <TrendingUp className="text-primary-green" size={32} />
                   </div>
-                  <h3 className="text-white text-3xl font-serif">Systemic Change Focus</h3>
-                  <p className="text-white/80 text-lg max-w-md font-light">
+                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-3xl">Systemic Change Focus</h3>
+                  <p className="font-sans text-gray-600 text-lg max-w-md">
                     We do not accept assignments that simply check a client&apos;s project or task box. We prioritize long-term, system-wide improvement.
                   </p>
                 </div>
+                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-4" size={24} />
               </motion.div>
 
               {/* Feature 2: Medium */}
               <motion.div
-                whileHover={{ y: -5 }}
-                className="md:col-span-5 bento-card bg-mist border-primary-green/20 flex flex-col gap-8"
+                className="md:col-span-5 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-8"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary-green/10 flex items-center justify-center">
-                  <Shield className="text-primary-green" size={24} />
+                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
+                  <Shield className="text-[#1A4D2E]" size={24} />
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-serif text-deep-forest">Customized by Context</h3>
-                  <p className="text-charcoal/70 font-light">
+                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-2xl">Customized by Context</h3>
+                  <p className="font-sans text-gray-600">
                     Each crop and country represents a distinct set of circumstances, so we tailor services for every assignment.
                   </p>
+                  <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform" size={20} />
                 </div>
               </motion.div>
 
               {/* Feature 3: Small */}
               <motion.div
-                whileHover={{ y: -5 }}
-                className="md:col-span-4 bento-card flex flex-col gap-6"
+                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
               >
-                <Users className="text-deep-forest" size={24} />
+                <Users className="text-[#1A4D2E]" size={24} />
                 <div className="space-y-2">
-                  <h4 className="text-xl font-serif text-deep-forest">Team-Oriented Practice</h4>
-                  <p className="text-sm text-charcoal/70 font-light">A collaborative, learning-focused practice that continually updates based on field realities.</p>
+                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Team-Oriented Practice</h4>
+                  <p className="font-sans text-gray-600 text-sm">A collaborative, learning-focused practice that continually updates based on field realities.</p>
                 </div>
+                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
               </motion.div>
 
               {/* Feature 4: Small */}
               <motion.div
-                whileHover={{ y: -5 }}
-                className="md:col-span-4 bento-card flex flex-col gap-6"
+                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
               >
-                <Zap className="text-deep-forest" size={24} />
+                <Zap className="text-[#1A4D2E]" size={24} />
                 <div className="space-y-2">
-                  <h4 className="text-xl font-serif text-deep-forest">Collaborative Partnerships</h4>
-                  <p className="text-sm text-charcoal/70 font-light">Working with clients to improve smallholder access to high quality seed of modern crop varieties.</p>
+                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Collaborative Partnerships</h4>
+                  <p className="font-sans text-gray-600 text-sm">Working with clients to improve smallholder access to high quality seed of modern crop varieties.</p>
                 </div>
+                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
               </motion.div>
 
               {/* Feature 5: Small */}
               <motion.div
-                whileHover={{ y: -5 }}
-                className="md:col-span-4 bento-card flex flex-col gap-6"
+                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
               >
-                <Globe className="text-deep-forest" size={24} />
+                <Globe className="text-[#1A4D2E]" size={24} />
                 <div className="space-y-2">
-                  <h4 className="text-xl font-serif text-deep-forest">Sub-Saharan Reach</h4>
-                  <p className="text-sm text-charcoal/70 font-light">Deep experience across diverse agricultural zones throughout sub-Saharan Africa.</p>
+                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Sub-Saharan Reach</h4>
+                  <p className="font-sans text-gray-600 text-sm">Deep experience across diverse agricultural zones throughout sub-Saharan Africa.</p>
                 </div>
+                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
               </motion.div>
             </div>
           </div>
@@ -176,7 +180,7 @@ export default function Home() {
 
         {/* Testimonials */}
         <section className="w-full py-16 lg:py-24 bg-mist">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-16 space-y-4">
               <h2 className="text-deep-forest">Trusted by Global Leaders</h2>
               <p className="text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
@@ -194,7 +198,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>
           </div>
           
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-10">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -207,13 +211,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
                   href="/contact"
-                  className="px-10 py-5 bg-primary-green text-white rounded font-bold text-lg hover:scale-105 transition duration-200 shadow-2xl shadow-primary-green/20"
+                  className="px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg hover:scale-105 transition duration-200 shadow-2xl shadow-primary-green/20"
                   >
                   Work With Us
                   </Link>
                   <Link
                   href="/contact"
-                  className="px-10 py-5 border-2 border-white/30 text-white rounded font-bold text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
+                  className="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
                 >
                   View Case Studies
                 </Link>

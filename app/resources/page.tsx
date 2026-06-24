@@ -19,8 +19,8 @@ export default function ResourcesPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* Downloads */}
-        <section className="w-full pt-32 lg:pt-48 pb-16 lg:pb-24 bg-white relative">
-          <div className="max-w-[1800px] mx-auto px-6">
+        <section className="w-full pt-32 lg:pt-48 py-16 lg:py-24 xl:py-32 bg-white relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -98,8 +98,8 @@ export default function ResourcesPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-24 lg:py-32 bg-mist border-t border-mist">
-          <div className="max-w-2xl mx-auto px-6 text-center space-y-8">
+        <section className="w-full py-16 lg:py-24 xl:py-32 bg-mist border-t border-mist">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest">
               Looking for more?
             </h2>
@@ -109,7 +109,7 @@ export default function ResourcesPage() {
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
               >
                 Contact Us
                 <ArrowRight size={20} />

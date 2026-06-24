@@ -36,7 +36,7 @@ export default function ContactPage() {
         {/* Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 w-full">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ export default function ContactPage() {
 
         {/* Contact Form & Info */}
         <section className="w-full py-16 lg:py-24 bg-white">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
               {/* Form */}
               <motion.div
@@ -128,7 +128,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full px-8 py-4 bg-deep-forest text-white rounded font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
+                    className="w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
                   >
                     {submitted ? '✓ Message Sent!' : 'Send Message'}
                     {!submitted && <Send size={18} />}

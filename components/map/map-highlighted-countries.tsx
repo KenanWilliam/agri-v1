@@ -12,27 +12,27 @@ export interface MapHighlightedCountriesProps {
 }
 
 const regionColors: Record<string, string> = {
-  'KE': '#0f3d1e', // East Africa: Deep Forest
-  'UG': '#0f3d1e', 
-  'TZ': '#0f3d1e',
-  'RW': '#0f3d1e',
-  'ET': '#0f3d1e',
-  'SS': '#0f3d1e',
-  'BI': '#0f3d1e',
-  'MW': '#c8a44a', // Southern Africa: Accent Gold (stands out against green terrain)
-  'ZM': '#c8a44a',
-  'ZW': '#c8a44a',
-  'MZ': '#c8a44a',
-  'ZA': '#c8a44a',
-  'SN': '#3ab44a', // West Africa: Primary Green (stands out beautifully against desert terrain)
+  'KE': '#3ab44a',
+  'UG': '#3ab44a',
+  'TZ': '#3ab44a',
+  'RW': '#3ab44a',
+  'ET': '#3ab44a',
+  'SS': '#3ab44a',
+  'BI': '#3ab44a',
+  'MW': '#3ab44a',
+  'ZM': '#3ab44a',
+  'ZW': '#3ab44a',
+  'MZ': '#3ab44a',
+  'ZA': '#3ab44a',
+  'SN': '#3ab44a',
   'BF': '#3ab44a',
   'ML': '#3ab44a',
   'GH': '#3ab44a',
   'NG': '#3ab44a',
   'LR': '#3ab44a',
   'SL': '#3ab44a',
-  'CM': '#2484c6', // Central Africa: Primary Blue
-  'CD': '#2484c6'
+  'CM': '#3ab44a',
+  'CD': '#3ab44a'
 };
 
 export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = ({

@@ -48,7 +48,7 @@ export default function OurImpactPage() {
         {/* Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 w-full">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export default function OurImpactPage() {
 
         {/* Impact Areas */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {impactAreas.map((area, idx) => {
                 const Icon = area.icon
@@ -104,7 +104,7 @@ export default function OurImpactPage() {
 
         {/* Collaboration */}
         <section className="w-full py-16 lg:py-24 bg-white border-t border-mist">
-          <div className="max-w-[1400px] mx-auto px-6 text-center space-y-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-12">
             <div className="space-y-6">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -147,7 +147,7 @@ export default function OurImpactPage() {
         <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
-          <div className="max-w-4xl mx-auto px-6 text-center space-y-10 relative z-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white">
               Be Part of the Impact
             </h2>
@@ -157,14 +157,14 @@ export default function OurImpactPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/our-work"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
                 >
                 Work With Us
                 <ArrowRight size={20} />
                 </Link>
                 <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded font-bold transition duration-200 hover:bg-white/10 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-bold transition duration-200 hover:bg-white/10 backdrop-blur-sm"
                 >
                 Partner With Us
                 <ArrowRight size={20} />

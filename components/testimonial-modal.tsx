@@ -100,7 +100,7 @@ export default function TestimonialModal() {
               className="relative bg-gradient-to-br from-mint via-cream to-white p-8 md:p-12"
             >
               {/* Close Button */}
-              <DialogClose className="absolute top-4 right-4 p-2 hover:bg-white rounded-lg transition-colors z-50">
+              <DialogClose className="absolute top-4 right-4 p-2 hover:bg-white rounded-full transition-colors z-50">
                 <X size={20} className="text-dark-green" />
               </DialogClose>
 

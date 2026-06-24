@@ -44,7 +44,7 @@ export default function OurResultsPage() {
         {/* Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6 w-full">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function OurResultsPage() {
 
         {/* Downloads */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function OurResultsPage() {
 
         {/* Examples of Assignments */}
         <section className="w-full py-16 lg:py-24 bg-mist border-t border-mist">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -171,7 +171,7 @@ export default function OurResultsPage() {
         <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
-          <div className="max-w-4xl mx-auto px-6 text-center space-y-10 relative z-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white">
               Work With Us
             </h2>
@@ -181,7 +181,7 @@ export default function OurResultsPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
               >
                 Get In Touch
                 <ArrowRight size={20} />

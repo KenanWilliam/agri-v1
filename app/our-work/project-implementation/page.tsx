@@ -124,7 +124,7 @@ export default function ProjectImplementationPage() {
           <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-deep-forest/[0.04] rounded-full blur-[120px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-green/[0.03] rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
-          <div className="max-w-[1800px] mx-auto px-6 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
               {/* Left */}
               <motion.div
@@ -178,7 +178,7 @@ export default function ProjectImplementationPage() {
 
         {/* ─── Stats Bar ─── */}
         <section className="w-full pb-20">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ export default function ProjectImplementationPage() {
 
         {/* ─── Key Implementation Areas ─── */}
         <section className="w-full pb-24">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -270,7 +270,7 @@ export default function ProjectImplementationPage() {
 
         {/* ─── Process / Timeline ─── */}
         <section className="w-full pb-24">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -367,7 +367,7 @@ export default function ProjectImplementationPage() {
 
         {/* ─── Case Study Highlight ─── */}
         <section className="w-full pb-24">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -516,7 +516,7 @@ export default function ProjectImplementationPage() {
               </svg>
             </div>
 
-            <div className="max-w-[1800px] mx-auto px-6 py-24 lg:py-32 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-24 lg:py-32 relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

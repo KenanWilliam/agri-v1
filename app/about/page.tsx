@@ -43,7 +43,7 @@ export default function AboutPage() {
         {/* Editorial Hero */}
         <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-[1400px] mx-auto px-6">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
         {/* Mission & Vision Bento */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-[1800px] mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
               <motion.div
                 whileHover={{ y: -5 }}
@@ -119,8 +119,8 @@ export default function AboutPage() {
         </section>
 
         {/* Team Link Section */}
-        <section className="w-full py-20 lg:py-28 bg-primary-green/5 border-b border-primary-green/10">
-          <div className="max-w-[1400px] mx-auto px-6">
+        <section className="w-full py-16 lg:py-24 xl:py-32 bg-primary-green/5 border-b border-primary-green/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export default function AboutPage() {
               </div>
               <Link 
                 href="/our-team" 
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-lg font-bold whitespace-nowrap transition-all duration-300 hover:shadow-xl hover:shadow-primary-green/20 hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold whitespace-nowrap transition-all duration-300 hover:shadow-xl hover:shadow-primary-green/20 hover:scale-105"
               >
                 View Team
                 <ArrowRight size={20} />
@@ -147,7 +147,7 @@ export default function AboutPage() {
 
         {/* Supporting Consultants Section */}
         <section className="w-full py-16 lg:py-24 bg-white border-b border-mist">
-          <div className="max-w-[1400px] mx-auto px-6 space-y-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-deep-forest">Supporting Consultants</h2>
               <p className="text-charcoal/80 font-light text-lg">
@@ -184,13 +184,13 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="w-full py-24 lg:py-32 bg-mist">
-          <div className="max-w-4xl mx-auto px-6 text-center space-y-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
             <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif">Partner With Us</h2>
             <p className="text-xl lg:text-2xl text-charcoal/80 font-light leading-relaxed">
               Let&apos;s collaborate to transform agricultural systems and create sustainable impact for generations to come.
             </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
                 Get In Touch
                 <ArrowRight size={20} />
               </Link>

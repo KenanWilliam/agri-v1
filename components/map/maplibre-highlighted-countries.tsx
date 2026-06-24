@@ -12,27 +12,27 @@ export interface MaplibreHighlightedCountriesProps {
 }
 
 const regionColors: Record<string, string> = {
-  'KE': 'rgba(15, 61, 49, 0.85)', 
-  'UG': 'rgba(15, 61, 49, 0.85)', 
-  'TZ': 'rgba(15, 61, 49, 0.85)',
-  'RW': 'rgba(15, 61, 49, 0.85)',
-  'ET': 'rgba(15, 61, 49, 0.85)',
-  'SS': 'rgba(15, 61, 49, 0.85)',
-  'BI': 'rgba(15, 61, 49, 0.85)',
+  'KE': 'rgba(58, 180, 74, 0.85)', 
+  'UG': 'rgba(58, 180, 74, 0.85)', 
+  'TZ': 'rgba(58, 180, 74, 0.85)',
+  'RW': 'rgba(58, 180, 74, 0.85)',
+  'ET': 'rgba(58, 180, 74, 0.85)',
+  'SS': 'rgba(58, 180, 74, 0.85)',
+  'BI': 'rgba(58, 180, 74, 0.85)',
   'MW': 'rgba(58, 180, 74, 0.85)',
   'ZM': 'rgba(58, 180, 74, 0.85)',
   'ZW': 'rgba(58, 180, 74, 0.85)',
   'MZ': 'rgba(58, 180, 74, 0.85)',
   'ZA': 'rgba(58, 180, 74, 0.85)',
-  'SN': 'rgba(200, 164, 74, 0.85)',
-  'BF': 'rgba(200, 164, 74, 0.85)',
-  'ML': 'rgba(200, 164, 74, 0.85)',
-  'GH': 'rgba(200, 164, 74, 0.85)',
-  'NG': 'rgba(200, 164, 74, 0.85)',
-  'LR': 'rgba(200, 164, 74, 0.85)',
-  'SL': 'rgba(200, 164, 74, 0.85)',
-  'CM': 'rgba(36, 132, 198, 0.85)',
-  'CD': 'rgba(36, 132, 198, 0.85)'
+  'SN': 'rgba(58, 180, 74, 0.85)',
+  'BF': 'rgba(58, 180, 74, 0.85)',
+  'ML': 'rgba(58, 180, 74, 0.85)',
+  'GH': 'rgba(58, 180, 74, 0.85)',
+  'NG': 'rgba(58, 180, 74, 0.85)',
+  'LR': 'rgba(58, 180, 74, 0.85)',
+  'SL': 'rgba(58, 180, 74, 0.85)',
+  'CM': 'rgba(58, 180, 74, 0.85)',
+  'CD': 'rgba(58, 180, 74, 0.85)'
 };
 
 export const MaplibreHighlightedCountries: React.FC<MaplibreHighlightedCountriesProps> = ({

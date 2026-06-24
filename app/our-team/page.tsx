@@ -51,6 +51,11 @@ export default function OurTeamPage() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
   const [api, setApi] = useState<CarouselApi>()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!api) return
@@ -64,6 +69,13 @@ export default function OurTeamPage() {
   }, [api])
 
   const fullTeam: TeamMember[] = [
+    {
+      name: "Aline O'Connor",
+      role: "Founding Director",
+      bio: "Aline is an experienced seed company practitioner, teacher, writer, manager, strategist, and entrepreneur, who has worked on seed systems in Africa since 2007. Aline has worked in the crop seed industry in the US and Africa for close to 30 years, including nine years as the CEO of a large US crop seed company. As the Founding Director of Agri Experience, Aline is highly committed to building and supporting local teams to catalyze growth and opportunity in Africa, and remains available as an advisor to the company.",
+      image: '/team/aline.png',
+      projects: ['Seed Systems', 'Crop Seed Industry', 'Strategic Advising', 'Entrepreneurship']
+    },
     {
       name: 'Mulemia Maina',
       role: 'Managing Director',
@@ -87,14 +99,14 @@ export default function OurTeamPage() {
     },
     {
       name: 'Denis Langat',
-      role: 'Data and M&E Specialist',
+      role: 'M+E Specialist',
       bio: 'Review PSTA-5 indicators, and monitoring frameworks. Ensure effective data capture, analysis, visualization, and reporting to support dashboard development.',
       image: '/team/denis.png',
       projects: ['PSTA-5 Indicators', 'Data Analysis', 'Dashboard Development']
     },
     {
       name: 'Moses Adundo',
-      role: 'QA/Testing Specialist',
+      role: 'Data Analyst',
       bio: 'Leads quality assurance and testing processes, including functional, integration, performance, and user acceptance testing. Ensures the system meets defined requirements, is free of critical defects, and performs reliably before deployment.',
       image: '/team/placeholder.jpg',
       projects: ['Quality Assurance', 'Testing Processes', 'User Acceptance Testing']
@@ -111,13 +123,13 @@ export default function OurTeamPage() {
     {
       name: 'Claire Wanjiru',
       role: 'Executive Assistant',
-      bio: 'Provides comprehensive administrative support to the executive team, ensuring smooth daily operations.',
+      bio: 'Claire serves as the strategic operational partner, providing high-level administrative support and supervising team logistics to ensure seamless daily operations. Leveraging a strong aptitude for technical asset management, budget coordination, and process optimization, I streamline workflows and manage complex schedules to keep our leadership team aligned. Driven by efficiency and a proactive approach to problem-solving, she is dedicated to maintaining an organized, agile, and productive organizational environment that supports our overarching mission.',
       image: '/team/placeholder.jpg',
       projects: ['Executive Support', 'Operations']
     },
     {
       name: 'Nicholas Kilonzo',
-      role: 'Valued Support Staff',
+      role: 'General Assistant',
       bio: 'An integral part of the team, providing essential logistical and office support.',
       image: '/team/kilonzo.png',
       projects: ['Logistics', 'Office Support']
@@ -128,7 +140,7 @@ export default function OurTeamPage() {
     <main className="bg-[#FAFAFA] min-h-screen">
       
       {/* Clean, minimalist Header Space matching the vibe */}
-      <section className="pt-40 lg:pt-56 pb-20 px-6 max-w-[1800px] mx-auto">
+      <section className="pt-40 lg:pt-56 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -219,7 +231,7 @@ export default function OurTeamPage() {
           <div className="flex justify-center gap-6 mt-8 z-30 pointer-events-auto">
             <button 
               onClick={() => api?.scrollPrev()}
-              disabled={!api?.canScrollPrev()}
+              disabled={!mounted || !api?.canScrollPrev()}
               className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
               aria-label="Previous"
             >
@@ -227,7 +239,7 @@ export default function OurTeamPage() {
             </button>
             <button 
               onClick={() => api?.scrollNext()}
-              disabled={!api?.canScrollNext()}
+              disabled={!mounted || !api?.canScrollNext()}
               className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
               aria-label="Next"
             >
@@ -328,61 +340,26 @@ export default function OurTeamPage() {
         )}
       </AnimatePresence>
 
-      {/* Curated Stats Section to match the minimalist vibe */}
-      <section className="max-w-[1800px] mx-auto px-6 py-16 lg:py-24 border-t border-black/5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-8">
-          <div className="space-y-4">
-            <div className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest">85+</div>
-            <div className="text-charcoal/60 text-sm font-bold uppercase tracking-[0.15em]">Years Combined<br/>Experience</div>
-          </div>
-          <div className="space-y-4">
-            <div className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest">350+</div>
-            <div className="text-charcoal/60 text-sm font-bold uppercase tracking-[0.15em]">Grants<br/>Managed</div>
-          </div>
-          <div className="space-y-4">
-            <div className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest">15+</div>
-            <div className="text-charcoal/60 text-sm font-bold uppercase tracking-[0.15em]">African<br/>Countries</div>
-          </div>
-          <div className="space-y-4">
-            <div className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest">100%</div>
-            <div className="text-charcoal/60 text-sm font-bold uppercase tracking-[0.15em]">Commitment<br/>to Impact</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Simplified Curated Extended Network Section */}
-      <section className="w-full py-24 lg:py-32 bg-white relative">
-        <div className="max-w-[1800px] mx-auto px-6">
+      {/* Simplified Curated Our Journey Section */}
+      <section className="w-full py-16 lg:py-24 xl:py-32 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
             <div className="lg:w-1/3 space-y-8">
               <h2 className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest leading-[0.9]">
-                Extended<br/>Network.
+                Our<br/>Journey.
               </h2>
               <p className="text-charcoal/60 text-xl font-light leading-relaxed max-w-md">
-                We work with a curated network of vetted consultants across Africa to deepen our ability to deliver.
+                Over 30 years of seed sector experience, accelerating growth and sustainable seed systems across Africa.
               </p>
             </div>
 
-            <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full">
-              <div className="space-y-8">
-                <div className="w-12 h-12 rounded-full bg-[#FAFAFA] border border-black/5 flex items-center justify-center text-primary-green">
-                  <Sparkles size={20} />
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-serif font-bold text-deep-forest">Consultants</h3>
-                  <ul className="space-y-3 text-charcoal/60 font-light text-lg">
-                    <li>Nicholas Kilonzo</li>
-                    <li>Extensive network of local experts</li>
-                  </ul>
-                </div>
-              </div>
-
+            <div className="lg:w-1/2 w-full">
               <div className="space-y-8">
                 <div className="w-12 h-12 rounded-full bg-[#FAFAFA] border border-black/5 flex items-center justify-center text-accent-gold">
                   <MapPin size={20} />
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-serif font-bold text-deep-forest">Our Journey</h3>
+                  <h3 className="text-2xl font-serif font-bold text-deep-forest">Milestones</h3>
                   <ul className="space-y-3 text-charcoal/60 font-light text-lg">
                     <li><span className="font-medium text-deep-forest">1991</span> &mdash; Seed sector experience begins</li>
                     <li><span className="font-medium text-deep-forest">2007</span> &mdash; Work across Africa accelerates</li>
