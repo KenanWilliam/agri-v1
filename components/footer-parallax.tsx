@@ -13,32 +13,32 @@ export default function FooterParallax({ children }: { children?: ReactNode }) {
   });
   
   // Buttery cinematic spring for effortless, momentum-driven scrolling
-  const smoothScroll = useSpring(scrollYProgress, { stiffness: 60, damping: 25, mass: 1.2, restDelta: 0.001 });
+  const smoothScroll = useSpring(scrollYProgress, { stiffness: 120, damping: 20, mass: 0.8, restDelta: 0.001 });
 
   // === SCROLL DEPTH (Z-Axis Zooming) ===
-  const bgScale = useTransform(smoothScroll, [0, 0.6, 1], [1, 1.04, 1.04]);
-  const landscapeScale = useTransform(smoothScroll, [0, 0.6, 1], [1, 1.08, 1.08]);
-  const subjectScale = useTransform(smoothScroll, [0, 0.6, 1], [1, 1.12, 1.12]);
+  const bgScale = useTransform(smoothScroll, [0, 1], [1, 1.10]);
+  const landscapeScale = useTransform(smoothScroll, [0, 1], [1, 1.18]);
+  const subjectScale = useTransform(smoothScroll, [0, 1], [1, 1.22]);
   // Reduced scale on plants to prevent blurriness and keep it tight to the bottom
-  const plantsScale = useTransform(smoothScroll, [0, 0.6, 1], [1, 1.02, 1.02]);
+  const plantsScale = useTransform(smoothScroll, [0, 1], [1, 1.05]);
 
   // === SCROLL Y-TRANSLATION (Vertical Parallax) ===
-  const bgScrollY = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "8%", "8%"]);
-  const landscapeScrollY = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-3%", "-3%"]);
-  const subjectScrollY = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-5%", "-5%"]);
+  const bgScrollY = useTransform(smoothScroll, [0, 1], ["0%", "18%"]);
+  const landscapeScrollY = useTransform(smoothScroll, [0, 1], ["0%", "-10%"]);
+  const subjectScrollY = useTransform(smoothScroll, [0, 1], ["0%", "-16%"]);
   // Locked Y translation to 0% so plants stick perfectly to the bottom of the viewport
-  const plantsScrollY = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "0%", "0%"]);
+  const plantsScrollY = useTransform(smoothScroll, [0, 1], ["0%", "0%"]);
 
   // === SCROLL X-TRANSLATION (Lateral drift) ===
-  const bgScrollX = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-2%", "-2%"]);
-  const landscapeScrollX = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-4%", "-4%"]);
-  const subjectScrollX = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-8%", "-8%"]);
-  const plantsScrollX = useTransform(smoothScroll, [0, 0.6, 1], ["0%", "-6%", "-6%"]);
+  const bgScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-4%"]);
+  const landscapeScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-9%"]);
+  const subjectScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-16%"]);
+  const plantsScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-11%"]);
 
   // === DEPTH-OF-FIELD BLUR & OPACITY ===
-  const bgBlur = useTransform(smoothScroll, [0, 0.4, 0.6], [0, 0, 2.5]);
-  const plantsBlur = useTransform(smoothScroll, [0, 0.5, 0.6], [0, 0, 1.0]);
-  const bgOpacity = useTransform(smoothScroll, [0, 0.6], [1, 0.85]);
+  const bgBlur = useTransform(smoothScroll, [0, 0.5, 1], [0, 0, 3.5]);
+  const plantsBlur = useTransform(smoothScroll, [0, 0.6, 1], [0, 0, 1.5]);
+  const bgOpacity = useTransform(smoothScroll, [0, 1], [1, 0.75]);
 
   // --- MOUSE PHYSICS ---
   const mouseX = useMotionValue(0);

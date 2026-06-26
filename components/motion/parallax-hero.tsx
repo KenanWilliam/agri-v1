@@ -46,12 +46,12 @@ export default function ParallaxHero({
   })
 
   // Background moves slower than scroll & zooms slightly — classic parallax
-  const bgY: MotionValue<string> = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.2])
+  const bgY: MotionValue<string> = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.35])
 
   // Foreground gently lifts and fades
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.8, 0])
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.7, 0])
 
   return (
     <section

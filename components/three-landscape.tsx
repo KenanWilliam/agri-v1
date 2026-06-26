@@ -39,9 +39,9 @@ function ParallaxPlane() {
     uniforms.uTime.value += delta
     
     const target = (window as any).targetMouse || { x: 0, y: 0 }
-    // Lerp mouse
-    uniforms.uMouse.value.x += (target.x - uniforms.uMouse.value.x) * 0.05
-    uniforms.uMouse.value.y += (target.y - uniforms.uMouse.value.y) * 0.05
+    // Lerp mouse — faster response so the effect is immediately obvious
+    uniforms.uMouse.value.x += (target.x - uniforms.uMouse.value.x) * 0.12
+    uniforms.uMouse.value.y += (target.y - uniforms.uMouse.value.y) * 0.12
   })
 
   return (
@@ -67,9 +67,9 @@ function ParallaxPlane() {
             // Mix smooth and stepped for a stylized layer effect
             float effect = mix(pow(depth, 2.0), layer, 0.5) * 1.2;
             
-            // Parallax displacement
-            pos.x += uMouse.x * effect * 2.0;
-            pos.y += uMouse.y * effect * 1.0;
+            // Parallax displacement — amplified for clear visible depth
+            pos.x += uMouse.x * effect * 4.0;
+            pos.y += uMouse.y * effect * 2.0;
             
             // Slight organic breathing
             pos.z += sin(uTime * 0.5 + uv.x * 10.0) * effect * 0.1;
