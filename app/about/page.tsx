@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function AboutPage() {
   const values = [
@@ -41,7 +42,7 @@ export default function AboutPage() {
   return (
     <>      <main className="bg-white min-h-screen">
         {/* Editorial Hero */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
+        <section className="relative w-full pt-24 lg:pt-28 pb-10 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
@@ -96,6 +97,16 @@ export default function AboutPage() {
                 <p className="text-charcoal/50 font-bold uppercase tracking-widest text-xs">The principles that guide our work</p>
               </div>
               
+              <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-primary-green/10">
+                <Image
+                  src="/our values.png"
+                  alt="Our Core Values"
+                  width={1200}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {values.map((value, idx) => {
                   const Icon = value.icon

@@ -28,7 +28,7 @@ const trainingPrograms = [
   {
     title: 'Seed Company Professionalization',
     description:
-      "Using 'The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use' (authored by A. O'Connor Funk).",
+      "Using 'The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use' (authored by Aline O'Connor).",
     detail:
       "Covers 'meaningful moments' with customers, business management, and operational strategies designed specifically for seed enterprises in Africa.",
     icon: GraduationCap,
@@ -104,7 +104,7 @@ export default function CapacityBuildingPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ===== HERO ===== */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-20 overflow-hidden">
+        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
           {/* Decorative background */}
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-charcoal/[0.03] rounded-full blur-[120px] -translate-y-1/3 -translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary-green/[0.04] rounded-full blur-[100px] translate-y-1/3 translate-x-1/4 pointer-events-none" />
@@ -396,9 +396,9 @@ export default function CapacityBuildingPage() {
                         Author
                       </p>
                       <p className="text-white font-semibold">
-                        A. O&apos;Connor Funk{' '}
+                        Aline O&apos;Connor{' '}
                         <span className="text-white/40 font-normal">
-                          — Aline O&apos;Connor, AE Founder
+                          — AE Founder
                         </span>
                       </p>
                     </div>

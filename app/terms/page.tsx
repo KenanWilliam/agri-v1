@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="bg-[#FAFAFA] min-h-screen pt-32 lg:pt-48 pb-24 px-6">
+    <main className="bg-[#FAFAFA] min-h-screen pt-24 lg:pt-28 pb-24 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Back Link */}
         <Link 
@@ -21,7 +21,7 @@ export default function TermsPage() {
         </Link>
 
         {/* Header */}
-        <div className="space-y-6 mb-16 border-b border-black/5 pb-12">
+        <div className="space-y-6 mb-16 border-b border-black/5 pb-10">
           <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green">
             <FileText size={32} />
           </div>

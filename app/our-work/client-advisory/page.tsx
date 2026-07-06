@@ -113,7 +113,7 @@ export default function ClientAdvisoryPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ─── Hero ─── */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-20 overflow-hidden">
+        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
           {/* Luxury background accents */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-gold/[0.04] rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 left-1/2 w-[600px] h-[400px] bg-warm-earth/40 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -163,6 +163,21 @@ export default function ClientAdvisoryPage() {
                     advice. Our advisory services draw on 85+ years of
                     collective seed sector expertise.
                   </p>
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-accent-gold text-deep-forest rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
+                    >
+                      Request Advisory
+                      <ArrowRight size={16} />
+                    </Link>
+                    <Link
+                      href="/our-work"
+                      className="inline-flex items-center gap-2 px-8 py-4 border border-charcoal/20 text-charcoal rounded-full font-semibold text-sm hover:bg-charcoal/5 transition-colors"
+                    >
+                      Our Work
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             </div>

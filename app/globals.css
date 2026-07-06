@@ -131,6 +131,14 @@
 }
 
 @layer base {
+  /* Prevent overscroll bounce revealing a white gutter behind the footer.
+     overscroll-behavior covers Chrome/Edge/Firefox; the black bg fallback
+     handles Safari's elastic scroll which ignores the property. */
+  html {
+    overscroll-behavior: none;
+    background-color: #000;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -138,6 +146,7 @@
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
     position: relative;
+    overscroll-behavior: none;
   }
 
   /* Noise Overlay for Premium Texture */

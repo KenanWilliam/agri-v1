@@ -138,52 +138,45 @@ const countrySeeds: DetailedCountryRecord[] = [
     ],
     projectBlueprints: [
       {
-        title: 'Seed Policy and Regulatory Reform',
-        location: 'Nairobi',
-        summary: 'Supported the drafting and release of updated seed regulations in 2016 to facilitate private sector involvement and self-regulation.',
-        outcome: 'Introduced standard seed as a new certified class and authorized private inspectors and seed labs.',
-        partners: ['MoA', 'KEPHIS', 'STAK', 'TASAI'],
-        evidence: ['Updated regulations', 'Private inspector authorization', 'Standard seed classification'],
-        methods: ['Policy dialogue', 'Benchmarking trips', 'Advocacy'],
+        title: 'Kenya Crops Seed Sector Project',
+        location: 'National / Multiple Counties',
+        summary: 'A comprehensive multi-year initiative that modernized seed commercialization, empowered agrodealers, and launched pioneering digital tools for farmers.',
+        outcome: 'Dramatically improved seed traceability, market transparency, and farmer access to quality climate-smart varieties.',
+        partners: ['MoA', 'KEPHIS', 'STAK', 'Seed Companies', 'Agrodealers'],
+        evidence: [
+          '60+ seed companies strengthened',
+          '3,000+ agrodealers trained across 20 counties',
+          '500+ demos and 50 field days',
+          '7,000+ MbeguChoice app users'
+        ],
+        methods: ['Capacity Building', 'Digital Innovation', 'Field Demos', 'Governance Support'],
         timeline: '2013-2018',
-        budget_scope: 'National Policy Tier',
-        key_deliverables: ['Authorized standard seed class', 'Allowed private certification labs', 'Published gazetted rules'],
+        budget_scope: 'National Scale',
+        key_deliverables: [
+          'Established 16 county agrodealer associations for governance and advocacy',
+          'Deployed MbeguChoice offline App and the Seed Sector Platform',
+          'Pioneered the introduction of seed scratch-off labels to protect against counterfeits'
+        ],
       },
       {
-        title: 'MbeguChoice and Seed Sector Platform',
-        location: 'Nairobi',
-        summary: 'A variety decision tool and open information platform helped farmers, companies, and regulators use seed data more effectively.',
-        outcome: 'Supported traceability, variety lookup, and better access to recommended crop choices through scratch-off labels.',
-        partners: ['STAK', 'KALRO', 'mPedigree'],
-        evidence: ['Scratch-off labels', 'Open platform', 'Variety selection tool'],
-        methods: ['Digital design', 'Data curation', 'Farmer-facing UX'],
-        timeline: '2016-2021',
-        budget_scope: 'Digital Innovation Tier',
-        key_deliverables: ['SMS verification integration', 'Variety database app', 'Label roll-out program'],
-      },
-      {
-        title: 'Agrodealer Capacity Building',
-        location: 'Nakuru',
-        summary: 'Trained over 3,000 agrodealers across 20 counties and formed 16 county-based associations to strengthen the last-mile link.',
-        outcome: 'Transformed agrodealers into informed actors providing technical advice via demonstration plots and field days.',
-        partners: ['County associations', 'Extension officers', 'Seed companies'],
-        evidence: ['3,000+ agrodealers trained', '16 associations formed', 'Demo plots'],
-        methods: ['Training', 'Institutional development', 'Field days'],
-        timeline: '2017-2023',
-        budget_scope: 'Regional Extension Tier',
-        key_deliverables: ['County networks established', 'Curriculum deployment', 'Annual field days'],
-      },
-      {
-        title: 'Seed Outgrower Training',
-        location: 'Tharaka Nithi',
-        summary: 'Delivered field-based training for seed outgrowers and CBOs engaged in Standard Certified Seed production.',
-        outcome: 'Decentralized seed production, improving local availability of improved varieties in marginalized regions.',
-        partners: ['CBOs', 'Local seed companies'],
-        evidence: ['Decentralized production', 'Trained outgrowers', 'Improved yields'],
-        methods: ['Field-based training', 'Capacity building', 'Quality control'],
-        timeline: '2019-2023',
-        budget_scope: 'Community Tier',
-        key_deliverables: ['SOP manuals created', 'Demonstration yields tracking', 'CBO integration'],
+        title: 'Seed Systems Support for Development (S34D)',
+        location: 'National',
+        summary: 'Focused on expanding crop diversity in certified seed classes, strengthening quality surveillance, and increasing farmer awareness of quality seed.',
+        outcome: 'Expanded the availability of certified seed for non-maize crops and established direct reporting lines between farmers and regulators.',
+        partners: ['KEPHIS', 'National Media', 'Agrodealers'],
+        evidence: [
+          '16 crops introduced as Standard Certified Seed',
+          '10,000+ farmers connected via feedback mechanism',
+          'National radio campaign rollout'
+        ],
+        methods: ['Regulatory Expansion', 'Public Awareness', 'Surveillance Systems'],
+        timeline: 'Ongoing',
+        budget_scope: 'National Scale',
+        key_deliverables: [
+          'Introduced 16 crops under the Standard Certified Seed class',
+          'Developed a national farmer feedback mechanism for KEPHIS',
+          'Implemented a national radio awareness campaign promoting certified seed'
+        ],
       }
     ],
   },
@@ -246,52 +239,25 @@ const countrySeeds: DetailedCountryRecord[] = [
     ],
     projectBlueprints: [
       {
-        title: 'Tanzania Agri-Inputs Platform & SDF',
-        location: 'Dar es Salaam',
-        summary: 'A public platform with searchable crop varieties, agrodealer contacts, and agro-chemicals. Supported MoA in Seed Demand Forecasting (SDF).',
-        outcome: 'The Ministry migrated the platform to its server. SDF was completed for 10 priority crops.',
-        partners: ['MoA', 'TOSCI', 'Agricultural Seed Agency'],
-        evidence: ['Searchable variety lists', 'Seed demand forecast reports', 'Agrodealer mapping'],
-        methods: ['Platform design', 'Stakeholder consulting', 'SDF Training'],
-        timeline: '2018-2024 (ESSETA)',
+        title: 'Enhancing the Seed Sector in Tanzania (ESSETA)',
+        location: 'National',
+        summary: 'A comprehensive initiative to modernize the national seed sector through digitalization, infrastructure upgrades, and strategic governance.',
+        outcome: 'Significantly increased seed processing capacity, improved seed quality assurance, and enhanced national certification efficiency.',
+        partners: ['Ministry of Agriculture', 'ASA', 'TOSCI'],
+        evidence: [
+          'Digitized the national seed certification system, improving efficiency and transparency',
+          'Upgraded 3 ISTA-standard seed laboratories, strengthening seed quality assurance',
+          'Installed a modern 3-tonne-per-hour seed processing plant at ASA\'s Msimba Farm'
+        ],
+        methods: ['Digitalization', 'Infrastructure Upgrades', 'Capacity Building', 'Strategic Planning'],
+        timeline: '2019-2024',
         budget_scope: 'National System Tier',
-        key_deliverables: ['Platform handover to MoA', 'Published 10 crop forecasts', 'Mapped 2,000+ stakeholders'],
-      },
-      {
-        title: 'Tanzania Online Application System (TOAS)',
-        location: 'Dodoma',
-        summary: 'Digitized the seed certification system, moving from paper-based to an end-to-end online platform for field inspections, lab analysis, and permit issuance.',
-        outcome: 'TOAS went live in December 2022. All certification services are now online, significantly improving turnaround times.',
-        partners: ['TOSCI', 'MoA'],
-        evidence: ['TOAS platform', 'Instant certificate printing', 'Digital receipts'],
-        methods: ['System digitization', 'User training', 'Process optimization'],
-        timeline: '2020-2022',
-        budget_scope: 'Digital Innovation Tier',
-        key_deliverables: ['E-certification launch', 'Payment gateway integration', 'Legacy data migration'],
-      },
-      {
-        title: 'Laboratory and certification modernization',
-        location: 'Njombe',
-        summary: 'Upgraded three key laboratories (Arusha, Morogoro, Njombe) to ISTA standards and trained staff to handle new equipment.',
-        outcome: 'Lab turnaround improved dramatically (e.g., maize germination results reduced from 14-21 days to 4-7 days).',
-        partners: ['TOSCI', 'ISTA Consultants'],
-        evidence: ['Cold storage lab built', 'Equipment procured', 'SOPs implemented'],
-        methods: ['Lab rehabilitation', 'Technical training', 'Quality Assurance (QA)'],
-        timeline: '2021-2023',
-        budget_scope: 'Infrastructure Tier',
-        key_deliverables: ['ISTA compliant upgrades', 'Cold storage integration', 'Staff certification programs'],
-      },
-      {
-        title: 'Agricultural Seed Agency (ASA) Enhancement',
-        location: 'Msimba Farm',
-        summary: 'Upgraded seed processing plant and warehouse at Msimba Farm and implemented soil health interventions.',
-        outcome: 'Procured a 3.0 tons/hour processing plant and trained ASA staff on operations and maintenance.',
-        partners: ['ASA', 'SeedCo Kenya'],
-        evidence: ['Processing plant installed', 'Soil kits used', 'Warehouse rebuilt'],
-        methods: ['Infrastructure upgrade', 'Agronomic training', 'Exchange visits'],
-        timeline: '2022-2024',
-        budget_scope: 'Capital Equipment Tier',
-        key_deliverables: ['3.0 ton/hour plant', 'Warehouse rehabilitation', 'Soil remediation protocol'],
+        key_deliverables: [
+          'Built the capacity of 800+ seed sector professionals',
+          'Developed national Seed Demand Forecasting for 10 priority crops',
+          'Established Seed Coordination Unit within the Ministry of Agriculture',
+          'Developed the Tanzania Seed Investment Plan'
+        ],
       }
     ],
   },
@@ -732,10 +698,9 @@ export default function InteractiveMap() {
     setHoveredName(null)
     if (mapboxMapRef.current) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-      mapboxMapRef.current.fitBounds([[-20, -35], [55, 38]], {
-        padding: isMobile 
-          ? { top: 20, bottom: 20, left: 20, right: 20 }
-          : { top: 60, bottom: 60, left: 60, right: 60 },
+      mapboxMapRef.current.easeTo({
+        center: [20.0, -5.0],
+        zoom: isMobile ? 0.8 : 1.1,
         pitch: 0,
         duration: 1800,
         essential: true
@@ -753,7 +718,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-[100dvh] flex flex-col pt-[64px] lg:pt-[80px] overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-[100dvh] min-h-[850px] lg:min-h-[1000px] flex flex-col overflow-hidden">
       {/* Main Interactive Workspace — full bleed, edge to edge */}
       <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
@@ -853,7 +818,12 @@ export default function InteractiveMap() {
                     <Globe size={11} className="opacity-60" />
                     {selectedCountry.region}
                   </div>
-                  <h3 className="text-deep-forest text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold">{selectedCountry.name}</h3>
+                  <h3 className="text-deep-forest text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
+                    <span className="text-3xl lg:text-4xl leading-none">
+                      {String.fromCodePoint(...selectedCountry.code.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0)))}
+                    </span>
+                    {selectedCountry.name}
+                  </h3>
                 </div>
                 <button
                   onClick={closeCountryOverlay}
@@ -871,17 +841,14 @@ export default function InteractiveMap() {
               <div className="flex-1 overflow-y-auto px-6 py-5 custom-scrollbar">
                 <div className="space-y-6">
 
-                  {/* Overview */}
-                  <p className="text-[13px] lg:text-sm text-charcoal/70 font-light leading-relaxed">
-                    {selectedCountry.overview}
-                  </p>
+                  {/* Overview removed as requested */}
 
                   {/* Stats row */}
                   <div className="grid grid-cols-2 gap-3">
                     <div className="rounded-xl bg-deep-forest p-4 text-white relative overflow-hidden">
                       <div className="absolute -right-3 -top-3 w-16 h-16 rounded-full bg-white/[0.04]" />
                       <Briefcase className="text-accent-gold/80" size={16} />
-                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{selectedCountry.projects}</div>
+                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{activeProjects.length}</div>
                       <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-white/50 font-bold">Projects</div>
                     </div>
                     <div className="rounded-xl bg-deep-forest/[0.04] p-4 text-deep-forest border border-deep-forest/[0.06] relative overflow-hidden">
@@ -991,18 +958,6 @@ export default function InteractiveMap() {
                                       </div>
                                     )}
 
-                                    {/* Methods */}
-                                    <div className="space-y-1.5">
-                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Methods</div>
-                                      <div className="flex flex-wrap gap-1">
-                                        {project.methods.map((method) => (
-                                          <span key={method} className="rounded-full bg-charcoal/[0.04] px-2 py-0.5 text-[10px] font-medium text-charcoal/50">
-                                            {method}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-
                                     {/* Partners */}
                                     <div className="space-y-1.5">
                                       <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Partners</div>
@@ -1010,6 +965,18 @@ export default function InteractiveMap() {
                                         {project.partners.map((partner) => (
                                           <span key={partner} className="rounded-md border border-charcoal/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-medium text-charcoal/55">
                                             {partner}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    {/* Supported by (formerly Methods) */}
+                                    <div className="space-y-1.5">
+                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Supported by</div>
+                                      <div className="flex flex-wrap gap-1">
+                                        {project.methods.map((method) => (
+                                          <span key={method} className="rounded-full bg-charcoal/[0.04] px-2 py-0.5 text-[10px] font-medium text-charcoal/50">
+                                            {method}
                                           </span>
                                         ))}
                                       </div>

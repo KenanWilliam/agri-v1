@@ -59,22 +59,16 @@ export default function Footer() {
                   Transforming seed systems and agricultural value chains across Africa through expert consultancy and sustainable community development.
                 </p>
                 
-                {/* Circular Social/Trust Badges */}
+                {/* Social Links */}
                 <div className="flex gap-4 pt-4">
                   <Link 
                     href="https://www.linkedin.com/company/agri-experience-ltd/" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center hover:bg-primary-ivory/10 hover:border-primary-ivory/40 transition duration-200 text-primary-ivory/60 hover:text-white"
+                    className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center hover:bg-primary-green/10 hover:border-primary-green/40 transition duration-200 text-primary-ivory/60 hover:text-primary-green"
                   >
                     <Linkedin size={16} />
                   </Link>
-                  <div className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center text-primary-ivory/60 hover:text-white transition duration-200 cursor-help" title="Data Privacy">
-                    <span className="text-[10px] font-bold">DP</span>
-                  </div>
-                  <div className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center text-primary-ivory/60 hover:text-white transition duration-200 cursor-help" title="Certified Consultancy">
-                    <span className="text-[10px] font-bold">CC</span>
-                  </div>
                 </div>
 
                 {/* Copyright */}
@@ -97,13 +91,13 @@ export default function Footer() {
                   <ul className="space-y-4">
                     {footerLinks[0].links.map((link, j) => (
                       <li key={j}>
-                        <Link href={link.href} className="text-primary-ivory/80 text-sm hover:text-white transition-colors font-medium">
+                        <Link href={link.href} className="text-primary-ivory/80 text-sm hover:text-primary-green transition-colors font-medium">
                           {link.label}
                         </Link>
                       </li>
                     ))}
                     <li>
-                      <Link href="/contact" className="text-primary-ivory/80 text-sm hover:text-white transition-colors font-medium">
+                      <Link href="/contact" className="text-primary-ivory/80 text-sm hover:text-primary-green transition-colors font-medium">
                         Careers
                       </Link>
                     </li>
@@ -116,18 +110,18 @@ export default function Footer() {
                   <ul className="space-y-4">
                     {footerLinks[1].links.map((link, j) => (
                       <li key={j}>
-                        <Link href={link.href} className="text-primary-ivory/80 text-sm hover:text-white transition-colors font-medium">
+                        <Link href={link.href} className="text-primary-ivory/80 text-sm hover:text-primary-green transition-colors font-medium">
                           {link.label}
                         </Link>
                       </li>
                     ))}
                     <li>
-                      <Link href="/privacy" className="text-primary-ivory/80 text-sm hover:text-white transition-colors font-medium">
+                      <Link href="/privacy" className="text-primary-ivory/80 text-sm hover:text-primary-green transition-colors font-medium">
                         Privacy Policy
                       </Link>
                     </li>
                     <li>
-                      <Link href="/terms" className="text-primary-ivory/80 text-sm hover:text-white transition-colors font-medium">
+                      <Link href="/terms" className="text-primary-ivory/80 text-sm hover:text-primary-green transition-colors font-medium">
                         Terms of Service
                       </Link>
                     </li>
@@ -190,7 +184,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/agri-experience-ltd/" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center text-primary-ivory/60"
+                  className="w-12 h-12 rounded-full border border-primary-ivory/20 flex items-center justify-center text-primary-ivory/60 hover:text-primary-green hover:border-primary-green/40 transition duration-200"
                 >
                   <Linkedin size={16} />
                 </Link>

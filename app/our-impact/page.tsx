@@ -45,65 +45,9 @@ export default function OurImpactPage() {
     <>      <main className="bg-white min-h-screen">
         <InteractiveMap />
         
-        {/* Hero */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden border-b border-mist">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
-            >
-              Our Impact
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg lg:text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed"
-            >
-              As a social enterprise, we are focused on a triple bottom line that prioritizes impact, capacity, and sustainability.
-            </motion.p>
-          </div>
-        </section>
 
-        {/* Impact Areas */}
+        {/* Key Achievements */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {impactAreas.map((area, idx) => {
-                const Icon = area.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
-                      <Icon className="text-primary-green" size={32} />
-                    </div>
-                    <h3 className="text-2xl font-serif font-bold text-deep-forest mb-4">{area.title}</h3>
-                    <p className="text-charcoal/80 font-light leading-relaxed mb-8">{area.description}</p>
-                    <ul className="space-y-4">
-                      {area.highlights.map((highlight, hidx) => (
-                        <li key={hidx} className="flex gap-4 items-start">
-                          <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
-                          <span className="text-charcoal/80 font-light leading-relaxed">{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Collaboration */}
-        <section className="w-full py-16 lg:py-24 bg-white border-t border-mist">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-12">
             <div className="space-y-6">
               <motion.h2
@@ -112,33 +56,111 @@ export default function OurImpactPage() {
                 transition={{ duration: 0.6 }}
                 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest"
               >
-                How We Create Impact
+                Our Key Achievements
               </motion.h2>
               <p className="text-lg lg:text-xl text-charcoal/80 font-light leading-relaxed max-w-3xl mx-auto">
-                We prioritize working with key local officials and other seed sector stakeholders, and leverage our experience and network of collaborators
-                to bring about meaningful and sustainable systemic change.
+                Our consulting work has led to major advancements in seed systems and farmer empowerment across the continent. Here is a look at some of our transformative programs.
               </p>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 transition-colors">
-                <h3 className="text-2xl font-serif font-bold text-deep-forest mb-6">Typical Partners</h3>
-                <ul className="space-y-4 text-charcoal/80 font-light leading-relaxed">
-                  <li>&bull; Donors and development partners</li>
-                  <li>&bull; Research organizations and ministry officials</li>
-                  <li>&bull; Regulators and technology licensing entities</li>
-                  <li>&bull; Seed companies, agrodealers, and associations</li>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
+              {/* Kenya */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex flex-col h-full p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
+                  <Globe className="text-primary-green" size={32} />
+                </div>
+                <h3 className="text-3xl font-serif font-bold text-deep-forest mb-4">Revolutionizing Kenya's Seed Sector</h3>
+                <p className="text-charcoal/80 font-light leading-relaxed mb-8">
+                  We partnered with MoA, KEPHIS, seed companies, and STAK to make significant improvements in the Kenyan seed sector.
+                </p>
+                <div className="space-y-6 flex-grow">
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold text-deep-forest flex items-center gap-2">
+                      <Leaf className="text-primary-green" size={20} /> Policy & Regulatory Reforms
+                    </h4>
+                    <p className="text-charcoal/80 font-light leading-relaxed pl-7 text-sm">
+                      Enabled authorization of private seed inspection, gazetting over 40 inspectors and 17 analysts. Piloted "standard seed" to increase non-maize and non-hybrid crops.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold text-deep-forest flex items-center gap-2">
+                      <Heart className="text-primary-green" size={20} /> Authentication & Traceability
+                    </h4>
+                    <p className="text-charcoal/80 font-light leading-relaxed pl-7 text-sm">
+                      Introduced scratch-off labels, reducing counterfeits by over 40% and label costs by 85%, empowering farmers to confirm seed quality.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold text-deep-forest flex items-center gap-2">
+                      <Globe className="text-primary-green" size={20} /> Institutional Strengthening
+                    </h4>
+                    <p className="text-charcoal/80 font-light leading-relaxed pl-7 text-sm">
+                      Revitalized STAK, growing membership by over 30%. Created County Agrodealer Associations in 10 counties and trained agrodealers through Mazao forums.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-bold text-deep-forest flex items-center gap-2">
+                      <ArrowRight className="text-primary-green" size={20} /> Regional Influence
+                    </h4>
+                    <p className="text-charcoal/80 font-light leading-relaxed pl-7 text-sm">
+                      Kenya's innovations spread! Scratch labels were adopted in Nigeria, Tanzania, and Uganda, and Tanzania benchmarked Kenya's private inspection model.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Tanzania */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col h-full p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary-green/10 flex items-center justify-center mb-6">
+                  <Leaf className="text-primary-green" size={32} />
+                </div>
+                <h3 className="text-3xl font-serif font-bold text-deep-forest mb-4">Strengthening Tanzania's Seed Systems</h3>
+                <p className="text-charcoal/80 font-light leading-relaxed mb-8">
+                  A six-year initiative aimed at modernizing three key public institutions to enhance the delivery of quality seed to farmers and foster a private sector-oriented industry.
+                </p>
+                <ul className="space-y-4 flex-grow">
+                  <li className="flex gap-4 items-start">
+                    <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-charcoal/80 font-light leading-relaxed text-sm">
+                      <strong className="text-deep-forest font-medium">Strengthened Institutional Capacity:</strong> Established the National Planning and Coordination Unit for effective oversight.
+                    </span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-charcoal/80 font-light leading-relaxed text-sm">
+                      <strong className="text-deep-forest font-medium">Streamlined Certification:</strong> Reduced delays and increased efficiency with a fully digitized certification system.
+                    </span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-charcoal/80 font-light leading-relaxed text-sm">
+                      <strong className="text-deep-forest font-medium">Enhanced Laboratory Services:</strong> Renovated two labs, cutting sample wait times by over 50% and expanding seed variety availability.
+                    </span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-charcoal/80 font-light leading-relaxed text-sm">
+                      <strong className="text-deep-forest font-medium">Decentralized Quality Assurance:</strong> Recognized authorized private seed inspectors and laboratory analysts.
+                    </span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-primary-green font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-charcoal/80 font-light leading-relaxed text-sm">
+                      <strong className="text-deep-forest font-medium">Improved Information Flow:</strong> Deployed a digitized platform for accurate seed demand forecasting.
+                    </span>
+                  </li>
                 </ul>
-              </div>
-              <div className="p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 transition-colors">
-                <h3 className="text-2xl font-serif font-bold text-deep-forest mb-6">What We Deliver</h3>
-                <ul className="space-y-4 text-charcoal/80 font-light leading-relaxed">
-                  <li>&bull; Experience-based field analysis</li>
-                  <li>&bull; Practical recommendations</li>
-                  <li>&bull; Implementation support</li>
-                  <li>&bull; Sustainable, systemic change</li>
-                </ul>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>

@@ -55,6 +55,10 @@ export default function OurTeamPage() {
 
   useEffect(() => {
     setMounted(true)
+    document.documentElement.classList.add('snap-y', 'snap-mandatory')
+    return () => {
+      document.documentElement.classList.remove('snap-y', 'snap-mandatory')
+    }
   }, [])
 
   useEffect(() => {
@@ -139,25 +143,28 @@ export default function OurTeamPage() {
   return (
     <main className="bg-[#FAFAFA] min-h-screen">
       
-      {/* Clean, minimalist Header Space matching the vibe */}
-      <section className="pt-40 lg:pt-56 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl space-y-6"
-        >
-          <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-serif text-deep-forest font-bold tracking-tight leading-[0.9]">
-            Our Team.
-          </h1>
-          <p className="text-xl lg:text-3xl text-charcoal/60 font-light max-w-2xl leading-relaxed">
-            Dedicated experts. Shared vision. Cultivating sustainable seed systems across Africa.
-          </p>
-        </motion.div>
+      {/* Editorial Hero */}
+      <section className="relative w-full pt-24 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8 text-center"
+          >
+            <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+              Our Team
+            </h1>
+            <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
+              Dedicated experts. Shared vision. Cultivating sustainable seed systems across Africa.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Horizontal Scrolling Carousel with Secondary Navigation */}
-      <section className="w-full min-h-[calc(100vh-80px)] flex flex-col justify-center py-12 relative group/section">
+      <section className="w-full min-h-[calc(100vh-80px)] flex flex-col justify-center pt-16 lg:pt-20 pb-12 relative group/section snap-start scroll-mt-20">
         <Carousel
           setApi={setApi}
           opts={{
@@ -228,23 +235,27 @@ export default function OurTeamPage() {
           </div>
 
           {/* Navigation Buttons (Centered Below) */}
-          <div className="flex justify-center gap-6 mt-8 z-30 pointer-events-auto">
-            <button 
-              onClick={() => api?.scrollPrev()}
-              disabled={!mounted || !api?.canScrollPrev()}
-              className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
-              aria-label="Previous"
-            >
-              <ArrowLeft className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
-            </button>
-            <button 
-              onClick={() => api?.scrollNext()}
-              disabled={!mounted || !api?.canScrollNext()}
-              className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
-              aria-label="Next"
-            >
-              <ArrowRight className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
-            </button>
+          <div className="flex justify-center gap-6 mt-8 z-30 pointer-events-auto min-h-[80px]">
+            {mounted && (
+              <>
+                <button 
+                  onClick={() => api?.scrollPrev()}
+                  disabled={!api?.canScrollPrev()}
+                  className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
+                  aria-label="Previous"
+                >
+                  <ArrowLeft className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
+                </button>
+                <button 
+                  onClick={() => api?.scrollNext()}
+                  disabled={!api?.canScrollNext()}
+                  className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur rounded-full border border-charcoal/10 flex items-center justify-center hover:bg-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-xl"
+                  aria-label="Next"
+                >
+                  <ArrowRight className="text-deep-forest w-8 h-8 md:w-10 md:h-10" />
+                </button>
+              </>
+            )}
           </div>
         </Carousel>
       </section>
@@ -341,7 +352,7 @@ export default function OurTeamPage() {
       </AnimatePresence>
 
       {/* Simplified Curated Our Journey Section */}
-      <section className="w-full py-16 lg:py-24 xl:py-32 bg-white relative">
+      <section className="w-full py-16 lg:py-24 xl:py-32 bg-white relative snap-start scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
             <div className="lg:w-1/3 space-y-8">

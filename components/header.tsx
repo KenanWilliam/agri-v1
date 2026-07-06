@@ -33,7 +33,7 @@ export default function Header() {
     <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 flex justify-center items-center h-[72px] lg:h-[88px]">
       <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex items-center justify-between">
-          <Link href="/" onClick={() => setClickedPath('/')} aria-label="Agri Experience" className="flex items-center group">
+          <Link href="/" onClick={() => { setClickedPath('/'); }} aria-label="Agri Experience" className="flex items-center group">
             <Image
               src="/Newsletters.svg"
               alt="Agri Experience Logo"
@@ -56,7 +56,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setClickedPath(item.href)}
+                  onClick={() => { setClickedPath(item.href); }}
                   onMouseEnter={() => setHoveredPath(item.href)}
                   className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-150 ${
                     isActive
@@ -70,6 +70,7 @@ export default function Header() {
                       layoutId="active-nav-pill"
                       className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      initial={false}
                     />
                   )}
                   {/* Hover pill — always rendered, toggled via opacity to avoid remount flash */}
@@ -77,6 +78,7 @@ export default function Header() {
                     className="absolute inset-0 bg-black/5 rounded-full -z-20 pointer-events-none"
                     animate={{ opacity: hoveredPath === item.href && !isActive ? 1 : 0 }}
                     transition={{ duration: 0.15, ease: 'easeOut' }}
+                    initial={false}
                   />
                   {item.label}
                 </Link>
@@ -88,7 +90,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <Link
               href="/contact"
-              onClick={() => setClickedPath('/contact')}
+              onClick={() => { setClickedPath('/contact'); }}
               className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
               Contact Us
@@ -120,7 +122,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => { setIsOpen(false); }}
                     className={`px-6 py-4 text-lg font-medium rounded-full transition-colors duration-200 ${
                       isActive 
                         ? 'text-deep-forest bg-black/5' 
@@ -134,7 +136,7 @@ export default function Header() {
               <hr className="my-2 border-black/10" />
               <Link
                 href="/contact"
-                onClick={() => setIsOpen(false)}
+                onClick={() => { setIsOpen(false); }}
                 className="w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md"
               >
                 Contact Us

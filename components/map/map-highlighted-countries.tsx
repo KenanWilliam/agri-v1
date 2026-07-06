@@ -82,10 +82,10 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       map.setPaintProperty('africa-countries-fill', 'fill-opacity', [
         'case',
         ['boolean', ['feature-state', 'selected'], false],
-        0.55, // Rich glass for selected
+        1.0, // Fully opaque for selected
         ['boolean', ['feature-state', 'hover'], false],
-        0.45, // Hover glass
-        0.35 // Base translucent glass remains consistent so they don't disappear
+        0.75, // Bright hover glass
+        0.45 // Solid enough base to clearly distinguish from the rest of the map
       ]);
     }
   }, [map, selectedCountryName]);
@@ -129,10 +129,10 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             'fill-opacity': [
               'case',
               ['boolean', ['feature-state', 'selected'], false],
-              0.55, // Rich glass for selected
+              1.0, // Fully opaque for selected
               ['boolean', ['feature-state', 'hover'], false],
-              0.45, // Hover glass
-              0.35 // Rich translucent glass base to let topography show through beautifully
+              0.75, // Bright hover glass
+              0.45 // Solid enough base to clearly distinguish from the rest of the map
             ]
           }
         }, 'waterway-label'); 

@@ -82,7 +82,7 @@ export default function TechnicalStudiesPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ─── Hero ─── */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-20 overflow-hidden">
+        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
           {/* Background blobs */}
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-blue/5 rounded-full blur-[120px] -translate-y-1/3 -translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-blue/3 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
@@ -122,6 +122,21 @@ export default function TechnicalStudiesPage() {
                 <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
                   In-depth analysis and feasibility studies that turn complex challenges into clear, actionable insights for seed systems and agricultural value chains. AE conducts rigorous, field-based research across sub-Saharan Africa, providing the evidence base that donors, governments, and private sector companies need to make informed decisions.
                 </p>
+                <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary-blue text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    Start a Study
+                    <ArrowRight size={16} />
+                  </Link>
+                  <Link
+                    href="/our-work"
+                    className="inline-flex items-center gap-2 px-8 py-4 border border-primary-blue/20 text-primary-blue rounded-full font-semibold text-sm hover:bg-primary-blue/5 transition-colors"
+                  >
+                    Our Work
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </div>

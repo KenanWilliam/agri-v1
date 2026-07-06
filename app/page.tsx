@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <main className="overflow-hidden bg-background">
         {/* Premium Hero Section */}
-        <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-16 bg-white">
+        <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white">
           {/* Background Image */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
             <Image

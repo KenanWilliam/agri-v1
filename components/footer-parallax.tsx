@@ -25,7 +25,7 @@ export default function FooterParallax({ children }: { children?: ReactNode }) {
   // === SCROLL Y-TRANSLATION (Vertical Parallax) ===
   const bgScrollY = useTransform(smoothScroll, [0, 1], ["0%", "18%"]);
   const landscapeScrollY = useTransform(smoothScroll, [0, 1], ["0%", "-10%"]);
-  const subjectScrollY = useTransform(smoothScroll, [0, 1], ["0%", "-16%"]);
+  const subjectScrollY = useTransform(smoothScroll, [0, 1], ["0%", "-6%"]);
   // Locked Y translation to 0% so plants stick perfectly to the bottom of the viewport
   const plantsScrollY = useTransform(smoothScroll, [0, 1], ["0%", "0%"]);
 
@@ -33,11 +33,11 @@ export default function FooterParallax({ children }: { children?: ReactNode }) {
   const bgScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-4%"]);
   const landscapeScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-9%"]);
   const subjectScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-16%"]);
-  const plantsScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-11%"]);
+  const plantsScrollX = useTransform(smoothScroll, [0, 1], ["0%", "-4%"]);
 
   // === DEPTH-OF-FIELD BLUR & OPACITY ===
   const bgBlur = useTransform(smoothScroll, [0, 0.5, 1], [0, 0, 3.5]);
-  const plantsBlur = useTransform(smoothScroll, [0, 0.6, 1], [0, 0, 1.5]);
+  // Plants are the nearest layer — never blur them (DoF sharpens foreground, not background)
   const bgOpacity = useTransform(smoothScroll, [0, 1], [1, 0.75]);
 
   // --- MOUSE PHYSICS ---
@@ -144,7 +144,7 @@ export default function FooterParallax({ children }: { children?: ReactNode }) {
 
         {/* Foreground Layer (z-40) — Plants pushed down as low hedge, with horizontal bleed */}
         <motion.div
-          style={{ scale: plantsScale, x: plantsScrollX, y: plantsScrollY, filter: useTransform(plantsBlur, (v) => `blur(${v}px)`) }}
+          style={{ scale: plantsScale, x: plantsScrollX, y: plantsScrollY }}
           className="absolute bottom-0 -left-[5vw] w-[110vw] h-[120%] z-40 origin-bottom translate-y-[24%] pointer-events-none"
         >
           <motion.img

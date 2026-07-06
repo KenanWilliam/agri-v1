@@ -60,7 +60,7 @@ export default function OurWorkPage() {
   return (
     <>      <main className="bg-white min-h-screen">
         {/* Top Section */}
-        <section className="relative w-full pt-32 lg:pt-48 pb-16 overflow-hidden">
+        <section className="relative w-full pt-24 lg:pt-28 pb-16 overflow-hidden">
           {/* Subtle background decorative shapes */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
 
@@ -102,7 +102,7 @@ export default function OurWorkPage() {
         </section>
 
         {/* Cards Section */}
-        <section className="w-full pb-24 relative z-10">
+        <section className="w-full pt-8 pb-24 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {cards.map((card, idx) => {
