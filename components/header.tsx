@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -15,12 +15,17 @@ const navItems = [
   { label: 'Our Impact', href: '/our-impact' },
   { label: 'Resources', href: '/resources' },
 ]
+import LiquidGlass from './liquid-glass'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
   const [clickedPath, setClickedPath] = useState<string | null>(null)
   const pathname = usePathname()
+
+  const [dimensions, setDimensions] = useState({ width: 0, left: 0, height: 0, top: 0 })
+  const buttonRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
+  const containerRef = useRef<HTMLElement>(null)
 
   // Clear the optimistic click state once Next.js has successfully navigated to the new path
   useEffect(() => {
@@ -29,9 +34,47 @@ export default function Header() {
 
   const activePath = clickedPath || pathname
 
+  // Update dimensions whenever active path changes or on mount
+  useEffect(() => {
+    const updateDimensions = () => {
+      const activeItem = navItems.find((item) => activePath === item.href || (activePath.startsWith(item.href) && item.href !== '/'))
+      if (!activeItem) return
+
+      const selectedButton = buttonRefs.current.get(activeItem.href)
+      const container = containerRef.current
+
+      if (selectedButton && container) {
+        setDimensions({
+          width: selectedButton.offsetWidth,
+          height: selectedButton.offsetHeight,
+          left: selectedButton.offsetLeft,
+          top: selectedButton.offsetTop,
+        })
+      }
+    }
+
+    // Initial update
+    requestAnimationFrame(() => {
+      updateDimensions()
+    })
+
+    // Update on resize
+    window.addEventListener("resize", updateDimensions)
+    return () => window.removeEventListener("resize", updateDimensions)
+  }, [activePath])
+
   return (
-    <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 flex justify-center items-center h-[72px] lg:h-[88px]">
-      <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
+    <LiquidGlass 
+      className="sticky top-0 z-50 flex justify-center items-center h-[72px] lg:h-[88px] w-full"
+      blurAmount={0.25} 
+      elasticity={0}
+      displacementScale={100}
+      saturation={200}
+      cornerRadius={0}
+      padding="0"
+      overLight={false}
+    >
+      <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="flex items-center justify-between">
           <Link href="/" onClick={() => { setClickedPath('/'); }} aria-label="Agri Experience" className="flex items-center group">
             <Image
@@ -47,9 +90,30 @@ export default function Header() {
 
           {/* Desktop Navigation - AngelList Style Pill */}
           <nav 
-            className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
+            className="hidden lg:flex items-center bg-[#f2f2f2] rounded-full px-1.5 py-1.5 border border-[#e5e5e5] relative shadow-sm"
             onMouseLeave={() => setHoveredPath(null)}
+            ref={containerRef as any}
           >
+            {/* Sliding Background */}
+            {dimensions.width > 0 && (
+              <motion.div
+                animate={{
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  x: dimensions.left,
+                  y: dimensions.top,
+                  opacity: 1,
+                }}
+                className="absolute top-0 left-0 z-0 bg-white rounded-full shadow-sm"
+                initial={false}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                }}
+              />
+            )}
+
             {navItems.map((item) => {
               const isActive = activePath === item.href || (activePath.startsWith(item.href) && item.href !== '/')
               return (
@@ -58,21 +122,16 @@ export default function Header() {
                   href={item.href}
                   onClick={() => { setClickedPath(item.href); }}
                   onMouseEnter={() => setHoveredPath(item.href)}
+                  ref={(el) => {
+                    if (el) buttonRefs.current.set(item.href, el);
+                    else buttonRefs.current.delete(item.href);
+                  }}
                   className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-150 ${
                     isActive
                       ? 'text-deep-forest z-20'
                       : 'text-charcoal/80 hover:text-deep-forest z-10'
                   }`}
                 >
-                  {/* Active pill — animates position with layoutId */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-nav-pill"
-                      className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      initial={false}
-                    />
-                  )}
                   {/* Hover pill — always rendered, toggled via opacity to avoid remount flash */}
                   <motion.div
                     className="absolute inset-0 bg-black/5 rounded-full -z-20 pointer-events-none"
@@ -145,6 +204,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </LiquidGlass>
   )
 }
