@@ -121,7 +121,7 @@ export default function CapacityBuildingPage() {
             />
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
               {/* Left */}
               <motion.div
@@ -181,7 +181,7 @@ export default function CapacityBuildingPage() {
 
         {/* ===== INTRO / OVERVIEW ===== */}
         <section className="w-full py-20 bg-mist/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ export default function CapacityBuildingPage() {
 
         {/* ===== TRAINING PROGRAMS GRID ===== */}
         <section className="w-full py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +274,7 @@ export default function CapacityBuildingPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -344,7 +344,7 @@ export default function CapacityBuildingPage() {
 
         {/* ===== TOOLBOX HIGHLIGHT ===== */}
         <section className="w-full py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left — visual block */}
               <motion.div
@@ -459,7 +459,7 @@ export default function CapacityBuildingPage() {
 
         {/* ===== IMPACT STATS BAR ===== */}
         <section className="w-full py-16 bg-mist/60">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { value: '1,000+', label: 'Professionals Trained', icon: Users },
@@ -510,7 +510,7 @@ export default function CapacityBuildingPage() {
               </svg>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

@@ -177,8 +177,11 @@ const GlassContainer = forwardRef<
   ) => {
     const filterId = useId()
     const [shaderMapUrl, setShaderMapUrl] = useState<string>("")
+    const [isFirefox, setIsFirefox] = useState(false)
 
-    const isFirefox = navigator.userAgent.toLowerCase().includes("firefox")
+    useEffect(() => {
+      setIsFirefox(typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox"))
+    }, [])
 
     // Generate shader displacement map when in shader mode
     useEffect(() => {
@@ -229,7 +232,7 @@ const GlassContainer = forwardRef<
           />
 
           {/* white tint overlay applied AFTER distortion so the filter works on full contrast */}
-          <div className="absolute inset-0 bg-white/70 backdrop-contrast-200 pointer-events-none" />
+          <div className="absolute inset-0 bg-white/60 pointer-events-none" />
 
           {/* user content stays sharp */}
           <div

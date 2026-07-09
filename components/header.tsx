@@ -32,6 +32,10 @@ export default function Header() {
     setClickedPath(null)
   }, [pathname])
 
+  const handleMouseLeave = () => {
+    setHoveredPath(null)
+  }
+
   const activePath = clickedPath || pathname
 
   // Update dimensions whenever active path changes or on mount
@@ -69,12 +73,12 @@ export default function Header() {
       blurAmount={0.25} 
       elasticity={0}
       displacementScale={100}
-      saturation={200}
+      saturation={120}
       cornerRadius={0}
       padding="0"
       overLight={false}
     >
-      <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+      <header className="w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="flex items-center justify-between">
           <Link href="/" onClick={() => { setClickedPath('/'); }} aria-label="Agri Experience" className="flex items-center group">
             <Image
@@ -90,26 +94,32 @@ export default function Header() {
 
           {/* Desktop Navigation - AngelList Style Pill */}
           <nav 
-            className="hidden lg:flex items-center bg-[#f2f2f2] rounded-full px-1.5 py-1.5 border border-[#e5e5e5] relative shadow-sm"
-            onMouseLeave={() => setHoveredPath(null)}
+            className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
+            onMouseLeave={handleMouseLeave}
             ref={containerRef as any}
           >
-            {/* Sliding Background */}
-            {dimensions.width > 0 && (
+            {/* Active Pill Highlight */}
+            {activePath && dimensions.width > 0 && (
               <motion.div
+                layoutId="active-nav-pill"
                 animate={{
                   width: dimensions.width,
                   height: dimensions.height,
                   x: dimensions.left,
                   y: dimensions.top,
+                  scaleX: [1, 1.15, 1],
                   opacity: 1,
                 }}
-                className="absolute top-0 left-0 z-0 bg-white rounded-full shadow-sm"
+                className="absolute top-0 left-0 z-0 rounded-full"
                 initial={false}
                 transition={{
                   type: "spring",
                   stiffness: 400,
                   damping: 30,
+                  scaleX: { duration: 0.4, ease: "easeInOut" }
+                }}
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0.6)",
                 }}
               />
             )}

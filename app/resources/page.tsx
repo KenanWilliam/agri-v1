@@ -11,7 +11,7 @@ import dynamic from 'next/dynamic'
 const PdfPreview = dynamic(() => import('@/components/pdf-preview'), { 
   ssr: false,
   loading: () => (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-primary-green/10 bg-mist flex flex-col items-center justify-center gap-3 animate-pulse aspect-[4/3] lg:aspect-[1/1.2]">
+    <div className="relative w-full rounded-xl overflow-hidden border border-primary-green/10 bg-mist flex flex-col items-center justify-center gap-3 animate-pulse aspect-[4/3] lg:aspect-[1/1.2]">
       <FileText size={32} className="text-primary-green/30" />
       <div className="h-2 w-2/3 rounded-full bg-primary-green/10" />
       <div className="h-2 w-1/2 rounded-full bg-primary-green/10" />
@@ -33,7 +33,7 @@ export default function ResourcesPage() {
       <main className="bg-white min-h-screen">
         {/* Downloads */}
         <section className="w-full pt-24 lg:pt-28 pb-10 bg-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -74,40 +74,33 @@ export default function ResourcesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: (idx % 10) * 0.05 }}
-                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 flex flex-col"
+                  className="flex flex-col group border border-black/[0.04] rounded-2xl overflow-hidden hover:border-black/[0.08] transition-colors"
                 >
-                  <div className="mb-4 flex items-start justify-between gap-4">
-                    <h3 className="text-xl font-serif font-bold text-deep-forest line-clamp-2">{download.title}</h3>
-                    <span className="shrink-0 px-3 py-1 bg-white rounded-full text-xs font-bold text-primary-green border border-primary-green/10">
-                      {download.category}
-                    </span>
-                  </div>
+                  {/* PDF first-page preview - sits flush against the border */}
+                  <PdfPreview pdfUrl={download.link} />
 
-                  {/* PDF first-page preview */}
-                  <div className="mb-5">
-                    <PdfPreview pdfUrl={download.link} />
-                  </div>
-
-                  <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{download.client}</p>
-                  <p className="text-sm text-charcoal/70 font-light leading-relaxed mb-6 flex-grow">{download.citation}</p>
-                  <div className="flex flex-wrap gap-4 pt-6 border-t border-primary-green/10 text-sm font-bold mt-auto">
-                    <a
-                      href={download.link}
-                      className="text-deep-forest hover:text-primary-green transition-colors inline-flex items-center gap-1"
-                      download
-                    >
-                      Download PDF <ArrowRight size={14} />
-                    </a>
-                    {download.clientLink && (
+                  <div className="p-4 lg:p-5 flex flex-col flex-grow">
+                    <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{download.client}</p>
+                    <p className="text-sm text-charcoal/70 font-light leading-relaxed mb-4 flex-grow">{download.citation}</p>
+                    <div className="flex flex-wrap gap-4 pt-3 border-t border-black/5 text-sm font-bold mt-auto">
                       <a
-                        href={download.clientLink}
+                        href={download.link}
                         className="text-deep-forest hover:text-primary-green transition-colors inline-flex items-center gap-1"
-                        target="_blank"
-                        rel="noreferrer"
+                        download
                       >
-                        Client Link <ArrowRight size={14} />
+                        Download PDF <ArrowRight size={14} />
                       </a>
-                    )}
+                      {download.clientLink && (
+                        <a
+                          href={download.clientLink}
+                          className="text-deep-forest hover:text-primary-green transition-colors inline-flex items-center gap-1"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Client Link <ArrowRight size={14} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}

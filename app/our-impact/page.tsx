@@ -1,6 +1,7 @@
 'use client'
 
 import InteractiveMap from '@/components/interactive-map'
+import ImpactAlignment from '@/components/motion/impact-alignment'
 import { motion } from 'framer-motion'
 import { Heart, Globe, Leaf, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -48,7 +49,7 @@ export default function OurImpactPage() {
 
         {/* Key Achievements */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-12">
             <div className="space-y-6">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -164,6 +165,9 @@ export default function OurImpactPage() {
             </div>
           </div>
         </section>
+
+        {/* Impact Alignment */}
+        <ImpactAlignment />
 
         {/* CTA */}
         <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">

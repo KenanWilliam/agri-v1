@@ -12,8 +12,6 @@ export default function Footer() {
   const [year, setYear] = useState(2026)
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const [agreed, setAgreed] = useState(false)
-  const [agreeError, setAgreeError] = useState(false)
 
   useEffect(() => {
     setYear(new Date().getFullYear())
@@ -21,13 +19,7 @@ export default function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!agreed) { setAgreeError(true); return }
-    if (email) { setSubmitted(true); setEmail(''); setAgreed(false); setAgreeError(false) }
-  }
-
-  const toggleAgreed = () => {
-    setAgreed(prev => !prev)
-    setAgreeError(false)
+    if (email) { setSubmitted(true); setEmail('') }
   }
 
   return (
@@ -71,8 +63,8 @@ export default function Footer() {
                 {submitted ? (
                   <p style={{ color: '#3ab44a', fontSize: '13px', marginBottom: '12px' }}>You&apos;re subscribed — thank you.</p>
                 ) : (
-                  <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }}>
-                    <div style={{
+                  <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }} suppressHydrationWarning>
+                    <div suppressHydrationWarning style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                       border: '1px solid #333', borderRadius: '8px',
                       padding: '10px 14px', background: 'transparent',
@@ -97,38 +89,23 @@ export default function Footer() {
                   </form>
                 )}
 
-                {/* Consent checkbox */}
-                <div
-                  onClick={toggleAgreed}
-                  style={{
-                    border: `1px solid ${agreeError ? '#e05252' : agreed ? '#3ab44a' : '#2a2a2a'}`,
-                    borderRadius: '8px',
-                    padding: '14px 16px', background: '#161616',
-                    display: 'flex', alignItems: 'center', gap: '12px',
-                    cursor: 'pointer', userSelect: 'none',
-                    transition: 'border-color 0.2s',
-                  }}
-                >
-                  {/* Checkbox square */}
-                  <div style={{
-                    width: '20px', height: '20px', flexShrink: 0,
-                    border: `2px solid ${agreed ? '#3ab44a' : agreeError ? '#e05252' : '#444'}`,
-                    borderRadius: '4px', background: agreed ? '#3ab44a' : '#0d0d0d',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    transition: 'background 0.15s, border-color 0.15s',
-                  }}>
-                    {agreed && (
-                      <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                        <path d="M1 4L4 7L10 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </div>
-                  <div>
-                    <p style={{ color: '#ccc', fontSize: '12px', margin: 0, fontWeight: 500 }}>I agree to receive updates</p>
-                    <p style={{ color: agreeError ? '#e05252' : '#555', fontSize: '10px', margin: '2px 0 0', letterSpacing: '0.05em', transition: 'color 0.15s' }}>
-                      {agreeError ? 'Please tick this box to continue' : 'Agri Experience · Privacy Protected'}
-                    </p>
-                  </div>
+
+                {/* Social */}
+                <div style={{ marginTop: '24px', display: 'flex' }}>
+                  <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
+                    style={{
+                      width: '48px', height: '48px', borderRadius: '12px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: '#1a1a1a', textDecoration: 'none',
+                      transition: 'background 0.2s',
+                    }}
+                    className="hover:bg-[#252525]"
+                  >
+                    {/* Filled "in" lettermark only */}
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
+                      <path d="M4.94 2.07A2.07 2.07 0 112.87 4.14 2.07 2.07 0 014.94 2.07zM2.07 6.75h3.56v11.45H2.07V6.75zm5.3 0h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H7.37V6.75z"/>
+                    </svg>
+                  </Link>
                 </div>
               </div>
 
@@ -183,84 +160,30 @@ export default function Footer() {
 
               {/* ── RIGHT: Contact + Social ── */}
               <div>
-                {/* Contact block — mirrors "Download the Origin App" pill buttons */}
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '14px' }}>Work With Us</p>
-                <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
-                  <Link href="/contact" style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    border: '1px solid #2a2a2a', borderRadius: '999px',
-                    padding: '10px 20px', textDecoration: 'none',
-                    color: '#ccc', fontSize: '13px', background: '#161616',
-                    fontWeight: 500, whiteSpace: 'nowrap',
-                    transition: 'border-color 0.2s, color 0.2s',
-                  }} className="hover:border-[#3ab44a]/40 hover:text-white">
-                    Request a Proposal
-                  </Link>
-                  <Link href="/our-work" style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    border: '1px solid #2a2a2a', borderRadius: '999px',
-                    padding: '10px 20px', textDecoration: 'none',
-                    color: '#ccc', fontSize: '13px', background: '#161616',
-                    fontWeight: 500, whiteSpace: 'nowrap',
-                    transition: 'border-color 0.2s, color 0.2s',
-                  }} className="hover:border-[#3ab44a]/40 hover:text-white">
-                    View Our Projects
-                  </Link>
-                </div>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Work With Us</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '24px' }}>
+                  <li>
+                    <Link href="/contact" className={linkHoverClass}>Request a Proposal</Link>
+                  </li>
+                  <li>
+                    <Link href="/our-work" className={linkHoverClass}>View Our Projects</Link>
+                  </li>
+                </ul>
 
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '14px' }}>Get in Touch</p>
-                <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
-                  <a href="mailto:info@agri-experience.com" style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    border: '1px solid #2a2a2a', borderRadius: '999px',
-                    padding: '10px 20px', textDecoration: 'none',
-                    color: '#ccc', fontSize: '13px', background: '#161616',
-                    fontWeight: 500, whiteSpace: 'nowrap',
-                    transition: 'border-color 0.2s, color 0.2s',
-                  }} className="hover:border-[#3ab44a]/40 hover:text-white">
-                    info@agri-experience.com
-                  </a>
-                  <a href="tel:+254202626888" style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    border: '1px solid #2a2a2a', borderRadius: '999px',
-                    padding: '10px 20px', textDecoration: 'none',
-                    color: '#ccc', fontSize: '13px', background: '#161616',
-                    fontWeight: 500, whiteSpace: 'nowrap',
-                    transition: 'border-color 0.2s, color 0.2s',
-                  }} className="hover:border-[#3ab44a]/40 hover:text-white">
-                    +254 (20) 2626888
-                  </a>
-                  <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    border: '1px solid #2a2a2a', borderRadius: '999px',
-                    padding: '10px 20px', textDecoration: 'none',
-                    color: '#ccc', fontSize: '13px', background: '#161616',
-                    fontWeight: 500,
-                    transition: 'border-color 0.2s, color 0.2s',
-                  }} className="hover:border-[#3ab44a]/40 hover:text-white">
-                    Watermark Business Park, Karen · P.O. Box 1720 - 00606, Nairobi
-                  </a>
-                </div>
-
-                {/* Follow us */}
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '12px' }}>Follow us</p>
-                <div style={{ display: 'flex', gap: '10px', marginBottom: '24px' }}>
-                  <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
-                    style={{
-                      width: '48px', height: '48px', borderRadius: '12px',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      background: '#1a1a1a', textDecoration: 'none',
-                      transition: 'background 0.2s',
-                    }}
-                    className="hover:bg-[#252525]"
-                  >
-                    {/* Filled "in" lettermark only */}
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
-                      <path d="M4.94 2.07A2.07 2.07 0 112.87 4.14 2.07 2.07 0 014.94 2.07zM2.07 6.75h3.56v11.45H2.07V6.75zm5.3 0h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H7.37V6.75z"/>
-                    </svg>
-                  </Link>
-                </div>
-
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Get in Touch</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '24px' }}>
+                  <li>
+                    <a href="mailto:info@agri-experience.com" className={linkHoverClass}>info@agri-experience.com</a>
+                  </li>
+                  <li>
+                    <a href="tel:+254202626888" className={linkHoverClass}>+254 (20) 2626888</a>
+                  </li>
+                  <li>
+                    <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass}>
+                      Watermark Business Park, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                    </a>
+                  </li>
+                </ul>
 
               </div>
 
@@ -271,12 +194,18 @@ export default function Footer() {
           <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 64px 32px 64px' }}>
             <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '32px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
               <Link href="/" aria-label="Agri Experience" style={{ display: 'inline-flex' }}>
-                <Image
-                  src="/Newsletters.svg"
-                  alt="Agri Experience"
-                  width={500}
-                  height={200}
-                  style={{ width: 'auto', height: '42px', opacity: 0.85 }}
+                <div 
+                  className="h-[72px] w-[150px] bg-[#888] transition-colors hover:bg-white"
+                  style={{
+                    WebkitMaskImage: 'url(/Newsletters.svg)',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'left center',
+                    maskImage: 'url(/Newsletters.svg)',
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'left center',
+                  }}
                 />
               </Link>
               <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
@@ -286,7 +215,7 @@ export default function Footer() {
                 <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
                   style={{ color: '#777', fontSize: '11px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                   className="hover:text-[#aaa]">
-                  Designed by Kenan William
+                  Designed & Developed by Kenan William
                 </a>
               </div>
             </div>
@@ -307,8 +236,8 @@ export default function Footer() {
             {submitted ? (
               <p style={{ color: '#3ab44a', fontSize: '13px' }}>You&apos;re subscribed — thank you.</p>
             ) : (
-              <form onSubmit={handleSubmit}>
-                <div style={{
+              <form onSubmit={handleSubmit} suppressHydrationWarning>
+                <div suppressHydrationWarning style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   border: '1px solid #333', borderRadius: '8px', padding: '10px 14px',
                 }}>
@@ -323,6 +252,15 @@ export default function Footer() {
                 </div>
               </form>
             )}
+            
+            {/* Social */}
+            <div style={{ marginTop: '24px', display: 'flex' }}>
+              <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
+                style={{ width: '38px', height: '38px', border: '1px solid #2a2a2a', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#888', background: '#161616', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
+                className="hover:border-[#3ab44a]/50 hover:text-[#3ab44a]">
+                <Linkedin size={15} />
+              </Link>
+            </div>
           </div>
 
           {/* Nav */}
@@ -344,19 +282,24 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Social */}
-          <div>
-            <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
-              style={{ width: '38px', height: '38px', border: '1px solid #2a2a2a', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#888', background: '#161616', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
-              className="hover:border-[#3ab44a]/50 hover:text-[#3ab44a]">
-              <Linkedin size={15} />
-            </Link>
-          </div>
+
 
           {/* Logo + copyright */}
           <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '24px' }}>
-            <Link href="/">
-              <Image src="/Newsletters.svg" alt="Agri Experience" width={240} height={110} style={{ width: 'auto', height: '32px', opacity: 0.7, marginBottom: '12px' }} />
+            <Link href="/" aria-label="Agri Experience" style={{ display: 'inline-flex', marginBottom: '12px' }}>
+              <div 
+                className="h-[56px] w-[116px] bg-[#888] transition-colors hover:bg-white"
+                style={{
+                  WebkitMaskImage: 'url(/Newsletters.svg)',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'left center',
+                  maskImage: 'url(/Newsletters.svg)',
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'left center',
+                }}
+              />
             </Link>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <p style={{ color: '#888', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>
@@ -365,7 +308,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
                 style={{ color: '#777', fontSize: '10px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                 className="hover:text-[#aaa]">
-                Designed by Kenan William
+                Designed & Developed by Kenan William
               </a>
             </div>
           </div>

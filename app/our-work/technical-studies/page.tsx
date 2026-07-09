@@ -87,7 +87,7 @@ export default function TechnicalStudiesPage() {
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-blue/5 rounded-full blur-[120px] -translate-y-1/3 -translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-blue/3 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
               {/* Left: Title */}
               <motion.div
@@ -144,7 +144,7 @@ export default function TechnicalStudiesPage() {
 
         {/* ─── Study Types — Icon Grid (3×2) ─── */}
         <section className="w-full pb-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,7 +202,7 @@ export default function TechnicalStudiesPage() {
 
         {/* ─── Methodology — Horizontal Timeline ─── */}
         <section className="w-full py-28 bg-gradient-to-b from-white to-warm-earth/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -263,7 +263,7 @@ export default function TechnicalStudiesPage() {
 
         {/* ─── Case Study: KCDMS Agro-Dealer Mapping ─── */}
         <section className="w-full py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
               {/* Left column: Label + text (3 cols) */}
               <motion.div
@@ -364,7 +364,7 @@ export default function TechnicalStudiesPage() {
 
         {/* ─── Clients Trust Section ─── */}
         <section className="w-full py-20 bg-mist">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
