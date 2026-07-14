@@ -1,6 +1,7 @@
 'use client'
 
 import ClientLogos from '@/components/client-logos'
+import OfficePlantsGallery from '@/components/motion/office-plants-gallery'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
 import Link from 'next/link'
@@ -9,18 +10,18 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <>
-      <main className="overflow-hidden bg-background">
+      <main className="-mt-[72px] lg:-mt-[88px] overflow-x-hidden bg-background">
         {/* Premium Hero Section */}
-        <section className="relative w-full min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white">
+        <section className="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white">
           {/* Background Image */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
-            <Image
-              src="/hero-bg.png"
-              alt="Agri Experience Hero Background"
-              fill
-              priority
-              quality={100}
-              className="object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
+            <video
+              src="/Videos/wheat swaying in the wind.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
             />
           </div>
           
@@ -34,7 +35,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-serif tracking-tight text-[#1A4D2E] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1]"
+                className="font-serif tracking-tight text-[#1A4D2E] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1]"
               >
                 Cultivating Sustainable <br />
                 Seed Systems <br />
@@ -45,7 +46,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-gray-800 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-base sm:text-lg lg:text-xl"
+                className="text-gray-800 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-sm md:text-base lg:text-lg"
               >
                 Empowering farmers through innovation, expertise, and digital excellence.
               </motion.p>
@@ -90,6 +91,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Office Plants 3D Gallery */}
+        <OfficePlantsGallery />
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">

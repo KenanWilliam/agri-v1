@@ -12,8 +12,10 @@ export default function Footer() {
   const [year, setYear] = useState(2026)
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     setYear(new Date().getFullYear())
   }, [])
 
@@ -62,9 +64,13 @@ export default function Footer() {
                 {/* Email row */}
                 {submitted ? (
                   <p style={{ color: '#3ab44a', fontSize: '13px', marginBottom: '12px' }}>You&apos;re subscribed — thank you.</p>
+                ) : !mounted ? (
+                  <div style={{ height: '42px', marginBottom: '12px', border: '1px solid #333', borderRadius: '8px', padding: '10px 14px' }}>
+                    <div style={{ width: '100%', height: '100%', background: 'transparent' }} />
+                  </div>
                 ) : (
-                  <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }} suppressHydrationWarning>
-                    <div suppressHydrationWarning style={{
+                  <form onSubmit={handleSubmit} style={{ marginBottom: '12px' }}>
+                    <div style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                       border: '1px solid #333', borderRadius: '8px',
                       padding: '10px 14px', background: 'transparent',
@@ -75,7 +81,6 @@ export default function Footer() {
                         onChange={e => setEmail(e.target.value)}
                         placeholder="Enter your email"
                         required
-                        suppressHydrationWarning
                         style={{
                           background: 'transparent', border: 'none', outline: 'none',
                           color: '#e8e8e8', fontSize: '13px', flex: 1,
@@ -235,9 +240,13 @@ export default function Footer() {
             </p>
             {submitted ? (
               <p style={{ color: '#3ab44a', fontSize: '13px' }}>You&apos;re subscribed — thank you.</p>
+            ) : !mounted ? (
+              <div style={{ height: '42px', border: '1px solid #333', borderRadius: '8px', padding: '10px 14px' }}>
+                <div style={{ width: '100%', height: '100%', background: 'transparent' }} />
+              </div>
             ) : (
-              <form onSubmit={handleSubmit} suppressHydrationWarning>
-                <div suppressHydrationWarning style={{
+              <form onSubmit={handleSubmit}>
+                <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   border: '1px solid #333', borderRadius: '8px', padding: '10px 14px',
                 }}>
