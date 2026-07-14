@@ -61,7 +61,7 @@ export default function AboutPage() {
 
         {/* Mission & Vision Bento */}
         <section className="w-full py-16 lg:py-24 bg-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
               <motion.div
                 whileHover={{ y: -5 }}
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
         {/* Team Link Section */}
         <section className="w-full py-16 lg:py-24 xl:py-32 bg-primary-green/5 border-b border-primary-green/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export default function AboutPage() {
 
         {/* Supporting Consultants Section */}
         <section className="w-full py-16 lg:py-24 bg-white border-b border-mist">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-deep-forest">Supporting Consultants</h2>
               <p className="text-charcoal/80 font-light text-lg">

@@ -353,7 +353,7 @@ export default function OurTeamPage() {
 
       {/* Simplified Curated Our Journey Section */}
       <section className="w-full py-16 lg:py-24 xl:py-32 bg-white relative snap-start scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
             <div className="lg:w-1/3 space-y-8">
               <h2 className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest leading-[0.9]">

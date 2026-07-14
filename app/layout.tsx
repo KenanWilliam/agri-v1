@@ -79,6 +79,8 @@ export const metadata: Metadata = {
   },
 }
 
+import ScrollToTop from '@/components/scroll-to-top'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -91,6 +93,7 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
     >
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
+        <ScrollToTop />
         <Header />
         {children}
         <Footer />
