@@ -1,7 +1,8 @@
 'use client'
 
 import ClientLogos from '@/components/client-logos'
-import OfficePlantsGallery from '@/components/motion/office-plants-gallery'
+import dynamic from 'next/dynamic'
+const OfficePlantsGallery = dynamic(() => import('@/components/motion/office-plants-gallery'), { ssr: false })
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
 import Link from 'next/link'
@@ -33,6 +34,7 @@ export default function Home() {
                 loop
                 muted
                 playsInline
+                poster="/SDG-images/2.jpg"
                 className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
               />
             ) : (
