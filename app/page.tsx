@@ -7,22 +7,43 @@ import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChar
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { useState, useEffect } from 'react'
+
 export default function Home() {
+  const [isDesktop, setIsDesktop] = useState(true) // assume desktop for SSR, verify on mount
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768)
+    handleResize() // check immediately on client
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <>
       <main className="-mt-[72px] lg:-mt-[88px] overflow-x-hidden bg-background">
         {/* Premium Hero Section */}
         <section className="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white">
-          {/* Background Image */}
+          {/* Background Image/Video */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
-            <video
-              src="/Videos/wheat swaying in the wind.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
-            />
+            {isDesktop ? (
+              <video
+                src="/Videos/wheat swaying in the wind.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
+              />
+            ) : (
+              <Image 
+                src="/SDG-images/2.jpg" 
+                alt="Agricultural landscape"
+                fill
+                priority
+                className="object-cover object-center"
+              />
+            )}
           </div>
           
           {/* White Gradient Overlay to ensure dark text readability and blend into next section */}
