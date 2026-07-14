@@ -13,3 +13,7 @@ __v0_jsx-dev-runtime.ts
 node_modules
 .next/
 .DS_Store
+public/office-plants/*.psd
+public/office-plants/*.png
+public/SDG-images/*.psd
+public/Videos/*.mp4
