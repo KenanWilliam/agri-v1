@@ -9,6 +9,17 @@ __v0_jsx-dev-runtime.ts
 # Environment variables
 .env*.local
 
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env*.local
+
 # Common ignores
 node_modules
 .next/
@@ -16,4 +27,3 @@ node_modules
 public/office-plants/*.psd
 public/office-plants/*.png
 public/SDG-images/*.psd
-public/Videos/*.mp4
