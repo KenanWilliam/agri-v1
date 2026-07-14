@@ -83,35 +83,35 @@ export default function OurTeamPage() {
     {
       name: 'Mulemia Maina',
       role: 'Managing Director',
-      bio: 'Two decades at the Rockefeller Foundation and AGRA, with a deep seed systems network across the continent. Managed over 350 seed-related grants and is fluent in English, French, and Kiswahili.',
+      bio: 'Mulemia Maina who leads the team, is a distinguished leader in Africa’s seed sector with over 25 years of expertise in the seed and agricultural sector, spanning public-private partnerships, enterprise development, strategic programming, and donor relations. She has managed over 350 projects across 22 countries, collaborating with governments, regional bodies, and over 100 seed companies to strengthen policy, capacity, and last-mile delivery. Passionate about empowering farmers, Mulemia champions improved technologies and transformative seed system initiatives to enhance livelihoods across sub-Saharan Africa. She is fluent in English, French, and Kiswahili.',
       image: '/team/mulemia.png',
       projects: ['Seed Systems', 'AGRA Grants', 'Rockefeller Foundation']
     },
     {
       name: 'Jayne Ngugi',
       role: 'Director, Finance & Administration',
-      bio: 'Leads finance, control, and administration services with a strong private sector background and a commitment to integrity and professionalism.',
+      bio: 'Jayne leads the finance and administration portfolio, providing the finance, control, and administration services which underpin the team’s ability to serve clients efficiently and effectively. Jayne also has a strong private sector background and brings a deep level of integrity and professionalism to her role at Agri Experience.',
       image: '/team/jayne.png',
       projects: ['Finance', 'Administration']
     },
     {
       name: 'Ronald Misigo',
       role: 'Technical Lead',
-      bio: 'Oversees the overall system architecture, technical design, and integration framework. Ensures scalability, security, interoperability, and alignment of all technical components across the platform.',
+      bio: 'Ronald serves as technical lead and is a dynamic seed systems and ICT specialist with over 13 years of experience in food systems, digital solutions, and data analytics. He leads the design and implementation of innovative ICT platforms that strengthen agricultural value chains, particularly in the seed sector across Africa. Skilled in project management, stakeholder engagement, and evidence-based policy support, he translates complex data into actionable insights. Ronald has developed impactful seed-focused tools and digital feedback systems that empower farmers, agrodealers, and regulators.',
       image: '/team/ronald.png',
       projects: ['System Architecture', 'Technical Design', 'Integration']
     },
     {
       name: 'Denis Langat',
       role: 'M+E Specialist',
-      bio: 'Review PSTA-5 indicators, and monitoring frameworks. Ensure effective data capture, analysis, visualization, and reporting to support dashboard development.',
+      bio: 'Denis is a young and dynamic project monitoring specialist who supports client related activities with a focus on general research, documentation, record keeping, project monitoring, data collection and analysis.',
       image: '/team/denis.png',
       projects: ['PSTA-5 Indicators', 'Data Analysis', 'Dashboard Development']
     },
     {
       name: 'Moses Adundo',
       role: 'Data Analyst',
-      bio: 'Leads quality assurance and testing processes, including functional, integration, performance, and user acceptance testing. Ensures the system meets defined requirements, is free of critical defects, and performs reliably before deployment.',
+      bio: 'Moses supports digital tools quality assurance and testing processes, including functional, integration, performance, and user acceptance testing. He ensures the system meets defined requirements, is free of critical defects, and performs reliably before deployment.',
       image: '/team/placeholder.jpg',
       projects: ['Quality Assurance', 'Testing Processes', 'User Acceptance Testing']
     },
@@ -127,7 +127,7 @@ export default function OurTeamPage() {
     {
       name: 'Claire Wanjiru',
       role: 'Executive Assistant',
-      bio: 'Claire serves as the strategic operational partner, providing high-level administrative support and supervising team logistics to ensure seamless daily operations. Leveraging a strong aptitude for technical asset management, budget coordination, and process optimization, I streamline workflows and manage complex schedules to keep our leadership team aligned. Driven by efficiency and a proactive approach to problem-solving, she is dedicated to maintaining an organized, agile, and productive organizational environment that supports our overarching mission.',
+      bio: 'Claire provides high-level administrative and logistics support to ensure seamless company operations. She supports technical operations including asset management, budget coordination, process optimization and keeps operations well aligned by managing workflows and complex schedules. Her dedication to operational excellence and organizational effectiveness enables the team to focus on strategic priorities and ensures that company’s objectives are met with precision, supporting the broader mission and driving sustainable success.',
       image: '/team/placeholder.jpg',
       projects: ['Executive Support', 'Operations']
     },
