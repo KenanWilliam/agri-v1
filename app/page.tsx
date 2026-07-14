@@ -28,7 +28,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
             {isDesktop ? (
               <video
-                src="/Videos/drone taking off.mp4"
+                src="/Videos/wheat swaying in the wind.mp4"
                 autoPlay
                 loop
                 muted
