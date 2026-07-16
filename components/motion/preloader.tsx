@@ -14,6 +14,11 @@ const ICON_PATH_D =
 const ICON_VIEWBOX_WIDTH = 51.36;
 const ICON_VIEWBOX_HEIGHT = 48;
 
+const MASK_SVG_ENCODED = encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${ICON_VIEWBOX_WIDTH} ${ICON_VIEWBOX_HEIGHT}"><path fill-rule="evenodd" clip-rule="evenodd" d="${ICON_PATH_D}"/></svg>`
+);
+const MASK_IMAGE_URL = `url("data:image/svg+xml;charset=utf-8,${MASK_SVG_ENCODED}")`;
+
 export default function Preloader() {
   const [isVisible, setIsVisible] = useState(true);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
@@ -51,10 +56,10 @@ export default function Preloader() {
 
     pathRef.current.setAttribute("d", normalizedIconPath);
 
-    // Ensure the browser has fully painted the new SVG path beneath 
-    // before we trigger the CSS fallback's fade out
+    // Ensure the browser has fully parsed and painted the new SVG path beneath 
+    // before we trigger the CSS fallback's fade out. The setTimeout guarantees a paint cycle.
     requestAnimationFrame(() => {
-      setIsReady(true);
+      setTimeout(() => setIsReady(true), 50);
     });
 
     // Using flubber to interpolate between the true full icon and the fullscreen rectangle
@@ -151,8 +156,8 @@ export default function Preloader() {
               className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
               style={{
                 opacity: isReady ? 0 : 1,
-                maskImage: "url('/loader-mask.svg')",
-                WebkitMaskImage: "url('/loader-mask.svg')",
+                maskImage: MASK_IMAGE_URL,
+                WebkitMaskImage: MASK_IMAGE_URL,
                 maskPosition: "center",
                 WebkitMaskPosition: "center",
                 maskRepeat: "no-repeat",
@@ -161,7 +166,24 @@ export default function Preloader() {
                 WebkitMaskSize: "12vmin",
               }}
             >
-              <div className="absolute inset-0 bg-[#3ab44a]" />
+              <Image
+                src="/pexels-equalstock-27722065.webp"
+                alt="Loading Background"
+                fill
+                className="object-cover"
+                priority
+              />
+
+              <motion.div
+                initial={{ opacity: 1 }}
+                animate={{ opacity: [1, 0, 0, 0, 0, 0] }}
+                transition={{
+                  duration: 3.5,
+                  times: [0, 0.20, 0.35, 0.55, 0.80, 1],
+                  ease: "linear",
+                }}
+                className="absolute inset-0 bg-[#3ab44a]"
+              />
             </div>
           </motion.div>
         </motion.div>

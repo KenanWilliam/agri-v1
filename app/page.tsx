@@ -36,7 +36,7 @@ export default function Home() {
               />
             ) : (
               <Image 
-                src="/SDG-images/2.jpg" 
+                src="/SDG-images/2.webp" 
                 alt="Agricultural landscape"
                 fill
                 priority
@@ -58,7 +58,7 @@ export default function Home() {
                 className="font-serif tracking-tight text-[#1A4D2E] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1]"
               >
                 Cultivating Sustainable <br />
-                Seed Systems <br />
+                Agricultural & Seed Systems <br />
                 Across Africa
               </motion.h1>
 
@@ -68,7 +68,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-gray-800 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-sm md:text-base lg:text-lg"
               >
-                Empowering farmers through innovation, expertise, and digital excellence.
+                Empowering farmers through agricultural innovation, expert advice, and digital excellence.
               </motion.p>
 
               <motion.div

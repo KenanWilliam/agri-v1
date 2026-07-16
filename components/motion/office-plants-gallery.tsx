@@ -2,7 +2,8 @@
 
 import { useRef, Suspense, useMemo, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useScroll, MotionValue } from "framer-motion";
+import { useScroll, MotionValue, useTransform, motion } from "framer-motion";
+import { Target, Leaf } from "lucide-react";
 import { useTexture, Environment, Preload } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -18,18 +19,18 @@ if (typeof console !== "undefined") {
 }
 
 const SETTLED_POSITIONS = [
-  // Left side (Organic '<' curve that beautifully frames the center)
-  { x: -5.5, y: 3.8,  z: 1,  rotZ: -0.05 },
-  { x: -7.5, y: 1.2,  z: 2,  rotZ: 0.08 },
-  { x: -4.0, y: -0.5, z: 0,  rotZ: -0.02 },
-  { x: -6.2, y: -2.8, z: 3,  rotZ: 0.04 },
-  { x: -4.8, y: -5.5, z: -1, rotZ: -0.07 },
-  // Right side (Organic '>' curve that beautifully frames the center)
-  { x: 4.8,  y: 4.2,  z: 2,  rotZ: 0.06 },
-  { x: 7.2,  y: 2.0,  z: 0,  rotZ: -0.03 },
-  { x: 4.5,  y: -1.0, z: 3,  rotZ: 0.05 },
-  { x: 7.8,  y: -2.5, z: 1,  rotZ: -0.08 },
-  { x: 4.2,  y: -4.5, z: -1, rotZ: 0.02 },
+  // Left side (Slightly pushed to edges, but tight enough to look cohesive)
+  { x: -6.3, y: 3.8,  z: 1,  rotZ: -0.05 },
+  { x: -8.6, y: 1.2,  z: 2,  rotZ: 0.08 },
+  { x: -4.6, y: -0.5, z: 0,  rotZ: -0.02 },
+  { x: -7.1, y: -2.8, z: 3,  rotZ: 0.04 },
+  { x: -5.5, y: -5.5, z: -1, rotZ: -0.07 },
+  // Right side (Slightly pushed to edges)
+  { x: 5.5,  y: 4.2,  z: 2,  rotZ: 0.06 },
+  { x: 8.3,  y: 2.0,  z: 0,  rotZ: -0.03 },
+  { x: 5.2,  y: -1.0, z: 3,  rotZ: 0.05 },
+  { x: 9.0,  y: -2.5, z: 1,  rotZ: -0.08 },
+  { x: 4.8,  y: -4.5, z: -1, rotZ: 0.02 },
 ];
 
 function easeOutCirc(x: number): number {
@@ -100,14 +101,8 @@ function PlantFrame({
     floatGroupRef.current.rotation.x = Math.sin(t * 1 + offset) * 0.02;
     floatGroupRef.current.rotation.y = Math.cos(t * 1.5 + offset) * 0.02;
 
-    // MOUSE PARALLAX (Smoothly fades in only when frames are fully settled in the center)
-    // Ensures the initial swooping entrance is perfectly symmetrical and unaffected by resting mouse position.
-    let mouseMultiplier = 0;
-    if (rawP > 0.40 && rawP < 0.60) {
-      // Peaks at 1.0 when rawP is exactly 0.50
-      const distanceToCenter = Math.abs(rawP - 0.50);
-      mouseMultiplier = Math.max(0, 1.0 - (distanceToCenter / 0.10));
-    }
+    // MOUSE PARALLAX (Active throughout the entire scroll sequence)
+    const mouseMultiplier = 1;
 
     const mx = state.pointer.x * mouseMultiplier;
     const my = state.pointer.y * mouseMultiplier;
@@ -124,11 +119,11 @@ function PlantFrame({
     // SCROLL ANIMATION
     const depthIndex = target.z + 1; // 0 to 4
 
-    if (rawP <= 0.40) {
+    if (rawP <= 0.30) {
       // ENTER
       // Fix clipping: Reversing the stagger ensures front frames move first, so Z-arcs never cross!
-      const staggerDelay = (4 - depthIndex) * 0.03; 
-      const staggerWindow = 0.40 - staggerDelay;
+      const staggerDelay = (4 - depthIndex) * 0.02; 
+      const staggerWindow = 0.30 - staggerDelay;
       let p = Math.max(0, Math.min(1, (rawP - staggerDelay) / staggerWindow));
       p = easeOutCirc(p);
 
@@ -145,7 +140,7 @@ function PlantFrame({
       const scale = 0.2 + p * 0.8;
       groupRef.current.scale.set(scale, scale, scale);
 
-    } else if (rawP <= 0.60) {
+    } else if (rawP <= 0.70) {
       // HOLD
       groupRef.current.position.set(target.x, target.y, target.z);
       groupRef.current.rotation.set(0, 0, target.rotZ);
@@ -153,9 +148,9 @@ function PlantFrame({
 
     } else if (rawP <= 1.0) {
       // EXIT
-      const staggerDelay = (4 - depthIndex) * 0.03;
-      const staggerWindow = 0.40 - staggerDelay;
-      let p = Math.max(0, Math.min(1, (rawP - 0.60 - staggerDelay) / staggerWindow));
+      const staggerDelay = (4 - depthIndex) * 0.02;
+      const staggerWindow = 0.30 - staggerDelay;
+      let p = Math.max(0, Math.min(1, (rawP - 0.70 - staggerDelay) / staggerWindow));
       p = easeInCubic(p);
 
       groupRef.current.position.x = THREE.MathUtils.lerp(target.x, exitTarget.endX, p);
@@ -248,7 +243,7 @@ const plantImages = Array.from({ length: 10 }, (_, i) => ({
 
 
 
-export default function OfficePlantsGallery() {
+export default function OfficePlantsGallery({ showMissionVision = false }: { showMissionVision?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -266,36 +261,94 @@ export default function OfficePlantsGallery() {
     offset: ["start end", "end start"],
   });
 
+  // Hero text animations (Visible initially, fades out as you scroll down)
+  const heroOpacity = useTransform(scrollYProgress, [0.20, 0.28], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0.20, 0.28], [0, -40]);
+
+  // Mission text animations
+  const missionOpacity = useTransform(scrollYProgress, [0.28, 0.35, 0.45, 0.50], [0, 1, 1, 0]);
+  const missionY = useTransform(scrollYProgress, [0.28, 0.35, 0.45, 0.50], [40, 0, 0, -40]);
+
+  // Vision text animations
+  const visionOpacity = useTransform(scrollYProgress, [0.50, 0.55, 0.65, 0.70], [0, 1, 1, 0]);
+  const visionY = useTransform(scrollYProgress, [0.50, 0.55, 0.65, 0.70], [40, 0, 0, -40]);
+
   return (
-    <section ref={containerRef} className="relative w-full h-[150vh] bg-mist overflow-hidden">
-      <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-        {/* Content slot */}
-      </div>
-
-      <div className="absolute inset-0 z-10">
-        <Canvas
-            shadows={{ type: THREE.PCFShadowMap }}
-            camera={{ position: [0, 0, 18], fov: 42 }}
-            dpr={[1, 2]}
+    <section ref={containerRef} className={`relative w-full ${showMissionVision ? 'h-[300vh]' : 'h-[150vh]'} bg-white`}>
+      {showMissionVision && (
+        <div className="absolute top-0 left-0 w-full h-screen z-30 flex items-center justify-center pointer-events-none px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center max-w-3xl text-center p-10 space-y-8"
           >
-            <Environment preset="city" />
-            <ambientLight intensity={1.2} />
-            <spotLight position={[0, 12, 15]} intensity={2.5} penumbra={1} castShadow />
-            <spotLight position={[-12, 5, 10]} intensity={1} penumbra={1} />
-            <spotLight position={[12, 5, 10]} intensity={1} penumbra={1} />
+            <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">Old and New by Design</h1>
+            <p className="text-lg lg:text-xl text-charcoal/90 leading-relaxed font-light drop-shadow-sm bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-xl">
+              Agri Experience is both an old and new company. Old because the direct experience of our group of principals dates back to 1991. New because Agri Experience, Ltd. was founded in 2012.
+            </p>
+          </motion.div>
+        </div>
+      )}
+      <div className="sticky top-0 w-full h-screen overflow-hidden">
+        
+        {/* HTML Text Overlay */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-4">
+          {showMissionVision && (
+            <>
 
-            <Suspense fallback={null}>
-              {plantImages.map((img, index) => (
-                <PlantFrame
-                  key={img.id}
-                  url={img.src}
-                  index={index}
-                  progress={scrollYProgress}
-                />
-              ))}
-              <Preload all />
-            </Suspense>
-          </Canvas>
+
+              {/* Mission */}
+              <motion.div 
+                style={{ opacity: missionOpacity, y: missionY }}
+                className="absolute flex flex-col items-center max-w-2xl text-center bg-white/60 backdrop-blur-md p-10 rounded-3xl shadow-xl border border-white/40"
+              >
+                <h2 className="text-deep-forest text-5xl font-serif mb-4 drop-shadow-sm">Our Mission</h2>
+                <p className="text-charcoal/90 text-xl leading-relaxed font-light drop-shadow-sm">
+                  To deliver high-quality, experience-based field analysis, recommendations, and implementation support for seed systems development.
+                </p>
+              </motion.div>
+
+              {/* Vision */}
+              <motion.div 
+                style={{ opacity: visionOpacity, y: visionY }}
+                className="absolute flex flex-col items-center max-w-2xl text-center bg-white/60 backdrop-blur-md p-10 rounded-3xl shadow-xl border border-white/40"
+              >
+                <h2 className="text-deep-forest text-5xl font-serif mb-4 drop-shadow-sm">Our Vision</h2>
+                <p className="text-charcoal/90 text-xl leading-relaxed font-light drop-shadow-sm">
+                  Meaningful and sustainable systemic change through close collaboration with local officials and seed sector stakeholders.
+                </p>
+              </motion.div>
+            </>
+          )}
+        </div>
+
+        {/* 3D Canvas */}
+        <div className="absolute inset-0 z-10">
+          <Canvas
+              shadows={{ type: THREE.PCFShadowMap }}
+              camera={{ position: [0, 0, 18], fov: 42 }}
+              dpr={[1, 1]}
+            >
+              <Environment preset="city" />
+              <ambientLight intensity={1.2} />
+              <spotLight position={[0, 12, 15]} intensity={2.5} penumbra={1} castShadow />
+              <spotLight position={[-12, 5, 10]} intensity={1} penumbra={1} />
+              <spotLight position={[12, 5, 10]} intensity={1} penumbra={1} />
+
+              <Suspense fallback={null}>
+                {plantImages.map((img, index) => (
+                  <PlantFrame
+                    key={img.id}
+                    url={img.src}
+                    index={index}
+                    progress={scrollYProgress}
+                  />
+                ))}
+                <Preload all />
+              </Suspense>
+            </Canvas>
+        </div>
       </div>
     </section>
   );

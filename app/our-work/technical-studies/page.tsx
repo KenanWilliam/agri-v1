@@ -120,7 +120,7 @@ export default function TechnicalStudiesPage() {
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-primary-blue/20" />
                 <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
-                  In-depth analysis and feasibility studies that turn complex challenges into clear, actionable insights for seed systems and agricultural value chains. AE conducts rigorous, field-based research across sub-Saharan Africa, providing the evidence base that donors, governments, and private sector companies need to make informed decisions.
+                  In-depth analysis and feasibility studies that turn complex challenges into clear, actionable insights for seed systems and agricultural value chains. AE conducts rigorous, field-based research across sub-Saharan Africa, providing the evidence base that development partners, governments, and private sector companies need to make informed decisions.
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
                   <Link
@@ -379,7 +379,7 @@ export default function TechnicalStudiesPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { label: 'Donor Agencies', desc: 'USAID, GIZ, Bill & Melinda Gates Foundation, and other development partners', icon: Users },
+                { label: 'Development Partners', desc: 'USAID, GIZ, Bill & Melinda Gates Foundation, and other development partners', icon: Users },
                 { label: 'Governments', desc: 'National seed authorities and ministries of agriculture across Africa', icon: FileText },
                 { label: 'Private Sector', desc: 'Seed companies, agribusinesses, and input manufacturers seeking market intelligence', icon: TrendingUp },
                 { label: 'Research Institutions', desc: 'CGIAR centers, national research organizations, and academic institutions', icon: Microscope },

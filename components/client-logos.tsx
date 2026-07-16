@@ -15,7 +15,7 @@ interface Category {
 
 const topRowCategories: Category[] = [
   {
-    title: 'Donors',
+    title: 'Development Partners',
     logos: [
       { name: 'Gates Foundation', src: '/Gates_Foundation_Logo.svg', alt: 'Gates Foundation', href: 'https://www.gatesfoundation.org/' },
       { name: 'AGRA', src: '/AGRA.png', alt: 'AGRA', href: 'https://agra.org/' },

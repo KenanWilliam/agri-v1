@@ -733,7 +733,7 @@ export default function InteractiveMap() {
             >
               <div className="space-y-6">
                 <div className="lg:bg-white/75 lg:p-6 lg:rounded-2xl lg:backdrop-blur-md lg:shadow-xl lg:border lg:border-white/60 space-y-5 lg:max-w-sm">
-                  <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold text-center lg:text-left">Our Footprint<br className="hidden lg:block" />Across the Continent</h2>
+                  <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold text-center lg:text-left">Our Impact<br className="hidden lg:block" />Across Africa</h2>
                   <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed hidden sm:block text-center lg:text-left">
                     Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
                   </p>

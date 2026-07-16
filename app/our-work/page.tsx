@@ -93,7 +93,7 @@ export default function OurWorkPage() {
                 {/* Vertical divider line for desktop */}
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-mist"></div>
                 <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
-                  At Agri-Experience, we combine knowledge, technology, and field expertise to deliver end-to-end solutions for a smarter, more sustainable agricultural future.
+                  At Agri Experience, we combine knowledge, technology, and field expertise to deliver end-to-end solutions for a smarter, more sustainable agricultural future.
                 </p>
               </motion.div>
 

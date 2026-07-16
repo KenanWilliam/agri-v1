@@ -14,6 +14,7 @@ import {
   Shield,
   Target,
   Briefcase,
+  ScrollText,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -22,19 +23,19 @@ const advisoryServices = [
     icon: Compass,
     title: 'Strategic Consulting',
     description:
-      'Consulting on marketing, distribution, and local implementation strategies. Helping private sector companies navigate regulatory environments. Long-term strategic planning for agricultural enterprises.',
+      'Consulting on Seed and Agricultural systems development; including seed production, marketing and distribution. Helping private sector companies navigate regulatory environments. Long-term strategic planning for agricultural enterprises.',
   },
   {
     icon: Scale,
     title: 'Policy Advisory',
     description:
-      'Seed policy analysis and regulatory framework development. Supporting harmonization of seed trade protocols. Advocating evidence-based regulatory reform — shifting from preventive to deterrent-based regulation.',
+      'Advocates for regulatory reforms that support private sector investment. Supporting harmonization of seed trade protocols. Advocating evidence-based regulatory reform — shifting from preventive to deterrent-based regulation.',
   },
   {
     icon: FileSearch,
     title: 'Development Partner Reviews',
     description:
-      'Reviews of proposed or ongoing donor-funded programs. Independent assessment of project design and implementation approaches. Recommendations for program optimization.',
+      'Reviews of proposed or ongoing development partner-funded programs. Independent assessment of project design and implementation approaches. Recommendations for program optimization.',
   },
   {
     icon: TrendingUp,
@@ -82,7 +83,7 @@ const approachPillars = [
 
 const clientsServed = [
   {
-    category: 'Donors & Development Partners',
+    category: 'Development Partners',
     names: 'USAID, Gates Foundation, AGRA, World Bank',
     icon: Briefcase,
   },

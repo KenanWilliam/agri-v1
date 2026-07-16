@@ -36,7 +36,7 @@ const conveningTypes = [
   {
     title: 'Multi-Stakeholder Platforms',
     description:
-      'Creating and facilitating ongoing dialogue platforms. Connecting donors, government, private sector, and farmer organizations.',
+      'Creating and facilitating ongoing dialogue platforms. Connecting development partners, government, private sector, and farmer organizations.',
     detail: 'Building consensus on sector priorities and interventions.',
     icon: Users,
   },

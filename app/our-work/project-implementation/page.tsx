@@ -69,7 +69,7 @@ const implementationAreas = [
     points: [
       'Tracking project outcomes and impact metrics',
       'Adaptive management based on field data',
-      'Reporting to donors and stakeholders',
+      'Reporting to development partners and stakeholders',
     ],
   },
 ]
@@ -167,7 +167,7 @@ export default function ProjectImplementationPage() {
                   <p className="text-base text-charcoal/60 leading-relaxed font-light">
                     Agri Experience doesn&apos;t just advise — we implement. With
                     deep field presence across 20+ countries, we manage
-                    end-to-end project delivery for donors, governments, and
+                    end-to-end project delivery for development partners, governments, and
                     private sector partners.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">

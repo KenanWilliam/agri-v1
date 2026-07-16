@@ -83,7 +83,7 @@ export default function OurTeamPage() {
     {
       name: 'Mulemia Maina',
       role: 'Managing Director',
-      bio: 'Mulemia Maina who leads the team, is a distinguished leader in Africa’s seed sector with over 25 years of expertise in the seed and agricultural sector, spanning public-private partnerships, enterprise development, strategic programming, and donor relations. She has managed over 350 projects across 22 countries, collaborating with governments, regional bodies, and over 100 seed companies to strengthen policy, capacity, and last-mile delivery. Passionate about empowering farmers, Mulemia champions improved technologies and transformative seed system initiatives to enhance livelihoods across sub-Saharan Africa. She is fluent in English, French, and Kiswahili.',
+      bio: 'Mulemia Maina who leads the team, is a distinguished leader in Africa’s seed sector with over 25 years of expertise in the seed and agricultural sector, spanning public-private partnerships, enterprise development, strategic programming, and development partner relations. She has managed over 350 projects across 22 countries, collaborating with governments, regional bodies, and over 100 seed companies to strengthen policy, capacity, and last-mile delivery. Passionate about empowering farmers, Mulemia champions improved technologies and transformative seed system initiatives to enhance livelihoods across sub-Saharan Africa. She is fluent in English, French, and Kiswahili.',
       image: '/team/mulemia.png',
       projects: ['Seed Systems', 'AGRA Grants', 'Rockefeller Foundation']
     },
@@ -351,37 +351,6 @@ export default function OurTeamPage() {
         )}
       </AnimatePresence>
 
-      {/* Simplified Curated Our Journey Section */}
-      <section className="w-full py-16 lg:py-24 xl:py-32 bg-white relative snap-start scroll-mt-20">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-16">
-            <div className="lg:w-1/3 space-y-8">
-              <h2 className="text-5xl lg:text-7xl font-serif font-normal text-deep-forest leading-[0.9]">
-                Our<br/>Journey.
-              </h2>
-              <p className="text-charcoal/60 text-xl font-light leading-relaxed max-w-md">
-                Over 30 years of seed sector experience, accelerating growth and sustainable seed systems across Africa.
-              </p>
-            </div>
-
-            <div className="lg:w-1/2 w-full">
-              <div className="space-y-8">
-                <div className="w-12 h-12 rounded-full bg-[#FAFAFA] border border-black/5 flex items-center justify-center text-accent-gold">
-                  <MapPin size={20} />
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-serif font-bold text-deep-forest">Milestones</h3>
-                  <ul className="space-y-3 text-charcoal/60 font-light text-lg">
-                    <li><span className="font-medium text-deep-forest">1991</span> &mdash; Seed sector experience begins</li>
-                    <li><span className="font-medium text-deep-forest">2007</span> &mdash; Work across Africa accelerates</li>
-                    <li><span className="font-medium text-deep-forest">2012</span> &mdash; Agri Experience is founded</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </main>
   )
