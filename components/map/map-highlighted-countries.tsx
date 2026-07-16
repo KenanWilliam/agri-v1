@@ -109,7 +109,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
         });
       }
 
-      const getBaseColorExpr = () => {
+      const getBaseColorExpr = (): any => {
         const matchExpr: any[] = ['match', ['get', 'iso_a2']];
         for (const [code, color] of Object.entries(regionColors)) {
           matchExpr.push(code, color);

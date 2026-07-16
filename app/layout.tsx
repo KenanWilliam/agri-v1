@@ -80,6 +80,7 @@ export const metadata: Metadata = {
 }
 
 import ScrollToTop from '@/components/scroll-to-top'
+import Preloader from '@/components/motion/preloader'
 
 export default function RootLayout({
   children,
@@ -93,6 +94,7 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
     >
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
+        <Preloader />
         <ScrollToTop />
         <Header />
         {children}

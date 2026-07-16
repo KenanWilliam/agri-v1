@@ -462,7 +462,7 @@ export default function LiquidGlass({
     position: "absolute",
     top: 0,
     left: 0,
-  }
+  } as React.CSSProperties
 
   return (
     <>

@@ -91,7 +91,7 @@ export const MaplibreHighlightedCountries: React.FC<MaplibreHighlightedCountries
       }
 
       // We use expressions to match the base region color, but use feature-state for hover/selection
-      const getBaseColorExpr = () => {
+      const getBaseColorExpr = (): any => {
         const matchExpr: any[] = ['match', ['get', 'iso_a2']];
         for (const [code, color] of Object.entries(regionColors)) {
           matchExpr.push(code, color);
@@ -295,7 +295,7 @@ export const MaplibreHighlightedCountries: React.FC<MaplibreHighlightedCountries
     // We can update the layer paint properties directly or set a global state.
     // Instead of looping all features, we can dynamically change the paint property expression.
     if (map.getLayer('africa-countries-fill')) {
-      const getBaseColorExpr = () => {
+      const getBaseColorExpr = (): any => {
         const matchExpr: any[] = ['match', ['get', 'iso_a2']];
         for (const [code, color] of Object.entries(regionColors)) {
           matchExpr.push(code, color);

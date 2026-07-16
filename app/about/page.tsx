@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function AboutPage() {
   const values = [
