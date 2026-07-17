@@ -2,8 +2,9 @@
 
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
-import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart } from 'lucide-react'
+import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target } from 'lucide-react'
 import Link from 'next/link'
+import WhyAgriExperience from '@/components/motion/why-agri-experience'
 import Image from 'next/image'
 
 import { useState, useEffect } from 'react'
@@ -113,92 +114,69 @@ export default function Home() {
         </section>
 
 
-        {/* Bento Expertise Section */}
-        <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
-              <div className="max-w-2xl space-y-4">
-                <h2 className="text-deep-forest">Our Expertise</h2>
-                <p className="text-xl text-charcoal/70 font-light">
-                  We focus on positive, sustainable systemic change with a highly customized approach for each assignment.
-                </p>
+                
+        {/* Why Agri Experience Section */}
+        <WhyAgriExperience />
+
+        {/* What We Believe Section */}
+        <section className="w-full py-24 lg:py-32 bg-deep-forest relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20"></div>
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+            <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+              <div className="lg:w-1/3 space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">What We Believe</h2>
+                  <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                </motion.div>
               </div>
-              <Link href="/our-work" className="group flex items-center gap-2 text-deep-forest font-bold hover:gap-4 transition duration-200">
-                View All Services <ArrowRight size={20} />
-              </Link>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              {/* Feature 1: Large */}
-              <motion.div
-                className="md:col-span-7 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[350px] lg:min-h-[400px]"
-              >
-                <div className="space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center">
-                    <TrendingUp className="text-primary-green" size={32} />
-                  </div>
-                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-3xl">Systemic Change Focus</h3>
-                  <p className="font-sans text-gray-600 text-lg max-w-md">
-                    We do not accept assignments that simply check a client&apos;s project or task box. We prioritize long-term, system-wide improvement.
-                  </p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-4" size={24} />
-              </motion.div>
-
-              {/* Feature 2: Medium */}
-              <motion.div
-                className="md:col-span-5 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-8"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
-                  <Shield className="text-[#1A4D2E]" size={24} />
-                </div>
-                <div className="space-y-4">
-                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-2xl">Customized by Context</h3>
-                  <p className="font-sans text-gray-600">
-                    Each crop and country represents a distinct set of circumstances, so we tailor services for every assignment.
-                  </p>
-                  <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform" size={20} />
-                </div>
-              </motion.div>
-
-              {/* Feature 3: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Users className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Team-Oriented Practice</h4>
-                  <p className="font-sans text-gray-600 text-sm">A collaborative, learning-focused practice that continually updates based on field realities.</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
-
-              {/* Feature 4: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Zap className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Collaborative Partnerships</h4>
-                  <p className="font-sans text-gray-600 text-sm">Working with clients to improve smallholder access to high quality seed of modern crop varieties.</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
-
-              {/* Feature 5: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Globe className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">Sub-Saharan Reach</h4>
-                  <p className="font-sans text-gray-600 text-sm">Deep experience across diverse agricultural zones throughout sub-Saharan Africa.</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
+              <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[
+                  {
+                    icon: <Leaf className="text-primary-green" size={24} />,
+                    title: 'Agriculture is Foundational',
+                    text: 'We believe that agriculture is one of the most important sectors in the world, with major impacts on health, nutrition, the environment, security, economies, and social development.'
+                  },
+                  {
+                    icon: <Target className="text-primary-green" size={24} />,
+                    title: 'Untapped Potential',
+                    text: 'We believe that sub-Saharan Africa has vast untapped agricultural potential, and that African farmers and entrepreneurs should be given the opportunity and tools to tap this potential.'
+                  },
+                  {
+                    icon: <Shield className="text-primary-green" size={24} />,
+                    title: 'Practical Solutions',
+                    text: 'We believe that practical solutions to agricultural challenges, based on deep experience and not just theory, can deliver significant results in sub-Saharan Africa.'
+                  },
+                  {
+                    icon: <Users className="text-primary-green" size={24} />,
+                    title: 'Empowering Women',
+                    text: "We believe that Africa's women farmers should play significant roles in developing agriculture in their countries."
+                  }
+                ].map((belief, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.15 }}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                      {belief.icon}
+                    </div>
+                    <h3 className="text-xl font-serif text-white mb-3">{belief.title}</h3>
+                    <p className="text-white/70 font-light leading-relaxed">{belief.text}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
+
 
         {/* Testimonials */}
         <section className="w-full py-16 lg:py-24 bg-mist">
