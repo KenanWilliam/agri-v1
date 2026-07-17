@@ -13,7 +13,14 @@ export default function AboutPage() {
     <>      <main className="bg-white min-h-screen">
 
 
-        <OfficePlantsGallery showMissionVision />
+        {/* <OfficePlantsGallery showMissionVision /> */}
+        {/* Temporary spacer while gallery is benched */}
+        <div className="w-full pt-[160px] pb-16 bg-mist flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl lg:text-6xl font-serif text-deep-forest font-bold mb-4">About Us</h1>
+            <p className="text-charcoal/70">Gallery temporarily benched for development speed.</p>
+          </div>
+        </div>
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
