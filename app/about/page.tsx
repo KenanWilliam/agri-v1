@@ -14,13 +14,81 @@ export default function AboutPage() {
 
 
         {/* <OfficePlantsGallery showMissionVision /> */}
-        {/* Temporary spacer while gallery is benched */}
-        <div className="w-full pt-[160px] pb-16 bg-mist flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-serif text-deep-forest font-bold mb-4">About Us</h1>
-            <p className="text-charcoal/70">Gallery temporarily benched for development speed.</p>
+        {/* Mission, Vision, Goal Section */}
+        <section className="w-full pt-[140px] pb-24 bg-mist relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--primary-green)_0%,transparent_40%)] opacity-10"></div>
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight mb-6">About Us</h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary-green to-transparent mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Vision */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-[2.5rem] p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-mist relative group overflow-hidden flex flex-col"
+              >
+                <div className="absolute -top-10 -right-10 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Target size={200} />
+                </div>
+                <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
+                  <Target className="text-primary-green" size={32} />
+                </div>
+                <h2 className="text-3xl font-serif text-deep-forest mb-4 relative z-10">Our Vision</h2>
+                <p className="text-lg text-charcoal/80 leading-relaxed font-light relative z-10 flex-grow">
+                  Our vision is a <strong className="font-semibold text-deep-forest">food secure</strong> and <strong className="font-semibold text-deep-forest">environmentally healthy</strong> Africa.
+                </p>
+              </motion.div>
+
+              {/* Mission */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="bg-deep-forest rounded-[2.5rem] p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative group overflow-hidden text-white flex flex-col"
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_60%)] opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                <div className="absolute -top-10 -right-10 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Heart size={200} />
+                </div>
+                <div className="relative z-10 flex-grow">
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20 group-hover:scale-110 transition-transform">
+                    <Heart className="text-white" size={32} />
+                  </div>
+                  <h2 className="text-3xl font-serif text-white mb-4">Our Mission</h2>
+                  <p className="text-lg text-white/90 leading-relaxed font-light">
+                    Our mission is to help create great crop seed systems that enable African farmers to achieve their production potential and advance environmental sustainability.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Goal */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white rounded-[2.5rem] p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-mist relative group overflow-hidden flex flex-col"
+              >
+                <div className="absolute -top-10 -right-10 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Award size={200} />
+                </div>
+                <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
+                  <Award className="text-primary-green" size={32} />
+                </div>
+                <h2 className="text-3xl font-serif text-deep-forest mb-4 relative z-10">Our Goal</h2>
+                <p className="text-lg text-charcoal/80 leading-relaxed font-light relative z-10 flex-grow">
+                  To accomplish this mission, our goal is to become the most respected advisor and service provider in the crop seed sector to private and public stakeholders and major development partners, and contribute towards achieving the following Sustainable Development Goals: <br/><br/>
+                  <span className="inline-flex items-center gap-2 font-bold text-primary-green text-xl bg-primary-green/10 px-4 py-2 rounded-xl">
+                    1, 2, 3, 5, 8 and 13.
+                  </span>
+                </p>
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
