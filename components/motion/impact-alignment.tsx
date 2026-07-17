@@ -40,8 +40,8 @@ const sdgData: ImpactCard[] = [
   { id: "sdg-17", shortTitle: "Partnerships", title: "SDG 17: Partnerships for the Goals", aspect: "Built partnerships across government, private sector, associations, development partners, research bodies and farmers.", examples: "Collaboration with MoA, KEPHIS, STAK, KALRO, seed companies, agrodealers, county officers, AGRA, CRS, Gatsby Africa and other partners.", image: "/SDGs/SDG-17.svg", color: "#19486A", bgImage: "/SDG-images/17.webp" },
 ];
 
-const sdgRow1 = sdgData.slice(0, 9);  // SDG 1–9
-const sdgRow2 = sdgData.slice(9);     // SDG 10–17
+const relevantSdgs = ["sdg-1", "sdg-2", "sdg-3", "sdg-5", "sdg-8", "sdg-13", "sdg-17"];
+const displaySdgs = sdgData.filter(sdg => relevantSdgs.includes(sdg.id));
 
 
 
@@ -202,9 +202,8 @@ function AccordionRow({
 // ────────────────────────────────────────────
 
 export default function ImpactAlignment() {
-  // SDG: independent active state per row
-  const [sdgRow1Active, setSdgRow1Active] = useState("");
-  const [sdgRow2Active, setSdgRow2Active] = useState("");
+  // SDG: active state for the single row
+  const [activeSdg, setActiveSdg] = useState("");
 
   return (
     <section className="w-full py-16 lg:py-24 bg-white relative overflow-hidden">
@@ -242,18 +241,12 @@ export default function ImpactAlignment() {
           </motion.p>
         </div>
 
-        {/* ─── SDG: 2 rows (9 + 8) ─── */}
+        {/* ─── SDG: 1 row (7 selected) ─── */}
         <div className="w-full mt-0 space-y-1.5">
           <AccordionRow
-            items={sdgRow1}
-            activeId={sdgRow1Active}
-            setActiveId={setSdgRow1Active}
-            defaultId={""}
-          />
-          <AccordionRow
-            items={sdgRow2}
-            activeId={sdgRow2Active}
-            setActiveId={setSdgRow2Active}
+            items={displaySdgs}
+            activeId={activeSdg}
+            setActiveId={setActiveSdg}
             defaultId={""}
           />
         </div>
