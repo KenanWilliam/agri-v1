@@ -187,7 +187,7 @@ export default function AboutPage() {
                 <p className="text-charcoal/50 font-bold uppercase tracking-widest text-xs">{t('values_subtitle')}</p>
               </div>
               
-              <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-primary-green/10">
+              <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden border border-primary-green/10">
                 <Image
                   src="/our values.png"
                   alt="Our Core Values"
