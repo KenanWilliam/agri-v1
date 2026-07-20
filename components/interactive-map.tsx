@@ -20,7 +20,7 @@ import {
   Users,
   X,
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import africaGeoJson from '@/africa.json'
 
 import { InteractiveMapbox } from './map/interactive-mapbox'

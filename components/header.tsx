@@ -1,27 +1,31 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
+import { Link, usePathname } from '@/i18n/routing'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Our Work', href: '/our-work' },
-  { label: 'Our Team', href: '/our-team' },
-  { label: 'Our Impact', href: '/our-impact' },
-  { label: 'Resources', href: '/resources' },
+  { key: 'home', href: '/' },
+  { key: 'about', href: '/about' },
+  { key: 'our_work', href: '/our-work' },
+  { key: 'our_team', href: '/our-team' },
+  { key: 'our_impact', href: '/our-impact' },
+  { key: 'resources', href: '/resources' },
 ]
 import LiquidGlass from './liquid-glass'
+import {useTranslations} from 'next-intl'
 
 export default function Header() {
+  const t = useTranslations('Header')
   const [isOpen, setIsOpen] = useState(false)
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
   const [clickedPath, setClickedPath] = useState<string | null>(null)
   const pathname = usePathname()
+  const params = useParams()
+  const currentLocale = (params?.locale as string) || 'en'
 
   const [dimensions, setDimensions] = useState({ width: 0, left: 0, height: 0, top: 0 })
   const buttonRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
@@ -68,8 +72,9 @@ export default function Header() {
   }, [activePath])
 
   return (
-    <LiquidGlass 
-      className="sticky top-0 z-50 flex justify-center items-center h-[72px] lg:h-[88px] w-full"
+    <>
+      <LiquidGlass 
+        className="sticky top-0 z-50 flex justify-center items-center h-[72px] lg:h-[88px] w-full"
       blurAmount={0.25} 
       elasticity={0}
       displacementScale={100}
@@ -149,7 +154,7 @@ export default function Header() {
                     transition={{ duration: 0.15, ease: 'easeOut' }}
                     initial={false}
                   />
-                  {item.label}
+                  {t(item.key as any)}
                 </Link>
               )
             })}
@@ -157,12 +162,31 @@ export default function Header() {
 
           {/* CTA + Mobile Menu */}
           <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5">
+              {[
+                { code: 'en', label: 'EN' },
+                { code: 'fr', label: 'FR' }
+              ].map(loc => {
+                const isActive = loc.code === currentLocale;
+                return (
+                  <Link
+                    key={loc.code}
+                    href={pathname}
+                    locale={loc.code}
+                    className={`text-xs font-bold px-2.5 py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
+                  >
+                    {loc.label}
+                  </Link>
+                )
+              })}
+            </div>
+
             <Link
               href="/contact"
               onClick={() => { setClickedPath('/contact'); }}
               className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
-              Contact Us
+              {t('contact')}
             </Link>
 
             <button
@@ -175,6 +199,8 @@ export default function Header() {
         </div>
       </header>
 
+      </LiquidGlass>
+
       {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
@@ -182,7 +208,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-20 left-4 right-4 bg-white rounded p-6 lg:hidden shadow-xl border border-black/5"
+            className="fixed top-[80px] left-4 right-4 bg-white rounded-[2rem] p-6 lg:hidden shadow-2xl border border-black/5 z-[60]"
           >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => {
@@ -198,22 +224,43 @@ export default function Header() {
                         : 'text-charcoal hover:bg-black/5'
                     }`}
                   >
-                    {item.label}
+                    {t(item.key as any)}
                   </Link>
                 )
               })}
               <hr className="my-2 border-black/10" />
+              
+              <div className="flex justify-center gap-2 py-2">
+                {[
+                  { code: 'en', label: 'English' },
+                  { code: 'fr', label: 'Français' }
+                ].map(loc => {
+                  const isActive = loc.code === currentLocale;
+                  return (
+                    <Link
+                      key={loc.code}
+                      href={pathname}
+                      locale={loc.code}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-sm font-bold px-4 py-2 rounded-full transition-all ${isActive ? 'bg-deep-forest text-white shadow-sm' : 'text-charcoal hover:bg-black/5'}`}
+                    >
+                      {loc.label}
+                    </Link>
+                  )
+                })}
+              </div>
+
               <Link
                 href="/contact"
                 onClick={() => { setIsOpen(false); }}
                 className="w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md"
               >
-                Contact Us
+                {t('contact')}
               </Link>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </LiquidGlass>
+    </>
   )
 }

@@ -1,0 +1,114 @@
+import type { Metadata } from 'next'
+import { Playfair_Display, DM_Sans, Bebas_Neue, Space_Grotesk } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import '../globals.css'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+
+const playfairDisplay = Playfair_Display({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
+})
+
+const dmSans = DM_Sans({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-dm-sans',
+})
+
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-bebas',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
+})
+
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    metadataBase: new URL('https://agri-experience.com'),
+    title: {
+      default: t('root_title_default'),
+      template: t('root_title_template'),
+    },
+    description: t('root_desc'),
+    keywords: ['Agriculture', 'Seed Systems', 'Agricultural Development', 'Sub-Saharan Africa', 'Kenya', 'Agri Experience', 'Value Chains'],
+    authors: [{ name: 'Agri Experience' }],
+    creator: 'Agri Experience',
+    publisher: 'Agri Experience',
+    openGraph: {
+      type: 'website',
+      locale: locale === 'en' ? 'en_US' : 'fr_FR',
+      url: 'https://agri-experience.com',
+      siteName: 'Agri Experience',
+      title: t('root_title_default'),
+      description: t('root_desc'),
+      images: [
+        {
+          url: '/hero-bg.png',
+          width: 1200,
+          height: 630,
+          alt: t('root_og_alt'),
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    icons: {
+      icon: '/favicon.svg',
+      apple: '/apple-icon.png',
+    },
+  };
+}
+
+import ScrollToTop from '@/components/scroll-to-top'
+import Preloader from '@/components/motion/preloader'
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+
+export default async function RootLayout({
+  children,
+  params
+}: Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}>) {
+  const { locale } = await params;
+  const messages = await getMessages();
+  return (
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
+    >
+      <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
+        <NextIntlClientProvider messages={messages}>
+          <Preloader />
+          <ScrollToTop />
+          <Header />
+          {children}
+          <Footer />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  )
+}

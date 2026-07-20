@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from '@/i18n/routing';
 import { useRef, useState } from "react";
 
 function MagneticButton({ children, href, className = "" }: { children: React.ReactNode, href: string, className?: string }) {

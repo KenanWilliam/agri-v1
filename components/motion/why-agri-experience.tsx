@@ -3,8 +3,10 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { BookOpen, Globe, Users, Handshake, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function WhyAgriExperience() {
+  const t = useTranslations('WhyAgriExperience');
   const sectionRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
@@ -22,31 +24,31 @@ export default function WhyAgriExperience() {
   const cards = [
     {
       icon: <BookOpen className="text-primary-green" size={32} />,
-      text: 'We carefully develop recommendations that are grounded in behavioural patterns and evidence.',
+      text: t('card_1'),
       y: y1,
       delay: 0.1
     },
     {
       icon: <Globe className="text-primary-green" size={32} />,
-      text: 'We bring deep, based-in-Africa, experience and expertise to our assignments.',
+      text: t('card_2'),
       y: y2,
       delay: 0.2
     },
     {
       icon: <Users className="text-primary-green" size={32} />,
-      text: 'We understand that farmer empowerment is a major force for positive change.',
+      text: t('card_3'),
       y: y3,
       delay: 0.3
     },
     {
       icon: <Handshake className="text-primary-green" size={32} />,
-      text: 'We are passionate about embedding our work and recommendations with permanent stakeholders through a collaborative, public/private approach.',
+      text: t('card_4'),
       y: y4,
       delay: 0.4
     },
     {
       icon: <TrendingUp className="text-primary-green" size={32} />,
-      text: 'We have first-hand knowledge of systemic change, and what is required to achieve it.',
+      text: t('card_5'),
       y: y5,
       delay: 0.5
     }
@@ -72,7 +74,7 @@ export default function WhyAgriExperience() {
             viewport={{ once: true, margin: "-100px" }}
             className="inline-block text-sm font-bold uppercase tracking-widest text-primary-green mb-2"
           >
-            Our Advantage
+            {t('subtitle')}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -81,7 +83,7 @@ export default function WhyAgriExperience() {
             transition={{ delay: 0.1 }}
             className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight"
           >
-            Why Agri Experience
+            {t('title')}
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}

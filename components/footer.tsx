@@ -1,14 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import { ArrowRight, Linkedin } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const linkStyle: React.CSSProperties = { color: '#777', fontSize: '13px', textDecoration: 'none', fontWeight: 300 }
 const linkHoverClass = 'footer-nav-link'
 
 export default function Footer() {
+  const t = useTranslations('Footer')
   const [year, setYear] = useState(2026)
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -55,15 +57,15 @@ export default function Footer() {
               {/* ── LEFT: Newsletter ── */}
               <div>
                 <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px', marginBottom: '10px', fontFamily: 'inherit' }}>
-                  The Field Brief
+                  {t('newsletter_title')}
                 </p>
                 <p style={{ color: '#888', fontSize: '13px', lineHeight: '1.6', marginBottom: '20px', fontWeight: 300 }}>
-                  Sign up for our newsletter to get actionable insights on African seed systems and value chains, right to your inbox.
+                  {t('newsletter_desc')}
                 </p>
 
                 {/* Email row */}
                 {submitted ? (
-                  <p style={{ color: '#3ab44a', fontSize: '13px', marginBottom: '12px' }}>You&apos;re subscribed — thank you.</p>
+                  <p style={{ color: '#3ab44a', fontSize: '13px', marginBottom: '12px' }}>{t('subscribed')}</p>
                 ) : !mounted ? (
                   <div style={{ height: '42px', marginBottom: '12px', border: '1px solid #333', borderRadius: '8px', padding: '10px 14px' }}>
                     <div style={{ width: '100%', height: '100%', background: 'transparent' }} />
@@ -79,7 +81,7 @@ export default function Footer() {
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        placeholder="Enter your email"
+                        placeholder={t('email_placeholder')}
                         required
                         style={{
                           background: 'transparent', border: 'none', outline: 'none',
@@ -116,11 +118,13 @@ export default function Footer() {
 
               {/* ── COL 1: Our Work ── */}
               <div>
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Our Work</p>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('our_work')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
-                  {['Seed Systems', 'Value Chains', 'Digital Tools', 'Field Projects', 'Case Studies'].map(item => (
-                    <li key={item}>
-                      <Link href="/our-work" className={linkHoverClass}>{item}</Link>
+                  {[
+                    { key: 'seed_systems' }, { key: 'digital_tools' }, { key: 'field_projects' }, { key: 'case_studies' }
+                  ].map(item => (
+                    <li key={item.key}>
+                      <Link href="/our-work" className={linkHoverClass}>{t(item.key as any)}</Link>
                     </li>
                   ))}
                 </ul>
@@ -128,18 +132,16 @@ export default function Footer() {
 
               {/* ── COL 2: Company ── */}
               <div>
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Company</p>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('company')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
                   {[
-                    { label: 'About Us', href: '/about' },
-                    { label: 'Our Impact', href: '/our-impact' },
-                    { label: 'Our Results', href: '/our-results' },
-                    { label: 'Our Team', href: '/our-team' },
-                    { label: 'Careers', href: '/contact' },
-                    { label: 'Contact', href: '/contact' },
+                    { key: 'about_us', href: '/about' },
+                    { key: 'our_impact', href: '/our-impact' },
+                    { key: 'our_results', href: '/our-results' },
+                    { key: 'contact', href: '/contact' },
                   ].map(link => (
-                    <li key={link.label}>
-                      <Link href={link.href} className={linkHoverClass}>{link.label}</Link>
+                    <li key={link.key}>
+                      <Link href={link.href} className={linkHoverClass}>{t(link.key as any)}</Link>
                     </li>
                   ))}
                 </ul>
@@ -147,17 +149,16 @@ export default function Footer() {
 
               {/* ── COL 3: Resources ── */}
               <div>
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Resources</p>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('resources')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
                   {[
-                    { label: 'Insights', href: '/insights' },
-                    { label: 'Library', href: '/resources' },
-                    { label: 'Newsletter', href: '/newsletter' },
-                    { label: 'Privacy Policy', href: '/privacy' },
-                    { label: 'Terms of Service', href: '/terms' },
+                    { key: 'insights', href: '/insights' },
+                    { key: 'newsletter', href: '/newsletter' },
+                    { key: 'privacy', href: '/privacy' },
+                    { key: 'terms', href: '/terms' },
                   ].map(link => (
-                    <li key={link.label}>
-                      <Link href={link.href} className={linkHoverClass}>{link.label}</Link>
+                    <li key={link.key}>
+                      <Link href={link.href} className={linkHoverClass}>{t(link.key as any)}</Link>
                     </li>
                   ))}
                 </ul>
@@ -165,17 +166,17 @@ export default function Footer() {
 
               {/* ── RIGHT: Contact + Social ── */}
               <div>
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Work With Us</p>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('work_with_us')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '24px' }}>
                   <li>
-                    <Link href="/contact" className={linkHoverClass}>Request a Proposal</Link>
+                    <Link href="/contact" className={linkHoverClass}>{t('request_concept')}</Link>
                   </li>
                   <li>
-                    <Link href="/our-work" className={linkHoverClass}>View Our Projects</Link>
+                    <Link href="/our-work" className={linkHoverClass}>{t('view_projects')}</Link>
                   </li>
                 </ul>
 
-                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>Get in Touch</p>
+                <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('get_in_touch')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '24px' }}>
                   <li>
                     <a href="mailto:info@agri-experience.com" className={linkHoverClass}>info@agri-experience.com</a>
@@ -234,12 +235,12 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <p style={{ color: '#fff', fontWeight: 700, fontSize: '15px', marginBottom: '8px' }}>The Field Brief</p>
+            <p style={{ color: '#fff', fontWeight: 700, fontSize: '15px', marginBottom: '8px' }}>{t('newsletter_title')}</p>
             <p style={{ color: '#888', fontSize: '13px', lineHeight: '1.6', marginBottom: '16px' }}>
-              Actionable insights on African seed systems, right to your inbox.
+              {t('newsletter_desc_mobile')}
             </p>
             {submitted ? (
-              <p style={{ color: '#3ab44a', fontSize: '13px' }}>You&apos;re subscribed — thank you.</p>
+              <p style={{ color: '#3ab44a', fontSize: '13px' }}>{t('subscribed')}</p>
             ) : !mounted ? (
               <div style={{ height: '42px', border: '1px solid #333', borderRadius: '8px', padding: '10px 14px' }}>
                 <div style={{ width: '100%', height: '100%', background: 'transparent' }} />
@@ -252,7 +253,7 @@ export default function Footer() {
                 }}>
                   <input
                     type="email" value={email} onChange={e => setEmail(e.target.value)}
-                    placeholder="Enter your email" required
+                    placeholder={t('email_placeholder')} required
                     style={{ background: 'transparent', border: 'none', outline: 'none', color: '#e8e8e8', fontSize: '13px', flex: 1, fontFamily: 'inherit' }}
                   />
                   <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex' }}>
@@ -275,15 +276,15 @@ export default function Footer() {
           {/* Nav */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             {[
-              { title: 'Company', links: [{ label: 'About Us', href: '/about' }, { label: 'Our Impact', href: '/our-impact' }, { label: 'Our Results', href: '/our-results' }, { label: 'Careers', href: '/contact' }, { label: 'Contact', href: '/contact' }] },
-              { title: 'Resources', links: [{ label: 'Insights', href: '/insights' }, { label: 'Library', href: '/resources' }, { label: 'Newsletter', href: '/newsletter' }, { label: 'Privacy', href: '/privacy' }] },
+              { titleKey: 'company', links: [{ key: 'about_us', href: '/about' }, { key: 'our_impact', href: '/our-impact' }, { key: 'our_results', href: '/our-results' }, { key: 'contact', href: '/contact' }] },
+              { titleKey: 'resources', links: [{ key: 'insights', href: '/insights' }, { key: 'newsletter', href: '/newsletter' }, { key: 'privacy_mobile', href: '/privacy' }] },
             ].map(col => (
-              <div key={col.title}>
-                <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', marginBottom: '12px' }}>{col.title}</p>
+              <div key={col.titleKey}>
+                <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', marginBottom: '12px' }}>{t(col.titleKey as any)}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {col.links.map(l => (
-                    <li key={l.label}>
-                      <Link href={l.href} className={linkHoverClass}>{l.label}</Link>
+                    <li key={l.key}>
+                      <Link href={l.href} className={linkHoverClass}>{t(l.key as any)}</Link>
                     </li>
                   ))}
                 </ul>
