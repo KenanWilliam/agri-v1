@@ -309,7 +309,162 @@
     "subtitle": "Ces ressources sont accessibles au public. Les travaux supplémentaires des clients ne sont pas publiés conformément aux termes de l'engagement.",
     "cta_title": "Vous en cherchez plus ?",
     "cta_desc": "Contactez notre équipe pour discuter de rapports supplémentaires, de services ou d'opportunités de collaboration.",
-    "contact_us": "Contactez-nous"
+    "contact_us": "Contactez-nous",
+    "categories": {
+      "0": "Tous",
+      "1": "Rapports et analyses",
+      "2": "Études de cas",
+      "3": "Études de cadrage",
+      "4": "Boîtes à outils et guides"
+    },
+    "download_pdf": "Télécharger le PDF",
+    "client_link": "Lien client",
+    "downloads": {
+      "0": {
+        "title": "Donner aux agriculteurs tanzaniens les moyens de signaler les semences de mauvaise qualité ou fausses au régulateur",
+        "client": "Catholic Relief Services et USAID Feed the Future Soutenir les systèmes semenciers mondiaux pour l’activité de développement",
+        "citation": "Agri Expérience Ltée. (2023). Ripoti Mbegu Isiyo Bora (RIMI) - Donner aux agriculteurs tanzaniens les moyens de signaler les semences de mauvaise qualité ou fausses au régulateur.",
+        "category": "Rapports et analyses"
+      },
+      "1": {
+        "title": "Donner aux agriculteurs kenyans les moyens de signaler les semences de mauvaise qualité ou fausses au régulateur",
+        "client": "Agri Experience Responsabilités Sociales d’Entreprise au service de KEPHIS",
+        "citation": "Agri Expérience Ltée. (2021). Étude de cas : Mulika Mbegu Mbovu (M3) - Donner aux agriculteurs kenyans les moyens de signaler les semences de mauvaise qualité ou fausses au régulateur.",
+        "category": "Études de cas"
+      },
+      "2": {
+        "title": "Évaluation pour soutenir la promotion du commerce régional des semences en Afrique de l’Est",
+        "client": "USAID/FTF : Renforcement des capacités pour la transformation agricole en Afrique (DAI), octobre 2018",
+        "citation": "Agri Expérience Ltée. (2018). Évaluation pour soutenir la promotion du commerce régional des semences en Afrique de l’Est. Nairobi : USAID/FTF : Renforcement des capacités pour la transformation agricole en Afrique (DAI).",
+        "category": "Rapports et analyses"
+      },
+      "3": {
+        "title": "Étude de cadrage : Matériel de plantation de pâturages et de fourrages au Kenya",
+        "client": "Activité sur les systèmes de marché des cultures et des produits laitiers (RTI) USAID/Kenya, juillet 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cadrage : matériel de plantation de pâturages et de fourrages au Kenya. Nairobi : Activité sur les systèmes de culture et de marché des produits laitiers au Kenya (KCDMS).",
+        "category": "Études de cadrage"
+      },
+      "4": {
+        "title": "Étude de cadrage : Matériel de plantation pour les cultures de la chaîne de valeur au Kenya (banane, avocat, mangue, ananas, fruit de la passion, patate douce, légumes à feuilles africains)",
+        "client": "Activité sur les systèmes de marché des cultures et des produits laitiers (RTI) USAID/Kenya, juillet 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cadrage : Matériel de plantation pour les cultures de la chaîne de valeur au Kenya. Nairobi : Activité sur les systèmes de culture et de marché des produits laitiers au Kenya (KCDMS).",
+        "category": "Études de cadrage"
+      },
+      "5": {
+        "title": "Étude de cadrage : les pépinières de semis horticoles comme modèle commercial viable au Kenya",
+        "client": "Activité sur les systèmes de marché des cultures et des produits laitiers (RTI) USAID/Kenya, juillet 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cadrage : les pépinières de semis horticoles comme modèle commercial viable au Kenya. Nairobi : Activité sur les systèmes de culture et de marché des produits laitiers au Kenya (KCDMS).",
+        "category": "Études de cadrage"
+      },
+      "6": {
+        "title": "Cartographie des concessionnaires agricoles dans douze comtés du Kenya",
+        "client": "Activité sur les systèmes de marché des cultures et des produits laitiers (RTI) USAID/Kenya, juillet 2018",
+        "citation": "Agri Expérience Ltée. (2018). Cartographie des concessionnaires agricoles dans douze comtés d'exploitation de KCMD au Kenya. Nairobi : Activité sur les systèmes de culture et de marché des produits laitiers au Kenya (KCDMS).",
+        "category": "Rapports et analyses"
+      },
+      "7": {
+        "title": "Étude de cadrage : Développement d'associations de commerçants agricoles dans douze comtés du Kenya",
+        "client": "Activité sur les systèmes de marché des cultures et des produits laitiers (RTI) USAID/Kenya, juillet 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cadrage : Développement d'associations de commerçants agricoles dans douze comtés du Kenya. Nairobi : Activité sur les systèmes de culture et de marché des produits laitiers au Kenya (KCDMS).",
+        "category": "Études de cadrage"
+      },
+      "8": {
+        "title": "Enquête et analyse sur les sociétés semencières - Afrique subsaharienne",
+        "client": "AGRA (pro bono), 2018",
+        "citation": "Agri Experience, Ltd., O'Connor, Misigo et coll. «Enquête et analyse sur les sociétés semencières, Afrique subsaharienne». 26 novembre 2018.",
+        "category": "Rapports et analyses"
+      },
+      "9": {
+        "title": "Étude de cas : Plateforme informatique de variétés de semences MbeguChoice",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Plateforme informatique de variétés de semences MbeguChoice. Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "10": {
+        "title": "Étude de cas : Réviser la réglementation sur les semences du Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Révision de la réglementation sur les semences au Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "11": {
+        "title": "Étude de cas : Renforcement de l'association des commerçants agricoles du comté au Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Renforcement de l’association des agents agricoles du comté au Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "12": {
+        "title": "Étude de cas : Étiquettes à gratter pour les semences certifiées au Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Étiquettes à gratter pour les semences certifiées au Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "13": {
+        "title": "Étude de cas : Renforcer une association de commerce de semences au Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Renforcement d'une association de commerce de semences au Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "14": {
+        "title": "Étude de cas : Le projet pilote de l’Indice africain d’accès aux semences (TASAI)",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2018",
+        "citation": "Agri Expérience Ltée. (2018). Étude de cas : Le projet pilote de l’Indice africain d’accès aux semences (TASAI). Nairobi : Kenya Markets Trust.",
+        "category": "Études de cas"
+      },
+      "15": {
+        "title": "Système de numéro d’identification de la variété (NIV) (rapport sommaire de l’étude de cadrage)",
+        "client": "USAID, 2017",
+        "citation": "O'Connor, A. et Maina, M. (2017). Étude de cadrage : rapport récapitulatif du rapport sur le système de numéro d'identification de variété (NIV). Agri Experience Ltd. Nairobi : USAID.",
+        "category": "Études de cadrage"
+      },
+      "16": {
+        "title": "Atteindre davantage d’agriculteurs avec des semences de haute qualité pour des cultures tolérantes à la sécheresse",
+        "client": "DFID : VUNA Agriculture intelligente face au climat (ASI), 2016",
+        "citation": "Agri Expérience Ltée. (2016). Atteindre davantage d’agriculteurs avec des semences de haute qualité pour des cultures tolérantes à la sécheresse. Rapport de recherche Vuna. Pretoria : Vuna.",
+        "category": "Rapports et analyses"
+      },
+      "17": {
+        "title": "Proposition d’une société de semences de cultures visant à améliorer la réglementation actuelle sur les semences au Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2016",
+        "citation": "Agri Expérience Ltée. (2016). Proposition de la société Crop Seed pour améliorer la réglementation actuelle sur les semences au Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Rapports et analyses"
+      },
+      "18": {
+        "title": "Étude de base d'Agrodealer",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2016",
+        "citation": "Agri Expérience Ltée. (2016). Étude de base d'Agrodealer. Nairobi : Kenya Markets Trust.",
+        "category": "Rapports et analyses"
+      },
+      "19": {
+        "title": "Sécurité alimentaire et semences de cultures au Kenya (partie 2) : des bénéfices importants que nous ne pouvons pas nous permettre d'ignorer",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2016",
+        "citation": "Kariuki, J. et Templer, NA (2016). Sécurité alimentaire et semences de cultures au Kenya (partie 2) : des gains importants que nous ne pouvons pas nous permettre d'ignorer. Agri Experience Ltd. Nairobi : Kenya Markets Trust.",
+        "category": "Rapports et analyses"
+      },
+      "20": {
+        "title": "Sécurité alimentaire et semences de cultures au Kenya (partie 1) : des tendances difficiles que nous ne pouvons pas nous permettre d'ignorer",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences, 2015",
+        "citation": "Kariuki, J. (2015). Sécurité alimentaire et semences de cultures au Kenya (Partie 1) : Des tendances difficiles que nous ne pouvons pas nous permettre d'ignorer. Nairobi : Kenya Markets Trust.",
+        "category": "Rapports et analyses"
+      },
+      "21": {
+        "title": "Étude sur l'industrie des semences au Kenya",
+        "client": "Programme d'assistance au marché DfID/Kenya Markets Trust : secteur des semences (ASI), 2012",
+        "citation": "Agri Expérience Ltée. (2012). Étude sur l'industrie semencière du Kenya. Nairobi : Kenya Markets Trust.",
+        "category": "Rapports et analyses"
+      },
+      "22": {
+        "title": "La boîte à outils de l’African Seed Company : 52 outils que tout dirigeant d’une entreprise semencière devrait savoir utiliser (anglais)",
+        "client": "Développement agricole BMGF, 2009",
+        "citation": "O'Connor, A. (2009). La boîte à outils de l'African Seed Company : 52 outils que chaque dirigeant d'une entreprise semencière devrait savoir utiliser (version anglaise). Nairobi : Développement agricole de la BMGF.",
+        "category": "Boîtes à outils et guides"
+      },
+      "23": {
+        "title": "La boîte à outils de l’African Seed Company : 52 outils que tout dirigeant d’une entreprise semencière devrait savoir utiliser (français)",
+        "client": "Développement agricole BMGF, 2009",
+        "citation": "O'Connor, A. (2009). La boîte à outils de l’African Seed Company : 52 outils que tout dirigeant d’une entreprise semencière devrait savoir utiliser (version française). Nairobi : Développement agricole de la BMGF.",
+        "category": "Boîtes à outils et guides"
+      }
+    }
   },
   "Legal": {
     "back": "Retour à la maison",

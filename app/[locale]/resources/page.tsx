@@ -26,6 +26,12 @@ export default function ResourcesPage() {
   const t = useTranslations('Resources')
   const [activeCategory, setActiveCategory] = useState('All')
 
+  // Using the index of the category to pull the translated string since the keys map 1:1 with English
+  const getCategoryTranslation = (cat: string) => {
+    const idx = categories.indexOf(cat);
+    return idx >= 0 ? t(`categories.${idx}`) : cat;
+  }
+
   const filteredDownloads = publicDownloads.filter(download => 
     activeCategory === 'All' ? true : download.category === activeCategory
   )
@@ -62,35 +68,38 @@ export default function ResourcesPage() {
                         : 'bg-mist text-deep-forest hover:bg-primary-green/10'
                     }`}
                   >
-                    {category}
+                    {getCategoryTranslation(category)}
                   </button>
                 ))}
               </div>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredDownloads.map((download, idx) => (
+              {filteredDownloads.map((download) => {
+                // Find index to get correct translation from the array
+                const originalIdx = publicDownloads.findIndex(d => d.title === download.title);
+                return (
                 <motion.div
                   key={download.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: (idx % 10) * 0.05 }}
+                  transition={{ duration: 0.6, delay: (originalIdx % 10) * 0.05 }}
                   className="flex flex-col group border border-black/[0.04] rounded-2xl overflow-hidden hover:border-black/[0.08] transition-colors"
                 >
                   {/* PDF first-page preview - sits flush against the border */}
                   <PdfPreview pdfUrl={download.link} />
 
                   <div className="p-4 lg:p-5 flex flex-col flex-grow">
-                    <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{download.client}</p>
-                    <p className="text-sm text-charcoal/70 font-light leading-relaxed mb-4 flex-grow">{download.citation}</p>
+                    <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{t(`downloads.${originalIdx}.client`)}</p>
+                    <p className="text-sm text-charcoal/70 font-light leading-relaxed mb-4 flex-grow">{t(`downloads.${originalIdx}.citation`)}</p>
                     <div className="flex flex-wrap gap-4 pt-3 border-t border-black/5 text-sm font-bold mt-auto">
                       <a
                         href={download.link}
                         className="text-deep-forest hover:text-primary-green transition-colors inline-flex items-center gap-1"
                         download
                       >
-                        Download PDF <ArrowRight size={14} />
+                        {t('download_pdf')} <ArrowRight size={14} />
                       </a>
                       {download.clientLink && (
                         <a
@@ -99,13 +108,13 @@ export default function ResourcesPage() {
                           target="_blank"
                           rel="noreferrer"
                         >
-                          Client Link <ArrowRight size={14} />
+                          {t('client_link')} <ArrowRight size={14} />
                         </a>
                       )}
                     </div>
                   </div>
                 </motion.div>
-              ))}
+              )})}
             </div>
           </div>
         </section>

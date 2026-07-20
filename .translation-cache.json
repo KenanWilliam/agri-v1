@@ -309,7 +309,162 @@
     "subtitle": "These resources are available to the public. Additional client work is not published per the terms of engagement.",
     "cta_title": "Looking for more?",
     "cta_desc": "Contact our team to discuss additional reports, services, or collaboration opportunities.",
-    "contact_us": "Contact Us"
+    "contact_us": "Contact Us",
+    "categories": {
+      "0": "All",
+      "1": "Reports & Analysis",
+      "2": "Case Studies",
+      "3": "Scoping Studies",
+      "4": "Toolkits & Guides"
+    },
+    "download_pdf": "Download PDF",
+    "client_link": "Client Link",
+    "downloads": {
+      "0": {
+        "title": "Empowering Tanzania's Farmers to Report Low Quality or Fake Seed to the Regulator",
+        "client": "Catholic Relief Services, USAID Feed the Future Global Supporting Seed Systems for Development Activity",
+        "citation": "Agri Experience Ltd. (2023). Ripoti Mbegu Isiyo Bora (RIMI) - Empowering Tanzania's Farmers to Report Low Quality or Fake Seed to the Regulator.",
+        "category": "Reports & Analysis"
+      },
+      "1": {
+        "title": "Empowering Kenyan Farmers to Report Low Quality or Fake Seed to the Regulator",
+        "client": "Agri Experience Social Corporate Responsibilities supporting KEPHIS",
+        "citation": "Agri Experience Ltd. (2021). Case Study: Mulika Mbegu Mbovu (M3) - Empowering Kenyan Farmers to Report Low Quality or Fake Seed to the Regulator.",
+        "category": "Case Studies"
+      },
+      "2": {
+        "title": "Assessment to Support the Promotion of Regional Seed Trade in East Africa",
+        "client": "USAID/FTF: Building Capacity for African Agricultural Transformation (DAI), October 2018",
+        "citation": "Agri Experience Ltd. (2018). Assessment to Support the Promotion of Regional Seed Trade in East Africa. Nairobi: USAID/FTF: Building Capacity for African Agricultural Transformation (DAI).",
+        "category": "Reports & Analysis"
+      },
+      "3": {
+        "title": "Scoping Study: Pasture and Fodder Planting Materials in Kenya",
+        "client": "USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018",
+        "citation": "Agri Experience Ltd. (2018). Scoping Study: Pasture and Fodder Planting Materials in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).",
+        "category": "Scoping Studies"
+      },
+      "4": {
+        "title": "Scoping Study: Planting Materials for Value Chain Crops in Kenya (banana, avocado, mango, pineapples, passion fruit, sweet potatoes, African leafy vegetables)",
+        "client": "USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018",
+        "citation": "Agri Experience Ltd. (2018). Scoping Study: Planting Materials for Value Chain Crops in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).",
+        "category": "Scoping Studies"
+      },
+      "5": {
+        "title": "Scoping Study: Horticulture Seedling Nurseries as a Viable Business Model in Kenya",
+        "client": "USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018",
+        "citation": "Agri Experience Ltd. (2018). Scoping Study: Horticulture Seedling Nurseries as a Viable Business Model in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).",
+        "category": "Scoping Studies"
+      },
+      "6": {
+        "title": "Agro Dealer Mapping in Twelve Counties in Kenya",
+        "client": "USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018",
+        "citation": "Agri Experience Ltd. (2018). Agro Dealer Mapping in Twelve KCMD Counties of Operation in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).",
+        "category": "Reports & Analysis"
+      },
+      "7": {
+        "title": "Scoping Study: Agro Dealer Association Development in Twelve Counties in Kenya",
+        "client": "USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018",
+        "citation": "Agri Experience Ltd. (2018). Scoping Study: Agro Dealer Association Development in Twelve Counties in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).",
+        "category": "Scoping Studies"
+      },
+      "8": {
+        "title": "Seed Company Survey and Analysis - Sub-Saharan Africa",
+        "client": "AGRA (pro bono), 2018",
+        "citation": "Agri Experience, Ltd., O'Connor, Misigo, et al. \"Seed Company Survey and Analysis, Sub-Saharan Africa.\" 26 November 2018.",
+        "category": "Reports & Analysis"
+      },
+      "9": {
+        "title": "Case Study: MbeguChoice Seed Variety IT Platform",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: MbeguChoice Seed Variety IT Platform. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "10": {
+        "title": "Case Study: Revising Kenya's Seed Regulations",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: Revising Kenya's Seed Regulation. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "11": {
+        "title": "Case Study: County Agrodealer Association Strengthening in Kenya",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: County Agrodealer Association Strengthening in Kenya. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "12": {
+        "title": "Case Study: Scratch-Off Labels for Certified Seed in Kenya",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: Scratch-Off Labels for Certified Seed in Kenya. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "13": {
+        "title": "Case Study: Strengthening a Seed Trade Association in Kenya",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: Strengthening a Seed Trade Association in Kenya. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "14": {
+        "title": "Case Study: The African Seed Access Index (TASAI) Pilot",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2018",
+        "citation": "Agri Experience Ltd. (2018). Case Study: The African Seed Access Index (TASAI) Pilot. Nairobi: Kenya Markets Trust.",
+        "category": "Case Studies"
+      },
+      "15": {
+        "title": "Variety Identification Number (VIN) System (Summary Report of Scoping Study)",
+        "client": "USAID, 2017",
+        "citation": "O'Connor, A., & Maina, M. (2017). Scoping Study: Summary Report of Variety Identification Number (VIN) System Report. Agri Experience Ltd. Nairobi: USAID.",
+        "category": "Scoping Studies"
+      },
+      "16": {
+        "title": "Reaching More Farmers with High Quality Seed for Drought Tolerant Crops",
+        "client": "DfID: VUNA Climate Smart Agriculture (ASI), 2016",
+        "citation": "Agri Experience Ltd. (2016). Reaching More Farmers with High Quality Seed for Drought Tolerant Crops. Vuna Research Report. Pretoria: Vuna.",
+        "category": "Reports & Analysis"
+      },
+      "17": {
+        "title": "Crop Seed Company Proposition for Improving Current Seed Regulation in Kenya",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2016",
+        "citation": "Agri Experience Ltd. (2016). Crop Seed Company Proposition for Improving Current Seed Regulation in Kenya. Nairobi: Kenya Markets Trust.",
+        "category": "Reports & Analysis"
+      },
+      "18": {
+        "title": "Agrodealer Baseline Study",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2016",
+        "citation": "Agri Experience Ltd. (2016). Agrodealer Baseline Study. Nairobi: Kenya Markets Trust.",
+        "category": "Reports & Analysis"
+      },
+      "19": {
+        "title": "Food Security & Crop Seed in Kenya (Part 2): Big Payoffs We Cannot Afford to Ignore",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2016",
+        "citation": "Kariuki, J., & Templer, N. A. (2016). Food Security & Crop Seed in Kenya (Part 2): Big Payoffs We Cannot Afford to Ignore. Agri Experience Ltd. Nairobi: Kenya Markets Trust.",
+        "category": "Reports & Analysis"
+      },
+      "20": {
+        "title": "Food Security & Crop Seed in Kenya (Part 1): Challenging Trends We Cannot Afford to Ignore",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector, 2015",
+        "citation": "Kariuki, J. (2015). Food Security & Crop Seed in Kenya (Part 1): Challenging Trends We Cannot Afford to Ignore. Nairobi: Kenya Markets Trust.",
+        "category": "Reports & Analysis"
+      },
+      "21": {
+        "title": "Kenya Seed Industry Study",
+        "client": "DfID/Kenya Markets Trust Market Assistance Program: Seed Sector (ASI), 2012",
+        "citation": "Agri Experience Ltd. (2012). Kenya Seed Industry Study. Nairobi: Kenya Markets Trust.",
+        "category": "Reports & Analysis"
+      },
+      "22": {
+        "title": "The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English)",
+        "client": "BMGF Agricultural Development, 2009",
+        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English Version). Nairobi: BMGF Agricultural Development.",
+        "category": "Toolkits & Guides"
+      },
+      "23": {
+        "title": "The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French)",
+        "client": "BMGF Agricultural Development, 2009",
+        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French Version). Nairobi: BMGF Agricultural Development.",
+        "category": "Toolkits & Guides"
+      }
+    }
   },
   "Legal": {
     "back": "Back to Home",

@@ -100,15 +100,18 @@ export default function WhyAgriExperience() {
             <motion.div
               key={idx}
               style={{ y: item.y }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                opacity: { duration: 0.6, delay: item.delay },
-                y: { type: "spring", stiffness: 50, damping: 20 }
-              }}
-              className="bg-white/80 backdrop-blur-xl p-10 rounded-[2rem] border border-white/40 shadow-xl hover:shadow-2xl hover:bg-white transition-colors duration-500 group relative overflow-hidden"
+              className="h-full"
             >
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  opacity: { duration: 0.6, delay: item.delay },
+                  y: { type: "spring", stiffness: 50, damping: 20 }
+                }}
+                className="bg-white/80 backdrop-blur-xl p-10 rounded-[2rem] border border-white/40 shadow-xl hover:shadow-2xl hover:bg-white transition-colors duration-500 group relative overflow-hidden h-full"
+              >
               {/* Card Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
@@ -118,6 +121,7 @@ export default function WhyAgriExperience() {
                 </div>
                 <p className="text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
               </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
