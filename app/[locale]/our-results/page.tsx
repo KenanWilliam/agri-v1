@@ -1,4 +1,5 @@
 'use client'
+import { RollingText } from '@/components/ui/rolling-text';
 
 import { publicDownloads } from '@/lib/public-downloads'
 import { motion } from 'framer-motion'
@@ -173,11 +174,13 @@ export default function OurResultsPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="overflow-hidden relative group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
               >
+<RollingText className="gap-2">
                 {t('get_in_touch')}
                 <ArrowRight size={20} />
-              </Link>
+              </RollingText>
+</Link>
             </div>
           </div>
         </section>

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, CheckCircle } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
 
 export default function NewsletterPage() {
   const t = useTranslations('Newsletter')
@@ -124,9 +125,11 @@ export default function NewsletterPage() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
+                      className="group relative overflow-hidden w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center transition-[background-color,border-color,box-shadow] duration-200"
                     >
-                      {t('subscribe')}
+                      <RollingText>
+                        {t('subscribe')}
+                      </RollingText>
                     </motion.button>
                   </div>
                 </form>

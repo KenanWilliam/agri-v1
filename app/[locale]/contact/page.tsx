@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
 
 export default function ContactPage() {
   const t = useTranslations('Contact')
@@ -130,10 +131,12 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-deep-forest/20 transition-[background-color,border-color,box-shadow] duration-200"
+                    className="group relative overflow-hidden w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center transition-[background-color,border-color,box-shadow] duration-200"
                   >
-                    {submitted ? t('sent') : t('send')}
-                    {!submitted && <Send size={18} />}
+                    <RollingText className="gap-2">
+                      {submitted ? t('sent') : t('send')}
+                      {!submitted && <Send size={18} />}
+                    </RollingText>
                   </motion.button>
                 </form>
               </motion.div>

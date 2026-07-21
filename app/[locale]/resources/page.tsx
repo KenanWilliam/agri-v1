@@ -7,6 +7,7 @@ import { Link } from '@/i18n/routing'
 import { ArrowRight, FileText } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
 
 // Dynamically import PdfPreview with SSR disabled to fix "DOMMatrix is not defined" error
 const PdfPreview = dynamic(() => import('@/components/pdf-preview'), { 
@@ -62,13 +63,15 @@ export default function ResourcesPage() {
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-in-out ${
+                    className={`group relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-in-out ${
                       activeCategory === category
                         ? 'bg-primary-green text-white shadow-md'
                         : 'bg-mist text-deep-forest hover:bg-primary-green/10'
                     }`}
                   >
-                    {getCategoryTranslation(category)}
+                    <RollingText>
+                      {getCategoryTranslation(category)}
+                    </RollingText>
                   </button>
                 ))}
               </div>
@@ -131,10 +134,12 @@ export default function ResourcesPage() {
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:bg-deep-forest/90"
               >
-                {t('contact_us')}
-                <ArrowRight size={20} />
+                <RollingText className="gap-2">
+                  {t('contact_us')}
+                  <ArrowRight size={20} />
+                </RollingText>
               </Link>
             </div>
           </div>

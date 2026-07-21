@@ -1,4 +1,5 @@
 'use client'
+import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
 import { Link } from '@/i18n/routing'
@@ -100,11 +101,13 @@ export default function InsightsPage() {
             <div className="pt-6">
               <Link
                 href="/our-results"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
+                className="overflow-hidden relative group inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
               >
+<RollingText className="gap-2">
                 {t('view_results')}
                 <ArrowRight size={20} />
-              </Link>
+              </RollingText>
+</Link>
             </div>
           </div>
         </section>

@@ -1,4 +1,5 @@
 'use client'
+import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
 import {
@@ -167,17 +168,21 @@ export default function ProjectImplementationPage() {
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
                     >
+<RollingText className="gap-2">
                       {t('req_partnership')}
                       <ArrowRight size={16} />
-                    </Link>
+                    </RollingText>
+</Link>
                     <Link
                       href="/our-work"
-                      className="inline-flex items-center gap-2 px-8 py-4 border border-deep-forest/20 text-deep-forest rounded-full font-semibold text-sm hover:bg-deep-forest/5 transition-colors"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-deep-forest/20 text-deep-forest rounded-full font-semibold text-sm hover:bg-deep-forest/5 transition-colors"
                     >
+<RollingText className="gap-2">
                       {t('our_work')}
-                    </Link>
+                    </RollingText>
+</Link>
                   </div>
                 </div>
               </motion.div>
@@ -537,17 +542,21 @@ export default function ProjectImplementationPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-semibold hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20 transition-all"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-semibold hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20 transition-all"
                   >
+<RollingText className="gap-2">
                     {t('cta_btn1')}
                     <ArrowRight size={18} />
-                  </Link>
+                  </RollingText>
+</Link>
                   <Link
                     href="/our-work"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-semibold hover:bg-white/5 transition-all"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-semibold hover:bg-white/5 transition-all"
                   >
+<RollingText className="gap-2">
                     {t('cta_btn2')}
-                  </Link>
+                  </RollingText>
+</Link>
                 </div>
               </motion.div>
             </div>

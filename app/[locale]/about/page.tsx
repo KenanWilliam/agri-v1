@@ -1,4 +1,5 @@
 'use client'
+import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
 import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight, TrendingUp, Shield, Zap, Globe } from 'lucide-react'
@@ -187,7 +188,7 @@ export default function AboutPage() {
                 <p className="text-charcoal/50 font-bold uppercase tracking-widest text-xs">{t('values_subtitle')}</p>
               </div>
               
-              <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden border border-primary-green/10">
+              <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden">
                 <Image
                   src="/our values.png"
                   alt="Our Core Values"
@@ -209,10 +210,12 @@ export default function AboutPage() {
               {t('cta_desc')}
             </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+              <Link href="/contact" className="overflow-hidden relative group inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+<RollingText className="gap-2">
                 {t('get_in_touch')}
                 <ArrowRight size={20} />
-              </Link>
+              </RollingText>
+</Link>
             </div>
           </div>
         </section>

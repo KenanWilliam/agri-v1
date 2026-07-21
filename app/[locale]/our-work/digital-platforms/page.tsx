@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { MonitorSmartphone, Smartphone, Database, Wifi, BarChart3, Shield, ArrowRight, Leaf, Globe, CheckCircle2 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
+import Image from 'next/image'
 
 export default function DigitalPlatformsPage() {
   const t = useTranslations('DigitalPlatforms')
@@ -18,7 +20,7 @@ export default function DigitalPlatformsPage() {
     {
       title: t('platforms.1.title'),
       description: t('platforms.1.description'),
-      icon: Smartphone,
+      image: '/M3.png',
       tag: t('platforms.1.tag'),
     },
     {
@@ -108,23 +110,27 @@ export default function DigitalPlatformsPage() {
                   <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc')}
                   </p>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-white/80">{t('sp_feat1')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-white/80">{t('sp_feat2')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-white/80">{t('sp_feat3')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-white/80">{t('sp_feat4')}</span></div>
+                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat1')}</span></div>
+                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat2')}</span></div>
+                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat3')}</span></div>
+                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat4')}</span></div>
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
+                      className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
                     >
-                      {t('req_platform')}
-                      <ArrowRight size={16} />
+                      <RollingText className="gap-2">
+                        {t('req_platform')}
+                        <ArrowRight size={16} />
+                      </RollingText>
                     </Link>
                     <Link
                       href="/our-work"
-                      className="inline-flex items-center gap-2 px-8 py-4 border border-charcoal/20 text-charcoal rounded-full font-semibold text-sm hover:bg-charcoal/5 transition-colors"
+                      className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 border border-charcoal/20 text-charcoal rounded-full font-semibold text-sm hover:bg-charcoal/5 transition-colors"
                     >
-                      {t('our_work')}
+                      <RollingText className="gap-2">
+                        {t('our_work')}
+                      </RollingText>
                     </Link>
                   </div>
                 </div>
@@ -168,8 +174,12 @@ export default function DigitalPlatformsPage() {
                   >
                     {/* Icon + Tag */}
                     <div className={`space-y-4 ${idx === 0 ? 'md:flex-shrink-0' : ''}`}>
-                      <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green">
-                        <Icon size={30} />
+                      <div className={platform.image ? "h-12 lg:h-16 flex items-center" : "w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green"}>
+                        {platform.image ? (
+                          <Image src={platform.image} alt={platform.title} width={160} height={64} className="h-full w-auto object-contain object-left" />
+                        ) : Icon ? (
+                          <Icon size={30} />
+                        ) : null}
                       </div>
                       <span className="inline-block text-xs font-bold text-primary-green tracking-[0.15em] uppercase bg-primary-green/10 px-3 py-1 rounded-full">
                         {platform.tag}
@@ -439,16 +449,20 @@ export default function DigitalPlatformsPage() {
                 <div className="flex flex-wrap justify-center gap-4 pt-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-white text-deep-forest rounded-full font-semibold text-sm hover:bg-primary-green hover:text-white transition-colors"
+                    className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 bg-white text-deep-forest rounded-full font-semibold text-sm hover:bg-primary-green hover:text-white transition-colors"
                   >
-                    {t('cta_btn1')}
-                    <ArrowRight size={16} />
+                    <RollingText className="gap-2">
+                      {t('cta_btn1')}
+                      <ArrowRight size={16} />
+                    </RollingText>
                   </Link>
                   <Link
                     href="/our-work"
-                    className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold text-sm hover:bg-white/10 transition-colors"
+                    className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-semibold text-sm hover:bg-white/10 transition-colors"
                   >
-                    {t('cta_btn2')}
+                    <RollingText className="gap-2">
+                      {t('cta_btn2')}
+                    </RollingText>
                   </Link>
                 </div>
               </motion.div>

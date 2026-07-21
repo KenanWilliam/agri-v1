@@ -17,6 +17,7 @@ const navItems = [
 ]
 import LiquidGlass from './liquid-glass'
 import {useTranslations} from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
 
 export default function Header() {
   const t = useTranslations('Header')
@@ -184,9 +185,11 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => { setClickedPath('/contact'); }}
-              className="hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
+              className="group relative overflow-hidden hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
-              {t('contact')}
+              <RollingText>
+                {t('contact')}
+              </RollingText>
             </Link>
 
             <button
@@ -253,9 +256,11 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => { setIsOpen(false); }}
-                className="w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md"
+                className="group relative overflow-hidden w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md flex items-center justify-center"
               >
-                {t('contact')}
+                <RollingText>
+                  {t('contact')}
+                </RollingText>
               </Link>
             </nav>
           </motion.div>

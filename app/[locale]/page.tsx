@@ -7,6 +7,7 @@ import { Link } from '@/i18n/routing'
 import WhyAgriExperience from '@/components/motion/why-agri-experience'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { RollingText } from '@/components/ui/rolling-text'
 
 import { useState, useEffect } from 'react'
 
@@ -80,9 +81,11 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="pt-2"
               >
-                <Link href="/our-impact" className="inline-flex items-center justify-center gap-3 px-6 py-3 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base">
-                  {t('explore_impact')}
-                  <ArrowRight size={18} />
+                <Link href="/our-impact" className="group relative overflow-hidden inline-flex items-center justify-center gap-3 px-6 py-3 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base">
+                  <RollingText className="gap-3">
+                    {t('explore_impact')}
+                    <ArrowRight size={18} />
+                  </RollingText>
                 </Link>
               </motion.div>
 
@@ -213,15 +216,19 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
                   href="/contact"
-                  className="px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg hover:scale-105 transition duration-200 shadow-2xl shadow-primary-green/20"
-                  >
-                  {t('cta_btn_1')}
-                  </Link>
-                  <Link
-                  href="/contact"
-                  className="px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
                 >
-                  {t('cta_btn_2')}
+                  <RollingText>
+                    {t('cta_btn_1')}
+                  </RollingText>
+                </Link>
+                <Link
+                  href="/contact"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
+                >
+                  <RollingText>
+                    {t('cta_btn_2')}
+                  </RollingText>
                 </Link>
               </div>
             </motion.div>

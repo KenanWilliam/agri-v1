@@ -1,4 +1,5 @@
 'use client'
+import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
 import { ClipboardCheck, Search, FileText, TrendingUp, Users, MapPin, Microscope, ArrowRight, Leaf, BarChart3, CheckCircle2 } from 'lucide-react'
@@ -128,17 +129,21 @@ const methodology = [
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary-blue text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-primary-blue text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
                   >
+<RollingText className="gap-2">
                     {t('req_study')}
                     <ArrowRight size={16} />
-                  </Link>
+                  </RollingText>
+</Link>
                   <Link
                     href="/our-work"
-                    className="inline-flex items-center gap-2 px-8 py-4 border border-primary-blue/20 text-primary-blue rounded-full font-semibold text-sm hover:bg-primary-blue/5 transition-colors"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-primary-blue/20 text-primary-blue rounded-full font-semibold text-sm hover:bg-primary-blue/5 transition-colors"
                   >
+<RollingText className="gap-2">
                     {t('our_work')}
-                  </Link>
+                  </RollingText>
+</Link>
                 </div>
               </motion.div>
             </div>
@@ -447,18 +452,22 @@ const methodology = [
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 bg-primary-blue hover:bg-primary-blue/90 text-white font-bold px-8 py-4 rounded-full transition duration-200"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 bg-primary-blue hover:bg-primary-blue/90 text-white font-bold px-8 py-4 rounded-full transition duration-200"
                   >
+<RollingText className="gap-2">
                     {t('cta_btn1')}
                     <ArrowRight size={18} />
-                  </Link>
+                  </RollingText>
+</Link>
                   <Link
                     href="/our-work"
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/20 transition duration-200"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/20 transition duration-200"
                   >
+<RollingText className="gap-2">
                     {t('cta_btn2')}
                     <ArrowRight size={18} />
-                  </Link>
+                  </RollingText>
+</Link>
                 </div>
               </motion.div>
             </div>

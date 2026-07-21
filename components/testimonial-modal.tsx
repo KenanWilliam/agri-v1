@@ -62,6 +62,8 @@ const testimonials: Testimonial[] = [
   },
 ]
 
+import { RollingText } from '@/components/ui/rolling-text'
+
 export default function TestimonialModal() {
   const [isOpen, setIsOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -82,10 +84,12 @@ export default function TestimonialModal() {
         onClick={() => setIsOpen(true)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded font-semibold hover:shadow-lg transition duration-200"
+        className="group relative overflow-hidden inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded font-semibold hover:shadow-lg transition duration-200"
       >
-        <Quote size={20} />
-        Read Client Stories
+        <RollingText className="gap-3">
+          <Quote size={20} />
+          Read Client Stories
+        </RollingText>
       </motion.button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>

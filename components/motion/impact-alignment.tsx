@@ -78,7 +78,7 @@ function AccordionSlice({
       {/* ─── Background image placeholder ─── */}
       <div className="absolute inset-0 bg-mist overflow-hidden">
         {card.bgImage ? (
-          <div className="absolute top-0 left-0 w-full h-[500px] lg:w-[min(45vw,580px)] lg:h-full">
+          <div className="absolute inset-0">
             <Image
               src={card.bgImage}
               alt={t(card.shortTitle)}

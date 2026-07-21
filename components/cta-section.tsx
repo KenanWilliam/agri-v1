@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from '@/i18n/routing';
 import { useRef, useState } from "react";
+import { RollingText } from '@/components/ui/rolling-text';
 
 function MagneticButton({ children, href, className = "" }: { children: React.ReactNode, href: string, className?: string }) {
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -37,7 +38,9 @@ function MagneticButton({ children, href, className = "" }: { children: React.Re
         className={`relative inline-flex items-center justify-center overflow-hidden group ${className}`}
       >
         <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-          {children}
+          <RollingText className="gap-2">
+            {children}
+          </RollingText>
         </span>
         {/* Background circle that expands on hover */}
         <span className="absolute inset-0 bg-[#E3A335] rounded-full scale-0 group-hover:scale-[1.1] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] origin-center"></span>
@@ -132,12 +135,12 @@ export default function CtaSection() {
 
           <Link
             href="/our-work"
-            className="group relative px-10 py-5 text-lg font-bold tracking-wide text-white overflow-hidden"
+            className="group relative px-10 py-5 text-lg font-bold tracking-wide text-white overflow-hidden flex items-center justify-center"
           >
-            <span className="relative z-10 flex items-center gap-2">
+            <RollingText>
               View Case Studies
-              <span className="w-0 h-[2px] bg-[#E3A335] absolute -bottom-1 left-0 group-hover:w-full transition-all duration-300 ease-out"></span>
-            </span>
+            </RollingText>
+            <span className="w-0 h-[2px] bg-[#E3A335] absolute bottom-3 left-1/2 -translate-x-1/2 group-hover:w-[calc(100%-5rem)] transition-all duration-300 ease-out"></span>
           </Link>
         </motion.div>
       </div>
