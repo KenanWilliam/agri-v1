@@ -12,6 +12,8 @@ interface TeamMember {
   bio: string
   image: string
   hoverImage?: string
+  imagePosition?: string
+  hoverImagePosition?: string
   projects?: string[]
 }
 
@@ -25,6 +27,7 @@ export default function OurTeamPage() {
       role: t('aline_role'),
       bio: t('aline_bio'),
       image: '/team/aline.png',
+      imagePosition: '50% 35%',
       projects: t('aline_projects').split(', ')
     },
     {
@@ -33,6 +36,8 @@ export default function OurTeamPage() {
       bio: t('mulemia_bio'),
       image: '/team/mulemia2.jpg',
       hoverImage: '/team/mulemia.jpg',
+      imagePosition: '54% 27%',
+      hoverImagePosition: '55% 21%',
       projects: t('mulemia_projects').split(', ')
     },
     {
@@ -41,6 +46,8 @@ export default function OurTeamPage() {
       bio: t('jayne_bio'),
       image: '/team/jayne2.jpg',
       hoverImage: '/team/jayne.jpg',
+      imagePosition: '51% 27%',
+      hoverImagePosition: '55% 30%',
       projects: t('jayne_projects').split(', ')
     },
     {
@@ -49,6 +56,8 @@ export default function OurTeamPage() {
       bio: t('ronald_bio'),
       image: '/team/ronald2.jpg',
       hoverImage: '/team/ronald.jpg',
+      imagePosition: '52% 27%',
+      hoverImagePosition: '55% 27%',
       projects: t('ronald_projects').split(', ')
     },
     {
@@ -57,6 +66,8 @@ export default function OurTeamPage() {
       bio: t('denis_bio'),
       image: '/team/denis2.jpg',
       hoverImage: '/team/denis.jpg',
+      imagePosition: '50% 27%',
+      hoverImagePosition: '50% 25%',
       projects: t('denis_projects').split(', ')
     },
     {
@@ -65,6 +76,8 @@ export default function OurTeamPage() {
       bio: t('moses_bio'),
       image: '/team/moses2.jpg',
       hoverImage: '/team/moses.jpg',
+      imagePosition: '50% 26%',
+      hoverImagePosition: '50% 26%',
       projects: t('moses_projects').split(', ')
     },
     {
@@ -73,6 +86,8 @@ export default function OurTeamPage() {
       bio: t('claire_bio'),
       image: '/team/claire2.jpg',
       hoverImage: '/team/claire.jpg',
+      imagePosition: '54% 31%',
+      hoverImagePosition: '57% 24%',
       projects: t('claire_projects').split(', ')
     },
     {
@@ -81,6 +96,8 @@ export default function OurTeamPage() {
       bio: t('nicholas_bio'),
       image: '/team/kilonzo2.jpg',
       hoverImage: '/team/kilonzo.jpg',
+      imagePosition: '48% 36%',
+      hoverImagePosition: '52% 24%',
       projects: t('nicholas_projects').split(', ')
     },
   ]
@@ -129,7 +146,8 @@ export default function OurTeamPage() {
                       src={member.image} 
                       alt={member.name} 
                       fill 
-                      className={`object-cover transition-all duration-[800ms] ease-out group-hover:scale-110 ${member.hoverImage ? 'group-hover:opacity-0' : ''}`} 
+                      className={`object-cover transition-all duration-[800ms] ease-out group-hover:scale-110 ${member.hoverImage ? 'group-hover:opacity-0' : ''}`}
+                      style={{ objectPosition: member.imagePosition || 'center 25%' }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     {member.hoverImage && (
@@ -137,7 +155,8 @@ export default function OurTeamPage() {
                         src={member.hoverImage} 
                         alt={`${member.name} alternate`} 
                         fill 
-                        className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-[800ms] ease-out group-hover:scale-110" 
+                        className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-[800ms] ease-out"
+                        style={{ objectPosition: member.hoverImagePosition || 'center 25%' }}
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     )}
@@ -237,7 +256,8 @@ export default function OurTeamPage() {
                     src={selectedMember.image} 
                     alt={selectedMember.name} 
                     fill 
-                    className="object-cover object-top"
+                    className="object-cover"
+                    style={{ objectPosition: selectedMember.imagePosition || 'center 25%' }}
                     sizes="(max-width: 1600px) 45vw, 700px"
                     priority
                   />
