@@ -88,13 +88,13 @@ const methodology = [
     <>
       <main className="bg-white min-h-screen">
         {/* ─── Hero ─── */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Background blobs */}
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-blue/5 rounded-full blur-[120px] -translate-y-1/3 -translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-blue/3 rounded-full blur-[100px] translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
               {/* Left: Title */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -420,7 +420,7 @@ const methodology = [
 
         {/* ─── CTA ─── */}
         <section className="w-full">
-          <div className="w-full bg-deep-forest py-24 lg:py-32 px-6 relative overflow-hidden">
+          <div className="w-full bg-deep-forest py-16 lg:py-20 px-6 relative overflow-hidden">
             {/* Radial gradient overlays */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(36,132,198,0.12),transparent_55%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(58,180,74,0.06),transparent_50%)] pointer-events-none" />

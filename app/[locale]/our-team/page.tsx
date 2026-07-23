@@ -11,6 +11,7 @@ interface TeamMember {
   role: string
   bio: string
   image: string
+  hoverImage?: string
   projects?: string[]
 }
 
@@ -30,49 +31,56 @@ export default function OurTeamPage() {
       name: t('mulemia_name'),
       role: t('mulemia_role'),
       bio: t('mulemia_bio'),
-      image: '/team/mulemia.png',
+      image: '/team/mulemia2.jpg',
+      hoverImage: '/team/mulemia.jpg',
       projects: t('mulemia_projects').split(', ')
     },
     {
       name: t('jayne_name'),
       role: t('jayne_role'),
       bio: t('jayne_bio'),
-      image: '/team/jayne.png',
+      image: '/team/jayne2.jpg',
+      hoverImage: '/team/jayne.jpg',
       projects: t('jayne_projects').split(', ')
     },
     {
       name: t('ronald_name'),
       role: t('ronald_role'),
       bio: t('ronald_bio'),
-      image: '/team/ronald.png',
+      image: '/team/ronald2.jpg',
+      hoverImage: '/team/ronald.jpg',
       projects: t('ronald_projects').split(', ')
     },
     {
       name: t('denis_name'),
       role: t('denis_role'),
       bio: t('denis_bio'),
-      image: '/team/denis.png',
+      image: '/team/denis2.jpg',
+      hoverImage: '/team/denis.jpg',
       projects: t('denis_projects').split(', ')
     },
     {
       name: t('moses_name'),
       role: t('moses_role'),
       bio: t('moses_bio'),
-      image: '/team/placeholder.jpg',
+      image: '/team/moses2.jpg',
+      hoverImage: '/team/moses.jpg',
       projects: t('moses_projects').split(', ')
     },
     {
       name: t('claire_name'),
       role: t('claire_role'),
       bio: t('claire_bio'),
-      image: '/team/placeholder.jpg',
+      image: '/team/claire2.jpg',
+      hoverImage: '/team/claire.jpg',
       projects: t('claire_projects').split(', ')
     },
     {
       name: t('nicholas_name'),
       role: t('nicholas_role'),
       bio: t('nicholas_bio'),
-      image: '/team/kilonzo.png',
+      image: '/team/kilonzo2.jpg',
+      hoverImage: '/team/kilonzo.jpg',
       projects: t('nicholas_projects').split(', ')
     },
   ]
@@ -81,7 +89,7 @@ export default function OurTeamPage() {
     <main className="bg-[#FAFAFA] min-h-screen">
       
       {/* Editorial Hero */}
-      <section className="relative w-full pt-24 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
+      <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <motion.div
@@ -101,7 +109,7 @@ export default function OurTeamPage() {
       </section>
 
       {/* Grid Layout */}
-      <section className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 snap-start scroll-mt-20">
+      <section className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-16 snap-start scroll-mt-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-12 lg:gap-x-3 lg:gap-y-16">
           {fullTeam.map((member, idx) => (
             <motion.div
@@ -116,13 +124,24 @@ export default function OurTeamPage() {
               {/* Image Container */}
               <div className="relative w-full aspect-[4/5] rounded-none group-hover:rounded-xl transition-all duration-[800ms] ease-out overflow-hidden shadow-lg mb-6 bg-[#EFEFEF]">
                 {member.image && member.image !== '/team/placeholder.jpg' ? (
-                  <Image 
-                    src={member.image} 
-                    alt={member.name} 
-                    fill 
-                    className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-110" 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
+                  <>
+                    <Image 
+                      src={member.image} 
+                      alt={member.name} 
+                      fill 
+                      className={`object-cover transition-all duration-[800ms] ease-out group-hover:scale-110 ${member.hoverImage ? 'group-hover:opacity-0' : ''}`} 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                    {member.hoverImage && (
+                      <Image 
+                        src={member.hoverImage} 
+                        alt={`${member.name} alternate`} 
+                        fill 
+                        className="object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-[800ms] ease-out group-hover:scale-110" 
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    )}
+                  </>
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center transition-transform duration-[800ms] ease-out group-hover:scale-110">
                     <span className="text-7xl font-serif text-charcoal/10 font-bold">{member.name.charAt(0)}</span>

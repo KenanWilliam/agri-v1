@@ -124,10 +124,10 @@ export default function Home() {
         <WhyAgriExperience />
 
         {/* What We Believe Section */}
-        <section className="w-full py-24 lg:py-32 bg-deep-forest relative overflow-hidden">
+        <section className="w-full py-16 lg:py-20 bg-deep-forest relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20"></div>
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            <div className="flex flex-col lg:flex-row gap-16 lg:gap-16">
               <div className="lg:w-1/3 space-y-6">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -184,7 +184,7 @@ export default function Home() {
 
 
         {/* Testimonials */}
-        <section className="w-full py-16 lg:py-24 bg-mist">
+        <section className="w-full py-16 lg:py-16 bg-mist">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-16 space-y-4">
               <h2 className="text-deep-forest">{t('trusted_leaders')}</h2>
@@ -197,7 +197,7 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden">
+        <section className="relative w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>

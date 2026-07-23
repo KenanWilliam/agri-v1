@@ -55,7 +55,7 @@ export default function WhyAgriExperience() {
   ];
 
   return (
-    <section ref={sectionRef} className="w-full py-24 lg:py-40 bg-mist relative overflow-hidden">
+    <section ref={sectionRef} className="w-full py-16 lg:py-40 bg-mist relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <motion.div 
         style={{ y: useTransform(scrollYProgress, [0, 1], [-150, 150]) }}
@@ -67,7 +67,7 @@ export default function WhyAgriExperience() {
       />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-        <div className="text-center mb-24 space-y-4">
+        <div className="text-center mb-16 space-y-4">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +95,7 @@ export default function WhyAgriExperience() {
         </div>
 
         {/* Adjusting top/bottom padding so parallax items don't get clipped */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 pb-24 pt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 pb-16 pt-12">
           {cards.map((item, idx) => (
             <motion.div
               key={idx}

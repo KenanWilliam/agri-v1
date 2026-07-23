@@ -14,7 +14,7 @@ export default function DigitalPlatformsPage() {
     {
       title: t('platforms.0.title'),
       description: t('platforms.0.description'),
-      icon: MonitorSmartphone,
+      image: '/Mbegu Choice.png',
       tag: t('platforms.0.tag'),
     },
     {
@@ -69,13 +69,13 @@ export default function DigitalPlatformsPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ─── Hero ─── */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Background blobs */}
           <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary-green/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-green/3 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
               {/* Left: Title */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -172,7 +172,7 @@ export default function DigitalPlatformsPage() {
                       idx === 0 ? 'md:col-span-2 md:flex-row md:items-center md:gap-12' : ''
                     }`}
                   >
-                    {/* Icon + Tag */}
+                    {/* Icon */}
                     <div className={`space-y-4 ${idx === 0 ? 'md:flex-shrink-0' : ''}`}>
                       <div className={platform.image ? "h-12 lg:h-16 flex items-center" : "w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green"}>
                         {platform.image ? (
@@ -181,9 +181,6 @@ export default function DigitalPlatformsPage() {
                           <Icon size={30} />
                         ) : null}
                       </div>
-                      <span className="inline-block text-xs font-bold text-primary-green tracking-[0.15em] uppercase bg-primary-green/10 px-3 py-1 rounded-full">
-                        {platform.tag}
-                      </span>
                     </div>
 
                     {/* Content */}
@@ -288,13 +285,13 @@ export default function DigitalPlatformsPage() {
                 <Database size={14} />
                 {t('dp_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-4" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
                     <p className="text-white/80 font-light leading-relaxed mb-10">
                       A groundbreaking platform developed in partnership with KALRO, KEPHIS, and Kenya Markets Trust — empowering farmers and agrodealers to make data-driven seed selection decisions for their specific ecological zones.
                     </p>
 
                     {/* Stats grid */}
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-6 mb-12">
                       {spotlightStats.map((stat, i) => (
                         <div key={i} className="bg-white/5 rounded-2xl p-4 border border-white/10">
                           <div className="text-2xl font-data font-bold text-primary-green tracking-wide">
@@ -305,6 +302,16 @@ export default function DigitalPlatformsPage() {
                           </div>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Mbegu Choice App Image */}
+                    <div className="relative w-full h-[280px] rounded-t-2xl overflow-hidden shadow-2xl border-t border-white/20 translate-y-6 hover:translate-y-4 transition-transform duration-500 -mb-10 lg:-mb-14 mt-12 bg-white/10">
+                      <Image 
+                        src="/Mbegu Choice.png" 
+                        alt="Mbegu Choice Platform" 
+                        fill 
+                        className="object-contain object-top p-4" 
+                      />
                     </div>
                   </div>
                 </div>
@@ -415,7 +422,7 @@ export default function DigitalPlatformsPage() {
 
         {/* ─── CTA ─── */}
         <section className="w-full">
-          <div className="w-full bg-deep-forest py-24 lg:py-32 px-6 relative overflow-hidden">
+          <div className="w-full bg-deep-forest py-16 lg:py-20 px-6 relative overflow-hidden">
             {/* Radial gradient overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(58,180,74,0.12),transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(36,132,198,0.08),transparent_50%)] pointer-events-none" />

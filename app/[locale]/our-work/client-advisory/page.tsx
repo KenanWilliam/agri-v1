@@ -108,13 +108,13 @@ export default function ClientAdvisoryPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ─── Hero ─── */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Luxury background accents */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-gold/[0.04] rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 left-1/2 w-[600px] h-[400px] bg-warm-earth/40 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
               {/* Left */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -179,7 +179,7 @@ export default function ClientAdvisoryPage() {
         </section>
 
         {/* ─── Advisory Services Grid ─── */}
-        <section className="w-full pb-24">
+        <section className="w-full pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -236,7 +236,7 @@ export default function ClientAdvisoryPage() {
         </section>
 
         {/* ─── Our Approach — 3 Pillars ─── */}
-        <section className="w-full pb-24">
+        <section className="w-full pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -292,7 +292,7 @@ export default function ClientAdvisoryPage() {
         </section>
 
         {/* ─── Clients Served ─── */}
-        <section className="w-full pb-24">
+        <section className="w-full pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -337,7 +337,7 @@ export default function ClientAdvisoryPage() {
         </section>
 
         {/* ─── Highlight Band — Practice Model ─── */}
-        <section className="w-full pb-24">
+        <section className="w-full pb-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -416,7 +416,7 @@ export default function ClientAdvisoryPage() {
               </svg>
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-24 lg:py-32 relative z-10">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-16 lg:py-20 relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

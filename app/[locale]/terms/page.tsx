@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 export default function TermsPage() {
   const t = useTranslations('Legal')
   return (
-    <main className="bg-[#FAFAFA] min-h-screen pt-24 lg:pt-28 pb-24 px-6">
+    <main className="bg-[#FAFAFA] min-h-screen pt-16 lg:pt-28 pb-16 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Back Link */}
         <Link 

@@ -71,7 +71,7 @@ export default function CtaSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full min-h-[90vh] bg-[#1A4D2E] text-white overflow-hidden flex flex-col items-center justify-center py-32"
+      className="relative w-full min-h-[90vh] bg-[#1A4D2E] text-white overflow-hidden flex flex-col items-center justify-center py-20"
     >
       {/* Organic Sun/Glow Background */}
       <motion.div 

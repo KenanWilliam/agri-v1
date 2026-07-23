@@ -52,7 +52,7 @@ export default function OurImpactPage() {
         <ImpactAlignment />
 
         {/* CTA */}
-        <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">
+        <section className="w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">

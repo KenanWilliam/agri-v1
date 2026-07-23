@@ -44,8 +44,8 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
 
     const defaultOptions: Omit<mapboxgl.MapboxOptions, 'container'> = {
       style: 'mapbox://styles/mapbox/outdoors-v12',
-      center: [20.0, -5.0], // Shifted South to move the map up, and slightly East
-      zoom: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0.8 : 1.1, // Zoomed to show the globe nicely within the container
+      center: [17.0, 2.0], // Centered on Africa
+      zoom: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0.8 : 1.6, // Zoomed in closer for better framing on laptops
       pitch: 0,        // Completely flat top-down view until zoomed in
       projection: { name: 'globe' }, // Ensure globe projection is used
       scrollZoom: false, // Allow page scrolling over the map

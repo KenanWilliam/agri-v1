@@ -16,7 +16,7 @@ export default function AboutPage() {
 
         {/* <OfficePlantsGallery showMissionVision /> */}
         {/* Mission, Vision, Goal Section */}
-        <section className="w-full pt-[140px] pb-24 bg-mist relative overflow-hidden">
+        <section className="w-full pt-[140px] pb-16 bg-mist relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--primary-green)_0%,transparent_40%)] opacity-10"></div>
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="text-center mb-16">
@@ -92,7 +92,7 @@ export default function AboutPage() {
         </section>
 
         {/* Bento Expertise Section */}
-        <section className="w-full py-16 lg:py-24 bg-white relative border-t border-mist">
+        <section className="w-full py-16 lg:py-16 bg-white relative border-t border-mist">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
               <div className="max-w-2xl space-y-4">
@@ -180,7 +180,7 @@ export default function AboutPage() {
 
 
         {/* Core Values Grid */}
-        <section className="w-full py-16 lg:py-24 bg-white relative">
+        <section className="w-full py-16 lg:py-16 bg-white relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="space-y-16">
               <div className="text-center space-y-4">
@@ -203,7 +203,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-24 lg:py-32 bg-mist">
+        <section className="w-full py-16 lg:py-20 bg-mist">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
             <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif">{t('cta_title')}</h2>
             <p className="text-xl lg:text-2xl text-charcoal/80 font-light leading-relaxed">

@@ -101,7 +101,7 @@ export default function CapacityBuildingPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ===== HERO ===== */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Decorative background */}
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-charcoal/[0.03] rounded-full blur-[120px] -translate-y-1/3 -translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary-green/[0.04] rounded-full blur-[100px] translate-y-1/3 translate-x-1/4 pointer-events-none" />
@@ -119,7 +119,7 @@ export default function CapacityBuildingPage() {
           </div>
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
               {/* Left */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -204,7 +204,7 @@ export default function CapacityBuildingPage() {
         </section>
 
         {/* ===== TRAINING PROGRAMS GRID ===== */}
-        <section className="w-full py-24">
+        <section className="w-full py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -264,7 +264,7 @@ export default function CapacityBuildingPage() {
         </section>
 
         {/* ===== APPROACH / METHODOLOGY — Visual Path ===== */}
-        <section className="w-full py-24 bg-warm-earth/40 relative overflow-hidden">
+        <section className="w-full py-16 bg-warm-earth/40 relative overflow-hidden">
           {/* Decorative element */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
@@ -337,7 +337,7 @@ export default function CapacityBuildingPage() {
         </section>
 
         {/* ===== TOOLBOX HIGHLIGHT ===== */}
-        <section className="w-full py-24">
+        <section className="w-full py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left — visual block */}
@@ -482,7 +482,7 @@ export default function CapacityBuildingPage() {
 
         {/* ===== CTA ===== */}
         <section className="w-full relative overflow-hidden">
-          <div className="bg-deep-forest py-24 lg:py-32 relative">
+          <div className="bg-deep-forest py-16 lg:py-20 relative">
             {/* Radial gradient overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(58,180,74,0.12),_transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(28,43,34,0.4),_transparent_60%)] pointer-events-none" />

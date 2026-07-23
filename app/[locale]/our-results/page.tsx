@@ -36,7 +36,7 @@ export default function OurResultsPage() {
   return (
     <>      <main className="bg-white min-h-screen">
         {/* Hero */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-10 overflow-hidden border-b border-mist">
+        <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
             <motion.h1
@@ -59,7 +59,7 @@ export default function OurResultsPage() {
         </section>
 
         {/* Downloads */}
-        <section className="w-full py-16 lg:py-24 bg-white relative">
+        <section className="w-full py-16 lg:py-16 bg-white relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ export default function OurResultsPage() {
         </section>
 
         {/* Examples of Assignments */}
-        <section className="w-full py-16 lg:py-24 bg-mist border-t border-mist">
+        <section className="w-full py-16 lg:py-16 bg-mist border-t border-mist">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -161,7 +161,7 @@ export default function OurResultsPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden relative">
+        <section className="w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">

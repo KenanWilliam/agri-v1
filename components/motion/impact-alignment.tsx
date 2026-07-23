@@ -212,7 +212,7 @@ export default function ImpactAlignment() {
   const t = useTranslations("OurImpact");
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-white relative overflow-hidden">
+    <section className="w-full py-16 lg:py-16 bg-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.015]" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, #1A4D2E 1px, transparent 0)",
         backgroundSize: "32px 32px",

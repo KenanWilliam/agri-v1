@@ -33,7 +33,7 @@ export default function SectionHero({
 
   return (
     <section
-      className={`relative w-full pt-32 sm:pt-36 lg:pt-44 pb-12 lg:pb-16 overflow-hidden border-b border-mist ${className}`}
+      className={`relative w-full pt-20 sm:pt-36 lg:pt-44 pb-12 lg:pb-16 overflow-hidden border-b border-mist ${className}`}
     >
       {/* Soft decorative bloom */}
       <div

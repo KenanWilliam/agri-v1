@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { Link, usePathname } from '@/i18n/routing'
+import { useState, useEffect, useRef, useTransition } from 'react'
+import { Link, usePathname, useRouter } from '@/i18n/routing'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -25,6 +25,8 @@ export default function Header() {
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
   const [clickedPath, setClickedPath] = useState<string | null>(null)
   const pathname = usePathname()
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
   const params = useParams()
   const currentLocale = (params?.locale as string) || 'en'
 
@@ -161,23 +163,27 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA + Mobile Menu */}
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5">
+            <div className={`hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
               {[
                 { code: 'en', label: 'EN' },
                 { code: 'fr', label: 'FR' }
               ].map(loc => {
                 const isActive = loc.code === currentLocale;
                 return (
-                  <Link
+                  <button
                     key={loc.code}
-                    href={pathname}
-                    locale={loc.code}
+                    onClick={() => {
+                      if (!isActive) {
+                        startTransition(() => {
+                          router.replace(pathname, { locale: loc.code as any });
+                        });
+                      }
+                    }}
                     className={`text-xs font-bold px-2.5 py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
                   >
                     {loc.label}
-                  </Link>
+                  </button>
                 )
               })}
             </div>
@@ -233,22 +239,27 @@ export default function Header() {
               })}
               <hr className="my-2 border-black/10" />
               
-              <div className="flex justify-center gap-2 py-2">
+              <div className={`flex justify-center gap-2 py-2 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
                 {[
                   { code: 'en', label: 'English' },
                   { code: 'fr', label: 'Français' }
                 ].map(loc => {
                   const isActive = loc.code === currentLocale;
                   return (
-                    <Link
+                    <button
                       key={loc.code}
-                      href={pathname}
-                      locale={loc.code}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        if (!isActive) {
+                          startTransition(() => {
+                            router.replace(pathname, { locale: loc.code as any });
+                          });
+                          setIsOpen(false);
+                        }
+                      }}
                       className={`text-sm font-bold px-4 py-2 rounded-full transition-all ${isActive ? 'bg-deep-forest text-white shadow-sm' : 'text-charcoal hover:bg-black/5'}`}
                     >
                       {loc.label}
-                    </Link>
+                    </button>
                   )
                 })}
               </div>

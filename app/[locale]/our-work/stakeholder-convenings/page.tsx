@@ -93,7 +93,7 @@ export default function StakeholderConveningsPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* ===== HERO ===== */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-20 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Decorative background — connected dots pattern */}
           <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-lighter-dark-green/[0.04] rounded-full blur-[120px] pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-blue/[0.03] rounded-full blur-[100px] pointer-events-none" />
@@ -119,7 +119,7 @@ export default function StakeholderConveningsPage() {
           </div>
 
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
               {/* Left */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -204,7 +204,7 @@ export default function StakeholderConveningsPage() {
         </section>
 
         {/* ===== CONVENING TYPES GRID ===== */}
-        <section className="w-full py-24">
+        <section className="w-full py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -269,7 +269,7 @@ export default function StakeholderConveningsPage() {
         </section>
 
         {/* ===== WHY CONVENINGS MATTER — Split Layout ===== */}
-        <section className="w-full py-24 bg-warm-earth/30 relative overflow-hidden">
+        <section className="w-full py-16 bg-warm-earth/30 relative overflow-hidden">
           {/* Decorative arcs */}
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full border border-lighter-dark-green/[0.06] pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full border border-lighter-dark-green/[0.04] pointer-events-none" />
@@ -331,7 +331,7 @@ export default function StakeholderConveningsPage() {
         </section>
 
         {/* ===== GEOGRAPHIC REACH ===== */}
-        <section className="w-full py-24">
+        <section className="w-full py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -428,7 +428,7 @@ export default function StakeholderConveningsPage() {
 
         {/* ===== CTA ===== */}
         <section className="w-full relative overflow-hidden">
-          <div className="bg-deep-forest py-24 lg:py-32 relative">
+          <div className="bg-deep-forest py-16 lg:py-20 relative">
             {/* Radial gradient overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(5,99,42,0.2),_transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(36,132,198,0.08),_transparent_60%)] pointer-events-none" />

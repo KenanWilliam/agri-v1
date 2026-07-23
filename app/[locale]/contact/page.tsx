@@ -37,7 +37,7 @@ export default function ContactPage() {
   return (
     <>      <main className="bg-white min-h-screen">
         {/* Hero */}
-        <section className="relative w-full pt-24 lg:pt-28 pb-10 overflow-hidden border-b border-mist">
+        <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 w-full">
             <motion.h1
@@ -60,9 +60,9 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="w-full py-16 lg:py-24 bg-white">
+        <section className="w-full py-16 lg:py-16 bg-white">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16">
               {/* Form */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}

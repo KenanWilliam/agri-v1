@@ -23,7 +23,10 @@ import {
 import { Link } from '@/i18n/routing'
 import africaGeoJson from '@/africa.json'
 
-import { InteractiveMapbox } from './map/interactive-mapbox'
+const InteractiveMapbox = dynamic(
+  () => import('./map/interactive-mapbox').then((mod) => mod.InteractiveMapbox),
+  { ssr: false, loading: () => <div className="w-full h-full bg-primary-ivory animate-pulse" /> }
+)
 import { MaplibreInteractiveMapbox } from './maplibre-interactive-map'
 import { MapSearch } from './map/map-search'
 
@@ -699,8 +702,8 @@ export default function InteractiveMap() {
     if (mapboxMapRef.current) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
       mapboxMapRef.current.easeTo({
-        center: [20.0, -5.0],
-        zoom: isMobile ? 0.8 : 1.1,
+        center: [17.0, 2.0],
+        zoom: isMobile ? 0.8 : 1.6,
         pitch: 0,
         duration: 1800,
         essential: true
@@ -722,31 +725,7 @@ export default function InteractiveMap() {
       {/* Main Interactive Workspace — full bleed, edge to edge */}
       <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
-        {/* Mobile Header / Desktop Overlay */}
-        <AnimatePresence>
-          {!selectedCountry && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="w-full lg:absolute lg:top-8 lg:left-8 z-20 lg:max-w-sm shrink-0 bg-white/60 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-b border-mist lg:border-none p-6 lg:p-0"
-            >
-              <div className="space-y-6">
-                <div className="lg:bg-white/75 lg:p-6 lg:rounded-2xl lg:backdrop-blur-md lg:shadow-xl lg:border lg:border-white/60 space-y-5 lg:max-w-sm">
-                  <h2 className="text-deep-forest text-3xl lg:text-4xl font-serif tracking-tight leading-tight font-bold text-center lg:text-left">Our Impact<br className="hidden lg:block" />Across Africa</h2>
-                  <p className="text-xs lg:text-sm text-charcoal/75 font-light leading-relaxed hidden sm:block text-center lg:text-left">
-                    Click a highlighted country to explore its portfolio. The continent map acts as your expansive navigation canvas, while the dossier dynamically slides out to focus on regional impact and deliverables.
-                  </p>
-                  
-                  {/* Premium Search Box */}
-                  <div className="w-full pointer-events-auto">
-                    <MapSearch onCountrySelect={handleCountryClickWrapper} countries={countrySeeds} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
 
         {/* Map Canvas - scales with flex-1 */}
         <div className="flex-1 relative h-full w-full transition-all duration-500 ease-in-out">

@@ -12,27 +12,27 @@ export interface MapHighlightedCountriesProps {
 }
 
 const regionColors: Record<string, string> = {
-  'KE': '#3ab44a',
-  'UG': '#3ab44a',
-  'TZ': '#3ab44a',
-  'RW': '#3ab44a',
-  'ET': '#3ab44a',
-  'SS': '#3ab44a',
-  'BI': '#3ab44a',
-  'MW': '#3ab44a',
-  'ZM': '#3ab44a',
-  'ZW': '#3ab44a',
-  'MZ': '#3ab44a',
-  'ZA': '#3ab44a',
-  'SN': '#3ab44a',
-  'BF': '#3ab44a',
-  'ML': '#3ab44a',
-  'GH': '#3ab44a',
-  'NG': '#3ab44a',
-  'LR': '#3ab44a',
-  'SL': '#3ab44a',
-  'CM': '#3ab44a',
-  'CD': '#3ab44a'
+  'KE': '#E2703A',
+  'UG': '#E2703A',
+  'TZ': '#E2703A',
+  'RW': '#E2703A',
+  'ET': '#E2703A',
+  'SS': '#E2703A',
+  'BI': '#E2703A',
+  'MW': '#E2703A',
+  'ZM': '#E2703A',
+  'ZW': '#E2703A',
+  'MZ': '#E2703A',
+  'ZA': '#E2703A',
+  'SN': '#E2703A',
+  'BF': '#E2703A',
+  'ML': '#E2703A',
+  'GH': '#E2703A',
+  'NG': '#E2703A',
+  'LR': '#E2703A',
+  'SL': '#E2703A',
+  'CM': '#E2703A',
+  'CD': '#E2703A'
 };
 
 export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = ({
@@ -82,10 +82,10 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       map.setPaintProperty('africa-countries-fill', 'fill-opacity', [
         'case',
         ['boolean', ['feature-state', 'selected'], false],
-        1.0, // Fully opaque for selected
+        0.8, // Solid and vibrant when selected
         ['boolean', ['feature-state', 'hover'], false],
-        0.75, // Bright hover glass
-        0.45 // Solid enough base to clearly distinguish from the rest of the map
+        0.65, // Brightened on hover
+        0.45 // Lower base opacity since orange contrasts well
       ]);
     }
   }, [map, selectedCountryName]);
@@ -129,10 +129,10 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             'fill-opacity': [
               'case',
               ['boolean', ['feature-state', 'selected'], false],
-              1.0, // Fully opaque for selected
+              0.8, // Solid and vibrant when selected
               ['boolean', ['feature-state', 'hover'], false],
-              0.75, // Bright hover glass
-              0.45 // Solid enough base to clearly distinguish from the rest of the map
+              0.65, // Brightened on hover
+              0.45 // Lower base opacity since orange contrasts well
             ]
           }
         }, 'waterway-label'); 

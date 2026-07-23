@@ -41,7 +41,7 @@ export default function ResourcesPage() {
     <>
       <main className="bg-white min-h-screen">
         {/* Downloads */}
-        <section className="w-full pt-24 lg:pt-28 pb-10 bg-white relative">
+        <section className="w-full pt-16 lg:pt-28 pb-10 bg-white relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -123,7 +123,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 lg:py-24 xl:py-32 bg-mist border-t border-mist">
+        <section className="w-full py-16 lg:py-16 xl:py-20 bg-mist border-t border-mist">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest">
               {t('cta_title')}
