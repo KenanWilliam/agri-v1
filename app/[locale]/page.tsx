@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useState, useEffect } from 'react'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target } from 'lucide-react'
@@ -9,50 +10,185 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
 
-import { useState, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP)
+}
 
 export default function Home() {
   const t = useTranslations('Home')
-  const [isDesktop, setIsDesktop] = useState(true) // assume desktop for SSR, verify on mount
+  const tAgri = useTranslations('WhyAgriExperience')
+  const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 768)
-    handleResize() // check immediately on client
+    handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+  const shouldAnimate = isDesktop && !prefersReducedMotion
+
+  const heroRef = useRef<HTMLElement>(null)
+  const heroBgRef = useRef<HTMLDivElement>(null)
+  const sequenceWrapperRef = useRef<HTMLDivElement>(null)
+  const track1Ref = useRef<HTMLDivElement>(null)
+  const track1InnerRef = useRef<HTMLDivElement>(null)
+  const track2Ref = useRef<HTMLDivElement>(null)
+  const track2InnerRef = useRef<HTMLDivElement>(null)
+
+  // Effect 1: Hero Parallax
+  useGSAP(() => {
+    if (!shouldAnimate || !heroRef.current || !heroBgRef.current) return;
+
+    // Parallax the background (slides down up to 20vh) and slight zoom
+    gsap.to(heroBgRef.current, {
+      y: () => window.innerHeight * 0.2,
+      scale: 1.05,
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: 0,
+        end: "bottom top",
+        scrub: 1.5,
+        invalidateOnRefresh: true,
+      }
+    });
+  }, [shouldAnimate])
+
+  // Effect 2: Multi-step Pinned Horizontal Scroll with Parallax Overlap
+  useGSAP(() => {
+    if (!shouldAnimate || !sequenceWrapperRef.current || !track1Ref.current || !track1InnerRef.current || !track2Ref.current || !track2InnerRef.current) return;
+
+    const container = sequenceWrapperRef.current;
+    
+    const getScroll1 = () => Math.max(0, track1InnerRef.current!.scrollWidth - window.innerWidth);
+    const getScroll2 = () => Math.max(0, track2InnerRef.current!.scrollWidth - window.innerWidth);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: () => `+=${getScroll1() + getScroll2() + window.innerWidth}`, 
+        scrub: 1.5,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    const scroll1 = getScroll1();
+    const scroll2 = getScroll2();
+    const ratio1 = scroll1 > 0 ? scroll1 / window.innerWidth : 0.1;
+    const ratio2 = scroll2 > 0 ? scroll2 / window.innerWidth : 0.1;
+
+    tl.to(track1InnerRef.current, {
+      x: () => -getScroll1(),
+      ease: "none",
+      duration: ratio1
+    });
+
+    tl.to(track1Ref.current, {
+      x: () => -window.innerWidth * 0.3,
+      ease: "power2.inOut",
+      duration: 0.8
+    }, "cover");
+
+    tl.fromTo(track2Ref.current, {
+      x: "100%"
+    }, {
+      x: "0%",
+      ease: "power2.inOut",
+      duration: 0.8
+    }, "cover");
+
+    tl.to(track2InnerRef.current, {
+      x: () => -getScroll2(),
+      ease: "none",
+      duration: ratio2
+    });
+
+    const handleRefresh = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', handleRefresh);
+    
+    return () => {
+      window.removeEventListener('resize', handleRefresh);
+      tl.kill();
+    }
+  }, [shouldAnimate])
+
+  const beliefs = [
+    {
+      icon: <Users className="text-primary-green" size={24} />,
+      title: t('belief_4_title'),
+      text: t('belief_4_text'),
+      width: "w-[300px] lg:w-[360px]"
+    },
+    {
+      icon: <Shield className="text-primary-green" size={24} />,
+      title: t('belief_3_title'),
+      text: t('belief_3_text'),
+      width: "w-[300px] lg:w-[360px]"
+    },
+    {
+      icon: <Leaf className="text-primary-green" size={24} />,
+      title: t('belief_1_title'),
+      text: t('belief_1_text'),
+      width: "w-[350px] lg:w-[480px]"
+    },
+    {
+      icon: <Target className="text-primary-green" size={24} />,
+      title: t('belief_2_title'),
+      text: t('belief_2_text'),
+      width: "w-[350px] lg:w-[480px]"
+    }
+  ]
+
+  const agriCards = [
+    { icon: <Users className="text-primary-green" size={32} />, text: tAgri('card_3'), width: "w-[300px] lg:w-[320px]" },
+    { icon: <Globe className="text-primary-green" size={32} />, text: tAgri('card_2'), width: "w-[300px] lg:w-[320px]" },
+    { icon: <TrendingUp className="text-primary-green" size={32} />, text: tAgri('card_5'), width: "w-[320px] lg:w-[360px]" },
+    { icon: <BookOpen className="text-primary-green" size={32} />, text: tAgri('card_1'), width: "w-[320px] lg:w-[360px]" },
+    { icon: <Handshake className="text-primary-green" size={32} />, text: tAgri('card_4'), width: "w-[400px] lg:w-[500px]" }
+  ]
+
   return (
     <>
-      <main className="-mt-[72px] lg:-mt-[88px] overflow-x-hidden bg-background">
+      <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-hidden">
+        
         {/* Premium Hero Section */}
-        <section className="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white">
-          {/* Background Image/Video */}
-          <div className="absolute inset-0 z-0 overflow-hidden bg-mist animate-[kenburns_20s_ease-out_infinite_alternate] scale-100 hover:scale-105 transition-transform duration-[20000ms]">
-            {isDesktop ? (
-              <video
-                src="/Videos/wheat swaying in the wind.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
-              />
-            ) : (
-              <Image 
-                src="/SDG-images/2.webp" 
-                alt="Agricultural landscape"
-                fill
-                priority
-                className="object-cover object-center"
-              />
-            )}
+        <section ref={heroRef} className="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
+          
+          {/* Taller background to prevent revealing white space when translating down */}
+          <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
+            <div className="absolute inset-0 bg-mist">
+              {isDesktop ? (
+                <video
+                  src="/Videos/wheat swaying in the wind.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
+                />
+              ) : (
+                <Image 
+                  src="/SDG-images/2.webp" 
+                  alt="Agricultural landscape"
+                  fill
+                  priority
+                  className="object-cover object-center"
+                />
+              )}
+            </div>
           </div>
           
-          {/* White Gradient Overlay to ensure dark text readability and blend into next section */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white from-[10%] via-white/80 via-[40%] to-transparent to-[75%] md:w-[80%]"></div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white from-[10%] via-white/80 via-[40%] to-transparent to-[75%] md:w-[80%] pointer-events-none"></div>
           
-          {/* Centered Vertically Content Block */}
           <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
             <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
               <motion.h1
@@ -89,7 +225,6 @@ export default function Home() {
                 </Link>
               </motion.div>
 
-              {/* Inline Horizontal Stats matching grad.png */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -118,76 +253,128 @@ export default function Home() {
           </div>
         </section>
 
-
+        {shouldAnimate ? (
+          // Pinned Horizontal Sequence Wrapper (Removed static negative margins)
+          <div ref={sequenceWrapperRef} className="relative z-20 bg-mist">
+            <div className="relative h-[100vh] w-full overflow-hidden">
                 
-        {/* Why Agri Experience Section */}
-        <WhyAgriExperience />
+                {/* Track 1: Why Agri Experience Layer */}
+                <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0">
+                  <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,var(--warm-earth)_0%,transparent_60%)] opacity-20 blur-3xl pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
+                  <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,var(--primary-green)_0%,transparent_60%)] opacity-[0.05] blur-3xl pointer-events-none rounded-full -translate-x-1/4 translate-y-1/4" />
 
-        {/* What We Believe Section */}
-        <section className="w-full py-16 lg:py-20 bg-deep-forest relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20"></div>
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="flex flex-col lg:flex-row gap-16 lg:gap-16">
-              <div className="lg:w-1/3 space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">{t('what_we_believe')}</h2>
-                  <div className="w-20 h-1 bg-primary-green rounded-full"></div>
-                </motion.div>
-              </div>
-
-              <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {[
-                  {
-                    icon: <Leaf className="text-primary-green" size={24} />,
-                    title: t('belief_1_title'),
-                    text: t('belief_1_text')
-                  },
-                  {
-                    icon: <Target className="text-primary-green" size={24} />,
-                    title: t('belief_2_title'),
-                    text: t('belief_2_text')
-                  },
-                  {
-                    icon: <Shield className="text-primary-green" size={24} />,
-                    title: t('belief_3_title'),
-                    text: t('belief_3_text')
-                  },
-                  {
-                    icon: <Users className="text-primary-green" size={24} />,
-                    title: t('belief_4_title'),
-                    text: t('belief_4_text')
-                  }
-                ].map((belief, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.15 }}
-                    className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
-                      {belief.icon}
+                  <div ref={track1InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-24">
+                    <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
+                      <motion.div>
+                        <h2 className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight mb-6">
+                          {tAgri('title')}
+                        </h2>
+                        <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                      </motion.div>
                     </div>
-                    <h3 className="text-xl font-serif text-white mb-3">{belief.title}</h3>
-                    <p className="text-white/70 font-light leading-relaxed">{belief.text}</p>
-                  </motion.div>
-                ))}
-              </div>
+                    
+                    <div className="grid grid-rows-2 grid-flow-col gap-6 lg:gap-8 shrink-0 py-8">
+                      {agriCards.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className={`${item.width} h-full shrink-0 bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/40 hover:bg-white transition-colors duration-500 group relative overflow-hidden flex flex-col`}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="relative z-10 flex flex-col">
+                            <div className="w-14 h-14 shrink-0 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                              {item.icon}
+                            </div>
+                            <p className="text-lg lg:text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Track 2: What We Believe Layer */}
+                <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20 pointer-events-none"></div>
+                  
+                  <div ref={track2InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-[10vw]">
+                    <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
+                      <motion.div>
+                        <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">{t('what_we_believe')}</h2>
+                        <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                      </motion.div>
+                    </div>
+                    
+                    <div className="grid grid-rows-2 grid-flow-col gap-6 lg:gap-8 shrink-0 py-8">
+                      {beliefs.map((belief, idx) => (
+                        <div
+                          key={idx}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors flex flex-col`}
+                        >
+                          <div className="w-14 h-14 shrink-0 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
+                            {belief.icon}
+                          </div>
+                          <div className="flex flex-col gap-4">
+                            <h3 className="text-xl font-serif text-white">{belief.title}</h3>
+                            <p className="text-white/70 font-light leading-relaxed text-sm lg:text-base">{belief.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
             </div>
           </div>
-        </section>
+        ) : (
+          // Vertical Fallback for Mobile / Reduced Motion (Removed static negative margins)
+          <div className="relative z-20 bg-mist">
+            <WhyAgriExperience />
+            
+            {/* What We Believe Section */}
+            <section className="w-full py-16 lg:py-20 bg-deep-forest relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20"></div>
+              <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+                <div className="flex flex-col lg:flex-row gap-16 lg:gap-16">
+                  <div className="lg:w-1/3 space-y-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                    >
+                      <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">{t('what_we_believe')}</h2>
+                      <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                    </motion.div>
+                  </div>
 
+                  <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {beliefs.map((belief, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.15 }}
+                        className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                          {belief.icon}
+                        </div>
+                        <h3 className="text-xl font-serif text-white mb-3">{belief.title}</h3>
+                        <p className="text-white/70 font-light leading-relaxed">{belief.text}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
 
-        {/* Testimonials */}
-        <section className="w-full py-16 lg:py-16 bg-mist">
+        {/* Testimonials (Normal Vertical Flow) */}
+        <section className="w-full py-16 lg:py-16 bg-mist relative z-20">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-16 space-y-4">
-              <h2 className="text-deep-forest">{t('trusted_leaders')}</h2>
+              <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif font-bold tracking-tight">{t('trusted_leaders')}</h2>
               <p className="text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
                 {t('trusted_leaders_desc')}
               </p>
@@ -197,7 +384,7 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden">
+        <section className="relative w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden z-20">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>
@@ -234,6 +421,7 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-      </main>    </>
+      </main>    
+    </>
   )
 }

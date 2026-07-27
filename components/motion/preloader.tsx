@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, animate as framerAnimate } from "framer-motion";
 import { interpolate } from "flubber";
-// @ts-expect-error - svgpath lacks typescript definitions
+
 import svgpath from "svgpath";
 import Image from "next/image";
 

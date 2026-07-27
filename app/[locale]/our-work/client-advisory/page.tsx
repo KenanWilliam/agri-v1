@@ -101,6 +101,7 @@ export default function ClientAdvisoryPage() {
     {
       category: t('clients.4.category'),
       names: t('clients.4.names'),
+      icon: ScrollText,
     },
   ]
 
