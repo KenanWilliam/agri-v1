@@ -759,7 +759,7 @@ export default function InteractiveMap() {
           <div
             ref={tooltipRef}
             style={{ 
-              position: 'fixed', 
+              position: 'absolute', 
               left: 0, 
               top: 0, 
               pointerEvents: 'none',
@@ -787,7 +787,7 @@ export default function InteractiveMap() {
         {/* Dossier — Bottom Sheet on Mobile, Floating Overlay on Desktop */}
         <div 
           ref={desktopDossierRef} 
-          className="fixed inset-0 pointer-events-none z-30 lg:left-0 lg:top-0 lg:inset-auto lg:w-[420px] lg:h-auto"
+          className="absolute inset-0 pointer-events-none z-30 lg:left-0 lg:top-0 lg:inset-auto lg:w-[420px] lg:h-auto"
         >
           <AnimatePresence>
             {selectedCountry && (

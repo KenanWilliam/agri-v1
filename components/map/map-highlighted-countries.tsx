@@ -174,11 +174,11 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             }
           }
           
-          if (setTooltipPosRef.current && e.originalEvent) {
+          if (setTooltipPosRef.current && e.point) {
             // Only follow mouse if a country is NOT actively selected.
             // When a country IS selected, the `render` event takes over to track the physical centroid.
             if (!selectedCountryRef.current) {
-              setTooltipPosRef.current({ x: e.originalEvent.clientX + 15, y: e.originalEvent.clientY + 15 });
+              setTooltipPosRef.current({ x: e.point.x + 15, y: e.point.y + 15 });
             }
           }
         } else {
