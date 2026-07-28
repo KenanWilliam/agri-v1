@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { getOptimalZoom } from './map-utils';
 import { useMap } from './map-context';
 
 export interface MapAutoCenterProps {
@@ -22,10 +23,12 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-      map.fitBounds([[-20, -35], [55, 38]], {
-        padding: isMobile 
-          ? { top: 20, bottom: 20, left: 20, right: 20 }
-          : { top: 60, bottom: 60, left: 60, right: 60 },
+      
+      // Use dynamic explicit zoom and center for the globe projection.
+      // We offset the center latitude slightly south (-2.0) to account for the header.
+      map.flyTo({
+        center: [17.0, -2.0],
+        zoom: getOptimalZoom(),
         pitch: 0,
         essential: true,
         duration: immediate ? 1100 : 2200,

@@ -5,7 +5,7 @@ import { useMap } from './map-context';
 import africaGeoJson from '@/africa.json';
 
 export interface MapHighlightedCountriesProps {
-  onCountryClick?: (countryName: string) => void;
+  onCountryClick?: (countryName: string | null) => void;
   setHoveredName?: (name: string | null) => void;
   setTooltipPos?: (pos: { x: number; y: number }) => void;
   selectedCountryName?: string;
@@ -46,7 +46,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
   const onCountryClickRef = useRef(onCountryClick);
   const setHoveredNameRef = useRef(setHoveredName);
   const setTooltipPosRef = useRef(setTooltipPos);
-  
+  const activeCentroidRef = useRef<[number, number] | null>(null);
   const hoveredCountryRef = useRef<string | null>(null);
   const selectedCountryRef = useRef<string | null>(null);
   const isZoomedInRef = useRef<boolean>(false);
@@ -94,6 +94,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
   useEffect(() => {
     if (!selectedCountryName) {
       isZoomedInRef.current = false;
+      activeCentroidRef.current = null;
     }
   }, [selectedCountryName]);
 
@@ -174,7 +175,11 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           }
           
           if (setTooltipPosRef.current && e.originalEvent) {
-            setTooltipPosRef.current({ x: e.originalEvent.clientX + 15, y: e.originalEvent.clientY + 15 });
+            // Only follow mouse if a country is NOT actively selected.
+            // When a country IS selected, the `render` event takes over to track the physical centroid.
+            if (!selectedCountryRef.current) {
+              setTooltipPosRef.current({ x: e.originalEvent.clientX + 15, y: e.originalEvent.clientY + 15 });
+            }
           }
         } else {
           clearHover();
@@ -225,17 +230,18 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           const smoothEasing = (t: number) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
           if (minX !== Infinity) {
+            activeCentroidRef.current = [(minX + maxX) / 2, (minY + maxY) / 2];
+            
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const containerHeight = map.getContainer().clientHeight;
             
             const bounds: mapboxgl.LngLatBoundsLike = [[minX, minY], [maxX, maxY]];
             const pitch = isMobile ? 0 : 45;
 
-            // Desktop uses standard padding. Mobile uses light padding to get base zoom,
-            // then we mathematically shrink the zoom to fit the 50vh visible area.
+            // Desktop uses standard symmetric padding to center the selected country on screen
             const basePadding = isMobile 
               ? { top: 20, bottom: 20, left: 20, right: 20 }
-              : { top: 60, bottom: 60, left: 60, right: 460 };
+              : { top: 60, bottom: 60, left: 60, right: 60 };
 
             const camera = map.cameraForBounds(bounds, { padding: basePadding });
             
@@ -283,6 +289,8 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
 
             isZoomedInRef.current = true;
           } else {
+            activeCentroidRef.current = [e.lngLat.lng, e.lngLat.lat];
+            
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const containerHeight = map.getContainer().clientHeight;
             const offset: [number, number] = isMobile 
@@ -309,14 +317,43 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       }
     };
 
+    const handleGlobalMapClick = (e: any) => {
+      const features = map.queryRenderedFeatures(e.point, { layers: ['africa-countries-fill'] });
+      
+      let clickedHighlightedCountry = false;
+      if (features && features.length > 0) {
+        const isoA2 = features[0].properties?.iso_a2;
+        if (isoA2 && regionColors[isoA2]) {
+          clickedHighlightedCountry = true;
+        }
+      }
+
+      if (!clickedHighlightedCountry) {
+        if (onCountryClickRef.current) {
+          onCountryClickRef.current(null);
+        }
+      }
+    };
+
+    const handleRender = () => {
+      if (activeCentroidRef.current && setTooltipPosRef.current && selectedCountryRef.current) {
+        const pt = map.project(activeCentroidRef.current);
+        setTooltipPosRef.current({ x: pt.x, y: pt.y });
+      }
+    };
+
     map.on('mousemove', 'africa-countries-fill', handleMouseMove);
     map.on('mouseleave', 'africa-countries-fill', handleMouseLeave);
     map.on('click', 'africa-countries-fill', handleClick);
+    map.on('click', handleGlobalMapClick);
+    map.on('render', handleRender);
 
     return () => {
       map.off('mousemove', 'africa-countries-fill', handleMouseMove);
       map.off('mouseleave', 'africa-countries-fill', handleMouseLeave);
       map.off('click', 'africa-countries-fill', handleClick);
+      map.off('click', handleGlobalMapClick);
+      map.off('render', handleRender);
     };
   }, [map]);
 

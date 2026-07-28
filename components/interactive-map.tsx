@@ -27,7 +27,7 @@ const InteractiveMapbox = dynamic(
   () => import('./map/interactive-mapbox').then((mod) => mod.InteractiveMapbox),
   { ssr: false, loading: () => <div className="w-full h-full bg-primary-ivory animate-pulse" /> }
 )
-import { MaplibreInteractiveMapbox } from './maplibre-interactive-map'
+import { getOptimalZoom } from './map/map-utils'
 import { MapSearch } from './map/map-search'
 
 type Region = 'East Africa' | 'West Africa' | 'Central Africa' | 'Southern Africa'
@@ -677,6 +677,7 @@ const buildCountryProjects = (country: DetailedCountryRecord): CountryProject[] 
 export default function InteractiveMap() {
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
+  const desktopDossierRef = useRef<HTMLDivElement>(null)
   const [selectedCountry, setSelectedCountry] = useState<DetailedCountryRecord | null>(null)
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null)
   const [hoveredName, setHoveredName] = useState<string | null>(null)
@@ -685,8 +686,15 @@ export default function InteractiveMap() {
 
   const updateTooltipPos = useCallback((pos: { x: number; y: number }) => {
     if (tooltipRef.current) {
-      tooltipRef.current.style.left = `${pos.x}px`
-      tooltipRef.current.style.top = `${pos.y}px`
+      tooltipRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`
+    }
+    if (desktopDossierRef.current) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      if (!isMobile) {
+        desktopDossierRef.current.style.transform = `translate3d(${pos.x + 40}px, ${pos.y - 100}px, 0)`
+      } else {
+        desktopDossierRef.current.style.transform = 'none'
+      }
     }
   }, [])
 
@@ -702,8 +710,8 @@ export default function InteractiveMap() {
     if (mapboxMapRef.current) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
       mapboxMapRef.current.easeTo({
-        center: [17.0, 2.0],
-        zoom: isMobile ? 0.8 : 1.6,
+        center: [17.0, -2.0],
+        zoom: getOptimalZoom(),
         pitch: 0,
         duration: 1800,
         essential: true
@@ -711,7 +719,12 @@ export default function InteractiveMap() {
     }
   }
 
-  const handleCountryClickWrapper = (countryName: string) => {
+  const handleCountryClickWrapper = (countryName: string | null) => {
+    if (!countryName) {
+      closeCountryOverlay()
+      return
+    }
+    
     const country = countriesByGeoName[countryName] || countriesData[countryName]
     if (country) {
       setSelectedCountry(country)
@@ -750,54 +763,69 @@ export default function InteractiveMap() {
               left: 0, 
               top: 0, 
               pointerEvents: 'none',
-              opacity: hoveredName && hoveredName !== selectedCountry?.name ? 1 : 0,
-              transform: hoveredName && hoveredName !== selectedCountry?.name ? 'scale(1) translate(-50%, 24px)' : 'scale(0.95) translate(-50%, 14px)',
-              transition: 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
               zIndex: 50
             }}
-            className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full backdrop-blur-md border border-white/10 bg-deep-forest/40 text-white shadow-md flex items-center justify-center"
           >
-            {hoveredName || ''}
+            <AnimatePresence>
+              {!selectedCountry && hoveredName && (
+                <motion.div
+                  layoutId="country-dossier"
+                  initial={{ opacity: 0, scale: 0.95, y: -10, x: "-50%" }}
+                  animate={{ opacity: 1, scale: 1, y: 0, x: "-50%" }}
+                  exit={{ opacity: 0, scale: 0.95, y: -10, x: "-50%" }}
+                  transition={{ duration: 0.15 }}
+                  style={{ transformOrigin: 'center' }}
+                  className="absolute top-6 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full backdrop-blur-md border border-white/10 bg-deep-forest/40 text-white shadow-md flex items-center justify-center"
+                >
+                  {hoveredName}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
         {/* Dossier — Bottom Sheet on Mobile, Floating Overlay on Desktop */}
-        <AnimatePresence>
-          {selectedCountry && (
-            <motion.div
-              key={selectedCountry.name}
-              initial={{ opacity: 0, y: '100%' }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300, mass: 0.8 }}
-              className={[
-                // Mobile: bottom sheet — fills width, sits at bottom
-                'absolute bottom-0 left-0 right-0 h-[50vh] z-30',
-                'rounded-t-3xl',
-                // Desktop: floating overlay card anchored right with full height usage
-                'lg:bottom-6 lg:left-auto lg:right-6 lg:top-6',
-                'lg:w-[400px] lg:h-auto',
-                'lg:rounded-2xl',
-                // Shared glass styling
-                'bg-white/90 lg:bg-white/80 backdrop-blur-2xl',
-                'border border-white/50 lg:border-white/30',
-                'shadow-[0_-8px_40px_rgba(15,61,49,0.08)] lg:shadow-[0_20px_60px_-12px_rgba(15,61,49,0.25),0_0_0_1px_rgba(15,61,49,0.04)]',
-                'flex flex-col overflow-hidden',
-              ].join(' ')}
-            >
+        <div 
+          ref={desktopDossierRef} 
+          className="fixed inset-0 pointer-events-none z-30 lg:left-0 lg:top-0 lg:inset-auto lg:w-[420px] lg:h-auto"
+        >
+          <AnimatePresence>
+            {selectedCountry && (
+              <motion.div
+                layoutId="country-dossier"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200, mass: 0.8 }}
+                className={[
+                  'pointer-events-auto',
+                  // Mobile: bottom sheet — fills width, sits at bottom
+                  'absolute bottom-0 left-0 right-0 h-[60vh]',
+                  'rounded-t-3xl',
+                  // Desktop: floating overlay card positioned right next to the selected country (which is centered)
+                  'lg:relative lg:bottom-auto lg:left-auto lg:right-auto',
+                  'lg:w-full lg:max-h-[85vh]',
+                  'lg:rounded-2xl',
+                  // Shared glass styling matching the label
+                  'bg-deep-forest/80 lg:bg-deep-forest/70 backdrop-blur-xl',
+                  'border border-white/20',
+                  'shadow-2xl',
+                  'flex flex-col overflow-hidden',
+                ].join(' ')}
+              >
               {/* Drag indicator — mobile only */}
               <div className="lg:hidden flex justify-center pt-3 pb-1">
-                <div className="w-10 h-1 rounded-full bg-charcoal/15" />
+                <div className="w-10 h-1 rounded-full bg-white/20" />
               </div>
 
               {/* Header */}
               <div className="flex-shrink-0 flex items-start justify-between gap-3 px-6 pt-4 lg:pt-6 pb-4 relative">
                 <div className="space-y-2">
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-deep-forest/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-deep-forest/70">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
                     <Globe size={11} className="opacity-60" />
                     {selectedCountry.region}
                   </div>
-                  <h3 className="text-deep-forest text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
+                  <h3 className="text-white text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
                     <span className="text-3xl lg:text-4xl leading-none">
                       {String.fromCodePoint(...selectedCountry.code.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0)))}
                     </span>
@@ -806,7 +834,7 @@ export default function InteractiveMap() {
                 </div>
                 <button
                   onClick={closeCountryOverlay}
-                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-charcoal/5 text-charcoal/50 transition-all duration-200 hover:bg-charcoal/10 hover:text-charcoal hover:scale-110"
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-white/50 transition-all duration-200 hover:bg-white/20 hover:text-white hover:scale-110"
                   aria-label="Close country dossier"
                 >
                   <X size={16} strokeWidth={2.5} />
@@ -814,172 +842,55 @@ export default function InteractiveMap() {
               </div>
 
               {/* Subtle separator */}
-              <div className="mx-6 h-px bg-gradient-to-r from-transparent via-charcoal/10 to-transparent" />
+              <div className="mx-6 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto px-6 py-5 custom-scrollbar">
                 <div className="space-y-6">
 
-                  {/* Overview removed as requested */}
-
-                  {/* Stats row */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-xl bg-deep-forest p-4 text-white relative overflow-hidden">
-                      <div className="absolute -right-3 -top-3 w-16 h-16 rounded-full bg-white/[0.04]" />
-                      <Briefcase className="text-accent-gold/80" size={16} />
-                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{activeProjects.length}</div>
-                      <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-white/50 font-bold">Projects</div>
+                  {/* Activities Details */}
+                  <div className="space-y-4 pt-2">
+                    {/* Activities Card */}
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
+                        <Target size={12} /> Activities
+                      </div>
+                      <ul className="space-y-2.5">
+                        {activeProjects.map((project, i) => (
+                          <li key={`activity-${i}`} className="flex items-start gap-2.5 text-[12px] leading-relaxed text-white/80">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 mt-1.5 shrink-0" />
+                            <span>{project.summary}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div className="rounded-xl bg-deep-forest/[0.04] p-4 text-deep-forest border border-deep-forest/[0.06] relative overflow-hidden">
-                      <div className="absolute -right-3 -top-3 w-16 h-16 rounded-full bg-deep-forest/[0.03]" />
-                      <Users className="text-deep-forest/60" size={16} />
-                      <div className="mt-2.5 text-2xl font-mono tracking-tight font-bold leading-none">{formatFarmers(selectedCountry.engagement)}</div>
-                      <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">Engagement</div>
-                    </div>
-                  </div>
 
-                  {/* Project cards */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-charcoal/35">Projects</div>
-                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/80 bg-accent-gold/8 px-2 py-0.5 rounded-full">{activeProjects.length}</div>
-                    </div>
-                    
-                    <div className="grid gap-2.5">
-                      {activeProjects.map((project, index) => {
-                        const isActive = index === selectedProjectIndex
-
-                        return (
-                          <div
-                            key={index}
-                            className={[
-                              'rounded-xl border transition-all duration-300 overflow-hidden cursor-pointer',
-                              isActive
-                                ? 'border-deep-forest/15 bg-white shadow-[0_4px_16px_rgba(15,61,49,0.06)]'
-                                : 'border-charcoal/[0.06] bg-white/50 hover:bg-white/80 hover:border-charcoal/10 hover:shadow-sm',
-                            ].join(' ')}
-                            onClick={() => setSelectedProjectIndex(isActive ? null : index)}
-                          >
-                            {/* Card header */}
-                            <div className={[
-                              'p-3.5 flex items-start justify-between gap-3 transition-colors duration-300',
-                              isActive ? 'bg-deep-forest text-white' : ''
-                            ].join(' ')}>
-                              <div className="space-y-0.5 min-w-0">
-                                <div className={[
-                                  'flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.18em]',
-                                  isActive ? 'text-accent-gold/80' : 'text-charcoal/30'
-                                ].join(' ')}>
-                                  <MapPin size={9} />
-                                  <span className="truncate">{project.location}</span>
-                                </div>
-                                <div className={[
-                                  'font-serif text-base leading-snug',
-                                  isActive ? 'text-white' : 'text-deep-forest'
-                                ].join(' ')}>
-                                  {project.title}
-                                </div>
-                              </div>
-                              <div className={[
-                                'shrink-0 flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-mono font-bold',
-                                isActive ? 'bg-white/10 text-white/70' : 'bg-charcoal/[0.05] text-charcoal/30'
-                              ].join(' ')}>
-                                {index + 1}
-                              </div>
-                            </div>
-
-                            {/* Expanded content */}
-                            <AnimatePresence>
-                              {isActive && (
-                                <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                  className="overflow-hidden"
-                                >
-                                  <div className="p-3.5 space-y-4 bg-white">
-                                    {/* Meta tags */}
-                                    <div className="flex flex-wrap gap-1.5">
-                                      {project.timeline && (
-                                        <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.15em] text-charcoal/45 bg-charcoal/[0.04] px-2 py-0.5 rounded-md">
-                                          <Calendar size={10} /> {project.timeline}
-                                        </div>
-                                      )}
-                                      {project.budget_scope && (
-                                        <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.15em] text-charcoal/45 bg-charcoal/[0.04] px-2 py-0.5 rounded-md">
-                                          <Layers3 size={10} /> {project.budget_scope}
-                                        </div>
-                                      )}
-                                    </div>
-
-                                    {/* Summary + Outcome */}
-                                    <div className="space-y-2.5 text-[12px] text-charcoal/65 leading-relaxed">
-                                      <p>{project.summary}</p>
-                                      <div className="rounded-lg border border-accent-gold/20 bg-accent-gold/[0.04] p-2.5 text-deep-forest">
-                                        <span className="font-bold uppercase tracking-widest text-[8px] text-charcoal/30 block mb-1">Outcome</span>
-                                        <span className="text-[12px]">{project.outcome}</span>
-                                      </div>
-                                    </div>
-
-                                    {/* Deliverables */}
-                                    {project.key_deliverables && (
-                                      <div className="space-y-1.5">
-                                        <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Deliverables</div>
-                                        <ul className="space-y-1">
-                                          {project.key_deliverables.map((item) => (
-                                            <li key={item} className="flex items-start gap-1.5 text-[12px] text-charcoal/65">
-                                              <Target size={10} className="mt-0.5 text-accent-gold/60 shrink-0" />
-                                              {item}
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    )}
-
-                                    {/* Partners */}
-                                    <div className="space-y-1.5">
-                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Partners</div>
-                                      <div className="flex flex-wrap gap-1">
-                                        {project.partners.map((partner) => (
-                                          <span key={partner} className="rounded-md border border-charcoal/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-medium text-charcoal/55">
-                                            {partner}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-
-                                    {/* Supported by (formerly Methods) */}
-                                    <div className="space-y-1.5">
-                                      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-charcoal/30">Supported by</div>
-                                      <div className="flex flex-wrap gap-1">
-                                        {project.methods.map((method) => (
-                                          <span key={method} className="rounded-full bg-charcoal/[0.04] px-2 py-0.5 text-[10px] font-medium text-charcoal/50">
-                                            {method}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        )
-                      })}
+                    {/* Outcomes Card */}
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
+                        <Sparkles size={12} /> Outcomes
+                      </div>
+                      <ul className="space-y-2.5">
+                        {activeProjects.map((project, i) => (
+                          <li key={`outcome-${i}`} className="flex items-start gap-2.5 text-[12px] leading-relaxed text-white/80">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 mt-1.5 shrink-0" />
+                            <span>{project.outcome}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
                   {/* CTA */}
                   <Link
                     href={`/our-results?country=${selectedCountry.code}`}
-                    className="group flex items-center justify-between w-full rounded-xl bg-deep-forest p-4 text-white transition-all duration-300 hover:shadow-lg hover:shadow-deep-forest/20 hover:scale-[1.01]"
+                    className="group flex items-center justify-between w-full rounded-xl bg-white/10 border border-white/20 p-4 text-white transition-all duration-300 hover:bg-white/20 hover:scale-[1.01]"
                   >
                     <div className="space-y-0.5">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">Deep Dive</div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">Deep Dive</div>
                       <div className="text-sm font-medium">Full {selectedCountry.name} report</div>
                     </div>
-                    <ArrowRight size={16} className="text-white/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
+                    <ArrowRight size={16} className="text-white/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
                   </Link>
 
                 </div>
@@ -987,6 +898,7 @@ export default function InteractiveMap() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
 
       </div>
     </section>

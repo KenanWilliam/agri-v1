@@ -320,7 +320,7 @@ export default function ProjectImplementationPage() {
                     >
                       {/* Step Number */}
                       <div className="text-xs font-data text-deep-forest/40 tracking-widest mb-3">
-                        {t('pm_step' + (idx + 1))}
+                        STEP {step.step}
                       </div>
 
                       {/* Circle Node */}
@@ -363,7 +363,7 @@ export default function ProjectImplementationPage() {
                     </div>
                     <div className="pt-1">
                       <div className="text-xs font-data text-deep-forest/40 tracking-widest mb-1">
-                        {t('pm_step' + (idx + 1))}
+                        STEP {step.step}
                       </div>
                       <h4 className="text-lg font-serif font-bold text-deep-forest mb-1">
                         {step.title}

@@ -384,23 +384,45 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden z-20">
+        <section className="relative w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>
           </div>
           
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-white mb-6">{t('cta_title')}</h2>
-              <p className="text-xl lg:text-2xl text-white/80 mb-12 font-light leading-relaxed">
-                {t('cta_desc')}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col items-center">
+              <div className="overflow-hidden mb-4">
+                <motion.h2 
+                  initial={{ y: "100%" }}
+                  whileInView={{ y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  viewport={{ once: true }}
+                  className="text-white pb-2"
+                >
+                  {t('cta_title')}
+                </motion.h2>
+              </div>
+              
+              <div className="overflow-hidden mb-8">
+                <motion.p 
+                  initial={{ y: "100%" }}
+                  whileInView={{ y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed pb-4"
+                >
+                  {t('cta_desc')}
+                </motion.p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex flex-col sm:flex-row gap-6 justify-center"
+              >
                 <Link
                   href="/contact"
                   className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
@@ -417,8 +439,8 @@ export default function Home() {
                     {t('cta_btn_2')}
                   </RollingText>
                 </Link>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>    

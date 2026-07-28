@@ -33,7 +33,7 @@ const getCategoryIcon = (categories?: string[]) => {
 };
 
 interface InteractiveMapboxProps {
-  onCountryClick?: (countryName: string) => void;
+  onCountryClick?: (countryName: string | null) => void;
   setHoveredName?: (name: string | null) => void;
   setTooltipPos?: (pos: { x: number; y: number }) => void;
   selectedCountryName?: string;
