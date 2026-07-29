@@ -5,6 +5,8 @@
 
 /* Premium Agri Experience Color Palette - High-End Nature */
 :root {
+  --header-height: 72px;
+
   /* New Palette */
   --primary-green: #3ab44a;
   --primary-blue: #2484c6;
@@ -258,3 +260,9 @@
   z-index: 10;
 }
 
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 88px;
+  }
+}

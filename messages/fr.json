@@ -37,7 +37,8 @@
     "cta_btn_2": "Voir les études de cas"
   },
   "About": {
-    "title": "À propos de nous",
+    "title": "À Propos",
+    "subtitle": "Transformer les systèmes agricoles et responsabiliser les agriculteurs en Afrique subsaharienne.",
     "vision_title": "Notre vision",
     "vision_desc": "Notre vision est celle d’une Afrique <strong>sécurisée sur le plan alimentaire</strong> et <strong>saine sur le plan environnemental</strong>.",
     "mission_title": "Notre mission",

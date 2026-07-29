@@ -44,16 +44,16 @@ export default function ResourcesPage() {
         <section className="w-full pt-16 lg:pt-28 pb-10 bg-white relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              transition={{ duration: 0.8 }}
+              className="space-y-8 text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest mb-6">
+              <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
                 {t('title')}
-              </h2>
-              <p className="text-lg text-charcoal/80 font-light max-w-3xl mx-auto leading-relaxed mb-12">
+              </h1>
+              <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light mb-12">
                 {t('subtitle')}
               </p>
 

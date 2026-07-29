@@ -77,7 +77,7 @@ export default function Header() {
   return (
     <>
       <LiquidGlass 
-        className="sticky top-0 z-50 flex justify-center items-center h-[72px] lg:h-[88px] w-full"
+        className="sticky top-0 z-50 flex justify-center items-center h-[var(--header-height)] w-full"
       blurAmount={0.25} 
       elasticity={0}
       displacementScale={100}

@@ -6,6 +6,7 @@ import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, Ar
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import OfficePlantsGallery from '@/components/motion/office-plants-gallery'
+import { ScrollAccordion } from '@/components/motion/scroll-accordion'
 import { useTranslations } from 'next-intl'
 
 export default function AboutPage() {
@@ -13,83 +14,37 @@ export default function AboutPage() {
   return (
     <>      <main className="bg-white min-h-screen">
 
-
-        {/* <OfficePlantsGallery showMissionVision /> */}
-        {/* Mission, Vision, Goal Section */}
-        <section className="w-full pt-[140px] pb-16 bg-mist relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--primary-green)_0%,transparent_40%)] opacity-10"></div>
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="text-center mb-16">
-              <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight mb-6">{t('title')}</h1>
-              <div className="w-24 h-1 bg-gradient-to-r from-primary-green to-transparent mx-auto rounded-full" />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Vision */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-[2.5rem] p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-mist relative group overflow-hidden flex flex-col"
-              >
-                <div className="absolute -top-10 -right-10 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Target size={200} />
-                </div>
-                <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
-                  <Target className="text-primary-green" size={32} />
-                </div>
-                <h2 className="text-3xl font-serif text-deep-forest mb-4 relative z-10">{t('vision_title')}</h2>
-                <p className="text-lg text-charcoal/80 leading-relaxed font-light relative z-10 flex-grow">
-                  {t.rich('vision_desc', { strong: (chunks) => <strong className="font-semibold text-deep-forest">{chunks}</strong> })}
-                </p>
-              </motion.div>
-
-              {/* Mission */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="bg-deep-forest rounded-[2.5rem] p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative group overflow-hidden text-white flex flex-col"
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_60%)] opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                <div className="absolute -top-10 -right-10 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Heart size={200} />
-                </div>
-                <div className="relative z-10 flex-grow">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/20 group-hover:scale-110 transition-transform">
-                    <Heart className="text-white" size={32} />
-                  </div>
-                  <h2 className="text-3xl font-serif text-white mb-4">{t('mission_title')}</h2>
-                  <p className="text-lg text-white/90 leading-relaxed font-light">
-                    {t('mission_desc')}
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Goal */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white rounded-[2.5rem] p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-mist relative group overflow-hidden flex flex-col"
-              >
-                <div className="absolute -top-10 -right-10 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Award size={200} />
-                </div>
-                <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
-                  <Award className="text-primary-green" size={32} />
-                </div>
-                <h2 className="text-3xl font-serif text-deep-forest mb-4 relative z-10">{t('goal_title')}</h2>
-                <p className="text-lg text-charcoal/80 leading-relaxed font-light relative z-10 flex-grow">
-                  {t.rich('goal_desc', { br: () => <br /> })}
-                  <span className="inline-flex items-center gap-2 font-bold text-primary-green text-xl bg-primary-green/10 px-4 py-2 rounded-xl">
-                    1, 2, 3, 5, 8 and 13.
-                  </span>
-                </p>
-              </motion.div>
-            </div>
+        {/* Editorial Hero */}
+        <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8 text-center"
+            >
+              <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+                {t('title')}
+              </h1>
+              <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
+                {t('subtitle')}
+              </p>
+            </motion.div>
           </div>
         </section>
+
+        {/* <OfficePlantsGallery showMissionVision /> */}
+        {/* Mission, Vision, Goal Section replaced with ScrollAccordion */}
+        <ScrollAccordion
+          title={t('title')}
+          visionTitle={t('vision_title')}
+          visionDesc={t.rich('vision_desc', { strong: (chunks) => <strong className="font-semibold text-deep-forest">{chunks}</strong> })}
+          missionTitle={t('mission_title')}
+          missionDesc={t('mission_desc')}
+          goalTitle={t('goal_title')}
+          goalDesc={t('goal_desc').replace(/<br\s*\/?>/g, '')}
+        />
 
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-16 bg-white relative border-t border-mist">
@@ -190,10 +145,10 @@ export default function AboutPage() {
               
               <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden">
                 <Image
-                  src="/our values.png"
+                  src="/our-values.png"
                   alt="Our Core Values"
                   width={1200}
-                  height={600}
+                  height={800}
                   className="w-full h-auto object-cover"
                 />
               </div>

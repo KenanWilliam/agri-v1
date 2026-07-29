@@ -31,7 +31,7 @@ export function RollingText({ children, className = '' }: RollingTextProps) {
             return (
               <span
                 key={i}
-                className="relative inline-flex flex-col items-center justify-center transition-transform transform-gpu duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[100%]"
+                className="relative inline-flex flex-col items-center justify-center transition-transform transform-gpu duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[100%] group-data-[active=true]:-translate-y-[100%]"
                 style={{ transitionDelay: delay }}
               >
                 <span className="flex items-center justify-center whitespace-pre">{char === ' ' ? '\u00A0' : char}</span>
@@ -48,7 +48,7 @@ export function RollingText({ children, className = '' }: RollingTextProps) {
        return (
           <span
             key={`el-${currentIndex}`}
-            className="relative inline-flex flex-col items-center justify-center transition-transform transform-gpu duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[100%]"
+            className="relative inline-flex flex-col items-center justify-center transition-transform transform-gpu duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[100%] group-data-[active=true]:-translate-y-[100%]"
             style={{ transitionDelay: delay }}
           >
             <span className="flex items-center justify-center">{node}</span>
