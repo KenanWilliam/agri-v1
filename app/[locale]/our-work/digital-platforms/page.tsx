@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MonitorSmartphone, Smartphone, Database, Wifi, BarChart3, Shield, ArrowRight, Leaf, Globe, CheckCircle2 } from 'lucide-react'
+import { MonitorSmartphone, Smartphone, Database, Wifi, BarChart3, Shield, ArrowRight, Leaf, Globe, CheckCircle2, ExternalLink } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
@@ -14,27 +14,48 @@ export default function DigitalPlatformsPage() {
     {
       title: t('platforms.0.title'),
       description: t('platforms.0.description'),
-      image: '/Mbegu Choice.png',
+      icon: Globe,
       tag: t('platforms.0.tag'),
+      link: "https://varietycatalogues.com/about/"
     },
     {
       title: t('platforms.1.title'),
       description: t('platforms.1.description'),
-      image: '/M3.png',
+      icon: Database,
       tag: t('platforms.1.tag'),
+      link: "https://catalogueapi.varietycatalogues.com/"
     },
     {
       title: t('platforms.2.title'),
       description: t('platforms.2.description'),
-      icon: Database,
+      icon: MonitorSmartphone,
       tag: t('platforms.2.tag'),
+      link: "https://tanzaniaagri-inputsplatform.com/"
     },
     {
       title: t('platforms.3.title'),
       description: t('platforms.3.description'),
-      icon: BarChart3,
+      image: '/Mbegu Choice.png',
       tag: t('platforms.3.tag'),
     },
+    {
+      title: t('platforms.4.title'),
+      description: t('platforms.4.description'),
+      icon: Database,
+      tag: t('platforms.4.tag'),
+    },
+    {
+      title: t('platforms.5.title'),
+      description: t('platforms.5.description'),
+      icon: Database,
+      tag: t('platforms.5.tag'),
+    },
+    {
+      title: t('platforms.6.title'),
+      description: t('platforms.6.description'),
+      image: '/M3.png',
+      tag: t('platforms.6.tag'),
+    }
   ]
 
   const approach = [
@@ -114,6 +135,7 @@ export default function DigitalPlatformsPage() {
                   <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat2')}</span></div>
                   <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat3')}</span></div>
                   <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat4')}</span></div>
+                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat5')}</span></div>
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
@@ -150,7 +172,7 @@ export default function DigitalPlatformsPage() {
               className="mb-16"
             >
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
-                Our Platforms
+                Platform Deep Dive
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
                 Purpose-built digital tools that address critical gaps in seed systems and agricultural value chains.
@@ -184,11 +206,18 @@ export default function DigitalPlatformsPage() {
                     </div>
 
                     {/* Content */}
-                    <div className={`mt-6 ${idx === 0 ? 'md:mt-0' : ''}`}>
-                      <h3 className="text-2xl font-serif font-bold text-deep-forest tracking-tight">
-                        {platform.title}
-                      </h3>
-                      <p className="mt-3 text-charcoal/80 font-light leading-relaxed">
+                    <div className={`mt-6 ${idx === 0 ? 'md:mt-0 flex-1' : 'flex-1 flex flex-col'}`}>
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="text-2xl font-serif font-bold text-deep-forest tracking-tight">
+                          {platform.title}
+                        </h3>
+                        {platform.link && (
+                          <a href={platform.link} target="_blank" rel="noopener noreferrer" className="text-primary-green hover:opacity-80 transition-opacity mt-1">
+                            <ExternalLink size={20} />
+                          </a>
+                        )}
+                      </div>
+                      <p className="mt-3 text-charcoal/80 font-light leading-relaxed flex-1">
                         {platform.description}
                       </p>
                     </div>
@@ -263,100 +292,6 @@ export default function DigitalPlatformsPage() {
           </div>
         </section>
 
-        {/* ─── MbeguChoice Spotlight ─── */}
-        <section className="w-full py-28">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left: Decorative visual card */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="relative"
-              >
-                <div className="rounded-[32px] bg-gradient-to-br from-deep-forest to-deep-forest/90 p-10 lg:p-14 text-white relative overflow-hidden">
-                  {/* Subtle radial overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(58,180,74,0.15),transparent_60%)] pointer-events-none" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(36,132,198,0.1),transparent_50%)] pointer-events-none" />
-
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 text-primary-green font-bold text-xs tracking-[0.2em] uppercase mb-6">
-                <Database size={14} />
-                {t('dp_tag')}
-              </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-4" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
-                    <p className="text-white/80 font-light leading-relaxed mb-10">
-                      A groundbreaking platform developed in partnership with KALRO, KEPHIS, and Kenya Markets Trust — empowering farmers and agrodealers to make data-driven seed selection decisions for their specific ecological zones.
-                    </p>
-
-                    {/* Stats grid */}
-                    <div className="grid grid-cols-2 gap-6 mb-12">
-                      {spotlightStats.map((stat, i) => (
-                        <div key={i} className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                          <div className="text-2xl font-data font-bold text-primary-green tracking-wide">
-                            {stat.value}
-                          </div>
-                          <div className="text-xs text-white/60 mt-1 tracking-wide">
-                            {stat.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Mbegu Choice App Image */}
-                    <div className="relative w-full h-[280px] rounded-t-2xl overflow-hidden shadow-2xl border-t border-white/20 translate-y-6 hover:translate-y-4 transition-transform duration-500 -mb-10 lg:-mb-14 mt-12 bg-white/10">
-                      <Image 
-                        src="/Mbegu Choice.png" 
-                        alt="Mbegu Choice Platform" 
-                        fill 
-                        className="object-contain object-top p-4" 
-                      />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right: Details */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="space-y-8"
-              >
-                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
-                  {t('sp_title2')}
-                </h2>
-                <p className="text-charcoal/80 font-light leading-relaxed text-lg">
-                  {t('sp_desc2')}
-                </p>
-
-                <div className="space-y-5">
-                  {[
-                    t('sp_points.0'),
-                    t('sp_points.1'),
-                    t('sp_points.2'),
-                    t('sp_points.3'),
-                    t('sp_points.4'),
-                  ].map((item, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.2 + idx * 0.08 }}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle2 size={20} className="text-primary-green flex-shrink-0 mt-0.5" />
-                      <span className="text-charcoal/80 font-light leading-relaxed">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* ─── Why Digital Matters Strip ─── */}
         <section className="w-full py-20 bg-mist">

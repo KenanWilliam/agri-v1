@@ -202,7 +202,7 @@ export default function OurTeamPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[1600px] h-[90vh] bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+              className="relative w-full max-w-[1600px] h-[90vh] bg-white rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
             >
               {/* Close Button */}
               <button 
@@ -214,16 +214,16 @@ export default function OurTeamPage() {
               </button>
 
               {/* Left Side: Typography & Content */}
-              <div className="flex-1 p-10 lg:p-20 flex flex-col justify-between overflow-y-auto hide-scrollbar">
+              <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-hidden">
                 <div>
-                  <h2 className="text-6xl md:text-8xl lg:text-[8rem] font-serif text-deep-forest font-normal leading-[0.9] tracking-tight mb-12">
+                  <h2 className="text-6xl md:text-[6rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[0.85] tracking-tight mb-8">
                     {selectedMember.name.split(' ')[0]}
                     <br />
                     {selectedMember.name.split(' ').slice(1).join(' ')}
                   </h2>
 
-                  <div className="space-y-6 max-w-xl">
-                    <p className="text-charcoal/70 text-lg lg:text-xl font-light leading-relaxed">
+                  <div className="space-y-4 max-w-xl">
+                    <p className="text-charcoal/70 text-base md:text-lg lg:text-[1.125rem] font-light leading-relaxed">
                       {selectedMember.bio}
                     </p>
                   </div>
@@ -231,15 +231,15 @@ export default function OurTeamPage() {
 
                 {/* Tags / Projects area */}
                 {selectedMember.projects && selectedMember.projects.length > 0 && (
-                  <div className="mt-16 space-y-6">
-                    <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">
+                  <div className="mt-8 lg:mt-10 space-y-4">
+                    <h4 className="text-[0.7rem] lg:text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">
                       {t('expertise_label')}
                     </h4>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 lg:gap-3">
                       {selectedMember.projects.map((project, i) => (
                         <span 
                           key={i} 
-                          className="px-6 py-3 rounded-full border border-black/10 text-charcoal/70 text-sm hover:border-primary-green hover:text-primary-green transition-colors cursor-default"
+                          className="px-4 py-2 lg:px-5 lg:py-2.5 rounded-full border border-black/10 text-charcoal/70 text-xs hover:border-primary-green hover:text-primary-green transition-colors cursor-default"
                         >
                           {project} ↗
                         </span>
@@ -250,7 +250,7 @@ export default function OurTeamPage() {
               </div>
 
               {/* Right Side: Large Portrait */}
-              <div className="hidden lg:block w-[45%] relative bg-[#F5F5F5] m-6 overflow-hidden">
+              <div className="hidden lg:block w-[45%] relative bg-[#F5F5F5] overflow-hidden">
                 {selectedMember.image && selectedMember.image !== '/team/placeholder.jpg' ? (
                   <Image 
                     src={selectedMember.image} 

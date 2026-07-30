@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
-import { ArrowRight, TrendingUp, Users, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target } from 'lucide-react'
+import { ArrowRight, TrendingUp, Users, Earth, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target, Briefcase, Building2 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import WhyAgriExperience from '@/components/motion/why-agri-experience'
 import Image from 'next/image'
@@ -233,9 +233,9 @@ export default function Home() {
               >
                 <div className="flex flex-wrap justify-start items-center gap-4 sm:gap-6 lg:gap-10 xl:gap-12">
                   {[
-                    { value: t('stat_1_val'), label: t('stat_1_lbl'), icon: Leaf },
-                    { value: t('stat_2_val'), label: t('stat_2_lbl'), icon: Shield },
-                    { value: t('stat_3_val'), label: t('stat_3_lbl'), icon: Globe },
+                    { value: t('stat_1_val'), label: t('stat_1_lbl'), icon: Earth },
+                    { value: t('stat_2_val'), label: t('stat_2_lbl'), icon: Briefcase },
+                    { value: t('stat_3_val'), label: t('stat_3_lbl'), icon: Building2 },
                   ].map((stat, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-primary-green/20 flex items-center justify-center text-[#1A4D2E] bg-white shadow-sm shrink-0">

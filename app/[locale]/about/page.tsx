@@ -2,7 +2,7 @@
 import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
-import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight, TrendingUp, Shield, Zap, Globe } from 'lucide-react'
+import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight, TrendingUp, Shield, Zap, Globe, BarChart, MonitorSmartphone } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import OfficePlantsGallery from '@/components/motion/office-plants-gallery'
@@ -15,8 +15,7 @@ export default function AboutPage() {
     <>      <main className="bg-white min-h-screen">
 
         {/* Editorial Hero */}
-        <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
+        <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden snap-start scroll-mt-20 bg-mist">
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -62,73 +61,38 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              {/* Feature 1: Large */}
-              <motion.div
-                className="md:col-span-7 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[350px] lg:min-h-[400px]"
-              >
-                <div className="space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center">
-                    <TrendingUp className="text-primary-green" size={32} />
-                  </div>
-                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-3xl">{t('feat1_title')}</h3>
-                  <p className="font-sans text-gray-600 text-lg max-w-md">
-                    {t('feat1_desc')}
-                  </p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-4" size={24} />
-              </motion.div>
-
-              {/* Feature 2: Medium */}
-              <motion.div
-                className="md:col-span-5 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-8"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
-                  <Shield className="text-[#1A4D2E]" size={24} />
-                </div>
-                <div className="space-y-4">
-                  <h3 className="font-serif tracking-tight text-[#1A4D2E] text-2xl">{t('feat2_title')}</h3>
-                  <p className="font-sans text-gray-600">
-                    {t('feat2_desc')}
-                  </p>
-                  <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform" size={20} />
-                </div>
-              </motion.div>
-
-              {/* Feature 3: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Users className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">{t('feat3_title')}</h4>
-                  <p className="font-sans text-gray-600 text-sm">{t('feat3_desc')}</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
-
-              {/* Feature 4: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Zap className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">{t('feat4_title')}</h4>
-                  <p className="font-sans text-gray-600 text-sm">{t('feat4_desc')}</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
-
-              {/* Feature 5: Small */}
-              <motion.div
-                className="md:col-span-4 rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col gap-6"
-              >
-                <Globe className="text-[#1A4D2E]" size={24} />
-                <div className="space-y-2">
-                  <h4 className="font-serif tracking-tight text-[#1A4D2E] text-xl">{t('feat5_title')}</h4>
-                  <p className="font-sans text-gray-600 text-sm">{t('feat5_desc')}</p>
-                </div>
-                <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={18} />
-              </motion.div>
+              {[
+                { key: '0', colSpan: 'md:col-span-7', icon: TrendingUp },
+                { key: '1', colSpan: 'md:col-span-5', icon: BarChart },
+                { key: '2', colSpan: 'md:col-span-4', icon: Shield },
+                { key: '3', colSpan: 'md:col-span-4', icon: Users },
+                { key: '4', colSpan: 'md:col-span-4', icon: BookOpen },
+                { key: '5', colSpan: 'md:col-span-6', icon: MonitorSmartphone },
+                { key: '6', colSpan: 'md:col-span-6', icon: Target },
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <motion.div
+                    key={item.key}
+                    className={`${item.colSpan} rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[300px] gap-6`}
+                  >
+                    <div className="space-y-6">
+                      <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0">
+                        <Icon className="text-primary-green" size={28} />
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="font-serif tracking-tight text-[#1A4D2E] text-2xl lg:text-3xl">
+                          {t(`expertise_cards.${item.key}.title`)}
+                        </h3>
+                        <p className="font-sans text-gray-600 lg:text-lg">
+                          {t(`expertise_cards.${item.key}.desc`)}
+                        </p>
+                      </div>
+                    </div>
+                    <ArrowRight className="text-primary-green group-hover:translate-x-1 transition-transform mt-auto" size={24} />
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
         </section>

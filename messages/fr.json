@@ -14,12 +14,12 @@
     "hero_title_3": "À travers l'Afrique",
     "hero_desc": "Donner du pouvoir aux agriculteurs grâce à l’innovation agricole, aux conseils d’experts et à l’excellence numérique.",
     "explore_impact": "Explorez notre impact",
-    "stat_1_val": "500 000+",
-    "stat_1_lbl": "Agriculteurs touchés",
-    "stat_2_val": "150+",
-    "stat_2_lbl": "Partenaires de semences",
-    "stat_3_val": "25",
-    "stat_3_lbl": "Pays africains",
+    "stat_1_val": "25+",
+    "stat_1_lbl": "Pays africains",
+    "stat_2_val": "18+",
+    "stat_2_lbl": "Missions et projets terminés",
+    "stat_3_val": "100+",
+    "stat_3_lbl": "Institutions prises en charge",
     "what_we_believe": "Ce que nous croyons",
     "belief_1_title": "L’agriculture est fondamentale",
     "belief_1_text": "Nous pensons que l’agriculture est l’un des secteurs les plus importants au monde, avec des impacts majeurs sur la santé, la nutrition, l’environnement, la sécurité, l’économie et le développement social.",
@@ -46,18 +46,38 @@
     "goal_title": "Notre objectif",
     "goal_desc": "Pour accomplir cette mission, notre objectif est de devenir le conseiller et le fournisseur de services le plus respecté dans le secteur des semences végétales auprès des acteurs privés et publics et des principaux partenaires de développement, et de contribuer à la réalisation des objectifs de développement durable suivants : <br/><br/>",
     "expertise_title": "Notre expertise",
-    "expertise_desc": "Nous nous concentrons sur un changement systémique positif et durable avec une approche hautement personnalisée pour chaque mission.",
+    "expertise_desc": "Nous nous concentrons sur la conception et le renforcement de systèmes semenciers résilients par le biais de politiques, d'analyses de marché, de production de semences, d'assurance qualité et d'accès des agriculteurs à des semences améliorées sur un changement systémique positif et durable avec une approche hautement personnalisée pour chaque mission.",
     "view_services": "Voir tous les services",
-    "feat1_title": "Objectif du changement systémique",
-    "feat1_desc": "Nous n'acceptons pas les missions qui consistent simplement à cocher la case du projet ou de la tâche d'un client. Nous accordons la priorité à l’amélioration à long terme à l’échelle du système.",
-    "feat2_title": "Personnalisé par contexte",
-    "feat2_desc": "Chaque culture et chaque pays représentent un ensemble distinct de circonstances, c'est pourquoi nous adaptons nos services à chaque mission.",
-    "feat3_title": "Pratique axée sur l'équipe",
-    "feat3_desc": "Une pratique collaborative axée sur l’apprentissage et qui s’actualise continuellement en fonction des réalités du terrain.",
-    "feat4_title": "Partenariats collaboratifs",
-    "feat4_desc": "Travailler avec les clients pour améliorer l’accès des petits exploitants à des semences de haute qualité de variétés de cultures modernes.",
-    "feat5_title": "Portée subsaharienne",
-    "feat5_desc": "Expérience approfondie dans diverses zones agricoles d’Afrique subsaharienne.",
+    "expertise_cards": [
+      {
+        "title": "Développement des systèmes de marché",
+        "desc": "Analyser les marchés des semences, les chaînes de valeur et les écosystèmes commerciaux pour améliorer la compétitivité, les investissements et l'accès au marché pour les producteurs et les entreprises agroalimentaires."
+      },
+      {
+        "title": "Analyse des systèmes de semences",
+        "desc": "Générer des informations exploitables à partir des données des systèmes semenciers grâce à l'analyse, à la visualisation, aux prévisions et à la mesure des performances pour soutenir une prise de décision fondée sur des preuves, surveiller les performances du secteur et orienter les investissements et les politiques."
+      },
+      {
+        "title": "Conseil et formulation en matière de politique et de réglementation",
+        "desc": "Fournir un soutien technique pour l’élaboration de politiques, les réformes réglementaires, le renforcement institutionnel et la mise en œuvre des normes et directives de l’industrie semencière."
+      },
+      {
+        "title": "Renforcement des capacités",
+        "desc": "Renforcer les compétences et les capacités institutionnelles des gouvernements, des instituts de recherche, des entreprises semencières, des services de vulgarisation, des distributeurs agricoles et des organisations d'agriculteurs par le biais de la formation et de l'assistance technique."
+      },
+      {
+        "title": "Recherche et conseil stratégique",
+        "desc": "Réaliser des études, des évaluations, des analyses de faisabilité et une planification stratégique pour soutenir les décisions d'investissement et les programmes de transformation agricole."
+      },
+      {
+        "title": "Plateformes numériques",
+        "desc": "Concevoir, développer et mettre en œuvre des plates-formes Web et mobiles, des bases de données, des tableaux de bord et des systèmes d'information qui améliorent la gestion des données, la prestation de services, la collaboration et la prise de décision dans l'ensemble du secteur semencier."
+      },
+      {
+        "title": "Suivi, évaluation et apprentissage (MEL)",
+        "desc": "Concevoir des cadres MEL, des indicateurs, des systèmes de collecte de données et des processus d'apprentissage pour mesurer les performances, les résultats et l'impact du projet."
+      }
+    ],
     "values_title": "Nos valeurs fondamentales",
     "values_subtitle": "Les principes qui guident notre travail",
     "cta_title": "Devenez partenaire avec nous",
@@ -121,7 +141,7 @@
     "jayne_projects": "Finances, Administration",
     "ronald_name": "Ronald Misigo",
     "ronald_role": "Responsable technique",
-    "ronald_bio": "Ronald sert de responsable technique et est un spécialiste dynamique des systèmes de semences et des TIC avec plus de 13 ans d'expérience dans les systèmes alimentaires, les solutions numériques et l'analyse de données. Il dirige la conception et la mise en œuvre de plateformes TIC innovantes qui renforcent les chaînes de valeur agricoles, en particulier dans le secteur des semences à travers l'Afrique. Compétent en gestion de projet, en engagement des parties prenantes et en soutien politique fondé sur des preuves, il traduit des données complexes en informations exploitables. Ronald a développé des outils efficaces axés sur les semences et des systèmes de retour d'information numérique qui responsabilisent les agriculteurs, les distributeurs agricoles et les régulateurs.",
+    "ronald_bio": "Ronald est responsable technique et est un spécialiste de l'agriculture numérique avec plus de 13 ans d'expérience dans les systèmes semenciers et la transformation numérique. Il se spécialise dans la conception de plateformes numériques innovantes, de bases de données, de tableaux de bord ainsi que de systèmes d'information qui renforcent les systèmes semenciers tout en faisant progresser les chaînes de valeur agricoles à travers l'Afrique. Son expertise couvre les études techniques, le conseil aux clients, la réforme politique et réglementaire, ainsi que l'analyse des systèmes semenciers permettant aux gouvernements, aux partenaires de développement et aux organisations du secteur privé de prendre des décisions stratégiques et d'investissement fondées sur des données probantes. Ronald a développé des outils nationaux et régionaux efficaces axés sur les semences, notamment des solutions de retour d'information numérique basées sur SMS qui permettent aux agriculteurs, aux distributeurs agricoles, aux entreprises semencières ainsi qu'aux régulateurs de prendre des décisions.",
     "ronald_projects": "Architecture système, conception technique, intégration",
     "denis_name": "Denis Langat",
     "denis_role": "Spécialiste M+E",
@@ -696,10 +716,11 @@
     "sp_title": "MbeguChoix",
     "sp_subtitle": "Le premier catalogue de semences en ligne du Kenya",
     "sp_desc": "Développé en partenariat avec KALRO, KEPHIS et Kenya Markets Trust, MbeguChoice aide les agriculteurs et les distributeurs agricoles à identifier les variétés de semences adaptées à leurs zones écologiques spécifiques, éliminant ainsi les incertitudes liées à la plantation.",
-    "sp_feat1": "Plus de 200 variétés de cultures cataloguées",
-    "sp_feat2": "Recherche par zone écologique et type de culture",
-    "sp_feat3": "Informations sur la tolérance aux maladies et la maturité",
-    "sp_feat4": "Liens directs vers les fournisseurs des entreprises semencières",
+    "sp_feat1": "Catalogue de variétés numérique",
+    "sp_feat2": "Système numérique de certification des semences",
+    "sp_feat3": "Plateformes d'information des parties prenantes",
+    "sp_feat4": "Outils de commentaires par SMS",
+    "sp_feat5": "Plateformes d’indicateurs du système semencier.",
     "stats": {
       "0": {
         "value": "200+",
@@ -723,28 +744,43 @@
     "cta_desc": "Que vous ayez besoin d'un catalogue national de variétés, d'un système de vérification des semences ou d'analyses de données personnalisées, nous avons l'expertise nécessaire pour créer et déployer des solutions évolutives.",
     "cta_btn1": "Contactez-nous",
     "cta_btn2": "Explorez notre travail",
-    "platforms": {
-      "0": {
-        "title": "Plateforme MbeguChoice",
-        "description": "Partenariat avec KALRO, KEPHIS et Kenya Markets Trust. Un outil en ligne cataloguant plus de 200 variétés de cultures avec des informations sur la tolérance aux maladies, les périodes de maturité et les sociétés semencières — aidant les agriculteurs et les revendeurs de produits agricoles à identifier les variétés adaptées à des zones écologiques spécifiques.",
-        "tag": "Plateforme phare"
+    "platforms": [
+      {
+        "title": "Catalogue numérique des variétés de cultures en Afrique",
+        "description": "Le catalogue numérique des variétés de cultures en Afrique est une plateforme consultable en ligne qui consolide les variétés de cultures officiellement publiées et enregistrées de plusieurs pays africains dans une seule base de données.",
+        "tag": "Plate-forme"
       },
-      "1": {
+      {
+        "title": "Liste numérique des variétés de cultures du Kenya",
+        "description": "La liste numérique des variétés de cultures du Kenya est une plate-forme de recherche en ligne contenant toutes les variétés de cultures officiellement publiées et enregistrées au Kenya, avec un accès public aux variétés disponibles sur le marché et un accès restreint pour KEPHIS et les entités de diffusion aux informations détaillées sur les variétés.",
+        "tag": "Plate-forme"
+      },
+      {
+        "title": "Plateforme des intrants agricoles de Tanzanie",
+        "description": "Une base de données interactive et consultable en ligne des acteurs de l'industrie, des variétés commercialisées en Tanzanie, des produits agrochimiques enregistrés et des revendeurs de produits agricoles cartographiés selon leurs emplacements.",
+        "tag": "Plate-forme"
+      },
+      {
+        "title": "MbeguChoix",
+        "description": "Un outil en ligne cataloguant plus de 200 variétés de cultures avec des informations sur la tolérance aux maladies, les périodes de maturité et les sociétés semencières — aidant les agriculteurs et les revendeurs de produits agricoles à identifier les variétés adaptées à des zones écologiques spécifiques.",
+        "tag": "Outil"
+      },
+      {
+        "title": "Plateforme du secteur des semences Kenya",
+        "description": "Une base de données interactive et consultable en ligne des acteurs de l'industrie, des variétés commercialisées au Kenya et des revendeurs agricoles cartographiés selon leurs emplacements.",
+        "tag": "Plate-forme"
+      },
+      {
+        "title": "Plateforme des intrants agricoles Ouganda",
+        "description": "Une base de données interactive et consultable en ligne des acteurs de l'industrie, des variétés commercialisées en Ouganda, des produits agrochimiques enregistrés et des revendeurs de produits agricoles cartographiés selon leurs emplacements.",
+        "tag": "Plate-forme"
+      },
+      {
         "title": "Mulika Mbegu Mbovu (M3)",
-        "description": "Un système de vérification des semences par SMS développé avec KEPHIS. Des codes uniques imprimés sur les paquets de semences permettent une authentification instantanée, tandis qu'un mécanisme de signalement par les agriculteurs aide à lutter contre les semences fausses et contrefaites en connectant les rapports directement aux régulateurs.",
-        "tag": "Système de vérification"
-      },
-      "2": {
-        "title": "Catalogues nationaux de variétés",
-        "description": "Systèmes de catalogue de variétés en ligne conçus pour les gouvernements, fournissant des interfaces numériques pour l'accès aux informations sur les systèmes semenciers et la gestion complète des données sur les variétés de cultures dans les programmes agricoles nationaux.",
-        "tag": "Systèmes gouvernementaux"
-      },
-      "3": {
-        "title": "Systèmes de gestion de données",
-        "description": "Plateformes de collecte et d'analyse de données agricoles qui alimentent des outils d'analyse comparative pour les performances de l'industrie, des infrastructures d'enquête et des systèmes d'évaluation pour le développement du secteur semencier.",
-        "tag": "Analyses et données"
+        "description": "Un mécanisme de retour d'information par SMS permettant aux agriculteurs de signaler à KEPHIS les semences de mauvaise qualité et contrefaites, contribuant ainsi à lutter contre les semences contrefaites et contrefaites sur le marché kenyan.",
+        "tag": "Outil de commentaires"
       }
-    },
+    ],
     "approach": {
       "0": {
         "title": "Évaluer et concevoir",

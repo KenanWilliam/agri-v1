@@ -14,12 +14,12 @@
     "hero_title_3": "Across Africa",
     "hero_desc": "Empowering farmers through agricultural innovation, expert advice, and digital excellence.",
     "explore_impact": "Explore Our Impact",
-    "stat_1_val": "500K+",
-    "stat_1_lbl": "Farmers Reached",
-    "stat_2_val": "150+",
-    "stat_2_lbl": "Seed Partners",
-    "stat_3_val": "25",
-    "stat_3_lbl": "African Countries",
+    "stat_1_val": "25+",
+    "stat_1_lbl": "African Countries",
+    "stat_2_val": "18+",
+    "stat_2_lbl": "Assignments & Projects Completed",
+    "stat_3_val": "100+",
+    "stat_3_lbl": "Institutions Supported",
     "what_we_believe": "What We Believe",
     "belief_1_title": "Agriculture is Foundational",
     "belief_1_text": "We believe that agriculture is one of the most important sectors in the world, with major impacts on health, nutrition, the environment, security, economies, and social development.",
@@ -46,18 +46,38 @@
     "goal_title": "Our Goal",
     "goal_desc": "To accomplish this mission, our goal is to become the most respected advisor and service provider in the crop seed sector to private and public stakeholders and major development partners, and contribute towards achieving the following Sustainable Development Goals: <br/><br/>",
     "expertise_title": "Our Expertise",
-    "expertise_desc": "We focus on positive, sustainable systemic change with a highly customized approach for each assignment.",
+    "expertise_desc": "We focus on designing and strengthening resilient seed systems through policy, market analysis, seed production, quality assurance, and farmer access to improved seed on positive, sustainable systemic change with a highly customized approach for each assignment.",
     "view_services": "View All Services",
-    "feat1_title": "Systemic Change Focus",
-    "feat1_desc": "We do not accept assignments that simply check a client's project or task box. We prioritize long-term, system-wide improvement.",
-    "feat2_title": "Customized by Context",
-    "feat2_desc": "Each crop and country represents a distinct set of circumstances, so we tailor services for every assignment.",
-    "feat3_title": "Team-Oriented Practice",
-    "feat3_desc": "A collaborative, learning-focused practice that continually updates based on field realities.",
-    "feat4_title": "Collaborative Partnerships",
-    "feat4_desc": "Working with clients to improve smallholder access to high quality seed of modern crop varieties.",
-    "feat5_title": "Sub-Saharan Reach",
-    "feat5_desc": "Deep experience across diverse agricultural zones throughout sub-Saharan Africa.",
+    "expertise_cards": [
+      {
+        "title": "Market Systems Development",
+        "desc": "Analyzing seed markets, value chains, and business ecosystems to improve competitiveness, investment, and market access for producers and agribusinesses."
+      },
+      {
+        "title": "Seed Systems Analytics",
+        "desc": "Generating actionable insights from seed systems data through analytics, visualization, forecasting, and performance measurement to support evidence-based decision-making, monitor sector performance, and guide investment and policy."
+      },
+      {
+        "title": "Policy and Regulatory Advisory and Formulation",
+        "desc": "Providing technical support for policy development, regulatory reforms, institutional strengthening, and implementation of seed industry standards and guidelines."
+      },
+      {
+        "title": "Capacity Building",
+        "desc": "Strengthening the skills and institutional capacity of governments, research institutions, seed companies, extension services, agrodealers and farmer organizations through training and technical assistance."
+      },
+      {
+        "title": "Research and Strategic Advisory",
+        "desc": "Conducting studies, assessments, feasibility analyses, and strategic planning to support investment decisions and agricultural transformation programs."
+      },
+      {
+        "title": "Digital Platforms",
+        "desc": "Designing, developing, and implementing web and mobile platforms, databases, dashboards, and information systems that improve data management, service delivery, collaboration, and decision-making across the seed sector."
+      },
+      {
+        "title": "Monitoring, Evaluation and Learning (MEL)",
+        "desc": "Designing MEL frameworks, indicators, data collection systems, and learning processes to measure project performance, outcomes, and impact."
+      }
+    ],
     "values_title": "Our Core Values",
     "values_subtitle": "The principles that guide our work",
     "cta_title": "Partner With Us",
@@ -121,7 +141,7 @@
     "jayne_projects": "Finance, Administration",
     "ronald_name": "Ronald Misigo",
     "ronald_role": "Technical Lead",
-    "ronald_bio": "Ronald serves as technical lead and is a dynamic seed systems and ICT specialist with over 13 years of experience in food systems, digital solutions, and data analytics. He leads the design and implementation of innovative ICT platforms that strengthen agricultural value chains, particularly in the seed sector across Africa. Skilled in project management, stakeholder engagement, and evidence-based policy support, he translates complex data into actionable insights. Ronald has developed impactful seed-focused tools and digital feedback systems that empower farmers, agrodealers, and regulators.",
+    "ronald_bio": "Ronald serves as technical lead and is a digital agriculture specialist with over 13 years of experience in seed systems and digital transformation. He specializes in designing innovative digital platforms, databases, dashboards, as well as information systems that strengthen seed systems while advancing agricultural value chains across Africa. His expertise spans technical studies, client advisory, policy and regulatory reform, together with seed systems analytics enabling governments, development partners and private sector organizations to make evidence-based investment and strategic decisions. Ronald has developed impactful national and regional seed-focused tools including SMS based digital feedback solutions that empower farmers, agrodealers, seed companies, as well as regulators in decision making.",
     "ronald_projects": "System Architecture, Technical Design, Integration",
     "denis_name": "Denis Langat",
     "denis_role": "M+E Specialist",
@@ -696,10 +716,11 @@
     "sp_title": "MbeguChoice",
     "sp_subtitle": "Kenya's premier online seed catalogue",
     "sp_desc": "Developed in partnership with KALRO, KEPHIS, and Kenya Markets Trust, MbeguChoice helps farmers and agrodealers identify the right seed varieties for their specific ecological zones, taking the guesswork out of planting.",
-    "sp_feat1": "200+ crop varieties catalogued",
-    "sp_feat2": "Search by ecological zone and crop type",
-    "sp_feat3": "Information on disease tolerance and maturity",
-    "sp_feat4": "Direct links to seed company suppliers",
+    "sp_feat1": "Digital Variety Catalogue",
+    "sp_feat2": "Digital Seed Certification System",
+    "sp_feat3": "Stakeholder Information Platforms",
+    "sp_feat4": "SMS-Based Feedback Tools",
+    "sp_feat5": "Seed System Indicators Platforms.",
     "stats": [
       {
         "value": "200+",
@@ -725,24 +746,39 @@
     "cta_btn2": "Explore Our Work",
     "platforms": [
       {
-        "title": "MbeguChoice Platform",
-        "description": "Partnership with KALRO, KEPHIS, and Kenya Markets Trust. An online tool cataloguing 200+ crop varieties with information on disease tolerance, maturity periods, and seed companies — helping farmers and agrodealers identify varieties suited to specific ecological zones.",
-        "tag": "Flagship Platform"
+        "title": "Africa Digital Crop Variety Catalogue",
+        "description": "The Africa Digital Crop Variety Catalogue is an online, searchable platform that consolidates officially released and registered crop varieties from multiple African countries into a single database.",
+        "tag": "Platform"
+      },
+      {
+        "title": "Kenya Digital Crop Variety List",
+        "description": "The Kenya Digital Crop Variety List is an online, searchable platform containing all officially released and registered crop varieties in Kenya, with public access to market-available varieties and restricted access for KEPHIS and releasing entities to detailed variety information.",
+        "tag": "Platform"
+      },
+      {
+        "title": "Tanzania Agri-Inputs Platform",
+        "description": "An online interactive and searchable database of industry stakeholders, varieties released in Tanzania, registered agrochemicals, and agrodealers mapped to their locations.",
+        "tag": "Platform"
+      },
+      {
+        "title": "MbeguChoice",
+        "description": "An online tool cataloguing 200+ crop varieties with information on disease tolerance, maturity periods, and seed companies — helping farmers and agrodealers identify varieties suited to specific ecological zones.",
+        "tag": "Tool"
+      },
+      {
+        "title": "Seed Sector Platform Kenya",
+        "description": "An online interactive and searchable database of industry stakeholders, varieties released in Kenya, and agrodealers mapped to their locations.",
+        "tag": "Platform"
+      },
+      {
+        "title": "Agricultural Inputs Platform Uganda",
+        "description": "An online interactive and searchable database of industry stakeholders, varieties released in Uganda, registered agrochemicals, and agrodealers mapped to their locations.",
+        "tag": "Platform"
       },
       {
         "title": "Mulika Mbegu Mbovu (M3)",
-        "description": "An SMS-based seed verification system developed with KEPHIS. Unique codes printed on seed packets allow instant authentication, while a farmer reporting mechanism helps combat fake and counterfeit seeds by connecting reports directly to regulators.",
-        "tag": "Verification System"
-      },
-      {
-        "title": "National Variety Catalogues",
-        "description": "Online variety catalogue systems designed for governments, providing digital interfaces for seed systems information access and comprehensive crop variety data management across national agricultural programs.",
-        "tag": "Government Systems"
-      },
-      {
-        "title": "Data Management Systems",
-        "description": "Agricultural data collection and analysis platforms that power benchmarking tools for industry performance, survey infrastructure, and assessment systems for seed sector development.",
-        "tag": "Analytics & Data"
+        "description": "An SMS-based feedback mechanism for farmers to report low-quality and fake seeds to KEPHIS, helping to combat fake and counterfeit seeds in the Kenyan market.",
+        "tag": "Feedback Tool"
       }
     ],
     "approach": [
