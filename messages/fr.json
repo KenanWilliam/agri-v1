@@ -12,7 +12,7 @@
     "hero_title_1": "Cultiver le durable",
     "hero_title_2": "Systèmes agricoles et semenciers",
     "hero_title_3": "À travers l'Afrique",
-    "hero_desc": "Donner du pouvoir aux agriculteurs grâce à l’innovation agricole, aux conseils d’experts et à l’excellence numérique.",
+    "hero_desc": "Favoriser des systèmes semenciers résilients grâce à l’innovation, aux conseils d’experts et à la transformation numérique.",
     "explore_impact": "Explorez notre impact",
     "stat_1_val": "25+",
     "stat_1_lbl": "Pays africains",
@@ -137,7 +137,7 @@
     "mulemia_projects": "Systèmes de semences, subventions AGRA, Fondation Rockefeller",
     "jayne_name": "Jayne Ngugi",
     "jayne_role": "Directeur, Finances et Administration",
-    "jayne_bio": "Jayne dirige le portefeuille des finances et de l'administration, fournissant les services de finances, de contrôle et d'administration qui soutiennent la capacité de l'équipe à servir les clients de manière efficiente et efficace. Jayne possède également une solide expérience dans le secteur privé et apporte un niveau profond d'intégrité et de professionnalisme à son rôle chez Agri Experience.",
+    "jayne_bio": "Jayne dirige le portefeuille des finances et de l'administration, supervisant la gestion financière, la gouvernance et les opérations administratives du cabinet. Avec plus de 30 ans d'expérience en finance et en administration, elle gère les fonds des donateurs et des programmes et apporte son expertise en matière de gestion des subventions, de conformité financière, de contrôles internes, de reporting aux donateurs et de gouvernance financière. Elle assure un leadership financier stratégique qui garantit une saine gestion, l’excellence opérationnelle et les normes les plus élevées d’intégrité et de responsabilité dans l’ensemble de l’organisation.",
     "jayne_projects": "Finances, Administration",
     "ronald_name": "Ronald Misigo",
     "ronald_role": "Responsable technique",
@@ -149,7 +149,7 @@
     "denis_projects": "Indicateurs PSTA-5, analyse de données, développement de tableaux de bord",
     "moses_name": "Moïse Adundo",
     "moses_role": "Analyste de données",
-    "moses_bio": "Moses prend en charge les processus d'assurance qualité et de test des outils numériques, y compris les tests fonctionnels, d'intégration, de performance et d'acceptation par les utilisateurs. Il s'assure que le système répond aux exigences définies, est exempt de défauts critiques et fonctionne de manière fiable avant le déploiement.",
+    "moses_bio": "Moses sert d'analyste de données, soutenant la prise de décision basée sur les données grâce à des analyses avancées, à la gestion des données et à la visualisation. Avec plus de 7 ans d'expérience en analyse de données et en systèmes d'information numériques, il se spécialise dans la collecte de données, l'assurance qualité, l'analyse statistique, le développement de tableaux de bord et la business intelligence. Moses transforme des ensembles de données complexes en informations exploitables qui permettent aux gouvernements, aux partenaires de développement et aux organisations du secteur privé de prendre des décisions fondées sur des preuves et d'améliorer les performances des programmes.",
     "moses_projects": "Assurance qualité, processus de test, tests d'acceptation des utilisateurs",
     "claire_name": "Claire Wanjiru",
     "claire_role": "Assistante de direction",
@@ -761,8 +761,8 @@
         "tag": "Plate-forme"
       },
       {
-        "title": "MbeguChoix",
-        "description": "Un outil en ligne cataloguant plus de 200 variétés de cultures avec des informations sur la tolérance aux maladies, les périodes de maturité et les sociétés semencières — aidant les agriculteurs et les revendeurs de produits agricoles à identifier les variétés adaptées à des zones écologiques spécifiques.",
+        "title": "MbeguChoice",
+        "description": "Une plate-forme numérique centrée sur les agriculteurs avec une application mobile hors ligne qui catalogue les variétés de cultures commercialisées au Kenya. Il fournit des informations détaillées sur la résistance aux maladies, les périodes de maturité, l’adéquation agroécologique et d’autres caractéristiques variétales clés. La plateforme permet aux agriculteurs, aux agents de vulgarisation et aux distributeurs agricoles de prendre des décisions éclairées en matière de sélection de variétés qui améliorent la productivité, la résilience et les performances.",
         "tag": "Outil"
       },
       {

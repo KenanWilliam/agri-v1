@@ -12,7 +12,7 @@
     "hero_title_1": "Cultivating Sustainable",
     "hero_title_2": "Agricultural & Seed Systems",
     "hero_title_3": "Across Africa",
-    "hero_desc": "Empowering farmers through agricultural innovation, expert advice, and digital excellence.",
+    "hero_desc": "Driving resilient seed systems through innovation, expert advisory, and digital transformation.",
     "explore_impact": "Explore Our Impact",
     "stat_1_val": "25+",
     "stat_1_lbl": "African Countries",
@@ -137,7 +137,7 @@
     "mulemia_projects": "Seed Systems, AGRA Grants, Rockefeller Foundation",
     "jayne_name": "Jayne Ngugi",
     "jayne_role": "Director, Finance & Administration",
-    "jayne_bio": "Jayne leads the finance and administration portfolio, providing the finance, control, and administration services which underpin the team’s ability to serve clients efficiently and effectively. Jayne also has a strong private sector background and brings a deep level of integrity and professionalism to her role at Agri Experience.",
+    "jayne_bio": "Jayne leads the finance and administration portfolio, overseeing the firm's financial management, governance, and administrative operations. With over 30 years of experience in finance and administration, she manages donor and program funds and brings expertise in grant management, financial compliance, internal controls, donor reporting, and financial governance. She provides strategic financial leadership that ensures sound stewardship, operational excellence, and the highest standards of integrity and accountability across the organization.",
     "jayne_projects": "Finance, Administration",
     "ronald_name": "Ronald Misigo",
     "ronald_role": "Technical Lead",
@@ -149,7 +149,7 @@
     "denis_projects": "PSTA-5 Indicators, Data Analysis, Dashboard Development",
     "moses_name": "Moses Adundo",
     "moses_role": "Data Analyst",
-    "moses_bio": "Moses supports digital tools quality assurance and testing processes, including functional, integration, performance, and user acceptance testing. He ensures the system meets defined requirements, is free of critical defects, and performs reliably before deployment.",
+    "moses_bio": "Moses serves as a data analyst, supporting data-driven decision-making through advanced analytics, data management, and visualization. With over 7 years of experience in data analysis and digital information systems, he specializes in data collection, quality assurance, statistical analysis, dashboard development, and business intelligence. Moses transforms complex datasets into actionable insights that enable governments, development partners, and private sector organizations to make evidence-based decisions and improve program performance.",
     "moses_projects": "Quality Assurance, Testing Processes, User Acceptance Testing",
     "claire_name": "Claire Wanjiru",
     "claire_role": "Executive Assistant",
@@ -762,7 +762,7 @@
       },
       {
         "title": "MbeguChoice",
-        "description": "An online tool cataloguing 200+ crop varieties with information on disease tolerance, maturity periods, and seed companies — helping farmers and agrodealers identify varieties suited to specific ecological zones.",
+        "description": "A farmer-centric digital platform with an offline-capable mobile app that catalogues commercialized crop varieties in Kenya. It provides detailed information on disease resistance, maturity periods, agroecological suitability, and other key varietal characteristics. The platform empowers farmers, extension workers, and agrodealers to make informed variety selection decisions that enhance productivity, resilience, and performance.",
         "tag": "Tool"
       },
       {
