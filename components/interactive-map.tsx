@@ -21,7 +21,6 @@ import {
   X,
 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
-import africaGeoJson from '@/africa.json'
 
 const InteractiveMapbox = dynamic(
   () => import('./map/interactive-mapbox').then((mod) => mod.InteractiveMapbox),

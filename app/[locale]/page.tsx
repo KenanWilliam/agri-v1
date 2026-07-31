@@ -166,24 +166,22 @@ export default function Home() {
           {/* Taller background to prevent revealing white space when translating down */}
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
             <div className="absolute inset-0 bg-mist">
-              {isDesktop ? (
                 <video
                   src="/Videos/wheat swaying in the wind.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
+                  poster="/SDG-images/2.webp"
+                  className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 />
-              ) : (
                 <Image 
                   src="/SDG-images/2.webp" 
                   alt="Agricultural landscape"
                   fill
                   priority
-                  className="object-cover object-center"
+                  className="md:hidden object-cover object-center"
                 />
-              )}
             </div>
           </div>
           

@@ -31,7 +31,7 @@ export default function Preloader() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(false), 3500);
+    const timer = setTimeout(() => setIsVisible(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -69,8 +69,8 @@ export default function Preloader() {
     });
 
     const controls = framerAnimate(0, 1, {
-      duration: 3.5 * 0.20, // 0.7s
-      delay: 3.5 * 0.35, // 1.225s
+      duration: 1.5 * 0.20,
+      delay: 1.5 * 0.35,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (t) => {
         if (pathRef.current) pathRef.current.setAttribute("d", interpolator(t));
@@ -88,7 +88,7 @@ export default function Preloader() {
           initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
           animate={{ clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"] }}
           transition={{
-            duration: 3.5,
+            duration: 1.5,
             times: [0, 0.80, 1],
             ease: ["linear", [0.76, 0, 0.24, 1]],
           }}
@@ -107,7 +107,7 @@ export default function Preloader() {
               ],
             }}
             transition={{
-              duration: 3.5,
+              duration: 1.5,
               times: [0, 0.35, 0.55, 0.65, 0.80, 1],
               ease: ["linear", "linear", "linear", [0.76, 0, 0.24, 1], "linear"],
             }}
@@ -143,7 +143,7 @@ export default function Preloader() {
                 initial={{ opacity: 1 }}
                 animate={{ opacity: [1, 0, 0, 0, 0, 0] }}
                 transition={{
-                  duration: 3.5,
+                  duration: 1.5,
                   times: [0, 0.20, 0.35, 0.55, 0.80, 1],
                   ease: "linear",
                 }}
@@ -179,7 +179,7 @@ export default function Preloader() {
                 initial={{ opacity: 1 }}
                 animate={{ opacity: [1, 0, 0, 0, 0, 0] }}
                 transition={{
-                  duration: 3.5,
+                  duration: 1.5,
                   times: [0, 0.20, 0.35, 0.55, 0.80, 1],
                   ease: "linear",
                 }}
