@@ -5,7 +5,9 @@ allowBuilds:
   unrs-resolver: true
 overrides:
   brace-expansion: "latest"
+  postcss: "^8.5.25"
   sharp: "latest"
 resolutions:
   brace-expansion: "latest"
+  postcss: "^8.5.25"
   sharp: "latest"
