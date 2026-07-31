@@ -25,6 +25,7 @@ export function ScrollAccordion({
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
     const mqlMobile = window.matchMedia('(max-width: 768px)')
     const mqlMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -201,7 +202,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
         Skip this section
       </a>
       <section ref={containerRef} className="w-full relative h-[300vh] bg-mist">
-        <div className="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
+        <div className="sticky top-(--header-height) h-[calc(100vh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
           
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50">
             {items.map((item, i) => (
@@ -214,7 +215,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
             ))}
           </div>
 
-          <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-12 justify-center">
+          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-12 justify-center">
 
             <div className="w-full flex flex-col">
               {items.map((item, i) => {
@@ -237,7 +238,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                     className={`item-content-${i} w-full overflow-hidden`}
                     style={{ height: i === 0 ? "50vh" : "0vh" }}
                   >
-                    <div className="flex flex-row gap-12 pb-6 pt-2 w-full h-[50vh] min-h-[400px] max-h-[600px]">
+                    <div className="flex flex-row gap-12 pb-6 pt-2 w-full h-[50vh] min-h-100 max-h-150">
                       {/* Text Side */}
                       <div 
                         aria-live="polite"
@@ -295,7 +296,7 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
 
   return (
     <section className="w-full relative py-20 bg-mist">
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-350 w-full mx-auto px-4 sm:px-6 relative z-10">
         
         <div className="flex flex-col">
           {items.map((item) => {
@@ -339,7 +340,7 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
                     >
                       <div className="pb-8 pt-2 flex flex-col gap-8">
                         
-                        <div className="relative w-full h-[240px] rounded-3xl overflow-hidden shadow-md">
+                        <div className="relative w-full h-60 rounded-3xl overflow-hidden shadow-md">
                           <Image 
                             src={item.image} 
                             alt={item.title} 

@@ -26,6 +26,7 @@ export default function Preloader() {
   const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDims({ w: window.innerWidth, h: window.innerHeight });
   }, []);
 
@@ -91,7 +92,7 @@ export default function Preloader() {
             times: [0, 0.80, 1],
             ease: ["linear", [0.76, 0, 0.24, 1]],
           }}
-          className="fixed inset-0 z-[9999] bg-mist pointer-events-none"
+          className="fixed inset-0 z-9999 bg-mist pointer-events-none"
         >
           <motion.div
             initial={{ clipPath: "inset(15vh 15vw)" }}
