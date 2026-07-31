@@ -99,12 +99,10 @@
   },
   "resolutions": {
     "brace-expansion": "latest",
-    "postcss": "latest",
     "sharp": "latest"
   },
   "overrides": {
     "brace-expansion": "latest",
-    "postcss": "latest",
     "sharp": "latest"
   }
 }
