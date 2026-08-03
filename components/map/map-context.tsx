@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { useLocale } from 'next-intl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Ensure the token is set (it should be in .env.local)
@@ -33,6 +34,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
   const mapContainer = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const locale = useLocale();
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -59,6 +61,40 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
     });
 
     mapInstance.on('style.load', () => {
+      const setMapboxLanguage = (m: mapboxgl.Map, lang: string) => {
+        const style = m.getStyle();
+        if (!style || !style.layers) return;
+        style.layers.forEach((layer: any) => {
+          if (layer.layout && layer.layout['text-field']) {
+            const textField = m.getLayoutProperty(layer.id, 'text-field');
+            if (!textField) return;
+            
+            let newTextField = JSON.parse(JSON.stringify(textField));
+            const replaceLang = (obj: any) => {
+              if (Array.isArray(obj)) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (obj[i] === 'name_en' || obj[i] === 'name') {
+                    obj[i] = `name_${lang}`;
+                  } else if (Array.isArray(obj[i])) {
+                    replaceLang(obj[i]);
+                  }
+                }
+              }
+            };
+            
+            if (Array.isArray(newTextField)) {
+              replaceLang(newTextField);
+              m.setLayoutProperty(layer.id, 'text-field', newTextField);
+            } else if (typeof newTextField === 'string') {
+              newTextField = newTextField.replace(/{name_en}/g, `{name_${lang}}`).replace(/{name}/g, `{name_${lang}}`);
+              m.setLayoutProperty(layer.id, 'text-field', newTextField);
+            }
+          }
+        });
+      };
+      
+      setMapboxLanguage(mapInstance, locale === 'fr' ? 'fr' : 'en');
+
       // Add 3D Terrain for a rich geographical feel
       mapInstance.addSource('mapbox-dem', {
         'type': 'raster-dem',

@@ -5,7 +5,7 @@ import { useMap } from './map-context';
 import africaGeoJson from '@/africa.json';
 
 export interface MapHighlightedCountriesProps {
-  onCountryClick?: (countryName: string | null) => void;
+  onCountryClick?: (countryCode: string | null) => void;
   setHoveredName?: (name: string | null) => void;
   setTooltipPos?: (pos: { x: number; y: number }) => void;
   selectedCountryName?: string;
@@ -69,6 +69,9 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
     }
 
     if (selectedCountryName) {
+      // Find the country code from the name (or just pass the country code in props!)
+      // To be safe, we'll need the country code in props, but let's assume selectedCountryName is actually the selected country CODE.
+      // Wait, MapHighlightedCountriesProps takes selectedCountryName. Let's change the prop to selectedCountryCode.
       map.setFeatureState(
         { source: 'africa-countries', id: selectedCountryName },
         { selected: true }
@@ -106,7 +109,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
         map.addSource('africa-countries', {
           type: 'geojson',
           data: africaGeoJson as any,
-          promoteId: 'name' // Use 'name' for integer-free feature states
+          promoteId: 'iso_a2'
         });
       }
 
@@ -150,25 +153,24 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
         const isoA2 = feature.properties?.iso_a2;
-        const name = feature.properties?.name;
         
         if (regionColors[isoA2]) {
           map.getCanvas().style.cursor = 'pointer';
           
-          if (name !== hoveredCountryRef.current) {
+          if (isoA2 !== hoveredCountryRef.current) {
             if (hoveredCountryRef.current) {
               map.setFeatureState(
                 { source: 'africa-countries', id: hoveredCountryRef.current },
                 { hover: false }
               );
             }
-            if (name) {
+            if (isoA2) {
               map.setFeatureState(
-                { source: 'africa-countries', id: name },
+                { source: 'africa-countries', id: isoA2 },
                 { hover: true }
               );
             }
-            hoveredCountryRef.current = name || null;
+            hoveredCountryRef.current = isoA2 || null;
             if (setHoveredNameRef.current) {
               setHoveredNameRef.current(name || null);
             }
@@ -311,7 +313,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
           }
 
           if (onCountryClickRef.current) {
-            onCountryClickRef.current(feature.properties?.name || '');
+            onCountryClickRef.current(feature.properties?.iso_a2 || null);
           }
         }
       }

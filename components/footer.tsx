@@ -221,7 +221,7 @@ export default function Footer() {
                 <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
                   style={{ color: '#777', fontSize: '11px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                   className="hover:text-[#aaa]">
-                  Designed & Developed by Kenan William
+                  {t('credit')}
                 </a>
               </div>
             </div>
@@ -318,7 +318,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
                 style={{ color: '#777', fontSize: '10px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                 className="hover:text-[#aaa]">
-                Designed & Developed by Kenan William
+                {t('credit')}
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 interface ClientLogo {
   name: string
@@ -13,9 +14,9 @@ interface Category {
   logos: ClientLogo[]
 }
 
-const topRowCategories: Category[] = [
+const topRowCategories = [
   {
-    title: 'Development Partners',
+    titleKey: 'development_partners',
     logos: [
       { name: 'Gates Foundation', src: '/Gates_Foundation_Logo.svg', alt: 'Gates Foundation', href: 'https://www.gatesfoundation.org/' },
       { name: 'AGRA', src: '/AGRA.png', alt: 'AGRA', href: 'https://agra.org/' },
@@ -25,14 +26,14 @@ const topRowCategories: Category[] = [
     ]
   },
   {
-    title: 'Government',
+    titleKey: 'government',
     logos: [
       { name: 'MOA Kenya', src: '/moa-kenya-logo.png', alt: 'Ministry of Agriculture Kenya', href: 'https://kilimo.go.ke/' },
       { name: 'MOA Tanzania', src: '/moa-tanzania-logo.png', alt: 'Ministry of Agriculture Tanzania', href: 'https://www.kilimo.go.tz/' },
     ]
   },
   {
-    title: 'Regulators',
+    titleKey: 'regulators',
     logos: [
       { name: 'TOSCI', src: '/tosci-logo.jpg', alt: 'TOSCI', href: 'https://www.tosci.go.tz/' },
       { name: 'KEPHIS', src: '/kephis-logo.png', alt: 'KEPHIS', href: 'https://www.kephis.org/' },
@@ -42,16 +43,16 @@ const topRowCategories: Category[] = [
   }
 ]
 
-const bottomRowCategories: Category[] = [
+const bottomRowCategories = [
   {
-    title: 'Breeding Institutions',
+    titleKey: 'breeding_institutions',
     logos: [
       { name: 'TARI', src: '/tari-logo.png', alt: 'TARI', href: 'https://www.tari.go.tz/' },
       { name: 'KALRO', src: '/kalro-logo.png', alt: 'KALRO', href: 'https://www.kalro.org/' }, 
     ]
   },
   {
-    title: 'Private Sector',
+    titleKey: 'private_sector',
     logos: [
       { name: 'STAK', src: '/stak-logo.png', alt: 'STAK', href: 'https://stak.or.ke/' },
       { name: 'TASTA', src: '/tasta-logo.png', alt: 'TASTA', href: 'https://tasta.or.tz/' },
@@ -123,8 +124,13 @@ const CategoryBlock = ({ category }: { category: Category }) => (
 )
 
 export default function ClientLogos() {
-  const baseTop = Array(4).fill(topRowCategories).flat()
-  const baseBottom = Array(4).fill(bottomRowCategories).flat()
+  const t = useTranslations('ClientLogos')
+
+  const translatedTopRow = topRowCategories.map(cat => ({ title: t(cat.titleKey), logos: cat.logos }))
+  const translatedBottomRow = bottomRowCategories.map(cat => ({ title: t(cat.titleKey), logos: cat.logos }))
+
+  const baseTop = Array(4).fill(translatedTopRow).flat()
+  const baseBottom = Array(4).fill(translatedBottomRow).flat()
 
   const topRepeated = [...baseTop, ...baseTop]
   const bottomRepeated = [...baseBottom, ...baseBottom]

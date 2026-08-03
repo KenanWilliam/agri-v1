@@ -131,7 +131,8 @@
     "get_in_touch": "Get in Touch",
     "address": "Watermark Business Park, Karen\nP.O. Box 1720 - 00606, Nairobi",
     "copyright": "© {year} Agri Experience Ltd.",
-    "designed_by": "Designed & Developed by Kenan William"
+    "designed_by": "Designed & Developed by Kenan William",
+    "credit": "Designed & Developed by Kenan William"
   },
   "OurTeam": {
     "title": "Our Team",
@@ -1244,5 +1245,18 @@
     "root_title_template": "%s | Agri Experience",
     "root_desc": "Expert consultancy transforming agricultural value chains and seed systems across sub-Saharan Africa. Sustainable development for growing communities.",
     "root_og_alt": "Agri Experience - Agricultural Development"
+  },
+  "ClientLogos": {
+    "development_partners": "Development Partners",
+    "government": "Government",
+    "regulators": "Regulators",
+    "breeding_institutions": "Breeding Institutions",
+    "private_sector": "Private Sector"
+  },
+  "InteractiveMap": {
+    "activities": "Activities",
+    "outcomes": "Outcomes",
+    "deep_dive": "Deep Dive",
+    "full_report": "Full {country} report"
   }
 }

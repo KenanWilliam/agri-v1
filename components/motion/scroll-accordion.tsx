@@ -6,6 +6,7 @@ import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import { RollingText } from '@/components/ui/rolling-text'
+import { useLocale } from 'next-intl'
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -77,6 +78,7 @@ export function ScrollAccordion({
 function DesktopStickyAccordion({ title, items }: { title: string, items: any[] }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const tlRef = useRef<any>(null)
+  const locale = useLocale()
   
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -250,14 +252,15 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                           <div className="mt-2 lg:mt-4 xl:mt-6">
                             <div className="grid grid-cols-3 gap-1.5 lg:gap-3 xl:gap-4 w-3/5 lg:w-1/2 xl:w-3/5 mx-auto">
                               {[1, 2, 3, 5, 8, 13].map((num) => (
-                                <Image
-                                  key={num}
-                                  src={`/SDGs/SDG-${num}.svg`}
-                                  alt={`SDG ${num}`}
-                                  width={120}
-                                  height={120}
-                                  className="w-full h-auto shadow-md bg-white"
-                                />
+                                <div key={num} className="w-full aspect-square relative">
+                                  <Image
+                                    src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
+                                    alt={`SDG ${num}`}
+                                    fill
+                                    className="object-contain shadow-md bg-white"
+                                    unoptimized={locale === 'fr'}
+                                  />
+                                </div>
                               ))}
                             </div>
                           </div>
@@ -293,6 +296,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
 
 function MobileFallbackAccordion({ title, items }: { title: string, items: any[] }) {
   const [openItem, setOpenItem] = useState<number | null>(0)
+  const locale = useLocale()
 
   return (
     <section className="w-full relative py-20 bg-mist">
@@ -360,14 +364,15 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
                               </p>
                               <div className="grid grid-cols-3 gap-3 w-full">
                                 {[1, 2, 3, 5, 8, 13].map((num) => (
-                                  <Image
-                                    key={num}
-                                    src={`/SDGs/SDG-${num}.svg`}
-                                    alt={`SDG ${num}`}
-                                    width={100}
-                                    height={100}
-                                    className="w-full h-auto shadow-sm bg-white"
-                                  />
+                                  <div key={num} className="w-full aspect-square relative">
+                                    <Image
+                                      src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
+                                      alt={`SDG ${num}`}
+                                      fill
+                                      className="object-contain shadow-sm bg-white"
+                                      unoptimized={locale === 'fr'}
+                                    />
+                                  </div>
                                 ))}
                               </div>
                             </div>

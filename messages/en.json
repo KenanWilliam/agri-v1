@@ -8,6 +8,19 @@
     "resources": "Resources",
     "contact": "Contact Us"
   },
+  "ClientLogos": {
+    "development_partners": "Development Partners",
+    "government": "Government",
+    "regulators": "Regulators",
+    "breeding_institutions": "Breeding Institutions",
+    "private_sector": "Private Sector"
+  },
+  "InteractiveMap": {
+    "activities": "Activities",
+    "outcomes": "Outcomes",
+    "deep_dive": "Deep Dive",
+    "full_report": "Full {country} report"
+  },
   "Home": {
     "hero_title_1": "Cultivating Sustainable",
     "hero_title_2": "Agricultural & Seed Systems",
@@ -98,6 +111,7 @@
     "newsletter_desc": "Sign up for our newsletter to get actionable insights on African seed systems and value chains, right to your inbox.",
     "newsletter_desc_mobile": "Actionable insights on African seed systems, right to your inbox.",
     "subscribed": "You're subscribed — thank you.",
+    "credit": "Designed & Developed by Kenan William",
     "email_placeholder": "Enter your email",
     "our_work": "Our Work",
     "seed_systems": "Seed Systems",

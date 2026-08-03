@@ -21,6 +21,8 @@ import {
   X,
 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
+import { useTranslations, useLocale } from 'next-intl'
+import { getCountrySeeds, createGenericProjects } from './country-data'
 
 const InteractiveMapbox = dynamic(
   () => import('./map/interactive-mapbox').then((mod) => mod.InteractiveMapbox),
@@ -122,6 +124,7 @@ export const cityCoordinates: Record<string, [number, number]> = {
   'Ghana / regional': [-1.0, 8.0],
 }
 
+/*
 const countrySeeds: DetailedCountryRecord[] = [
   {
     name: 'Kenya',
@@ -671,9 +674,18 @@ const createGenericProjects = (country: DetailedCountryRecord): CountryProject[]
   ]
 }
 
-const buildCountryProjects = (country: DetailedCountryRecord): CountryProject[] => country.projectBlueprints ?? createGenericProjects(country)
+const buildCountryProjectsOriginal = (country: DetailedCountryRecord): CountryProject[] => country.projectBlueprints ?? createGenericProjects(country)
+*/
 
 export default function InteractiveMap() {
+  const t = useTranslations('InteractiveMap')
+  const locale = useLocale()
+  
+  const countrySeeds = useMemo(() => getCountrySeeds(locale), [locale])
+  const countriesData = useMemo(() => Object.fromEntries(countrySeeds.map((c) => [c.name, c])) as Record<string, DetailedCountryRecord>, [countrySeeds])
+  const countriesByGeoName = useMemo(() => Object.fromEntries(countrySeeds.map((c) => [c.geoName ?? c.name, c])) as Record<string, DetailedCountryRecord>, [countrySeeds])
+  
+  const buildCountryProjects = useCallback((country: DetailedCountryRecord): CountryProject[] => country.projectBlueprints ?? createGenericProjects(country, locale), [locale])
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
   const desktopDossierRef = useRef<HTMLDivElement>(null)
@@ -699,7 +711,7 @@ export default function InteractiveMap() {
 
   const activeProjects = useMemo(
     () => (selectedCountry ? buildCountryProjects(selectedCountry) : []),
-    [selectedCountry]
+    [selectedCountry, buildCountryProjects]
   )
   
   const closeCountryOverlay = () => {
@@ -718,13 +730,13 @@ export default function InteractiveMap() {
     }
   }
 
-  const handleCountryClickWrapper = (countryName: string | null) => {
-    if (!countryName) {
+  const handleCountryClickWrapper = (countryCode: string | null) => {
+    if (!countryCode) {
       closeCountryOverlay()
       return
     }
     
-    const country = countriesByGeoName[countryName] || countriesData[countryName]
+    const country = Object.values(countriesData).find(c => c.code === countryCode)
     if (country) {
       setSelectedCountry(country)
       setSelectedProjectIndex(null)
@@ -747,7 +759,7 @@ export default function InteractiveMap() {
               onCountryClick={handleCountryClickWrapper}
               setHoveredName={setHoveredName}
               setTooltipPos={updateTooltipPos}
-              selectedCountryName={selectedCountry?.name}
+              selectedCountryName={selectedCountry?.code}
               activeProjects={activeProjects}
               selectedProjectIndex={selectedProjectIndex}
               setSelectedProjectIndex={setSelectedProjectIndex}
@@ -852,7 +864,7 @@ export default function InteractiveMap() {
                     {/* Activities Card */}
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
                       <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
-                        <Target size={12} /> Activities
+                        <Target size={12} /> {t('activities')}
                       </div>
                       <ul className="space-y-2.5">
                         {activeProjects.map((project, i) => (
@@ -867,7 +879,7 @@ export default function InteractiveMap() {
                     {/* Outcomes Card */}
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
                       <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
-                        <Sparkles size={12} /> Outcomes
+                        <Sparkles size={12} /> {t('outcomes')}
                       </div>
                       <ul className="space-y-2.5">
                         {activeProjects.map((project, i) => (
@@ -886,8 +898,8 @@ export default function InteractiveMap() {
                     className="group flex items-center justify-between w-full rounded-xl bg-white/10 border border-white/20 p-4 text-white transition-all duration-300 hover:bg-white/20 hover:scale-[1.01]"
                   >
                     <div className="space-y-0.5">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">Deep Dive</div>
-                      <div className="text-sm font-medium">Full {selectedCountry.name} report</div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">{t('deep_dive')}</div>
+                      <div className="text-sm font-medium">{t('full_report', { country: selectedCountry.name })}</div>
                     </div>
                     <ArrowRight size={16} className="text-white/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
                   </Link>

@@ -8,6 +8,19 @@
     "resources": "Ressources",
     "contact": "Contactez-nous"
   },
+  "ClientLogos": {
+    "development_partners": "Partenaires de développement",
+    "government": "Gouvernement",
+    "regulators": "Régulateurs",
+    "breeding_institutions": "Établissements d'élevage",
+    "private_sector": "Secteur privé"
+  },
+  "InteractiveMap": {
+    "activities": "Activités",
+    "outcomes": "Résultats",
+    "deep_dive": "Plongée profonde",
+    "full_report": "Rapport complet sur {pays}"
+  },
   "Home": {
     "hero_title_1": "Cultiver le durable",
     "hero_title_2": "Systèmes agricoles et semenciers",
@@ -98,6 +111,7 @@
     "newsletter_desc": "Inscrivez-vous à notre newsletter pour obtenir des informations exploitables sur les systèmes semenciers et les chaînes de valeur africaines, directement dans votre boîte de réception.",
     "newsletter_desc_mobile": "Des informations exploitables sur les systèmes semenciers africains, directement dans votre boîte de réception.",
     "subscribed": "Vous êtes abonné — merci.",
+    "credit": "Conçu et développé par Kenan William",
     "email_placeholder": "Entrez votre email",
     "our_work": "Notre travail",
     "seed_systems": "Systèmes de semences",

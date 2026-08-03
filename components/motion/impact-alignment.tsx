@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Target } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 // ────────────────────────────────────────────
 // Data
@@ -57,13 +57,19 @@ function AccordionSlice({
   onHover,
   onClick,
   t,
+  locale,
 }: {
   card: ImpactCard;
   isActive: boolean;
   onHover: () => void;
   onClick: () => void;
   t: any;
+  locale: string;
 }) {
+  const num = card.id.replace('sdg-', '');
+  const bgImageUrl = card.bgImage ? card.bgImage.replace('/SDG-images/', `/SDG-images/en/`) : null;
+  const logoUrl = locale === 'fr' ? `/SDG-images/fr/${num}.webp` : card.image;
+
   return (
     <div
       onMouseEnter={onHover}
@@ -77,10 +83,10 @@ function AccordionSlice({
     >
       {/* ─── Background image placeholder ─── */}
       <div className="absolute inset-0 bg-mist overflow-hidden">
-        {card.bgImage ? (
+        {bgImageUrl ? (
           <div className="absolute inset-0">
             <Image
-              src={card.bgImage}
+              src={bgImageUrl}
               alt={t(card.shortTitle)}
               fill
               className="object-cover object-center"
@@ -112,13 +118,14 @@ function AccordionSlice({
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div layout="position" className="w-full flex items-center justify-center">
-            {card.image ? (
+            {logoUrl ? (
               <Image
-                src={card.image}
+                src={logoUrl}
                 alt={t(card.title)}
                 width={120}
                 height={120}
                 className="w-full h-auto object-contain"
+                unoptimized={locale === 'fr'}
               />
             ) : (
               <div
@@ -177,12 +184,14 @@ function AccordionRow({
   setActiveId,
   defaultId,
   t,
+  locale,
 }: {
   items: ImpactCard[];
   activeId: string;
   setActiveId: (id: string) => void;
   defaultId: string;
   t: any;
+  locale: string;
 }) {
   return (
     <div
@@ -197,6 +206,7 @@ function AccordionRow({
           onHover={() => setActiveId(card.id)}
           onClick={() => setActiveId(card.id)}
           t={t}
+          locale={locale}
         />
       ))}
     </div>
@@ -210,6 +220,7 @@ function AccordionRow({
 export default function ImpactAlignment() {
   const [activeSdg, setActiveSdg] = useState("");
   const t = useTranslations("OurImpact");
+  const locale = useLocale();
 
   return (
     <section className="w-full py-16 lg:py-16 bg-white relative overflow-hidden">
@@ -255,6 +266,7 @@ export default function ImpactAlignment() {
             setActiveId={setActiveSdg}
             defaultId={""}
             t={t}
+            locale={locale}
           />
         </div>
       </div>
