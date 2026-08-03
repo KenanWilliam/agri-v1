@@ -19,7 +19,7 @@
     "activities": "Activités",
     "outcomes": "Résultats",
     "deep_dive": "Plongée profonde",
-    "full_report": "Rapport complet sur {pays}"
+    "full_report": "Rapport complet sur {country}"
   },
   "Home": {
     "hero_title_1": "Cultiver le durable",
@@ -134,7 +134,7 @@
     "view_projects": "Voir nos projets",
     "get_in_touch": "Entrer en contact",
     "address": "Parc d'activités Watermark, Karen\nP.O. Boîte postale 1720 - 00606, Nairobi",
-    "copyright": "© {année} Agri Experience Ltd.",
+    "copyright": "© {year} Agri Experience Ltd.",
     "designed_by": "Conçu et développé par Kenan William"
   },
   "OurTeam": {
