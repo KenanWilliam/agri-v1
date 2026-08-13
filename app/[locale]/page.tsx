@@ -7,7 +7,7 @@ import { ArrowRight, TrendingUp, Users, Earth, Globe, Zap, Leaf, Shield, Award, 
 import { Link } from '@/i18n/routing'
 import WhyAgriExperience from '@/components/motion/why-agri-experience'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
 
 import gsap from 'gsap'
@@ -21,6 +21,7 @@ if (typeof window !== 'undefined') {
 export default function Home() {
   const t = useTranslations('Home')
   const tAgri = useTranslations('WhyAgriExperience')
+  const locale = useLocale()
   const [isDesktop, setIsDesktop] = useState(true)
 
   useEffect(() => {
@@ -66,8 +67,15 @@ export default function Home() {
 
     const container = sequenceWrapperRef.current;
     
-    const getScroll1 = () => Math.max(0, track1InnerRef.current!.scrollWidth - window.innerWidth);
-    const getScroll2 = () => Math.max(0, track2InnerRef.current!.scrollWidth - window.innerWidth);
+    const getScroll1 = () => {
+      // Safely access scrollWidth, returning 0 if the ref is unmounted during mobile view
+      if (!track1InnerRef.current) return 0;
+      return Math.max(0, track1InnerRef.current.scrollWidth - window.innerWidth);
+    };
+    const getScroll2 = () => {
+      if (!track2InnerRef.current) return 0;
+      return Math.max(0, track2InnerRef.current.scrollWidth - window.innerWidth);
+    };
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -161,31 +169,32 @@ export default function Home() {
       <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-hidden">
         
         {/* Premium Hero Section */}
-        <section ref={heroRef} className="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
+        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
           
           {/* Taller background to prevent revealing white space when translating down */}
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
-            <div className="absolute inset-0 bg-mist">
+            <div className="absolute inset-0 w-full h-full bg-mist">
                 <video
                   src="/Videos/wheat swaying in the wind.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  poster="/SDG-images/2.webp"
+                  poster={`/SDG-images/${locale}/2.webp`}
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 />
                 <Image 
-                  src="/SDG-images/2.webp" 
+                  src={`/SDG-images/${locale}/2.webp`}
                   alt="Agricultural landscape"
                   fill
+                  sizes="100vw"
                   priority
                   className="md:hidden object-cover object-center"
                 />
             </div>
           </div>
           
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-white from-[10%] via-white/80 via-[40%] to-transparent to-[75%] md:w-[80%] pointer-events-none"></div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/90 via-white/60 to-transparent md:bg-gradient-to-r md:from-white md:from-[10%] md:via-white/80 md:via-[40%] md:to-transparent md:to-[75%] md:w-[80%] pointer-events-none"></div>
           
           <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
             <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
@@ -241,7 +250,7 @@ export default function Home() {
                       </div>
                       <div className="flex flex-col text-left">
                         <div className="text-lg lg:text-xl font-bold text-[#1A4D2E] leading-none">{stat.value}</div>
-                        <div className="text-[9px] lg:text-[10px] font-bold tracking-[0.15em] text-gray-500 mt-1.5 whitespace-nowrap">{stat.label}</div>
+                        <div className="text-[10px] lg:text-[11px] font-bold tracking-[0.15em] text-gray-500 mt-1.5 whitespace-nowrap">{stat.label}</div>
                       </div>
                     </div>
                   ))}
@@ -332,7 +341,7 @@ export default function Home() {
             <section className="w-full py-16 lg:py-20 bg-deep-forest relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20"></div>
               <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-                <div className="flex flex-col lg:flex-row gap-16 lg:gap-16">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
                   <div className="lg:w-1/3 space-y-6">
                     <motion.div
                       initial={{ opacity: 0, x: -30 }}
@@ -372,8 +381,8 @@ export default function Home() {
         <section className="w-full py-16 lg:py-16 bg-mist relative z-20">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-16 space-y-4">
-              <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif font-bold tracking-tight">{t('trusted_leaders')}</h2>
-              <p className="text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
+              <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif font-bold tracking-tight">{t('trusted_leaders')}</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
                 {t('trusted_leaders_desc')}
               </p>
             </div>
@@ -382,7 +391,7 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-24 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
+        <section className="relative w-full py-14 sm:py-20 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>
@@ -408,7 +417,7 @@ export default function Home() {
                   whileInView={{ y: 0 }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   viewport={{ once: true }}
-                  className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed pb-4"
+                  className="text-base sm:text-lg lg:text-2xl text-white/80 font-light leading-relaxed pb-4"
                 >
                   {t('cta_desc')}
                 </motion.p>
@@ -423,7 +432,7 @@ export default function Home() {
               >
                 <Link
                   href="/contact"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 bg-primary-green text-white rounded-full font-bold text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-6 py-3.5 sm:px-10 sm:py-5 bg-primary-green text-white rounded-full font-bold text-base sm:text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
                 >
                   <RollingText>
                     {t('cta_btn_1')}
@@ -431,7 +440,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-6 py-3.5 sm:px-10 sm:py-5 border-2 border-white/30 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
                 >
                   <RollingText>
                     {t('cta_btn_2')}

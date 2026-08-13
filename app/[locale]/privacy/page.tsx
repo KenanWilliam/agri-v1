@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green">
             <Shield size={32} />
           </div>
-          <h1 className="text-5xl md:text-6xl font-serif text-deep-forest font-bold tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif text-deep-forest font-bold tracking-tight">
             {t('privacy_title')}
           </h1>
           <p className="text-charcoal/60 text-lg font-light">

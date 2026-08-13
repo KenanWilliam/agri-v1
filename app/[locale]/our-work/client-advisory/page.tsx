@@ -130,7 +130,7 @@ export default function ClientAdvisoryPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
                   {t('hero_title1')}
                   <span className="block text-accent-gold">{t('hero_title2')}</span>
                 </h1>
@@ -207,7 +207,7 @@ export default function ClientAdvisoryPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`rounded-[32px] border border-mist hover:border-accent-gold/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-8 lg:p-10 group relative overflow-hidden ${
+                    className={`rounded-[32px] border border-mist hover:border-accent-gold/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 group relative overflow-hidden ${
                       idx % 2 === 0 ? 'bg-mist' : 'bg-warm-earth/30'
                     }`}
                   >
@@ -351,7 +351,7 @@ export default function ClientAdvisoryPage() {
               <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-gold/[0.06] rounded-bl-full pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-accent-gold/[0.04] rounded-tr-full pointer-events-none" />
 
-              <div className="relative z-10 p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-12">
+              <div className="relative z-10 p-6 sm:p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-12">
                 <div className="flex-1 space-y-6">
                   <div className="inline-flex items-center gap-2 text-accent-gold font-bold text-sm tracking-[0.2em] uppercase">
                     <Leaf size={16} />

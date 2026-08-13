@@ -115,7 +115,7 @@ export default function OurTeamPage() {
             transition={{ duration: 0.8 }}
             className="space-y-8 text-center"
           >
-            <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
               {t('title')}
             </h1>
             <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
@@ -207,16 +207,16 @@ export default function OurTeamPage() {
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-6 right-6 lg:top-10 lg:right-10 z-20 w-16 h-16 rounded-full bg-[#FAFAFA] hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5"
+                className="absolute top-6 right-6 lg:top-10 lg:right-10 z-20 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-[#FAFAFA] hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5"
                 aria-label="Close modal"
               >
                 <X className="text-deep-forest" size={32} strokeWidth={1} />
               </button>
 
               {/* Left Side: Typography & Content */}
-              <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-hidden">
+              <div className="flex-1 p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
                 <div>
-                  <h2 className="text-6xl md:text-[6rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[0.85] tracking-tight mb-8">
+                  <h2 className="text-3xl sm:text-4xl md:text-[6rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[0.85] tracking-tight mb-8">
                     {selectedMember.name.split(' ')[0]}
                     <br />
                     {selectedMember.name.split(' ').slice(1).join(' ')}

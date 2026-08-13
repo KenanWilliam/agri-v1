@@ -34,7 +34,7 @@ export default function InsightsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
+              className="text-3xl sm:text-4xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
             >
               {t('title')}
             </motion.h1>

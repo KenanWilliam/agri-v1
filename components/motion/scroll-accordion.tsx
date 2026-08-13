@@ -257,6 +257,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                                     src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
                                     alt={`SDG ${num}`}
                                     fill
+                                    sizes="(max-width: 768px) 33vw, 20vw"
                                     className="object-contain shadow-md bg-white"
                                     unoptimized={locale === 'fr'}
                                   />
@@ -369,6 +370,7 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
                                       src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
                                       alt={`SDG ${num}`}
                                       fill
+                                      sizes="33vw"
                                       className="object-contain shadow-sm bg-white"
                                       unoptimized={locale === 'fr'}
                                     />

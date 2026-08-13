@@ -67,19 +67,18 @@ function AccordionSlice({
   locale: string;
 }) {
   const num = card.id.replace('sdg-', '');
-  const bgImageUrl = card.bgImage ? card.bgImage.replace('/SDG-images/', `/SDG-images/en/`) : null;
+  const bgImageUrl = card.bgImage ? card.bgImage.replace('/SDG-images/', `/SDG-images/${locale}/`) : null;
   const logoUrl = locale === 'fr' ? `/SDG-images/fr/${num}.webp` : card.image;
 
   return (
     <div
       onMouseEnter={onHover}
       onClick={onClick}
-      className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]`}
-      style={{
-        flexGrow: isActive ? 6 : 1,
-        flexShrink: isActive ? 0 : 1,
-        flexBasis: 0,
-      }}
+      className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-[500ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isActive 
+          ? 'h-[300px] lg:h-auto lg:flex-[6_0_0%]' 
+          : 'h-[72px] lg:h-auto lg:flex-[1_1_0%]'
+      }`}
     >
       {/* ─── Background image placeholder ─── */}
       <div className="absolute inset-0 bg-mist overflow-hidden">
@@ -89,6 +88,7 @@ function AccordionSlice({
               src={bgImageUrl}
               alt={t(card.shortTitle)}
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover object-center"
             />
           </div>
@@ -102,8 +102,30 @@ function AccordionSlice({
         )}
       </div>
 
-      {/* ─── SDG/Vision Logo: Dynamic Bookmark ─── */}
-      <div className="absolute inset-0 z-30 pointer-events-none">
+      {/* ─── Mobile collapsed: title bar ─── */}
+      <div className={`lg:hidden relative z-30 flex items-center gap-3 px-4 h-[72px] transition-opacity duration-300 ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div
+          className="w-14 h-14 rounded-none flex items-center justify-center shrink-0 overflow-hidden"
+          style={{ backgroundColor: card.color || "#1A4D2E" }}
+        >
+          {logoUrl ? (
+            <Image
+              src={logoUrl}
+              alt={t(card.title)}
+              width={56}
+              height={56}
+              className="w-full h-full object-contain"
+              unoptimized={locale === 'fr'}
+            />
+          ) : (
+            <Target className="text-white w-6 h-6" />
+          )}
+        </div>
+        <span className="text-white font-semibold text-sm drop-shadow-md">{t(card.shortTitle)}</span>
+      </div>
+
+      {/* ─── SDG/Vision Logo: Dynamic Bookmark (desktop) ─── */}
+      <div className="absolute inset-0 z-30 pointer-events-none hidden lg:block">
         <motion.div
           layout
           initial={false}
@@ -152,18 +174,37 @@ function AccordionSlice({
             {/* Black tint with transparency for text readability instead of gradient */}
             <div className="absolute inset-0 bg-black/40" />
 
-            {/* Content pinned to bottom */}
+            {/* Content vertically centered on mobile, pinned to bottom on desktop */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="absolute bottom-0 left-0 right-0 p-5 lg:p-7"
+              className="absolute inset-0 flex flex-col justify-center p-4 sm:p-5 lg:inset-auto lg:bottom-0 lg:left-0 lg:right-0 lg:block lg:p-7"
             >
-              <p className="text-[15px] text-white leading-relaxed font-semibold line-clamp-2 mb-3">
+              {/* Mobile: show SDG bookmark inline */}
+              <div className="flex items-center gap-3 mb-3 lg:hidden">
+                <div
+                  className="w-16 h-16 rounded-none flex items-center justify-center shrink-0 overflow-hidden shadow-lg"
+                  style={{ backgroundColor: card.color || "#1A4D2E" }}
+                >
+                  {logoUrl && (
+                    <Image
+                      src={logoUrl}
+                      alt={t(card.title)}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                      unoptimized={locale === 'fr'}
+                    />
+                  )}
+                </div>
+                <span className="text-white font-bold text-sm sm:text-base drop-shadow-md">{t(card.shortTitle)}</span>
+              </div>
+              <p className="text-[13px] sm:text-[15px] text-white leading-relaxed font-semibold line-clamp-3 sm:line-clamp-2 mb-2 sm:mb-3 drop-shadow-md">
                 {t(card.aspect)}
               </p>
-              <p className="text-[14px] text-white/80 leading-relaxed font-medium line-clamp-2">
+              <p className="text-[12px] sm:text-[14px] text-white/80 leading-relaxed font-medium line-clamp-3 sm:line-clamp-2 drop-shadow-md">
                 {t(card.examples)}
               </p>
             </motion.div>
@@ -195,7 +236,7 @@ function AccordionRow({
 }) {
   return (
     <div
-      className="flex flex-col lg:flex-row w-full lg:h-[520px] gap-1.5"
+      className="flex flex-col lg:flex-row w-full lg:h-[520px] gap-2 lg:gap-1.5"
       onMouseLeave={() => setActiveId(defaultId)}
     >
       {items.map((card) => (
@@ -204,7 +245,7 @@ function AccordionRow({
           card={card}
           isActive={activeId === card.id}
           onHover={() => setActiveId(card.id)}
-          onClick={() => setActiveId(card.id)}
+          onClick={() => setActiveId(activeId === card.id ? defaultId : card.id)}
           t={t}
           locale={locale}
         />

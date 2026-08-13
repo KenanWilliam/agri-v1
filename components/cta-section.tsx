@@ -71,7 +71,7 @@ export default function CtaSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full min-h-[90vh] bg-[#1A4D2E] text-white overflow-hidden flex flex-col items-center justify-center py-20"
+      className="relative w-full min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] bg-[#1A4D2E] text-white overflow-hidden flex flex-col items-center justify-center py-20"
     >
       {/* Organic Sun/Glow Background */}
       <motion.div 
@@ -127,7 +127,7 @@ export default function CtaSection() {
         <motion.div style={{ opacity }} className="flex flex-col sm:flex-row items-center gap-8 z-20">
           <MagneticButton 
             href="/contact" 
-            className="px-12 py-6 bg-white text-[#1A4D2E] rounded-full text-xl font-bold tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] transition-shadow duration-500"
+            className="px-8 py-4 sm:px-12 sm:py-6 bg-white text-[#1A4D2E] rounded-full text-base sm:text-xl font-bold tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] transition-shadow duration-500"
           >
             Start a Project
             <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
@@ -135,7 +135,7 @@ export default function CtaSection() {
 
           <Link
             href="/our-work"
-            className="group relative px-10 py-5 text-lg font-bold tracking-wide text-white overflow-hidden flex items-center justify-center"
+            className="group relative px-6 py-3 sm:px-10 sm:py-5 text-base sm:text-lg font-bold tracking-wide text-white overflow-hidden flex items-center justify-center"
           >
             <RollingText>
               View Case Studies

@@ -745,7 +745,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-[100dvh] min-h-[850px] lg:min-h-[1000px] flex flex-col overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-[100dvh] min-h-[600px] md:min-h-[850px] lg:min-h-[1000px] flex flex-col overflow-hidden">
       {/* Main Interactive Workspace — full bleed, edge to edge */}
       <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
@@ -837,9 +837,11 @@ export default function InteractiveMap() {
                     {selectedCountry.region}
                   </div>
                   <h3 className="text-white text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
-                    <span className="text-3xl lg:text-4xl leading-none">
-                      {String.fromCodePoint(...selectedCountry.code.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0)))}
-                    </span>
+                    <img 
+                      src={`https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/${selectedCountry.code.toUpperCase().split('').map(char => (char.charCodeAt(0) + 127397).toString(16)).join('-')}.png`}
+                      alt={`${selectedCountry.code} flag`} 
+                      className="w-8 h-8 lg:w-10 lg:h-10 object-contain shrink-0 drop-shadow-sm"
+                    />
                     {selectedCountry.name}
                   </h3>
                 </div>
@@ -856,7 +858,7 @@ export default function InteractiveMap() {
               <div className="mx-6 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto px-6 py-5 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto px-6 py-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="space-y-6">
 
                   {/* Activities Details */}

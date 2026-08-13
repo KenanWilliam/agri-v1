@@ -134,7 +134,7 @@ export default function StakeholderConveningsPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
                   {t('hero_title1')},
                   <br />
                   <span className="text-lighter-dark-green/70">{t('hero_title2')}.</span>

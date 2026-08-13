@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { BookOpen, Globe, Users, Handshake, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -9,17 +9,25 @@ export default function WhyAgriExperience() {
   const t = useTranslations('WhyAgriExperience');
   const sectionRef = useRef(null);
   
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start']
   });
 
   // Different parallax speeds for each card (moving slightly upwards as we scroll down)
-  const y1 = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [150, -150]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [120, -120]);
-  const y5 = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const y1 = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [80, -80]);
+  const y2 = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [150, -150]);
+  const y3 = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [40, -40]);
+  const y4 = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [120, -120]);
+  const y5 = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [60, -60]);
 
   const cards = [
     {
@@ -81,7 +89,7 @@ export default function WhyAgriExperience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight"
           >
             {t('title')}
           </motion.h2>
@@ -119,7 +127,7 @@ export default function WhyAgriExperience() {
                 <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
                   {item.icon}
                 </div>
-                <p className="text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
               </div>
               </motion.div>
             </motion.div>

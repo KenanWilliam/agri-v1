@@ -23,7 +23,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8 text-center"
             >
-              <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
                 {t('title')}
               </h1>
               <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 return (
                   <motion.div
                     key={item.key}
-                    className={`${item.colSpan} rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[300px] gap-6`}
+                    className={`${item.colSpan} rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[220px] md:min-h-[300px] gap-6`}
                   >
                     <div className="space-y-6">
                       <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0">
@@ -124,7 +124,7 @@ export default function AboutPage() {
         {/* CTA */}
         <section className="w-full py-16 lg:py-20 bg-mist">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
-            <h2 className="text-deep-forest text-4xl lg:text-5xl font-serif">{t('cta_title')}</h2>
+            <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif">{t('cta_title')}</h2>
             <p className="text-xl lg:text-2xl text-charcoal/80 font-light leading-relaxed">
               {t('cta_desc')}
             </p>

@@ -134,7 +134,7 @@ export default function CapacityBuildingPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
                   {t('hero_title1')}
                   <br />
                   <span className="text-charcoal/70">{t('hero_title2')}</span>
@@ -235,7 +235,7 @@ export default function CapacityBuildingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="group rounded-[32px] bg-mist border border-mist hover:border-charcoal/15 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-8 lg:p-10 flex flex-col"
+                    className="group rounded-[32px] bg-mist border border-mist hover:border-charcoal/15 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col"
                   >
                     {/* Icon with number badge */}
                     <div className="flex items-start justify-between mb-8">
@@ -347,7 +347,7 @@ export default function CapacityBuildingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative rounded-[32px] bg-gradient-to-br from-charcoal to-deep-forest p-12 lg:p-16 text-white overflow-hidden">
+                <div className="relative rounded-[32px] bg-gradient-to-br from-charcoal to-deep-forest p-6 sm:p-8 lg:p-16 text-white overflow-hidden">
                   {/* Texture */}
                   <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -514,7 +514,7 @@ export default function CapacityBuildingPage() {
                   <Leaf size={14} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]">
+                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]">
                   {t('cta_title')}
                 </h2>
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">

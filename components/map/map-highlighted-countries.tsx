@@ -59,7 +59,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
 
   // Handle selected state efficiently
   useEffect(() => {
-    if (!map || !map.isStyleLoaded()) return;
+    if (!map || !map.isStyleLoaded() || !map.getSource('africa-countries')) return;
 
     if (selectedCountryRef.current && selectedCountryRef.current !== selectedCountryName) {
       map.setFeatureState(
@@ -256,36 +256,48 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
                 // Adjust zoom mathematically so bounds fit in the smaller visible height
                 const ratio = visibleHeight / containerHeight;
                 camera.zoom = camera.zoom + Math.log2(ratio);
-              }
-              
-              // Cap zoom to prevent getting too close to tiny countries
-              camera.zoom = Math.min(camera.zoom, isMobile ? 5.5 : 5.5);
 
-              // Offset center UP by 25% to place the geographic center exactly in the visible strip
-              const offset: [number, number] = isMobile 
-                ? [0, -(containerHeight * 0.25)] 
-                : [0, 0];
+                // Cap zoom to prevent getting too close to tiny countries
+                camera.zoom = Math.min(camera.zoom, 5.5);
 
-              if (isZoomedInRef.current) {
-                map.easeTo({
-                  center: camera.center,
-                  zoom: camera.zoom,
-                  pitch,
-                  offset,
-                  duration: 1200,
-                  easing: smoothEasing,
-                  essential: true
+                // Mathematically shift the geographic center SOUTH so the country appears higher on screen.
+                // This replaces the buggy `offset` parameter which causes animation jerks in Mapbox.
+                import('mapbox-gl').then((mapboxgl) => {
+                  const S = 512 * Math.pow(2, camera.zoom!);
+                  // We want the country to appear 25% higher, so the camera must point 25% lower (South).
+                  const shiftY = (containerHeight * 0.25) / S;
+                  
+                  const merc = mapboxgl.default.MercatorCoordinate.fromLngLat(camera.center!);
+                  merc.y += shiftY;
+                  camera.center = merc.toLngLat();
+
+                  executeAnimation();
                 });
               } else {
-                map.flyTo({
-                  center: camera.center,
-                  zoom: camera.zoom,
-                  pitch,
-                  offset,
-                  duration: 2200,
-                  easing: smoothEasing,
-                  essential: true
-                });
+                camera.zoom = Math.min(camera.zoom, 5.5);
+                executeAnimation();
+              }
+
+              function executeAnimation() {
+                if (isZoomedInRef.current) {
+                  map.easeTo({
+                    center: camera.center,
+                    zoom: camera.zoom,
+                    pitch,
+                    duration: 1200,
+                    easing: smoothEasing,
+                    essential: true
+                  });
+                } else {
+                  map.flyTo({
+                    center: camera.center,
+                    zoom: camera.zoom,
+                    pitch,
+                    duration: 2200,
+                    easing: smoothEasing,
+                    essential: true
+                  });
+                }
               }
             }
 
@@ -295,21 +307,39 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
             
             const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
             const containerHeight = map.getContainer().clientHeight;
-            const offset: [number, number] = isMobile 
-              ? [0, -(containerHeight * 0.25)] 
-              : [0, 0];
+            
+            let targetCenter = e.lngLat;
+            let targetZoom = isMobile ? 3.5 : 4.5;
+            const pitch = isMobile ? 0 : 45;
 
-            map.flyTo({
-              center: e.lngLat,
-              zoom: isMobile ? 3.5 : 4.5,
-              offset,
-              essential: true,
-              pitch: isMobile ? 0 : 45,
-              duration: 2200,
-              easing: smoothEasing
-            });
-
-            isZoomedInRef.current = true;
+            if (isMobile) {
+              import('mapbox-gl').then((mapboxgl) => {
+                const S = 512 * Math.pow(2, targetZoom);
+                const shiftY = (containerHeight * 0.25) / S;
+                const merc = mapboxgl.default.MercatorCoordinate.fromLngLat(targetCenter);
+                merc.y += shiftY;
+                
+                map.flyTo({
+                  center: merc.toLngLat(),
+                  zoom: targetZoom,
+                  essential: true,
+                  pitch,
+                  duration: 2200,
+                  easing: smoothEasing
+                });
+                isZoomedInRef.current = true;
+              });
+            } else {
+              map.flyTo({
+                center: targetCenter,
+                zoom: targetZoom,
+                essential: true,
+                pitch,
+                duration: 2200,
+                easing: smoothEasing
+              });
+              isZoomedInRef.current = true;
+            }
           }
 
           if (onCountryClickRef.current) {

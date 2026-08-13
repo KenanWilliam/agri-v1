@@ -80,7 +80,7 @@ export default function OurWorkPage() {
                   <Leaf size={18} />
                   {t('practice')}
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
                   {t('title')}
                 </h1>
               </motion.div>
@@ -150,7 +150,7 @@ export default function OurWorkPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
                       whileHover={{ y: -5 }}
-                      className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 group cursor-pointer`}
+                      className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[300px] md:min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 group cursor-pointer`}
                     >
                       <div className="space-y-8">
                         {/* Top icon and arrow */}

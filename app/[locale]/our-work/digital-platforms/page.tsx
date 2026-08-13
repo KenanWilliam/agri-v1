@@ -111,7 +111,7 @@ export default function DigitalPlatformsPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
                   {t('hero_title')}
                 </h1>
                 <p className="text-primary-green font-medium text-lg tracking-wide">
@@ -171,7 +171,7 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
                 Platform Deep Dive
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
@@ -190,7 +190,7 @@ export default function DigitalPlatformsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-8 lg:p-10 flex flex-col ${
+                    className={`rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col ${
                       idx === 0 ? 'md:col-span-2 md:flex-row md:items-center md:gap-12' : ''
                     }`}
                   >
@@ -303,7 +303,7 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
                 {t('why_title')}
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl mx-auto text-lg">
@@ -337,7 +337,7 @@ export default function DigitalPlatformsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="bg-white rounded-[32px] p-8 lg:p-10 border border-transparent hover:border-primary-green/20 hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
+                    className="bg-white rounded-[32px] p-6 sm:p-8 lg:p-10 border border-transparent hover:border-primary-green/20 hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
                   >
                     <div className="w-14 h-14 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green mb-6">
                       <Icon size={26} />
@@ -384,7 +384,7 @@ export default function DigitalPlatformsPage() {
                   <MonitorSmartphone size={14} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
+                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>

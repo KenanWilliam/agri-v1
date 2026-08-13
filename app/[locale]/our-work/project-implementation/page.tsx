@@ -144,7 +144,7 @@ export default function ProjectImplementationPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-deep-forest font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
@@ -250,10 +250,10 @@ export default function ProjectImplementationPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="rounded-[32px] bg-mist border border-mist hover:border-deep-forest/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-8 lg:p-10 group"
+                    className="rounded-[32px] bg-gradient-to-br from-deep-forest via-deep-forest to-deep-forest/95 p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden sticky top-32"
                   >
                     {/* Icon */}
-                    <div className="w-14 h-14 rounded-2xl bg-deep-forest/[0.07] flex items-center justify-center text-deep-forest mb-6 group-hover:bg-deep-forest group-hover:text-white transition duration-200">
+                    <div className="w-14 h-14 rounded-2xl bg-white/[0.1] flex items-center justify-center text-white mb-6 transition duration-200">
                       <Icon size={26} />
                     </div>
 
@@ -411,7 +411,7 @@ export default function ProjectImplementationPage() {
               {/* Radial glow */}
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-green/10 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
 
-              <div className="relative z-10 p-10 lg:p-16">
+              <div className="relative z-10 p-6 sm:p-8 lg:p-16">
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
                   {/* Left content */}
                   <div className="flex-1 space-y-8">

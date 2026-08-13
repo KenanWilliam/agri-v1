@@ -56,7 +56,7 @@ export default function OurImpactPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">
-            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-white">
               {t('cta_title')}
             </h2>
             <p className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed">

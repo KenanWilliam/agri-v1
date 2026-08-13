@@ -109,7 +109,7 @@ const methodology = [
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-primary-blue font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>

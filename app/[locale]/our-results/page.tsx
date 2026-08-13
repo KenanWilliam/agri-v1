@@ -43,7 +43,7 @@ export default function OurResultsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
+              className="text-3xl sm:text-4xl lg:text-7xl font-serif font-bold text-deep-forest tracking-tight"
             >
               {t('title')}
             </motion.h1>
@@ -67,7 +67,7 @@ export default function OurResultsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest mb-6">
                 {t('downloads_title')}
               </h2>
               <p className="text-lg text-charcoal/80 font-light max-w-3xl mx-auto leading-relaxed">
@@ -82,7 +82,7 @@ export default function OurResultsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.05 }}
-                  className="p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
+                  className="p-6 sm:p-8 lg:p-10 rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200"
                 >
                   <h3 className="text-xl font-serif font-bold text-deep-forest mb-4">{download.title}</h3>
                   <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{download.client}</p>
@@ -122,7 +122,7 @@ export default function OurResultsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest">
                 {t('examples_title')}
               </h2>
             </motion.div>
@@ -134,7 +134,7 @@ export default function OurResultsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="bg-white rounded-[32px] p-8 lg:p-10 border border-mist shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 space-y-6"
+                  className="bg-white rounded-[32px] p-6 sm:p-8 lg:p-10 border border-mist shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 space-y-6"
                 >
                   <h3 className="text-xl font-serif font-bold text-deep-forest">{assignment.title}</h3>
                   <div className="space-y-4 text-sm text-charcoal/80 font-light leading-relaxed">
@@ -165,7 +165,7 @@ export default function OurResultsPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">
-            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-white">
               {t('cta_title')}
             </h2>
             <p className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed">

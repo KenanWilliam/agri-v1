@@ -19,6 +19,26 @@ import LiquidGlass from './liquid-glass'
 import {useTranslations} from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
 
+const AnimatedHamburger = ({ isOpen }: { isOpen: boolean }) => (
+  <div className="relative w-6 h-6 flex flex-col justify-center items-center overflow-hidden">
+    <motion.span
+      animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="absolute w-5 h-[2px] bg-current rounded-full"
+    />
+    <motion.span
+      animate={isOpen ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+      className="absolute w-5 h-[2px] bg-current rounded-full"
+    />
+    <motion.span
+      animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="absolute w-5 h-[2px] bg-current rounded-full"
+    />
+  </div>
+);
+
 export default function Header() {
   const t = useTranslations('Header')
   const [isOpen, setIsOpen] = useState(false)
@@ -77,7 +97,7 @@ export default function Header() {
   return (
     <>
       <LiquidGlass 
-        className="sticky top-0 z-50 flex justify-center items-center h-[var(--header-height)] w-full"
+        className={`sticky top-0 z-[80] flex justify-center items-center h-[var(--header-height)] w-full transition-colors duration-300 ${isOpen ? 'bg-white' : ''}`}
       blurAmount={0.25} 
       elasticity={0}
       displacementScale={100}
@@ -202,7 +222,7 @@ export default function Header() {
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <AnimatedHamburger isOpen={isOpen} />
             </button>
           </div>
         </div>
@@ -210,71 +230,92 @@ export default function Header() {
 
       </LiquidGlass>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Sidebar */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="fixed top-[80px] left-4 right-4 bg-white rounded-[2rem] p-6 lg:hidden shadow-2xl border border-black/5 z-[60]"
-          >
-            <nav className="flex flex-col gap-2">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => { setIsOpen(false); }}
-                    className={`px-6 py-4 text-lg font-medium rounded-full transition-colors duration-200 ${
-                      isActive 
-                        ? 'text-deep-forest bg-black/5' 
-                        : 'text-charcoal hover:bg-black/5'
-                    }`}
-                  >
-                    {t(item.key as any)}
-                  </Link>
-                )
-              })}
-              <hr className="my-2 border-black/10" />
-              
-              <div className={`flex justify-center gap-2 py-2 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
-                {[
-                  { code: 'en', label: 'English' },
-                  { code: 'fr', label: 'Français' }
-                ].map(loc => {
-                  const isActive = loc.code === currentLocale;
-                  return (
-                    <button
-                      key={loc.code}
-                      onClick={() => {
-                        if (!isActive) {
-                          startTransition(() => {
-                            router.replace(pathname, { locale: loc.code as any });
-                          });
-                          setIsOpen(false);
-                        }
-                      }}
-                      className={`text-sm font-bold px-4 py-2 rounded-full transition-all ${isActive ? 'bg-deep-forest text-white shadow-sm' : 'text-charcoal hover:bg-black/5'}`}
-                    >
-                      {loc.label}
-                    </button>
-                  )
-                })}
-              </div>
+          <>
+            {/* Frosted Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-deep-forest/40 backdrop-blur-sm z-[60] lg:hidden"
+            />
+            
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[320px] bg-white shadow-2xl z-[70] lg:hidden flex flex-col overflow-hidden rounded-none border-l border-white/20"
+            >
 
-              <Link
-                href="/contact"
-                onClick={() => { setIsOpen(false); }}
-                className="group relative overflow-hidden w-full py-4 bg-deep-forest text-white rounded-full font-medium text-center shadow-md flex items-center justify-center"
-              >
-                <RollingText>
-                  {t('contact')}
-                </RollingText>
-              </Link>
-            </nav>
-          </motion.div>
+              {/* Sidebar Content */}
+              <div className="flex-1 overflow-y-auto px-6 pt-24 pb-6 flex flex-col">
+                <nav className="flex flex-col gap-1.5">
+                  {navItems.map((item) => {
+                    const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => { setIsOpen(false); }}
+                        className={`px-4 py-3.5 text-[15px] font-semibold rounded-2xl transition-all duration-200 flex items-center justify-between ${
+                          isActive 
+                            ? 'text-deep-forest bg-[#F1F6F3]' 
+                            : 'text-charcoal/80 hover:text-deep-forest hover:bg-black/5'
+                        }`}
+                      >
+                        {t(item.key as any)}
+                        {isActive && <div className="w-1.5 h-1.5 rounded-full bg-primary-green" />}
+                      </Link>
+                    )
+                  })}
+                </nav>
+
+                <div className="mt-auto pt-8 pb-6">
+                  {/* Compact Language Toggle */}
+                  <div className={`flex items-center justify-center p-1 bg-black/5 rounded-full mb-6 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+                    {[
+                      { code: 'en', label: 'English' },
+                      { code: 'fr', label: 'Français' }
+                    ].map(loc => {
+                      const isActive = loc.code === currentLocale;
+                      return (
+                        <button
+                          key={loc.code}
+                          onClick={() => {
+                            if (!isActive) {
+                              startTransition(() => {
+                                router.replace(pathname, { locale: loc.code as any });
+                              });
+                              setIsOpen(false);
+                            }
+                          }}
+                          className={`flex-1 text-[13px] font-bold py-2.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal'}`}
+                        >
+                          {loc.label}
+                        </button>
+                      )
+                    })}
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    onClick={() => { setIsOpen(false); }}
+                    className="group relative overflow-hidden w-full py-4 bg-deep-forest text-white rounded-2xl text-[15px] font-semibold text-center shadow-lg flex items-center justify-center transition-transform active:scale-[0.98]"
+                  >
+                    <RollingText>
+                      {t('contact')}
+                    </RollingText>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
