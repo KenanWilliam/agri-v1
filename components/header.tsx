@@ -20,21 +20,21 @@ import {useTranslations} from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
 
 const AnimatedHamburger = ({ isOpen }: { isOpen: boolean }) => (
-  <div className="relative w-6 h-6 flex flex-col justify-center items-center overflow-hidden">
+  <div className="relative w-6 h-6 flex flex-col justify-center items-center">
     <motion.span
       animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="absolute w-5 h-[2px] bg-current rounded-full"
+      className="absolute w-5 h-[2px] bg-deep-forest rounded-full"
     />
     <motion.span
       animate={isOpen ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="absolute w-5 h-[2px] bg-current rounded-full"
+      className="absolute w-5 h-[2px] bg-deep-forest rounded-full"
     />
     <motion.span
       animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="absolute w-5 h-[2px] bg-current rounded-full"
+      className="absolute w-5 h-[2px] bg-deep-forest rounded-full"
     />
   </div>
 );

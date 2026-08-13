@@ -838,7 +838,7 @@ export default function InteractiveMap() {
                   </div>
                   <h3 className="text-white text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
                     <img 
-                      src={`https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/${selectedCountry.code.toUpperCase().split('').map(char => (char.charCodeAt(0) + 127397).toString(16)).join('-')}.png`}
+                      src={`/flags/${selectedCountry.code.toLowerCase()}.png`}
                       alt={`${selectedCountry.code} flag`} 
                       className="w-8 h-8 lg:w-10 lg:h-10 object-contain shrink-0 drop-shadow-sm"
                     />
