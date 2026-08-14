@@ -180,15 +180,15 @@ export default function Home() {
                   loop
                   muted
                   playsInline
-                  poster={`/SDG-images/${locale}/2.webp`}
+                  poster="/hero-bg.png"
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 />
                 <Image 
-                  src={`/SDG-images/${locale}/2.webp`}
+                  src="/hero-bg.png"
                   alt="Agricultural landscape"
                   fill
                   sizes="100vw"
-                  priority
+                  loading="eager"
                   className="md:hidden object-cover object-center"
                 />
             </div>
