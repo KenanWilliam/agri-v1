@@ -304,26 +304,35 @@ export default function LiquidGlass({
   const mouseOffset = externalMouseOffset || internalMouseOffset
 
   // Internal mouse tracking
+  const rafRef = useRef<number | null>(null)
+  
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      const container = mouseContainer?.current || glassRef.current
-      if (!container) {
-        return
-      }
+      if (rafRef.current) return;
 
-      const rect = container.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
+      rafRef.current = requestAnimationFrame(() => {
+        const container = mouseContainer?.current || glassRef.current
+        if (!container) {
+          rafRef.current = null;
+          return
+        }
 
-      setInternalMouseOffset({
-        x: ((e.clientX - centerX) / rect.width) * 100,
-        y: ((e.clientY - centerY) / rect.height) * 100,
-      })
+        const rect = container.getBoundingClientRect()
+        const centerX = rect.left + rect.width / 2
+        const centerY = rect.top + rect.height / 2
 
-      setInternalGlobalMousePos({
-        x: e.clientX,
-        y: e.clientY,
-      })
+        setInternalMouseOffset({
+          x: ((e.clientX - centerX) / rect.width) * 100,
+          y: ((e.clientY - centerY) / rect.height) * 100,
+        })
+
+        setInternalGlobalMousePos({
+          x: e.clientX,
+          y: e.clientY,
+        })
+        
+        rafRef.current = null;
+      });
     },
     [mouseContainer],
   )

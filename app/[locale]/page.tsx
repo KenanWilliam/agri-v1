@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, TrendingUp, Users, Earth, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target, Briefcase, Building2 } from 'lucide-react'
@@ -22,17 +22,6 @@ export default function Home() {
   const t = useTranslations('Home')
   const tAgri = useTranslations('WhyAgriExperience')
   const locale = useLocale()
-  const [isDesktop, setIsDesktop] = useState(true)
-
-  useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768)
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
-  const shouldAnimate = isDesktop && !prefersReducedMotion
 
   const heroRef = useRef<HTMLElement>(null)
   const heroBgRef = useRef<HTMLDivElement>(null)
@@ -44,90 +33,101 @@ export default function Home() {
 
   // Effect 1: Hero Parallax
   useGSAP(() => {
-    if (!shouldAnimate || !heroRef.current || !heroBgRef.current) return;
+    if (!heroRef.current || !heroBgRef.current) return;
 
-    // Parallax the background (slides down up to 20vh) and slight zoom
-    gsap.to(heroBgRef.current, {
-      y: () => window.innerHeight * 0.2,
-      scale: 1.05,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 0,
-        end: "bottom top",
-        scrub: 1.5,
-        invalidateOnRefresh: true,
-      }
+    let mm = gsap.matchMedia();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      // Parallax the background (slides down up to 20vh) and slight zoom
+      gsap.to(heroBgRef.current, {
+        y: () => window.innerHeight * 0.2,
+        scale: 1.05,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 0,
+          end: "bottom top",
+          scrub: 1.5,
+          invalidateOnRefresh: true,
+        }
+      });
     });
-  }, [shouldAnimate])
+
+    return () => mm.revert();
+  }, [])
 
   // Effect 2: Multi-step Pinned Horizontal Scroll with Parallax Overlap
   useGSAP(() => {
-    if (!shouldAnimate || !sequenceWrapperRef.current || !track1Ref.current || !track1InnerRef.current || !track2Ref.current || !track2InnerRef.current) return;
+    if (!sequenceWrapperRef.current || !track1Ref.current || !track1InnerRef.current || !track2Ref.current || !track2InnerRef.current) return;
 
-    const container = sequenceWrapperRef.current;
+    let mm = gsap.matchMedia();
     
-    const getScroll1 = () => {
-      // Safely access scrollWidth, returning 0 if the ref is unmounted during mobile view
-      if (!track1InnerRef.current) return 0;
-      return Math.max(0, track1InnerRef.current.scrollWidth - window.innerWidth);
-    };
-    const getScroll2 = () => {
-      if (!track2InnerRef.current) return 0;
-      return Math.max(0, track2InnerRef.current.scrollWidth - window.innerWidth);
-    };
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const container = sequenceWrapperRef.current;
+      
+      const getScroll1 = () => {
+        // Safely access scrollWidth, returning 0 if the ref is unmounted during mobile view
+        if (!track1InnerRef.current) return 0;
+        return Math.max(0, track1InnerRef.current.scrollWidth - window.innerWidth);
+      };
+      const getScroll2 = () => {
+        if (!track2InnerRef.current) return 0;
+        return Math.max(0, track2InnerRef.current.scrollWidth - window.innerWidth);
+      };
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: () => `+=${getScroll1() + getScroll2() + window.innerWidth}`, 
-        scrub: 1.5,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: () => `+=${getScroll1() + getScroll2() + window.innerWidth}`, 
+          scrub: 1.5,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      const scroll1 = getScroll1();
+      const scroll2 = getScroll2();
+      const ratio1 = scroll1 > 0 ? scroll1 / window.innerWidth : 0.1;
+      const ratio2 = scroll2 > 0 ? scroll2 / window.innerWidth : 0.1;
+
+      tl.to(track1InnerRef.current, {
+        x: () => -getScroll1(),
+        ease: "none",
+        duration: ratio1
+      });
+
+      tl.to(track1Ref.current, {
+        x: () => -window.innerWidth * 0.3,
+        ease: "power2.inOut",
+        duration: 0.8
+      }, "cover");
+
+      tl.fromTo(track2Ref.current, {
+        x: "100%"
+      }, {
+        x: "0%",
+        ease: "power2.inOut",
+        duration: 0.8
+      }, "cover");
+
+      tl.to(track2InnerRef.current, {
+        x: () => -getScroll2(),
+        ease: "none",
+        duration: ratio2
+      });
+
+      const handleRefresh = () => ScrollTrigger.refresh();
+      window.addEventListener('resize', handleRefresh);
+      
+      return () => {
+        window.removeEventListener('resize', handleRefresh);
+        tl.kill();
       }
     });
 
-    const scroll1 = getScroll1();
-    const scroll2 = getScroll2();
-    const ratio1 = scroll1 > 0 ? scroll1 / window.innerWidth : 0.1;
-    const ratio2 = scroll2 > 0 ? scroll2 / window.innerWidth : 0.1;
-
-    tl.to(track1InnerRef.current, {
-      x: () => -getScroll1(),
-      ease: "none",
-      duration: ratio1
-    });
-
-    tl.to(track1Ref.current, {
-      x: () => -window.innerWidth * 0.3,
-      ease: "power2.inOut",
-      duration: 0.8
-    }, "cover");
-
-    tl.fromTo(track2Ref.current, {
-      x: "100%"
-    }, {
-      x: "0%",
-      ease: "power2.inOut",
-      duration: 0.8
-    }, "cover");
-
-    tl.to(track2InnerRef.current, {
-      x: () => -getScroll2(),
-      ease: "none",
-      duration: ratio2
-    });
-
-    const handleRefresh = () => ScrollTrigger.refresh();
-    window.addEventListener('resize', handleRefresh);
-    
-    return () => {
-      window.removeEventListener('resize', handleRefresh);
-      tl.kill();
-    }
-  }, [shouldAnimate])
+    return () => mm.revert();
+  }, [])
 
   const beliefs = [
     {
@@ -166,7 +166,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-hidden">
+      <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-clip">
         
         {/* Premium Hero Section */}
         <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
@@ -180,7 +180,12 @@ export default function Home() {
                   loop
                   muted
                   playsInline
-                  poster="/hero-bg.png"
+                  onCanPlay={() => {
+                    if (!(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 />
                 <Image 
@@ -260,8 +265,8 @@ export default function Home() {
           </div>
         </section>
 
-        {shouldAnimate ? (
-          // Pinned Horizontal Sequence Wrapper (Removed static negative margins)
+        <div className="hidden md:motion-safe:block">
+          {/* Pinned Horizontal Sequence Wrapper */}
           <div ref={sequenceWrapperRef} className="relative z-20 bg-mist">
             <div className="relative h-[100vh] w-full overflow-hidden">
                 
@@ -332,8 +337,10 @@ export default function Home() {
                 
             </div>
           </div>
-        ) : (
-          // Vertical Fallback for Mobile / Reduced Motion (Removed static negative margins)
+        </div>
+
+        <div className="block md:motion-safe:hidden">
+          {/* Vertical Fallback for Mobile / Reduced Motion */}
           <div className="relative z-20 bg-mist">
             <WhyAgriExperience />
             
@@ -353,21 +360,23 @@ export default function Home() {
                     </motion.div>
                   </div>
 
-                  <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="w-full lg:w-2/3 flex flex-col sm:grid sm:grid-cols-2 gap-4 md:gap-6">
                     {beliefs.map((belief, idx) => (
                       <motion.div
                         key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.15 }}
-                        className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors"
+                        initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-colors flex items-start gap-4 md:gap-5"
                       >
-                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                        <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center mt-1">
                           {belief.icon}
                         </div>
-                        <h3 className="text-xl font-serif text-white mb-3">{belief.title}</h3>
-                        <p className="text-white/70 font-light leading-relaxed">{belief.text}</p>
+                        <div className="flex flex-col">
+                          <h3 className="text-xl font-serif text-white mb-2">{belief.title}</h3>
+                          <p className="text-white/70 font-light text-sm leading-relaxed">{belief.text}</p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -375,12 +384,12 @@ export default function Home() {
               </div>
             </section>
           </div>
-        )}
+        </div>
 
         {/* Testimonials (Normal Vertical Flow) */}
         <section className="w-full py-16 lg:py-16 bg-mist relative z-20">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
-            <div className="text-center mb-16 space-y-4">
+            <div className="text-center mb-8 md:mb-16 space-y-4">
               <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif font-bold tracking-tight">{t('trusted_leaders')}</h2>
               <p className="text-base sm:text-lg lg:text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
                 {t('trusted_leaders_desc')}
@@ -391,33 +400,33 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-14 sm:py-20 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
+        <section className="relative w-full py-10 sm:py-20 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>
           </div>
           
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
-            <div className="flex flex-col items-center">
-              <div className="overflow-hidden mb-4">
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
+            <div className="flex flex-col items-center gap-4 lg:gap-8">
+              <div className="overflow-hidden">
                 <motion.h2 
                   initial={{ y: "100%" }}
                   whileInView={{ y: 0 }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   viewport={{ once: true }}
-                  className="text-white pb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight"
                 >
                   {t('cta_title')}
                 </motion.h2>
               </div>
               
-              <div className="overflow-hidden mb-8">
+              <div className="overflow-hidden">
                 <motion.p 
                   initial={{ y: "100%" }}
                   whileInView={{ y: 0 }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   viewport={{ once: true }}
-                  className="text-base sm:text-lg lg:text-2xl text-white/80 font-light leading-relaxed pb-4"
+                  className="text-base sm:text-lg lg:text-2xl text-white/80 font-light leading-relaxed"
                 >
                   {t('cta_desc')}
                 </motion.p>
@@ -428,11 +437,11 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="flex flex-col sm:flex-row gap-6 justify-center"
+                className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center mt-2 lg:mt-4"
               >
                 <Link
                   href="/contact"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-6 py-3.5 sm:px-10 sm:py-5 bg-primary-green text-white rounded-full font-bold text-base sm:text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-4 py-3 sm:px-10 sm:py-5 bg-primary-green text-white rounded-full font-bold text-xs sm:text-lg transition duration-200 shadow-2xl shadow-primary-green/20"
                 >
                   <RollingText>
                     {t('cta_btn_1')}
@@ -440,7 +449,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-6 py-3.5 sm:px-10 sm:py-5 border-2 border-white/30 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
+                  className="group relative overflow-hidden inline-flex items-center justify-center px-4 py-3 sm:px-10 sm:py-5 border-2 border-white/30 text-white rounded-full font-bold text-xs sm:text-lg hover:bg-white/10 transition duration-200 backdrop-blur-sm"
                 >
                   <RollingText>
                     {t('cta_btn_2')}

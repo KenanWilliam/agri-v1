@@ -36,7 +36,7 @@ export default function PdfPreview({ pdfUrl }: { pdfUrl: string }) {
     >
       <div
         ref={ref}
-        className="relative w-full overflow-hidden bg-white aspect-[4/3] lg:aspect-[1/1.2]"
+        className="relative w-full overflow-hidden bg-white aspect-[1/1.2]"
       >
         {/* Skeleton shimmer */}
         {!loaded && (

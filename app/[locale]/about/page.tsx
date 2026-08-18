@@ -1,13 +1,80 @@
 'use client'
+import { useState } from 'react'
 import { RollingText } from '@/components/ui/rolling-text';
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Award, Heart, Handshake, Users, BookOpen, ShieldCheck, Target, Leaf, ArrowRight, TrendingUp, Shield, Zap, Globe, BarChart, MonitorSmartphone } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import OfficePlantsGallery from '@/components/motion/office-plants-gallery'
 import { ScrollAccordion } from '@/components/motion/scroll-accordion'
 import { useTranslations } from 'next-intl'
+
+const expertiseItems = [
+  { key: '0', icon: TrendingUp },
+  { key: '1', icon: BarChart },
+  { key: '2', icon: Shield },
+  { key: '3', icon: Users },
+  { key: '4', icon: BookOpen },
+  { key: '5', icon: MonitorSmartphone },
+  { key: '6', icon: Target },
+]
+
+function ExpertiseAccordion({ t }: { t: ReturnType<typeof useTranslations<'About'>> }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+
+  return (
+    <div className="md:hidden flex flex-col divide-y divide-gray-100">
+      {expertiseItems.map((item, idx) => {
+        const Icon = item.icon
+        const isOpen = openIndex === idx
+        return (
+          <div key={item.key}>
+            <button
+              onClick={() => setOpenIndex(isOpen ? null : idx)}
+              className="w-full flex items-center gap-4 py-5 text-left"
+            >
+              <span className="text-xs font-bold text-primary-green/60 tabular-nums w-5 shrink-0">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
+                <Icon className="text-primary-green" size={20} />
+              </div>
+              <span className="flex-1 font-serif text-deep-forest text-lg font-medium tracking-tight">
+                {t(`expertise_cards.${item.key}.title`)}
+              </span>
+              <motion.div
+                animate={{ rotate: isOpen ? 45 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="shrink-0 w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" className="text-charcoal/60">
+                  <line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </motion.div>
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  className="overflow-hidden"
+                >
+                  <p className="pl-[3.75rem] pr-4 pb-5 text-sm text-charcoal/70 leading-relaxed">
+                    {t(`expertise_cards.${item.key}.desc`)}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 export default function AboutPage() {
   const t = useTranslations('About')
@@ -48,10 +115,10 @@ export default function AboutPage() {
         {/* Bento Expertise Section */}
         <section className="w-full py-16 lg:py-16 bg-white relative border-t border-mist">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 md:gap-8">
               <div className="max-w-2xl space-y-4">
                 <h2 className="text-deep-forest">{t('expertise_title')}</h2>
-                <p className="text-xl text-charcoal/70 font-light">
+                <p className="text-base md:text-xl text-charcoal/70 font-light">
                   {t('expertise_desc')}
                 </p>
               </div>
@@ -60,7 +127,8 @@ export default function AboutPage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* Desktop: Bento Grid */}
+            <div className="hidden md:grid grid-cols-12 gap-6">
               {[
                 { key: '0', colSpan: 'md:col-span-7', icon: TrendingUp },
                 { key: '1', colSpan: 'md:col-span-5', icon: BarChart },
@@ -74,7 +142,7 @@ export default function AboutPage() {
                 return (
                   <motion.div
                     key={item.key}
-                    className={`${item.colSpan} rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[220px] md:min-h-[300px] gap-6`}
+                    className={`${item.colSpan} rounded-3xl bg-white border border-gray-100 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between min-h-[300px] gap-6`}
                   >
                     <div className="space-y-6">
                       <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0">
@@ -94,6 +162,9 @@ export default function AboutPage() {
                 )
               })}
             </div>
+
+            {/* Mobile: Accordion */}
+            <ExpertiseAccordion t={t} />
           </div>
         </section>
 
@@ -122,17 +193,17 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 lg:py-20 bg-mist">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10">
+        <section className="w-full py-10 lg:py-20 bg-mist">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 lg:space-y-10">
             <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif">{t('cta_title')}</h2>
-            <p className="text-xl lg:text-2xl text-charcoal/80 font-light leading-relaxed">
+            <p className="text-lg lg:text-2xl text-charcoal/80 font-light leading-relaxed">
               {t('cta_desc')}
             </p>
-            <div className="pt-6">
-              <Link href="/contact" className="overflow-hidden relative group inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
-<RollingText className="gap-2">
+            <div className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center pt-2 sm:pt-6">
+              <Link href="/contact" className="overflow-hidden relative group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded-full font-bold text-sm sm:text-base transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20">
+<RollingText className="gap-1.5 sm:gap-2">
                 {t('get_in_touch')}
-                <ArrowRight size={20} />
+                <ArrowRight size={18} className="sm:w-5 sm:h-5" />
               </RollingText>
 </Link>
             </div>

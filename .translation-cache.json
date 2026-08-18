@@ -272,7 +272,13 @@
     "s1_label": "Experts & Partners",
     "s2_label": "Projects Delivered",
     "s3_label": "Countries Impacted",
-    "s4_label": "Commitment to Impact"
+    "s4_label": "Commitment to Impact",
+    "c1_mobile_desc": "Connecting data and decisions.",
+    "c2_mobile_desc": "Actionable insights and analysis.",
+    "c3_mobile_desc": "Delivering measurable field results.",
+    "c4_mobile_desc": "Strategic guidance for value chains.",
+    "c5_mobile_desc": "Empowering growth through training.",
+    "c6_mobile_desc": "Fostering collaboration and learning."
   },
   "OurResults": {
     "title": "Our Results",

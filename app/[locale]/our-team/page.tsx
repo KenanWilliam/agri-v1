@@ -106,14 +106,14 @@ export default function OurTeamPage() {
     <main className="bg-[#FAFAFA] min-h-screen">
       
       {/* Editorial Hero */}
-      <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden border-b border-mist snap-start scroll-mt-20">
+      <section className="relative w-full pt-16 lg:pt-[min(5.5rem,8vh)] pb-8 lg:pb-[min(2.75rem,4vh)] overflow-hidden border-b border-mist snap-start scroll-mt-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--mist)_0%,transparent_50%)] opacity-50"></div>
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 text-center"
+            className="space-y-4 lg:space-y-[min(1.25rem,2vh)] text-center"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
               {t('title')}
@@ -126,8 +126,8 @@ export default function OurTeamPage() {
       </section>
 
       {/* Grid Layout */}
-      <section className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-16 snap-start scroll-mt-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-12 lg:gap-x-3 lg:gap-y-16">
+      <section className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-[min(2.75rem,4vh)] pb-16 lg:pb-16 snap-start scroll-mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-12 lg:gap-x-3 lg:gap-y-[min(4rem,6vh)]">
           {fullTeam.map((member, idx) => (
             <motion.div
               key={idx}
@@ -139,7 +139,7 @@ export default function OurTeamPage() {
               onClick={() => setSelectedMember(member)}
             >
               {/* Image Container */}
-              <div className="relative w-full aspect-[4/5] rounded-none group-hover:rounded-xl transition-all duration-[800ms] ease-out overflow-hidden shadow-lg mb-6 bg-[#EFEFEF]">
+              <div className="relative w-full aspect-square sm:aspect-[4/5] lg:max-h-[42vh] 2xl:max-h-[48vh] rounded-none group-hover:rounded-xl transition-all duration-[800ms] ease-out overflow-hidden shadow-lg mb-5 lg:mb-[min(1.5rem,2vh)] bg-[#EFEFEF]">
                 {member.image && member.image !== '/team/placeholder.jpg' ? (
                   <>
                     <Image 
@@ -185,14 +185,14 @@ export default function OurTeamPage() {
       {/* Modal Overlay (Yemanja 2 Style) */}
       <AnimatePresence>
         {selectedMember && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 lg:p-12">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12">
             {/* Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-charcoal/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-charcoal/60 backdrop-blur-sm"
               onClick={() => setSelectedMember(null)}
             />
             
@@ -202,28 +202,29 @@ export default function OurTeamPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[1600px] h-[90vh] bg-white rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+              className="relative w-full max-w-3xl lg:max-w-[1600px] h-auto max-h-[90vh] lg:h-[90vh] bg-white rounded-3xl lg:rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-6 right-6 lg:top-10 lg:right-10 z-20 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-[#FAFAFA] hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5"
+                className="absolute top-4 right-4 lg:top-10 lg:right-10 z-20 w-10 h-10 lg:w-16 lg:h-16 rounded-full bg-white/90 lg:bg-[#FAFAFA] backdrop-blur-md lg:backdrop-blur-none hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5 shadow-sm lg:shadow-none"
                 aria-label="Close modal"
               >
-                <X className="text-deep-forest" size={32} strokeWidth={1} />
+                <X className="text-deep-forest w-6 h-6 lg:w-8 lg:h-8" strokeWidth={1} />
               </button>
 
               {/* Left Side: Typography & Content */}
-              <div className="flex-1 p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
+              <div className="flex-1 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
                 <div>
-                  <h2 className="text-3xl sm:text-4xl md:text-[6rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[0.85] tracking-tight mb-8">
+                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[1] lg:leading-[0.85] tracking-tight mb-6 lg:mb-8 pr-12 lg:pr-0">
                     {selectedMember.name.split(' ')[0]}
-                    <br />
+                    <br className="hidden lg:block" />
+                    <span className="lg:hidden"> </span>
                     {selectedMember.name.split(' ').slice(1).join(' ')}
                   </h2>
 
                   <div className="space-y-4 max-w-xl">
-                    <p className="text-charcoal/70 text-base md:text-lg lg:text-[1.125rem] font-light leading-relaxed">
+                    <p className="text-charcoal/80 text-[15px] sm:text-base lg:text-[1.125rem] font-light leading-relaxed">
                       {selectedMember.bio}
                     </p>
                   </div>
@@ -232,14 +233,14 @@ export default function OurTeamPage() {
                 {/* Tags / Projects area */}
                 {selectedMember.projects && selectedMember.projects.length > 0 && (
                   <div className="mt-8 lg:mt-10 space-y-4">
-                    <h4 className="text-[0.7rem] lg:text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">
+                    <h4 className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">
                       {t('expertise_label')}
                     </h4>
                     <div className="flex flex-wrap gap-2 lg:gap-3">
                       {selectedMember.projects.map((project, i) => (
                         <span 
                           key={i} 
-                          className="px-4 py-2 lg:px-5 lg:py-2.5 rounded-full border border-black/10 text-charcoal/70 text-xs hover:border-primary-green hover:text-primary-green transition-colors cursor-default"
+                          className="px-4 py-2 lg:px-5 lg:py-2.5 rounded-full border border-black/10 text-charcoal/70 text-[11px] lg:text-xs hover:border-primary-green hover:text-primary-green transition-colors cursor-default"
                         >
                           {project} ↗
                         </span>
@@ -249,8 +250,8 @@ export default function OurTeamPage() {
                 )}
               </div>
 
-              {/* Right Side: Large Portrait */}
-              <div className="hidden lg:block w-[45%] relative bg-[#F5F5F5] overflow-hidden">
+              {/* Right Side: Large Portrait (Desktop Only) */}
+              <div className="hidden lg:block w-[45%] relative bg-[#F5F5F5] overflow-hidden shrink-0">
                 {selectedMember.image && selectedMember.image !== '/team/placeholder.jpg' ? (
                   <Image 
                     src={selectedMember.image} 

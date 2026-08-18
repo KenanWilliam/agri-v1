@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -10,8 +13,14 @@ interface ClientLogo {
 }
 
 interface Category {
+  titleKey: string
   title: string
   logos: ClientLogo[]
+}
+
+interface MobileCardData {
+  id: string
+  groups: Category[]
 }
 
 const topRowCategories = [
@@ -123,11 +132,129 @@ const CategoryBlock = ({ category }: { category: Category }) => (
   </div>
 )
 
+const MobileLogoCarousel = ({ cards }: { cards: MobileCardData[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isInteracting, setIsInteracting] = useState(false)
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return
+    const itemWidth = scrollRef.current.clientWidth
+    const index = Math.round(scrollRef.current.scrollLeft / itemWidth)
+    if (index !== currentIndex) {
+      setCurrentIndex(index)
+    }
+  }
+
+  useEffect(() => {
+    if (isInteracting) return
+
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const itemWidth = scrollRef.current.clientWidth
+        const next = (currentIndex + 1) % cards.length
+        scrollRef.current.scrollTo({
+          left: next * itemWidth,
+          behavior: 'smooth'
+        })
+      }
+    }, 3500)
+
+    return () => clearInterval(interval)
+  }, [currentIndex, isInteracting, cards.length])
+
+  return (
+    <div 
+      className="md:hidden relative w-full mt-4 flex flex-col items-center"
+      onTouchStart={() => setIsInteracting(true)}
+      onTouchEnd={() => setIsInteracting(false)}
+      onMouseEnter={() => setIsInteracting(true)}
+      onMouseLeave={() => setIsInteracting(false)}
+    >
+      {/* Carousel Container */}
+      <div 
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="w-full flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 pb-4 hide-scrollbar" 
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <style dangerouslySetInnerHTML={{__html: `
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          @keyframes fillProgress {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+          }
+        `}} />
+        {cards.map((card) => (
+          <div key={card.id} className="min-w-[90vw] w-[90vw] shrink-0 snap-center flex flex-col items-center gap-10">
+            {card.groups.map((category) => (
+              <div key={category.titleKey} className="flex flex-col items-center gap-6 w-full">
+                <span className="text-xs font-semibold text-primary-green tracking-[0.2em] uppercase text-center border-b border-gray-200 pb-2 w-max">
+                  {category.title}
+                </span>
+                <div className="flex flex-wrap justify-center gap-x-4 gap-y-6 px-2">
+                  {category.logos.map((logo, idx) => {
+                    const logoContent = (
+                      <div className="h-16 w-32 flex items-center justify-center px-1">
+                        {logo.src ? (
+                          <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            width={140}
+                            height={80}
+                            unoptimized={true}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        ) : (
+                          <span className="font-serif text-xl font-bold tracking-tight text-gray-800 text-center leading-tight">
+                            {logo.name}
+                          </span>
+                        )}
+                      </div>
+                    )
+                    
+                    if (logo.href) {
+                      return <Link key={`mobile-logo-${idx}`} href={logo.href}>{logoContent}</Link>
+                    }
+                    return <div key={`mobile-logo-${idx}`}>{logoContent}</div>
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Timer Indicator (Dots) */}
+      <div className="flex justify-center items-center gap-2 mt-4 h-4">
+        {cards.map((_, idx) => (
+          <div 
+            key={idx} 
+            className={`h-1.5 rounded-full overflow-hidden relative transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-gray-200' : 'w-2 bg-gray-300'}`}
+          >
+             {idx === currentIndex && !isInteracting && (
+               <div 
+                 className="absolute top-0 left-0 h-full w-full bg-[#1A4D2E] origin-left"
+                 style={{ animation: 'fillProgress 3.5s linear forwards' }}
+               />
+             )}
+             {idx === currentIndex && isInteracting && (
+               <div className="absolute top-0 left-0 h-full w-full bg-[#1A4D2E]" />
+             )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function ClientLogos() {
   const t = useTranslations('ClientLogos')
 
-  const translatedTopRow = topRowCategories.map(cat => ({ title: t(cat.titleKey), logos: cat.logos }))
-  const translatedBottomRow = bottomRowCategories.map(cat => ({ title: t(cat.titleKey), logos: cat.logos }))
+  const translatedTopRow = topRowCategories.map(cat => ({ titleKey: cat.titleKey, title: t(cat.titleKey), logos: cat.logos }))
+  const translatedBottomRow = bottomRowCategories.map(cat => ({ titleKey: cat.titleKey, title: t(cat.titleKey), logos: cat.logos }))
 
   const baseTop = Array(4).fill(translatedTopRow).flat()
   const baseBottom = Array(4).fill(translatedBottomRow).flat()
@@ -135,51 +262,67 @@ export default function ClientLogos() {
   const topRepeated = [...baseTop, ...baseTop]
   const bottomRepeated = [...baseBottom, ...baseBottom]
 
+  // Group smaller categories together for mobile
+  const mobileCards: MobileCardData[] = [
+    { id: 'c1', groups: [translatedTopRow[0]] }, // Dev Partners
+    { id: 'c2', groups: [translatedTopRow[1], translatedBottomRow[0]] }, // Gov + Breeding
+    { id: 'c3', groups: [translatedTopRow[2]] }, // Regulators
+    { id: 'c4', groups: [translatedBottomRow[1]] }, // Private Sector
+  ]
+
   return (
-    <div className="relative w-full overflow-hidden flex flex-col gap-8 md:gap-12 bg-gray-50 py-16">
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+    <div className="relative w-full flex flex-col bg-gray-50 pt-2 pb-12 md:py-16">
+      
+      {/* ─── Desktop Marquee ─── */}
+      <div className="hidden md:flex flex-col gap-12 w-full relative overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes marquee-left {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        @keyframes marquee-right {
-          0% { transform: translate3d(-50%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
-        }
-        .animate-marquee-left {
-          animation: marquee-left 100s linear infinite;
-          will-change: transform;
-        }
-        .animate-marquee-right {
-          animation: marquee-right 100s linear infinite;
-          will-change: transform;
-        }
-        .marquee-container:hover .animate-marquee-left,
-        .marquee-container:hover .animate-marquee-right {
-          animation-play-state: paused;
-        }
-      `}} />
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes marquee-left {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+          }
+          @keyframes marquee-right {
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+          }
+          .animate-marquee-left {
+            animation: marquee-left 100s linear infinite;
+            will-change: transform;
+          }
+          .animate-marquee-right {
+            animation: marquee-right 100s linear infinite;
+            will-change: transform;
+          }
+          .marquee-container:hover .animate-marquee-left,
+          .marquee-container:hover .animate-marquee-right {
+            animation-play-state: paused;
+          }
+        `}} />
 
-      {/* Top Row (Moves Left) */}
-      <div className="flex w-full overflow-hidden marquee-container">
-        <div className="flex items-center shrink-0 w-max animate-marquee-left">
-          {topRepeated.map((category, index) => (
-            <CategoryBlock key={`top-${index}`} category={category} />
-          ))}
+        {/* Top Row (Moves Left) */}
+        <div className="flex w-full overflow-hidden marquee-container">
+          <div className="flex items-center shrink-0 w-max animate-marquee-left">
+            {topRepeated.map((category, index) => (
+              <CategoryBlock key={`top-${index}`} category={category} />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Row (Moves Right) */}
+        <div className="flex w-full overflow-hidden marquee-container">
+          <div className="flex items-center shrink-0 w-max animate-marquee-right">
+            {bottomRepeated.map((category, index) => (
+              <CategoryBlock key={`bottom-${index}`} category={category} />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Bottom Row (Moves Right) */}
-      <div className="flex w-full overflow-hidden marquee-container">
-        <div className="flex items-center shrink-0 w-max animate-marquee-right">
-          {bottomRepeated.map((category, index) => (
-            <CategoryBlock key={`bottom-${index}`} category={category} />
-          ))}
-        </div>
-      </div>
+      {/* ─── Mobile Carousel ─── */}
+      <MobileLogoCarousel cards={mobileCards} />
+      
     </div>
   )
 }

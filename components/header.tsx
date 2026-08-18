@@ -96,8 +96,31 @@ export default function Header() {
 
   return (
     <>
+      {/* Persistent Hamburger Overlay (Stays fixed while navbar slides) */}
+      <div className="sticky top-0 z-[100] h-0 w-full pointer-events-none">
+        <div className="h-[var(--header-height)] flex justify-center items-center w-full">
+          <div className="w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 xl:px-12 flex justify-end">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden pointer-events-auto p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
+            >
+              <AnimatedHamburger isOpen={isOpen} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <motion.div
+        animate={{ 
+          y: isOpen ? '-100%' : 0,
+          opacity: isOpen ? 0 : 1,
+        }}
+        transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+        style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
+        className="sticky top-0 z-[80] w-full"
+      >
       <LiquidGlass 
-        className={`sticky top-0 z-[80] flex justify-center items-center h-[var(--header-height)] w-full transition-colors duration-300 ${isOpen ? 'bg-white' : ''}`}
+        className="flex justify-center items-center h-[var(--header-height)] w-full"
       blurAmount={0.25} 
       elasticity={0}
       displacementScale={100}
@@ -218,17 +241,14 @@ export default function Header() {
               </RollingText>
             </Link>
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
-            >
-              <AnimatedHamburger isOpen={isOpen} />
-            </button>
+            {/* Invisible spacer so layout doesn't shift — the real button is in the sticky layer above */}
+            <div className="lg:hidden w-10 h-10" />
           </div>
         </div>
       </header>
 
       </LiquidGlass>
+      </motion.div>
 
       {/* Mobile Navigation Sidebar */}
       <AnimatePresence>
@@ -241,7 +261,7 @@ export default function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-deep-forest/40 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 bg-deep-forest/40 backdrop-blur-sm z-[85] lg:hidden"
             />
             
             {/* Sidebar */}
@@ -250,11 +270,30 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[320px] bg-white shadow-2xl z-[70] lg:hidden flex flex-col overflow-hidden rounded-none border-l border-white/20"
+              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[320px] bg-white shadow-2xl z-[90] lg:hidden flex flex-col overflow-hidden rounded-none border-l border-white/20"
             >
+              {/* Sidebar Header — logo only, vertically aligned to match navbar */}
+              <div className="h-[var(--header-height)] flex items-center px-6 shrink-0">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                >
+                  <Link href="/" onClick={() => setIsOpen(false)} aria-label="Agri Experience">
+                    <Image
+                      src="/Newsletters.svg"
+                      alt="Agri Experience Logo"
+                      width={500}
+                      height={240}
+                      style={{ width: 'auto' }}
+                      className="h-[56px] w-auto block"
+                    />
+                  </Link>
+                </motion.div>
+              </div>
 
               {/* Sidebar Content */}
-              <div className="flex-1 overflow-y-auto px-6 pt-24 pb-6 flex flex-col">
+              <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6 flex flex-col">
                 <nav className="flex flex-col gap-1.5">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/')

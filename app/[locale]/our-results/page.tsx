@@ -161,24 +161,24 @@ export default function OurResultsPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 lg:py-20 bg-deep-forest text-white overflow-hidden relative">
+        <section className="w-full py-10 lg:py-20 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-10 relative z-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 lg:space-y-10 relative z-10">
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-white">
               {t('cta_title')}
             </h2>
-            <p className="text-xl lg:text-2xl text-white/80 font-light leading-relaxed">
+            <p className="text-lg lg:text-2xl text-white/80 font-light leading-relaxed">
               {t('cta_desc')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
+            <div className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center pt-2 sm:pt-6">
               <Link
                 href="/contact"
-                className="overflow-hidden relative group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-bold transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
+                className="overflow-hidden relative group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-3 sm:px-8 sm:py-4 bg-primary-green text-white rounded-full font-bold text-sm sm:text-base transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-green/20"
               >
-<RollingText className="gap-2">
+<RollingText className="gap-1.5 sm:gap-2">
                 {t('get_in_touch')}
-                <ArrowRight size={20} />
+                <ArrowRight size={18} className="sm:w-5 sm:h-5" />
               </RollingText>
 </Link>
             </div>

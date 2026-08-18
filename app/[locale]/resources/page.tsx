@@ -13,7 +13,7 @@ import { RollingText } from '@/components/ui/rolling-text'
 const PdfPreview = dynamic(() => import('@/components/pdf-preview'), { 
   ssr: false,
   loading: () => (
-    <div className="relative w-full rounded-xl overflow-hidden border border-primary-green/10 bg-mist flex flex-col items-center justify-center gap-3 animate-pulse aspect-[4/3] lg:aspect-[1/1.2]">
+    <div className="relative w-full rounded-xl overflow-hidden border border-primary-green/10 bg-mist flex flex-col items-center justify-center gap-3 animate-pulse aspect-[1/1.2]">
       <FileText size={32} className="text-primary-green/30" />
       <div className="h-2 w-2/3 rounded-full bg-primary-green/10" />
       <div className="h-2 w-1/2 rounded-full bg-primary-green/10" />
@@ -77,7 +77,7 @@ export default function ResourcesPage() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredDownloads.map((download) => {
                 // Find index to get correct translation from the array
                 const originalIdx = publicDownloads.findIndex(d => d.title === download.title);
@@ -123,22 +123,22 @@ export default function ResourcesPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 lg:py-16 xl:py-20 bg-mist border-t border-mist">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest">
+        <section className="w-full py-10 lg:py-16 xl:py-20 bg-mist border-t border-mist">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 lg:space-y-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-deep-forest">
               {t('cta_title')}
             </h2>
-            <p className="text-xl text-charcoal/80 font-light leading-relaxed">
+            <p className="text-lg lg:text-xl text-charcoal/80 font-light leading-relaxed">
               {t('cta_desc')}
             </p>
-            <div className="pt-6">
+            <div className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center pt-2 sm:pt-6">
               <Link
                 href="/contact"
-                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-bold transition duration-200 hover:bg-deep-forest/90"
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded-full font-bold text-sm sm:text-base transition duration-200 hover:bg-deep-forest/90"
               >
-                <RollingText className="gap-2">
+                <RollingText className="gap-1.5 sm:gap-2">
                   {t('contact_us')}
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} className="sm:w-5 sm:h-5" />
                 </RollingText>
               </Link>
             </div>

@@ -67,7 +67,7 @@ function AccordionSlice({
   locale: string;
 }) {
   const num = card.id.replace('sdg-', '');
-  const bgImageUrl = card.bgImage ? card.bgImage.replace('/SDG-images/', `/SDG-images/${locale}/`) : null;
+  const bgImageUrl = card.bgImage ? card.bgImage.replace('/SDG-images/', '/SDG-images/en/') : null;
   const logoUrl = locale === 'fr' ? `/SDG-images/fr/${num}.webp` : card.image;
 
   return (

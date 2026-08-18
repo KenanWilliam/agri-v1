@@ -106,5 +106,9 @@
     "brace-expansion": "latest",
     "postcss": "^8.5.25",
     "sharp": "latest"
+  },
+  "nodemonConfig": {
+    "ignore": ["node_modules/**", ".git/**", ".next/**", "build/**", "*.log"]
   }
+
 }

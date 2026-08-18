@@ -11,6 +11,7 @@ export default function OurWorkPage() {
     {
       title: t('c1_title'),
       description: t('c1_desc'),
+      mobileDescription: t('c1_mobile_desc'),
       icon: MonitorSmartphone,
       color: 'primary-green',
       link: '/our-work/digital-platforms',
@@ -18,6 +19,7 @@ export default function OurWorkPage() {
     {
       title: t('c2_title'),
       description: t('c2_desc'),
+      mobileDescription: t('c2_mobile_desc'),
       icon: ClipboardCheck,
       color: 'primary-blue',
       link: '/our-work/technical-studies',
@@ -25,6 +27,7 @@ export default function OurWorkPage() {
     {
       title: t('c3_title'),
       description: t('c3_desc'),
+      mobileDescription: t('c3_mobile_desc'),
       icon: Tractor,
       color: 'deep-forest',
       link: '/our-work/project-implementation',
@@ -32,6 +35,7 @@ export default function OurWorkPage() {
     {
       title: t('c4_title'),
       description: t('c4_desc'),
+      mobileDescription: t('c4_mobile_desc'),
       icon: LineChart,
       color: 'accent-gold',
       link: '/our-work/client-advisory',
@@ -39,6 +43,7 @@ export default function OurWorkPage() {
     {
       title: t('c5_title'),
       description: t('c5_desc'),
+      mobileDescription: t('c5_mobile_desc'),
       icon: BookOpen,
       color: 'charcoal',
       link: '/our-work/capacity-building',
@@ -46,6 +51,7 @@ export default function OurWorkPage() {
     {
       title: t('c6_title'),
       description: t('c6_desc'),
+      mobileDescription: t('c6_mobile_desc'),
       icon: Globe,
       color: 'lighter-dark-green',
       link: '/our-work/stakeholder-convenings',
@@ -62,7 +68,7 @@ export default function OurWorkPage() {
   return (
     <>      <main className="bg-white min-h-screen">
         {/* Top Section */}
-        <section className="relative w-full pt-16 lg:pt-28 pb-16 overflow-hidden">
+        <section className="relative w-full pt-16 lg:pt-28 pb-0 overflow-hidden">
           {/* Subtle background decorative shapes */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-green/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
 
@@ -104,9 +110,9 @@ export default function OurWorkPage() {
         </section>
 
         {/* Cards Section */}
-        <section className="w-full pt-8 pb-16 relative z-10">
+        <section className="w-full pt-16 lg:pt-28 pb-16 relative z-10">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8">
               {cards.map((card, idx) => {
                 const Icon = card.icon;
                 
@@ -150,33 +156,52 @@ export default function OurWorkPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
                       whileHover={{ y: -5 }}
-                      className={`rounded-[32px] border ${borderClass} p-8 lg:p-10 flex flex-col justify-between h-full min-h-[300px] md:min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 group cursor-pointer`}
+                      className={`rounded-[20px] md:rounded-[32px] border ${borderClass} p-4 md:p-8 lg:p-10 flex flex-col justify-between h-full min-h-[auto] md:min-h-[400px] bg-white shadow-sm hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 group cursor-pointer`}
                     >
-                      <div className="space-y-8">
-                        {/* Top icon and arrow */}
-                        <div className="flex justify-between items-start">
-                          <div className={`w-16 h-16 rounded-full ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
-                            <Icon size={28} />
-                          </div>
-                          <div className={`w-10 h-10 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
-                            <ArrowRight size={18} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
-                          </div>
+                      {/* Mobile Layout (Visible < md) */}
+                      <div className="flex items-center gap-4 md:hidden">
+                        <div className={`w-12 h-12 shrink-0 rounded-2xl ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
+                          <Icon size={22} />
                         </div>
-                        
-                        {/* Content */}
-                        <div className="space-y-4">
-                          <h3 className={`text-2xl font-serif font-bold ${textClass}`}>{card.title}</h3>
-                          <p className="text-charcoal/70 font-light leading-relaxed">
-                            {card.description}
+                        <div className="flex-1 flex flex-col gap-1">
+                          <h3 className={`text-[17px] font-serif font-bold ${textClass} leading-tight`}>{card.title}</h3>
+                          <p className="text-xs text-charcoal/60 leading-relaxed pr-2">
+                            {card.mobileDescription}
                           </p>
+                        </div>
+                        <div className={`w-8 h-8 shrink-0 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
+                          <ArrowRight size={16} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
                         </div>
                       </div>
 
-                      {/* Bottom Link */}
-                      <div className="mt-8 flex justify-between items-center">
-                        <span className={`font-bold text-sm ${textClass}`}>{t('learn_more')}</span>
-                        <div className={`w-10 h-10 rounded-full ${bgClass} text-white flex items-center justify-center`}>
-                          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      {/* Desktop Layout (Visible md+) */}
+                      <div className="hidden md:flex flex-col justify-between h-full space-y-8">
+                        <div className="space-y-8">
+                          {/* Top icon and arrow */}
+                          <div className="flex justify-between items-start">
+                            <div className={`w-16 h-16 rounded-full ${borderClass} border flex items-center justify-center ${textClass} ${iconBgClass}`}>
+                              <Icon size={28} />
+                            </div>
+                            <div className={`w-10 h-10 rounded-full ${iconBgClass} flex items-center justify-center ${textClass}`}>
+                              <ArrowRight size={18} className="rotate-[-45deg] group-hover:rotate-0 transition-transform" />
+                            </div>
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="space-y-4">
+                            <h3 className={`text-2xl font-serif font-bold ${textClass}`}>{card.title}</h3>
+                            <p className="text-charcoal/70 font-light leading-relaxed">
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Bottom Link */}
+                        <div className="mt-auto flex justify-between items-center pt-8">
+                          <span className={`font-bold text-sm ${textClass}`}>{t('learn_more')}</span>
+                          <div className={`w-10 h-10 rounded-full ${bgClass} text-white flex items-center justify-center`}>
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -189,7 +214,7 @@ export default function OurWorkPage() {
 
         {/* Stats Bottom Banner */}
         <section className="w-full">
-          <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] py-12 px-6 overflow-hidden relative">
+          <div className="w-full bg-deep-forest py-12 px-6 overflow-hidden relative">
              {/* Decorative wave background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
               <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -200,13 +225,13 @@ export default function OurWorkPage() {
               </svg>
             </div>
             
-            <div className="max-w-[1800px] mx-auto relative z-10 flex flex-wrap justify-center lg:justify-between items-center gap-8 lg:gap-12">
+            <div className="max-w-[1800px] mx-auto relative z-10 grid grid-cols-2 gap-y-12 gap-x-6 lg:flex lg:justify-between lg:items-center lg:gap-12">
               {stats.map((stat, i) => (
-                <div key={i} className="flex items-center gap-4 min-w-[200px]">
-                  <stat.icon className="text-primary-green opacity-80" size={32} />
-                  <div>
-                    <div className="text-3xl font-serif font-bold text-white leading-none">{stat.value}</div>
-                    <div className="text-xs text-white/70 tracking-wide mt-1">{stat.label}</div>
+                <div key={i} className="flex flex-col lg:flex-row items-center gap-3 lg:gap-4 lg:min-w-[200px] text-center lg:text-left">
+                  <stat.icon className="text-primary-green opacity-80 shrink-0" size={28} />
+                  <div className="flex flex-col items-center lg:items-start">
+                    <div className="text-2xl lg:text-3xl font-serif font-bold text-white leading-none">{stat.value}</div>
+                    <div className="text-[11.5px] lg:text-xs text-white/70 tracking-wide mt-1.5 lg:mt-1 leading-tight">{stat.label}</div>
                   </div>
                   {/* Vertical separator (hidden on mobile, visible on desktop between items) */}
                   {i < stats.length - 1 && (

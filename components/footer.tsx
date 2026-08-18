@@ -201,7 +201,7 @@ export default function Footer() {
             <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '32px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
               <Link href="/" aria-label="Agri Experience" style={{ display: 'inline-flex' }}>
                 <div 
-                  className="h-[72px] w-[150px] bg-[#888] transition-colors hover:bg-white"
+                  className="h-18 w-37.5 bg-[#888] transition-colors hover:bg-white"
                   style={{
                     WebkitMaskImage: 'url(/Newsletters.svg)',
                     WebkitMaskSize: 'contain',
@@ -231,7 +231,7 @@ export default function Footer() {
 
       {/* ─── Mobile ─── */}
       <footer className="md:hidden" style={{ background: '#0d0d0d', color: '#e8e8e8', padding: '48px 20px 32px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
           {/* Newsletter */}
           <div>
@@ -266,18 +266,28 @@ export default function Footer() {
             {/* Social */}
             <div style={{ marginTop: '24px', display: 'flex' }}>
               <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
-                style={{ width: '38px', height: '38px', border: '1px solid #2a2a2a', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#888', background: '#161616', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
-                className="hover:border-[#3ab44a]/50 hover:text-[#3ab44a]">
-                <Linkedin size={15} />
+                style={{
+                  width: '48px', height: '48px', borderRadius: '12px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: '#1a1a1a', textDecoration: 'none',
+                  transition: 'background 0.2s',
+                }}
+                className="hover:bg-[#252525]"
+              >
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
+                  <path d="M4.94 2.07A2.07 2.07 0 112.87 4.14 2.07 2.07 0 014.94 2.07zM2.07 6.75h3.56v11.45H2.07V6.75zm5.3 0h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H7.37V6.75z"/>
+                </svg>
               </Link>
             </div>
           </div>
 
           {/* Nav */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 16px' }}>
             {[
+              { titleKey: 'our_work', links: [{ key: 'seed_systems', href: '/our-work' }, { key: 'digital_tools', href: '/our-work' }, { key: 'field_projects', href: '/our-work' }, { key: 'case_studies', href: '/our-work' }] },
               { titleKey: 'company', links: [{ key: 'about_us', href: '/about' }, { key: 'our_impact', href: '/our-impact' }, { key: 'our_results', href: '/our-results' }, { key: 'contact', href: '/contact' }] },
-              { titleKey: 'resources', links: [{ key: 'insights', href: '/insights' }, { key: 'newsletter', href: '/newsletter' }, { key: 'privacy_mobile', href: '/privacy' }] },
+              { titleKey: 'resources', links: [{ key: 'insights', href: '/insights' }, { key: 'newsletter', href: '/newsletter' }, { key: 'privacy', href: '/privacy' }, { key: 'terms', href: '/terms' }] },
+              { titleKey: 'work_with_us', links: [{ key: 'request_concept', href: '/contact' }, { key: 'view_projects', href: '/our-work' }] },
             ].map(col => (
               <div key={col.titleKey}>
                 <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', marginBottom: '12px' }}>{t(col.titleKey as any)}</p>
@@ -292,13 +302,29 @@ export default function Footer() {
             ))}
           </div>
 
-
+          {/* Contact Details */}
+          <div>
+            <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', marginBottom: '12px' }}>{t('get_in_touch')}</p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <li>
+                <a href="mailto:info@agri-experience.com" className={linkHoverClass} style={{ display: 'block', padding: '4px 0' }}>info@agri-experience.com</a>
+              </li>
+              <li>
+                <a href="tel:+254202626888" className={linkHoverClass} style={{ display: 'block', padding: '4px 0' }}>+254 (20) 2626888</a>
+              </li>
+              <li>
+                <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass} style={{ display: 'block', padding: '4px 0', lineHeight: 1.5 }}>
+                  Watermark Business Park, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                </a>
+              </li>
+            </ul>
+          </div>
 
           {/* Logo + copyright */}
           <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '24px' }}>
             <Link href="/" aria-label="Agri Experience" style={{ display: 'inline-flex', marginBottom: '12px' }}>
               <div 
-                className="h-[56px] w-[116px] bg-[#888] transition-colors hover:bg-white"
+                className="h-14 w-29 bg-[#888] transition-colors hover:bg-white"
                 style={{
                   WebkitMaskImage: 'url(/Newsletters.svg)',
                   WebkitMaskSize: 'contain',

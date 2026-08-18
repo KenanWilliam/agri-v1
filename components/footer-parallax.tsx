@@ -127,7 +127,7 @@ export default function FooterParallax({ children }: { children?: ReactNode }) {
         </div>
 
         {/* Cinematic gradient */}
-        <div className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-[19] pointer-events-none" />
+        <div className="absolute bottom-0 w-full h-1/2 bg-linear-to-t from-black/80 via-black/40 to-transparent z-19 pointer-events-none" />
 
         {/* Subject Layer (z-30) — The Lady */}
         <motion.div

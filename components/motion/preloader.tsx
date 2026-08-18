@@ -19,10 +19,43 @@ const MASK_SVG_ENCODED = encodeURIComponent(
 );
 const MASK_IMAGE_URL = `url("data:image/svg+xml;charset=utf-8,${MASK_SVG_ENCODED}")`;
 
+const clipVariants = {
+  initial: { clipPath: "inset(15vh 15vw)" },
+  animate: {
+    clipPath: [
+      "inset(15vh 15vw)",
+      "inset(15vh 15vw)",
+      "inset(15vh 15vw)",
+      "inset(15vh 15vw)",
+      "inset(0vh 0vw)",
+      "inset(0vh 0vw)",
+    ],
+    transition: {
+      duration: 1.5,
+      times: [0, 0.35, 0.55, 0.65, 0.80, 1],
+      ease: ["linear", "linear", "linear", [0.76, 0, 0.24, 1], "linear"],
+    },
+  },
+};
+
+const opacityVariants = {
+  initial: { opacity: 1 },
+  animate: {
+    opacity: [1, 0, 0, 0, 0, 0],
+    transition: {
+      duration: 1.5,
+      times: [0, 0.20, 0.35, 0.55, 0.80, 1],
+      ease: "linear",
+    },
+  },
+};
+
 export default function Preloader() {
   const [isVisible, setIsVisible] = useState(true);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const [startAnimation, setStartAnimation] = useState(false);
+  
   const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
@@ -30,10 +63,53 @@ export default function Preloader() {
     setDims({ w: window.innerWidth, h: window.innerHeight });
   }, []);
 
+  // Wait for hero video readiness (or resolve immediately on non-video pages / mobile)
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(false), 1500);
-    return () => clearTimeout(timer);
+    let resolved = false;
+    const resolve = () => {
+      if (resolved) return;
+      resolved = true;
+      setStartAnimation(true);
+    };
+
+    // Check if already signaled (e.g. cached video fired before this effect)
+    if ((window as any).__heroVideoReady) {
+      resolve();
+      return;
+    }
+
+    // Listen for video ready event from the home page hero
+    window.addEventListener('hero-video-ready', resolve);
+
+    // After DOM is committed, check if there's a visible video to wait for
+    const checkTimer = setTimeout(() => {
+      const video = document.querySelector('video');
+      const isDesktop = window.innerWidth >= 768;
+      if (!video || !isDesktop) {
+        // No video on this page or on mobile — no need to wait
+        resolve();
+      }
+    }, 50);
+
+    // Absolute safety fallback (in case video never loads)
+    const maxTimer = setTimeout(resolve, 8000);
+
+    return () => {
+      window.removeEventListener('hero-video-ready', resolve);
+      clearTimeout(checkTimer);
+      clearTimeout(maxTimer);
+    };
   }, []);
+
+  // When animation starts, schedule the dismissal
+  useEffect(() => {
+    if (startAnimation) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 1300); // 1300ms covers the visible parts of the 1.5s timeline
+      return () => clearTimeout(timer);
+    }
+  }, [startAnimation]);
 
   useEffect(() => {
     if (!dims || !pathRef.current) return;
@@ -63,6 +139,8 @@ export default function Preloader() {
       setTimeout(() => setIsReady(true), 50);
     });
 
+    if (!startAnimation) return;
+
     // Using flubber to interpolate between the true full icon and the fullscreen rectangle
     const interpolator = interpolate(normalizedIconPath, rectPath, {
       maxSegmentLength: 2,
@@ -78,39 +156,21 @@ export default function Preloader() {
     });
 
     return () => controls.stop();
-  }, [dims]);
+  }, [dims, startAnimation]);
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
           key="preloader"
-          initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
-          animate={{ clipPath: ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 100% 0%)"] }}
-          transition={{
-            duration: 1.5,
-            times: [0, 0.80, 1],
-            ease: ["linear", [0.76, 0, 0.24, 1]],
-          }}
+          exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
+          transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-9999 bg-mist pointer-events-none"
         >
           <motion.div
-            initial={{ clipPath: "inset(15vh 15vw)" }}
-            animate={{
-              clipPath: [
-                "inset(15vh 15vw)",
-                "inset(15vh 15vw)",
-                "inset(15vh 15vw)",
-                "inset(15vh 15vw)",
-                "inset(0vh 0vw)",
-                "inset(0vh 0vw)",
-              ],
-            }}
-            transition={{
-              duration: 1.5,
-              times: [0, 0.35, 0.55, 0.65, 0.80, 1],
-              ease: ["linear", "linear", "linear", [0.76, 0, 0.24, 1], "linear"],
-            }}
+            variants={clipVariants}
+            initial="initial"
+            animate={startAnimation ? "animate" : "initial"}
             className="absolute inset-0 w-full h-full overflow-hidden"
           >
             <svg width="0" height="0" className="absolute">
@@ -140,13 +200,9 @@ export default function Preloader() {
               />
 
               <motion.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: [1, 0, 0, 0, 0, 0] }}
-                transition={{
-                  duration: 1.5,
-                  times: [0, 0.20, 0.35, 0.55, 0.80, 1],
-                  ease: "linear",
-                }}
+                variants={opacityVariants}
+                initial="initial"
+                animate={startAnimation ? "animate" : "initial"}
                 className="absolute inset-0 bg-[#3ab44a]"
               />
             </div>
@@ -176,13 +232,9 @@ export default function Preloader() {
               />
 
               <motion.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: [1, 0, 0, 0, 0, 0] }}
-                transition={{
-                  duration: 1.5,
-                  times: [0, 0.20, 0.35, 0.55, 0.80, 1],
-                  ease: "linear",
-                }}
+                variants={opacityVariants}
+                initial="initial"
+                animate={startAnimation ? "animate" : "initial"}
                 className="absolute inset-0 bg-[#3ab44a]"
               />
             </div>

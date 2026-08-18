@@ -258,7 +258,7 @@ export const countrySeeds: DetailedCountryRecord[] = [
     projects: 5,
     engagement: 50000,
     overview: 'Senegal supports market analysis and youth-focused learning inside the West Africa portfolio.',
-    focus: ['Youth engagement', 'Markets', 'Association support'],
+    focus: ['Youth engagement', 'Markets', 'Association support'],         
     impact: ['Better market visibility', 'Youth-centered learning', 'More practical programming'],
     locations: ['Dakar', 'Thiès', 'Saint-Louis'],
     stats: [
@@ -503,7 +503,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Kenya',
     code: 'KE',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 8,
     engagement: 124000,
     overview: 'La réforme de la réglementation des semences, MbeguChoice et les systèmes d\'agro-distributeurs des comtés ont fait du Kenya le portefeuille le plus solide en matière d\'engagement public.',
@@ -562,7 +562,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Ouganda',
     code: 'UG',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 6,
     engagement: 92000,
     overview: 'La formation virtuelle et le soutien pratique aux entreprises semencières maintiennent le portefeuille ougandais prêt pour le terrain et exportable.',
@@ -604,7 +604,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Tanzanie',
     code: 'TZ',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 9,
     engagement: 109000,
     overview: 'La certification numérique, la transparence des intrants et les signalements anti-contrefaçon ancrent le portefeuille tanzanien sous le programme ESSETA.',
@@ -643,7 +643,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Rwanda',
     code: 'RW',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 5,
     engagement: 61000,
     overview: 'Le Rwanda est traité comme un marché de coordination et d\'échange, avec un soutien pratique pour les associations et les visites d\'apprentissage.',
@@ -659,7 +659,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Éthiopie',
     code: 'ET',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 6,
     engagement: 70000,
     overview: 'La recherche sur les semences de maïs fondée sur des preuves et le soutien aux politiques ancrent le portefeuille éthiopien.',
@@ -675,7 +675,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Malawi',
     code: 'MW',
-    region: 'Afrique australe',
+    region: 'Southern Africa',
     projects: 4,
     engagement: 47000,
     overview: 'Le Malawi est représenté comme un marché partenaire solide d\'Afrique australe avec un apprentissage pratique du système semencier.',
@@ -691,7 +691,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Zambie',
     code: 'ZM',
-    region: 'Afrique australe',
+    region: 'Southern Africa',
     projects: 7,
     engagement: 76000,
     overview: 'Le travail de formation et de certification hybride en Zambie a rendu le système plus évolutif et accessible.',
@@ -721,7 +721,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Zimbabwe',
     code: 'ZW',
-    region: 'Afrique australe',
+    region: 'Southern Africa',
     projects: 5,
     engagement: 53000,
     overview: 'Le Zimbabwe se situe dans le portefeuille sud avec un mélange d\'apprentissage du marché, d\'accès aux semences et de travail pratique de coordination.',
@@ -737,7 +737,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Mozambique',
     code: 'MZ',
-    region: 'Afrique australe',
+    region: 'Southern Africa',
     projects: 5,
     engagement: 44000,
     overview: 'Le Mozambique est encadré comme un marché de logistique et d\'accès au marché où l\'apprentissage transfrontalier compte.',
@@ -753,7 +753,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Sénégal',
     code: 'SN',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 5,
     engagement: 50000,
     overview: 'Le Sénégal soutient l\'analyse de marché et l\'apprentissage axé sur les jeunes dans le portefeuille de l\'Afrique de l\'Ouest.',
@@ -769,7 +769,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Burkina Faso',
     code: 'BF',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 4,
     engagement: 42000,
     overview: 'Le Burkina Faso est utilisé comme marché de référence ouest-africain pour la production et le soutien de style école-paysanne.',
@@ -785,7 +785,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Mali',
     code: 'ML',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 4,
     engagement: 36000,
     overview: 'Le Mali reflète l\'attention portée par le portefeuille au commerce régional, à la nutrition et au soutien pratique aux semences.',
@@ -801,7 +801,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Ghana',
     code: 'GH',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 6,
     engagement: 73000,
     overview: 'Le Ghana relie la formation universitaire, la gestion des entreprises semencières et le soutien associatif.',
@@ -817,7 +817,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Cameroun',
     code: 'CM',
-    region: 'Afrique centrale',
+    region: 'Central Africa',
     projects: 4,
     engagement: 51000,
     overview: 'Le Cameroun est représenté comme un pôle central pour l\'ajout de valeur, la transformation et le soutien aux entreprises.',
@@ -834,7 +834,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
     name: 'Congo',
     geoName: 'Rép. Dém. du Congo',
     code: 'CD',
-    region: 'Afrique centrale',
+    region: 'Central Africa',
     projects: 6,
     engagement: 66000,
     overview: 'Le portefeuille de la RDC combine la recherche formelle sur le secteur semencier avec un soutien bilingue aux entreprises.',
@@ -876,7 +876,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Nigeria',
     code: 'NG',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 6,
     engagement: 98000,
     overview: 'Le Nigeria est utilisé comme un marché ouest-africain à grande échelle pour le soutien aux entreprises et le développement d\'associations.',
@@ -893,7 +893,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
     name: 'Soudan du Sud',
     geoName: 'Soudan du Sud',
     code: 'SS',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 3,
     engagement: 28000,
     overview: 'Le Soudan du Sud reflète le soutien semencier axé sur le relèvement et la programmation de la résilience.',
@@ -909,7 +909,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Burundi',
     code: 'BI',
-    region: 'Afrique de l\'Est',
+    region: 'East Africa',
     projects: 4,
     engagement: 30000,
     overview: 'Le Burundi bénéficie d\'une formation ciblée et d\'un soutien au développement des affaires pour les entreprises semencières émergentes.',
@@ -951,7 +951,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Liberia',
     code: 'LR',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 3,
     engagement: 26000,
     overview: 'Le Liberia est représenté comme un marché en phase de démarrage où la cartographie des partenaires et l\'apprentissage du système semencier sont importants.',
@@ -967,7 +967,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Afrique du Sud',
     code: 'ZA',
-    region: 'Afrique australe',
+    region: 'Southern Africa',
     projects: 4,
     engagement: 41000,
     overview: 'L\'Afrique du Sud est utilisée comme marché de référence sud pour l\'apprentissage, la convocation et l\'échange de preuves.',
@@ -983,7 +983,7 @@ export const countrySeedsFr: DetailedCountryRecord[] = [
   {
     name: 'Sierra Leone',
     code: 'SL',
-    region: 'Afrique de l\'Ouest',
+    region: 'West Africa',
     projects: 3,
     engagement: 25000,
     overview: 'La Sierra Leone est traitée comme un marché semencier émergent pour le coaching pratique et l\'apprentissage sur le terrain.',
