@@ -6,7 +6,9 @@
     "our_team": "Our Team",
     "our_impact": "Our Impact",
     "resources": "Resources",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "aria_open_menu": "Open navigation menu",
+    "aria_close_menu": "Close navigation menu"
   },
   "Home": {
     "hero_title_1": "Cultivating Sustainable",
@@ -132,7 +134,10 @@
     "address": "Watermark Business Park, Karen\nP.O. Box 1720 - 00606, Nairobi",
     "copyright": "© {year} Agri Experience Ltd.",
     "designed_by": "Designed & Developed by Kenan William",
-    "credit": "Designed & Developed by Kenan William"
+    "credit": "Designed & Developed by Kenan William",
+    "aria_linkedin": "Follow Agri Experience on LinkedIn",
+    "linkedin": "LinkedIn",
+    "aria_subscribe": "Subscribe to newsletter"
   },
   "OurTeam": {
     "title": "Our Team",

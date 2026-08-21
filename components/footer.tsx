@@ -89,7 +89,7 @@ export default function Footer() {
                           fontFamily: 'inherit',
                         }}
                       />
-                      <button type="submit" aria-label="Subscribe to newsletter" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', color: '#888' }}>
+                      <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', color: '#888' }}>
                         <ArrowRight size={16} />
                       </button>
                     </div>
@@ -100,7 +100,7 @@ export default function Footer() {
                 {/* Social */}
                 <div style={{ marginTop: '24px', display: 'flex' }}>
                   <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
-                    aria-label="Follow Agri Experience on LinkedIn"
+                    aria-label={t('aria_linkedin')}
                     style={{
                       width: '48px', height: '48px', borderRadius: '12px',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -109,7 +109,7 @@ export default function Footer() {
                     }}
                     className="hover:bg-[#252525]"
                   >
-                    <span className="sr-only">LinkedIn</span>
+                    <span className="sr-only">{t('linkedin')}</span>
                     {/* Filled "in" lettermark only */}
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="white" aria-hidden="true">
                       <path d="M4.94 2.07A2.07 2.07 0 112.87 4.14 2.07 2.07 0 014.94 2.07zM2.07 6.75h3.56v11.45H2.07V6.75zm5.3 0h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H7.37V6.75z"/>
@@ -258,7 +258,7 @@ export default function Footer() {
                     placeholder={t('email_placeholder')} required
                     style={{ background: 'transparent', border: 'none', outline: 'none', color: '#e8e8e8', fontSize: '13px', flex: 1, fontFamily: 'inherit' }}
                   />
-                  <button type="submit" aria-label="Subscribe to newsletter" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex' }}>
+                  <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex' }}>
                     <ArrowRight size={15} />
                   </button>
                 </div>
@@ -268,7 +268,7 @@ export default function Footer() {
             {/* Social */}
             <div style={{ marginTop: '24px', display: 'flex' }}>
               <Link href="https://www.linkedin.com/company/agri-experience-ltd/" target="_blank" rel="noopener noreferrer"
-                aria-label="Follow Agri Experience on LinkedIn"
+                aria-label={t('aria_linkedin')}
                 style={{
                   width: '48px', height: '48px', borderRadius: '12px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -277,7 +277,7 @@ export default function Footer() {
                 }}
                 className="hover:bg-[#252525]"
               >
-                <span className="sr-only">LinkedIn</span>
+                <span className="sr-only">{t('linkedin')}</span>
                 <svg width="18" height="18" viewBox="0 0 20 20" fill="white" aria-hidden="true">
                   <path d="M4.94 2.07A2.07 2.07 0 112.87 4.14 2.07 2.07 0 014.94 2.07zM2.07 6.75h3.56v11.45H2.07V6.75zm5.3 0h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H7.37V6.75z"/>
                 </svg>

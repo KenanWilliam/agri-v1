@@ -6,7 +6,9 @@
     "our_team": "Notre équipe",
     "our_impact": "Notre impact",
     "resources": "Ressources",
-    "contact": "Contactez-nous"
+    "contact": "Contactez-nous",
+    "aria_open_menu": "Ouvrir le menu de navigation",
+    "aria_close_menu": "Fermer le menu de navigation"
   },
   "ClientLogos": {
     "development_partners": "Partenaires de développement",
@@ -135,7 +137,10 @@
     "get_in_touch": "Entrer en contact",
     "address": "Parc d'activités Watermark, Karen\nP.O. Boîte postale 1720 - 00606, Nairobi",
     "copyright": "© {year} Agri Experience Ltd.",
-    "designed_by": "Conçu et développé par Kenan William"
+    "designed_by": "Conçu et développé par Kenan William",
+    "aria_linkedin": "Suivez Agri Expérience sur LinkedIn",
+    "linkedin": "LinkedIn",
+    "aria_subscribe": "Abonnez-vous à la newsletter"
   },
   "OurTeam": {
     "title": "Notre équipe",
