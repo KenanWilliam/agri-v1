@@ -102,6 +102,8 @@ export default function Header() {
           <div className="w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 xl:px-12 flex justify-end">
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isOpen}
               className="lg:hidden pointer-events-auto p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
             >
               <AnimatedHamburger isOpen={isOpen} />

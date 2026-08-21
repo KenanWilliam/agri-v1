@@ -127,7 +127,7 @@ export default function OurTeamPage() {
 
       {/* Grid Layout */}
       <section className="w-full max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-[min(2.75rem,4vh)] pb-16 lg:pb-16 snap-start scroll-mt-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-12 lg:gap-x-3 lg:gap-y-[min(4rem,6vh)]">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-12 lg:gap-x-3 lg:gap-y-[min(4rem,6vh)]">
           {fullTeam.map((member, idx) => (
             <motion.div
               key={idx}

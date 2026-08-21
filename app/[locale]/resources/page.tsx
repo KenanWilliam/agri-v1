@@ -77,7 +77,7 @@ export default function ResourcesPage() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredDownloads.map((download) => {
                 // Find index to get correct translation from the array
                 const originalIdx = publicDownloads.findIndex(d => d.title === download.title);
