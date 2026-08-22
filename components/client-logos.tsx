@@ -91,13 +91,14 @@ const TextLogo = ({ name, href }: { name: string; href?: string }) => {
 
 const ImageLogo = ({ logo }: { logo: ClientLogo }) => {
   const content = (
-    <div className="h-12 md:h-16 flex items-center justify-center">
+    <div className="h-12 md:h-16 w-32 md:w-44 flex items-center justify-center">
       <Image
         src={logo.src!}
         alt={logo.alt}
         width={300}
         height={100}
-        className="h-full w-auto object-contain object-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+        loading="eager"
+        className="max-h-full max-w-full object-contain object-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
       />
     </div>
   )
@@ -202,6 +203,7 @@ const MobileLogoCarousel = ({ cards }: { cards: MobileCardData[] }) => {
                             alt={logo.alt}
                             width={140}
                             height={80}
+                            loading="eager"
                             className="max-h-full max-w-full object-contain"
                           />
                         ) : (
@@ -287,10 +289,16 @@ export default function ClientLogos() {
           .animate-marquee-left {
             animation: marquee-left 100s linear infinite;
             will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
           }
           .animate-marquee-right {
             animation: marquee-right 100s linear infinite;
             will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
           }
           .marquee-container:hover .animate-marquee-left,
           .marquee-container:hover .animate-marquee-right {
