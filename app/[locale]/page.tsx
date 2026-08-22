@@ -193,7 +193,7 @@ export default function Home() {
                   alt="Agricultural landscape"
                   fill
                   sizes="100vw"
-                  loading="eager"
+                  priority
                   className="md:hidden object-cover object-center"
                 />
             </div>
