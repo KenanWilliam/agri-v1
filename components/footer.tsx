@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { ArrowRight, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-const linkStyle: React.CSSProperties = { color: '#777', fontSize: '13px', textDecoration: 'none', fontWeight: 300 }
+const linkStyle: React.CSSProperties = { color: '#999', fontSize: '13px', textDecoration: 'none', fontWeight: 300 }
 const linkHoverClass = 'footer-nav-link'
 
 export default function Footer() {
@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <div className="relative w-full">
       <style>{`
-        .footer-nav-link { color: #777; font-size: 13px; text-decoration: none; font-weight: 300; transition: color 0.15s ease; }
+        .footer-nav-link { color: #999; font-size: 13px; text-decoration: none; font-weight: 300; transition: color 0.15s ease; }
         .footer-nav-link:hover { color: #ffffff; }
       `}</style>
 
@@ -89,7 +89,7 @@ export default function Footer() {
                           fontFamily: 'inherit',
                         }}
                       />
-                      <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', color: '#888' }}>
+                      <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '12px', margin: '-12px', minWidth: '48px', minHeight: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>
                         <ArrowRight size={16} />
                       </button>
                     </div>
@@ -221,7 +221,7 @@ export default function Footer() {
                   © {year} Agri Experience Ltd.
                 </p>
                 <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#777', fontSize: '11px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
+                  style={{ color: '#999', fontSize: '11px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                   className="hover:text-[#aaa]">
                   {t('credit')}
                 </a>
@@ -258,7 +258,7 @@ export default function Footer() {
                     placeholder={t('email_placeholder')} required
                     style={{ background: 'transparent', border: 'none', outline: 'none', color: '#e8e8e8', fontSize: '13px', flex: 1, fontFamily: 'inherit' }}
                   />
-                  <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex' }}>
+                  <button type="submit" aria-label={t('aria_subscribe')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px', margin: '-12px', minWidth: '48px', minHeight: '48px' }}>
                     <ArrowRight size={15} />
                   </button>
                 </div>
@@ -346,7 +346,7 @@ export default function Footer() {
                 © {year} Agri Experience Ltd.
               </p>
               <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
-                style={{ color: '#777', fontSize: '10px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
+                style={{ color: '#999', fontSize: '10px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
                 className="hover:text-[#aaa]">
                 {t('credit')}
               </a>

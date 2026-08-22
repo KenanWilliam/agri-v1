@@ -104,7 +104,7 @@ export default function Header() {
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? t('aria_close_menu') : t('aria_open_menu')}
               aria-expanded={isOpen}
-              className="lg:hidden pointer-events-auto p-2 text-deep-forest hover:bg-black/5 rounded-full transition-colors"
+              className="lg:hidden pointer-events-auto p-3 text-deep-forest hover:bg-black/5 rounded-full transition-colors flex items-center justify-center min-w-[48px] min-h-[48px]"
             >
               <AnimatedHamburger isOpen={isOpen} />
             </button>
