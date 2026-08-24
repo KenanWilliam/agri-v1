@@ -97,7 +97,6 @@ const ImageLogo = ({ logo }: { logo: ClientLogo }) => {
         alt={logo.alt}
         width={300}
         height={100}
-        loading="eager"
         className="max-h-full max-w-full object-contain object-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
       />
     </div>
@@ -203,7 +202,6 @@ const MobileLogoCarousel = ({ cards }: { cards: MobileCardData[] }) => {
                             alt={logo.alt}
                             width={140}
                             height={80}
-                            loading="eager"
                             className="max-h-full max-w-full object-contain"
                           />
                         ) : (
