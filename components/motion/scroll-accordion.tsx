@@ -47,7 +47,7 @@ export function ScrollAccordion({
       id: 0,
       title: visionTitle,
       desc: visionDesc,
-      image: '/pexels-equalstock-27722065.webp' // landscape/farmland shot
+      image: '/pexels-equalstock-27722065.jpg' // landscape/farmland shot
     },
     {
       id: 1,

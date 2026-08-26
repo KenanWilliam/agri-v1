@@ -55,6 +55,23 @@ export default function Preloader() {
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
+  const [bgLoaded, setBgLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
+  // When both the internal background and the page video are ready, begin animation
+  useEffect(() => {
+    if (bgLoaded && videoReady) {
+      setStartAnimation(true);
+    }
+  }, [bgLoaded, videoReady]);
+
+  // Safety fallback if something hangs
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStartAnimation(true);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
   
   const pathRef = useRef<SVGPathElement>(null);
 
@@ -69,29 +86,24 @@ export default function Preloader() {
     const resolve = () => {
       if (resolved) return;
       resolved = true;
-      setStartAnimation(true);
+      setVideoReady(true);
     };
 
-    // Check if already signaled (e.g. cached video fired before this effect)
     if ((window as any).__heroVideoReady) {
       resolve();
       return;
     }
 
-    // Listen for video ready event from the home page hero
     window.addEventListener('hero-video-ready', resolve);
 
-    // After DOM is committed, check if there's a visible video to wait for
     const checkTimer = setTimeout(() => {
       const video = document.querySelector('video');
       const isDesktop = window.innerWidth >= 768;
       if (!video || !isDesktop) {
-        // No video on this page or on mobile — no need to wait
         resolve();
       }
     }, 50);
 
-    // Absolute safety fallback (in case video never loads)
     const maxTimer = setTimeout(resolve, 8000);
 
     return () => {
@@ -192,11 +204,12 @@ export default function Preloader() {
               className="absolute inset-0 w-full h-full"
             >
               <Image
-                src="/pexels-equalstock-27722065.webp"
+                src="/pexels-equalstock-27722065.jpg"
                 alt="Loading Background"
                 fill
                 className="object-cover"
                 priority fetchPriority="high"
+                onLoad={() => setBgLoaded(true)}
               />
 
               <motion.div
@@ -224,11 +237,12 @@ export default function Preloader() {
               }}
             >
               <Image
-                src="/pexels-equalstock-27722065.webp"
+                src="/pexels-equalstock-27722065.jpg"
                 alt="Loading Background"
                 fill
                 className="object-cover"
                 priority fetchPriority="high"
+                onLoad={() => setBgLoaded(true)}
               />
 
               <motion.div

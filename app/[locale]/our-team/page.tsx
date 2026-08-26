@@ -134,7 +134,7 @@ export default function OurTeamPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              transition={{ duration: 0.6, delay: (idx % 4) * 0.08 }}
               className="group cursor-pointer flex flex-col"
               onClick={() => setSelectedMember(member)}
             >
@@ -146,7 +146,8 @@ export default function OurTeamPage() {
                       src={member.image} 
                       alt={member.name} 
                       fill 
-                      className={`object-cover transition-all duration-[800ms] ease-out group-hover:scale-110 ${member.hoverImage ? 'group-hover:opacity-0' : ''}`}
+                      className={`object-cover transition-all duration-[800ms] ease-out group-hover:scale-110 ${member.hoverImage ? 'group-hover:opacity-0' : ''} opacity-0`}
+                      onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                       style={{ objectPosition: member.imagePosition || 'center 25%' }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
