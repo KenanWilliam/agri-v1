@@ -97,6 +97,7 @@ const ImageLogo = ({ logo }: { logo: ClientLogo }) => {
         alt={logo.alt}
         width={300}
         height={100}
+        sizes="(max-width: 768px) 128px, 176px"
         className="max-h-full max-w-full object-contain object-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
       />
     </div>

@@ -196,7 +196,7 @@ export default function Preloader() {
                 alt="Loading Background"
                 fill
                 className="object-cover"
-                priority
+                priority fetchPriority="high"
               />
 
               <motion.div
@@ -228,7 +228,7 @@ export default function Preloader() {
                 alt="Loading Background"
                 fill
                 className="object-cover"
-                priority
+                priority fetchPriority="high"
               />
 
               <motion.div

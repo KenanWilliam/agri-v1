@@ -36,13 +36,13 @@ export default function Footer() {
       {/* ─── Desktop ─── */}
       <div className="hidden md:block">
 
-        {/* Hero image above footer */}
         <div className="relative w-full overflow-hidden" style={{ height: '70vh' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/pexels-flambo-388007-1112080.jpg"
             alt="Agricultural landscape"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
           />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to top, #0d0d0d, transparent)' }} />
         </div>

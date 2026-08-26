@@ -477,7 +477,7 @@ export default function LiquidGlass({
     <>
       {/* Over light effect */}
       <div
-        className={`bg-black transition-all duration-150 ease-in-out pointer-events-none ${overLight ? "opacity-20" : "opacity-0"}`}
+        className={`bg-black transition-opacity duration-150 ease-in-out pointer-events-none ${overLight ? "opacity-20" : "opacity-0"}`}
         style={{
           ...positionStyles,
           height: glassSize.height,
@@ -488,7 +488,7 @@ export default function LiquidGlass({
         }}
       />
       <div
-        className={`bg-black transition-all duration-150 ease-in-out pointer-events-none mix-blend-overlay ${overLight ? "opacity-100" : "opacity-0"}`}
+        className={`bg-black transition-opacity duration-150 ease-in-out pointer-events-none mix-blend-overlay ${overLight ? "opacity-100" : "opacity-0"}`}
         style={{
           ...positionStyles,
           height: glassSize.height,

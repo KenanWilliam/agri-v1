@@ -175,7 +175,7 @@ export default function Home() {
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
             <div className="absolute inset-0 w-full h-full bg-mist">
                 <video
-                  src="/Videos/wheat swaying in the wind.mp4"
+                  src="/Videos/wheat-swaying.mp4"
                   autoPlay
                   loop
                   muted
@@ -187,7 +187,9 @@ export default function Home() {
                     }
                   }}
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
-                />
+                >
+                  <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
+                </video>
                 <Image 
                   src="/hero-bg.png"
                   alt="Agricultural landscape"
