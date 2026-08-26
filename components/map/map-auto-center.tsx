@@ -31,7 +31,7 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
         zoom: getOptimalZoom(),
         pitch: 0,
         essential: true,
-        duration: immediate ? 800 : 1200,
+        duration: 800, // Snap back quickly
         easing: smoothEasing
       });
     };
@@ -40,7 +40,7 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       // If user drags or zooms, we restart the inactivity timer to return back
       if (e && e.originalEvent) {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => resetCenter(false), 8000); // 8 seconds of inactivity before auto-reset
+        timeoutRef.current = setTimeout(() => resetCenter(false), 1500); // 1.5 seconds to snap back when spun away
       }
     };
 
