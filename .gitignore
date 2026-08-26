@@ -1,29 +1,27 @@
-# v0 sandbox internal files
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-.snowflake/
-.v0-trash/
-.vercel/
-
-# Environment variables
-.env*.local
-
-# v0 sandbox internal files
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-.snowflake/
-.v0-trash/
-.vercel/
-
-# Environment variables
-.env*.local
-
-# Common ignores
+# Dependencies
 node_modules
+
+# Next.js
 .next/
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# Environment variables
+.env*.local
+
+# OS files
 .DS_Store
+
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Design source files
 public/office-plants/*.psd
 public/office-plants/*.png
 public/SDG-images/*.psd

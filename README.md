@@ -1,201 +1,208 @@
-# Agri Experience - Official Website
+# Agri Experience
 
-Professional consulting website for Agri Experience, transforming agricultural value chains across 21 African countries through expert seed systems development and market intervention strategies.
+Professional website for **Agri Experience** — an agricultural consulting firm transforming seed systems and agricultural value chains across 21 African countries.
 
-**Live Site:** [agri-experience.com](https://agri-experience.com)
+**[agri-experience.com](https://agri-experience.com)**
 
-## Project Overview
+---
 
-Agri Experience is a Nairobi-based consulting firm specializing in developing the crop seed sector throughout sub-Saharan Africa. This website showcases their work, impact, and expertise across East, West, Central, and Southern Africa.
+## Table of Contents
+
+- [About](#about)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Internationalization](#internationalization)
+- [Design System](#design-system)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+## About
+
+Agri Experience is a Nairobi-based consulting firm specializing in crop seed sector development throughout sub-Saharan Africa. The website serves as the organization's primary digital presence, showcasing services, impact, and published resources across East, West, Central, and Southern Africa.
 
 ### Key Features
 
-- **Interactive Africa Map**: Drill-down map with 21 countries showing active projects, regional impact, and farmer engagement
-- **Professional Design**: Modern, clean aesthetic appropriate for serious consulting clients with solid colors and professional branding
-- **Full Service Pages**: About, Our Work, Our Results, Our Impact, Resources, Insights, Contact, Newsletter
-- **Testimonial Showcase**: GitHub-style modal featuring partner organization testimonials
-- **Responsive Design**: Mobile, tablet, and desktop optimized layouts
-- **Modern Animations**: Fluid, seamless transitions powered by Framer Motion (no AI gradients)
-- **Comprehensive Design System**: Color palette, typography, and components for professional appearance
+- **Interactive Mapbox Map** — Drill-down map of 21 countries with active projects, regional filtering, and project-level detail
+- **Bilingual (EN/FR)** — Full internationalization with `next-intl`, auto-translation pipeline, and locale-aware routing
+- **Resource Library** — Downloadable PDFs including case studies, toolkits, and scoping reports with in-browser preview
+- **SDG Alignment** — Visual mapping of organizational impact to UN Sustainable Development Goals
+- **Motion Design** — Scroll-driven animations, page transitions, and interactive UI powered by Framer Motion and GSAP
+- **Responsive** — Mobile-first layouts optimized for all viewports
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 with App Router
-- **UI Library**: React 19 with Framer Motion animations
-- **Styling**: Tailwind CSS 4 with custom design tokens
-- **Components**: Shadcn UI components
-- **Typography**: Playfair Display (headings), DM Sans (body), Bebas Neue & Space Grotesk (data/numbers)
-
-## Design System
-
-### Color Palette
-- **Primary Green**: #3ab44a
-- **Primary Blue**: #2484c6
-- **Dark Green**: #0f3d1e
-- **Cream**: #f5efe0
-- **Dark Gray**: #1c2b22
-- **Mint**: #eef5f1
-- **Gold Accent**: #c8a44a
-
-### Typography
-- **Headings**: Playfair Display (serif)
-- **Body**: DM Sans (sans-serif)
-- **Data/Numbers**: Bebas Neue (display)
-- **Alternative**: Space Grotesk (mono/accent)
+| Category | Technology |
+|----------|-----------|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| UI | [React 19](https://react.dev/) |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
+| Components | [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/) |
+| Animation | [Framer Motion](https://www.framer.com/motion/) · [GSAP](https://gsap.com/) |
+| Maps | [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/) |
+| i18n | [next-intl](https://next-intl.dev/) |
+| PDF Rendering | [react-pdf](https://react-pdf.org/) |
+| Package Manager | [pnpm](https://pnpm.io/) |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js** ≥ 18
+- **pnpm** ≥ 9
+
+### Installation
 
 ```bash
-npm install
-npm run dev
-# or
+# Clone the repository
+git clone https://github.com/<org>/agri-experience.git
+cd agri-experience
+
+# Install dependencies
 pnpm install
+
+# Set up environment variables
+cp .env .env.local
+```
+
+### Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_MAPBOX_TOKEN` | Mapbox GL JS public access token | Yes |
+
+### Development
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Building for Production
+### Build
 
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm start
+```
+
+### Lint
+
+```bash
+pnpm lint
 ```
 
 ## Project Structure
 
 ```
-app/
-├── layout.tsx              # Root layout with fonts and global setup
-├── globals.css             # Design tokens and theme configuration
-├── page.tsx                # Home page with hero, services, map, testimonials
-├── about/page.tsx          # Company mission, vision, values, team
-├── our-work/page.tsx       # Core services and featured projects
-├── our-results/page.tsx    # Key metrics, outcomes, and impact stories
-├── our-impact/page.tsx     # Impact areas by category, SDG alignment
-├── resources/page.tsx      # Downloadable guides, manuals, case studies
-├── insights/page.tsx       # Blog/articles with categories and filtering
-├── contact/page.tsx        # Contact form, regional offices, social links
-└── newsletter/page.tsx     # Newsletter signup with interests and frequency
-
-components/
-├── header.tsx              # Sticky navigation with mobile menu
-├── footer.tsx              # Footer with links and company info
-├── interactive-map.tsx     # 21-country map with drill-down functionality
-├── testimonial-modal.tsx   # Carousel of partner testimonials
-└── ui/                     # Shadcn UI components library
+├── app/
+│   └── [locale]/                # Locale-scoped routes (en, fr)
+│       ├── page.tsx             # Home
+│       ├── about/               # Mission, values, company journey
+│       ├── our-work/            # Services overview
+│       │   ├── capacity-building/
+│       │   ├── client-advisory/
+│       │   ├── digital-platforms/
+│       │   ├── project-implementation/
+│       │   ├── stakeholder-convenings/
+│       │   └── technical-studies/
+│       ├── our-results/         # Key metrics and outcomes
+│       ├── our-impact/          # SDG alignment and impact areas
+│       ├── our-team/            # Leadership team
+│       ├── map/                 # Full-page interactive map
+│       ├── resources/           # Downloadable publications
+│       ├── insights/            # Articles and blog
+│       ├── gallery/             # Photo gallery
+│       ├── contact/             # Contact form and offices
+│       ├── newsletter/          # Newsletter signup
+│       ├── privacy/             # Privacy policy
+│       └── terms/               # Terms of service
+│
+├── components/
+│   ├── header.tsx               # Sticky nav with mobile menu
+│   ├── footer.tsx               # Site footer
+│   ├── interactive-map.tsx      # Map entry point
+│   ├── client-logos.tsx         # Partner logo marquee
+│   ├── map/                     # Mapbox map components
+│   ├── motion/                  # Animated section components
+│   ├── liquid-glass/            # Header glass-morphism effect
+│   └── ui/                      # shadcn/ui primitives
+│
+├── lib/                         # Utilities and data
+├── i18n/                        # next-intl routing and config
+├── messages/                    # Translation files (en.json, fr.json)
+├── public/                      # Static assets
+│   ├── flags/                   # Country flag images
+│   ├── office-plants/           # Gallery photos
+│   ├── resources/               # Downloadable PDFs
+│   ├── SDG-images/              # SDG background images (en, fr)
+│   ├── SDGs/                    # SDG icon SVGs
+│   ├── team/                    # Team member photos
+│   └── Videos/                  # Hero video
+│
+└── scripts/
+    └── auto-translate.js        # Auto-translation pipeline (pre-commit)
 ```
 
-## Features
+## Internationalization
 
-### Interactive Map
-- **Region Filtering**: Filter countries by East, West, Central, or Southern Africa
-- **Country Selection**: Click any country to see:
-  - Number of active projects
-  - Farmers engaged
-  - Focus areas and impact zones
-  - Regional statistics
-- **Smooth Animations**: Framer Motion transitions
-- **Responsive Grid**: Works on mobile, tablet, and desktop
+The site supports **English** and **French** with locale-prefixed routing (`/en/...`, `/fr/...`).
 
-### Navigation
-- **Desktop**: Full horizontal navigation menu with hover effects
-- **Mobile**: Hamburger menu with smooth drawer animation
-- **Active States**: Clear visual feedback on current page
-- **Sticky Header**: Always accessible at the top of the page
+- Translation files live in `messages/en.json` and `messages/fr.json`
+- A **pre-commit hook** (via [Husky](https://typicode.github.io/husky/)) runs `scripts/auto-translate.js` to keep French translations in sync
+- Translation results are cached in `.translation-cache.json` to avoid redundant API calls
 
-### Pages
-1. **Home**: Hero section with stats, services grid, interactive map, testimonials, CTAs
-2. **About**: Mission/vision/values, leadership team, company journey timeline
-3. **Our Work**: Four core service offerings with detailed descriptions and methodology
-4. **Our Results**: Key metrics (500K+ farmers, 21 countries, 150+ projects, 20+ years)
-5. **Our Impact**: Impact areas with highlights, SDG alignment, success metrics
-6. **Resources**: Downloadable guides, manuals, frameworks, case studies
-7. **Insights**: Blog/articles grid with category filtering
-8. **Contact**: Contact form, regional office information, social links
-9. **Newsletter**: Multi-option newsletter signup with interests and frequency
+To manually trigger translation:
 
-## Animations & Interactions
+```bash
+pnpm translate
+```
 
-- Scroll-triggered fade-in animations for all sections
-- Hover effects on buttons and cards with smooth transitions
-- Modal animations for testimonials and dialogs
-- Page transitions with Framer Motion
-- Smooth mobile menu slide-out animation
-- Responsive animations that adapt to viewport
+## Design System
 
-## Mobile Optimization
+### Colors
 
-- Mobile-first responsive design using Tailwind breakpoints (sm, md, lg)
-- Touch-friendly buttons and interactive elements
-- Optimized layouts for small screens
-- Hamburger menu for navigation on mobile
-- Proper spacing and typography scaling
+| Token | Hex | Usage |
+|-------|-----|-------|
+| Primary Green | `#3ab44a` | CTAs, active states |
+| Primary Blue | `#2484c6` | Links, accents |
+| Dark Green | `#0f3d1e` | Headings, dark sections |
+| Cream | `#f5efe0` | Backgrounds |
+| Dark Gray | `#1c2b22` | Body text |
+| Mint | `#eef5f1` | Subtle backgrounds |
+| Gold | `#c8a44a` | Highlights, badges |
 
-## Performance
+### Typography
 
-- Static page generation for all routes
-- Optimized images with next/image
-- CSS-in-JS for efficient theming
-- Lazy-loaded components
-- Minimal JavaScript bundle with Next.js 16
+| Role | Font | Category |
+|------|------|----------|
+| Headings | Playfair Display | Serif |
+| Body | DM Sans | Sans-serif |
+| Data / Numbers | Bebas Neue | Display |
+| Accent | Space Grotesk | Sans-serif |
 
-## Browser Support
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile browsers (iOS Safari 14+, Chrome Android)
-
-## Development Guidelines
-
-### Adding New Pages
-1. Create new directory in `app/`
-2. Add `page.tsx` file with proper imports (Header, Footer, Layout)
-3. Use consistent motion animations with Framer Motion
-4. Follow color and typography system
-5. Ensure mobile responsiveness
-
-### Modifying Components
-- Keep components focused and reusable
-- Use Tailwind classes consistently
-- Test animations on various devices
-- Maintain accessibility standards
-
-### Styling
-- Use Tailwind CSS for all styling
-- Reference design tokens from `globals.css`
-- Avoid inline styles
-- Use CSS Grid and Flexbox for layouts
-
-## Content Management
-
-Currently, all content is hardcoded in components. For future scalability, consider:
-- CMS integration (Contentful, Sanity, Strapi)
-- Markdown for blog posts
-- Environment variables for configuration
-- API endpoints for dynamic content
+Design tokens are defined in [`app/globals.css`](app/globals.css).
 
 ## Deployment
 
-Ready to deploy to Vercel with zero configuration:
+The app is configured for deployment on [Vercel](https://vercel.com):
 
 ```bash
-npm run build
+pnpm build
 ```
 
-Then deploy to Vercel or any Node.js hosting platform.
+Ensure the `NEXT_PUBLIC_MAPBOX_TOKEN` environment variable is set in your hosting provider's dashboard.
+
+## Contributing
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Ensure `pnpm build` passes with no errors
+4. Ensure translations are up to date (`pnpm translate`)
+5. Open a pull request
 
 ## License
 
-All rights reserved - Agri Experience
-
-## Support
-
-For questions or issues, contact the development team.
-
----
-
-**Built with Next.js 16, React 19, and Tailwind CSS 4**
+All rights reserved © Agri Experience
