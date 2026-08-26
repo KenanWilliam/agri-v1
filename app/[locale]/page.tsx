@@ -212,7 +212,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-serif tracking-tight text-[#1A4D2E] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1]"
+                className="font-serif tracking-tight pb-2 text-[#1A4D2E] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
               >
                 {t('hero_title_1')} <br />
                 {t('hero_title_2')} <br />
@@ -283,7 +283,7 @@ export default function Home() {
                   <div ref={track1InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-24">
                     <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
                       <motion.div>
-                        <h2 className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight mb-6">
+                        <h2 className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-6">
                           {tAgri('title')}
                         </h2>
                         <div className="w-20 h-1 bg-primary-green rounded-full"></div>
@@ -316,7 +316,7 @@ export default function Home() {
                   <div ref={track2InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-[10vw]">
                     <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
                       <motion.div>
-                        <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">{t('what_we_believe')}</h2>
+                        <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-6">{t('what_we_believe')}</h2>
                         <div className="w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
@@ -360,7 +360,7 @@ export default function Home() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                     >
-                      <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight mb-6">{t('what_we_believe')}</h2>
+                      <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-6">{t('what_we_believe')}</h2>
                       <div className="w-20 h-1 bg-primary-green rounded-full"></div>
                     </motion.div>
                   </div>
@@ -395,7 +395,7 @@ export default function Home() {
         <section className="w-full py-16 lg:py-16 bg-mist relative z-20">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 md:mb-16 space-y-4">
-              <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif font-bold tracking-tight">{t('trusted_leaders')}</h2>
+              <h2 className="text-deep-forest text-2xl sm:text-3xl lg:text-5xl font-serif font-bold tracking-tight pb-2">{t('trusted_leaders')}</h2>
               <p className="text-base sm:text-lg lg:text-xl text-charcoal/70 font-light max-w-2xl mx-auto">
                 {t('trusted_leaders_desc')}
               </p>
@@ -413,7 +413,7 @@ export default function Home() {
           
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
             <div className="flex flex-col items-center gap-4 lg:gap-8">
-              <div className="overflow-hidden">
+              <div className="overflow-hidden pb-4 -mb-4">
                 <motion.h2 
                   initial={{ y: "100%" }}
                   whileInView={{ y: 0 }}
@@ -425,7 +425,7 @@ export default function Home() {
                 </motion.h2>
               </div>
               
-              <div className="overflow-hidden">
+              <div className="overflow-hidden pb-4 -mb-4">
                 <motion.p 
                   initial={{ y: "100%" }}
                   whileInView={{ y: 0 }}

@@ -86,7 +86,7 @@ export default function OurWorkPage() {
                   <Leaf size={18} />
                   {t('practice')}
                 </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('title')}
                 </h1>
               </motion.div>
@@ -230,7 +230,7 @@ export default function OurWorkPage() {
                 <div key={i} className="flex flex-col lg:flex-row items-center gap-3 lg:gap-4 lg:min-w-[200px] text-center lg:text-left">
                   <stat.icon className="text-primary-green opacity-80 shrink-0" size={28} />
                   <div className="flex flex-col items-center lg:items-start">
-                    <div className="text-2xl lg:text-3xl font-serif font-bold text-white leading-none">{stat.value}</div>
+                    <div className="text-2xl lg:text-3xl font-serif font-bold text-white leading-tight">{stat.value}</div>
                     <div className="text-[11.5px] lg:text-xs text-white/70 tracking-wide mt-1.5 lg:mt-1 leading-tight">{stat.label}</div>
                   </div>
                   {/* Vertical separator (hidden on mobile, visible on desktop between items) */}

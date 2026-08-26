@@ -130,7 +130,7 @@ export default function ClientAdvisoryPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <span className="block text-accent-gold">{t('hero_title2')}</span>
                 </h1>
@@ -193,7 +193,7 @@ export default function ClientAdvisoryPage() {
                 <Briefcase size={16} />
                 {t('adv_services_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight" dangerouslySetInnerHTML={{ __html: t('adv_services_title') }} />
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('adv_services_title') }} />
             </motion.div>
 
             {/* 2-column staggered layout for premium feel */}
@@ -250,7 +250,7 @@ export default function ClientAdvisoryPage() {
                 <Compass size={16} />
                 {t('oa_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('oa_title')}
               </h2>
             </motion.div>
@@ -306,7 +306,7 @@ export default function ClientAdvisoryPage() {
                 <Briefcase size={16} />
                 {t('ws_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight" dangerouslySetInnerHTML={{ __html: t('ws_title') }} />
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('ws_title') }} />
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
@@ -357,7 +357,7 @@ export default function ClientAdvisoryPage() {
                     <Leaf size={16} />
                     {t('pm_tag')}
                   </div>
-                  <h3 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight leading-tight">
+                  <h3 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2 leading-tight">
                     {t('pm_title')}
                   </h3>
                   <p className="text-charcoal/70 font-light leading-relaxed max-w-xl">
@@ -429,7 +429,7 @@ export default function ClientAdvisoryPage() {
                   <LineChart size={16} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
+                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
                   {t('cta_desc')}
                 </p>

@@ -206,7 +206,7 @@ const MobileLogoCarousel = ({ cards }: { cards: MobileCardData[] }) => {
                             className="max-h-full max-w-full object-contain"
                           />
                         ) : (
-                          <span className="font-serif text-xl font-bold tracking-tight text-gray-800 text-center leading-tight">
+                          <span className="font-serif text-xl font-bold tracking-tight pb-2 text-gray-800 text-center leading-tight">
                             {logo.name}
                           </span>
                         )}

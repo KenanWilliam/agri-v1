@@ -40,7 +40,7 @@ function ExpertiseAccordion({ t }: { t: ReturnType<typeof useTranslations<'About
               <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
                 <Icon className="text-primary-green" size={20} />
               </div>
-              <span className="flex-1 font-serif text-deep-forest text-lg font-medium tracking-tight">
+              <span className="flex-1 font-serif text-deep-forest text-lg font-medium tracking-tight pb-2">
                 {t(`expertise_cards.${item.key}.title`)}
               </span>
               <motion.div
@@ -90,7 +90,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8 text-center"
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight pb-2">
                 {t('title')}
               </h1>
               <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
@@ -149,7 +149,7 @@ export default function AboutPage() {
                         <Icon className="text-primary-green" size={28} />
                       </div>
                       <div className="space-y-3">
-                        <h3 className="font-serif tracking-tight text-[#1A4D2E] text-2xl lg:text-3xl">
+                        <h3 className="font-serif tracking-tight pb-2 text-[#1A4D2E] text-2xl lg:text-3xl">
                           {t(`expertise_cards.${item.key}.title`)}
                         </h3>
                         <p className="font-sans text-gray-600 lg:text-lg">

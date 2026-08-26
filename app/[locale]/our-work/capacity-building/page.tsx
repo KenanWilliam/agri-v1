@@ -134,7 +134,7 @@ export default function CapacityBuildingPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <br />
                   <span className="text-charcoal/70">{t('hero_title2')}</span>
@@ -193,7 +193,7 @@ export default function CapacityBuildingPage() {
                 <Leaf size={14} />
                 {t('our_philosophy')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-8">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-8">
                 {t('phil_title')}
               </h2>
               <p className="text-lg text-charcoal/80 font-light leading-relaxed">
@@ -217,7 +217,7 @@ export default function CapacityBuildingPage() {
                 <GraduationCap size={14} />
                 {t('tp_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-6">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('tp_title')}
               </h2>
               <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
@@ -247,7 +247,7 @@ export default function CapacityBuildingPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight">
+                    <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                       {program.title}
                     </h3>
                     <p className="text-charcoal/70 font-light leading-relaxed text-sm mb-4 flex-1">
@@ -281,7 +281,7 @@ export default function CapacityBuildingPage() {
                 <Target size={14} />
                 {t('oa_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-6">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('oa_title')}
               </h2>
               <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
@@ -316,7 +316,7 @@ export default function CapacityBuildingPage() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-serif font-bold text-deep-forest mb-3 tracking-tight">
+                    <h3 className="text-lg font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                       {step.title}
                     </h3>
                     <p className="text-charcoal/60 font-light text-sm leading-relaxed max-w-[240px] mx-auto">
@@ -417,7 +417,7 @@ export default function CapacityBuildingPage() {
                     <Award size={14} />
                     {t('th_tag')}
                   </div>
-                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight mb-4">
+                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-4">
                     {t('th_title')}
                   </h2>
                   <p className="text-charcoal/70 font-light leading-relaxed">
@@ -514,7 +514,7 @@ export default function CapacityBuildingPage() {
                   <Leaf size={14} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]">
+                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight">
                   {t('cta_title')}
                 </h2>
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">

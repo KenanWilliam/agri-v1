@@ -134,7 +134,7 @@ export default function StakeholderConveningsPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')},
                   <br />
                   <span className="text-lighter-dark-green/70">{t('hero_title2')}.</span>
@@ -193,7 +193,7 @@ export default function StakeholderConveningsPage() {
                 <Leaf size={14} />
                 {t('pm_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-8">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-8">
                 {t('pm_title')}
               </h2>
               <p className="text-lg text-charcoal/80 font-light leading-relaxed">
@@ -217,7 +217,7 @@ export default function StakeholderConveningsPage() {
                 <Calendar size={14} />
                 {t('ct_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-6">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('ct_title')}
               </h2>
             </motion.div>
@@ -251,7 +251,7 @@ export default function StakeholderConveningsPage() {
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight">
+                      <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                         {type.title}
                       </h3>
                       <p className="text-charcoal/70 font-light leading-relaxed text-sm mb-4 flex-1">
@@ -288,7 +288,7 @@ export default function StakeholderConveningsPage() {
                   <Compass size={14} />
                   {t('wcm_tag')}
                 </div>
-                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight leading-[1.1]">
+                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 leading-tight">
                   {t('wcm_title')}
                 </h2>
                 <p className="text-charcoal/70 font-light leading-relaxed">
@@ -315,7 +315,7 @@ export default function StakeholderConveningsPage() {
                         <Icon size={24} className="text-lighter-dark-green" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-serif font-bold text-deep-forest mb-2 tracking-tight">
+                        <h3 className="text-lg font-serif font-bold text-deep-forest mb-2 tracking-tight pb-2">
                           {point.title}
                         </h3>
                         <p className="text-charcoal/70 font-light leading-relaxed text-sm">
@@ -344,7 +344,7 @@ export default function StakeholderConveningsPage() {
                 <MapPin size={14} />
                 Geographic Reach
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-6">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 Connecting stakeholders across the continent
               </h2>
               <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
@@ -367,7 +367,7 @@ export default function StakeholderConveningsPage() {
                   <div className="w-12 h-12 rounded-full bg-lighter-dark-green/[0.06] flex items-center justify-center mx-auto mb-5 group-hover:bg-lighter-dark-green group-hover:text-white transition duration-200">
                     <Globe size={22} className="text-lighter-dark-green group-hover:text-white transition duration-200" />
                   </div>
-                  <h3 className="text-lg font-serif font-bold text-deep-forest mb-3 tracking-tight">
+                  <h3 className="text-lg font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                     {region.name}
                   </h3>
                   <p className="text-charcoal/60 font-light text-sm leading-relaxed">
@@ -475,7 +475,7 @@ export default function StakeholderConveningsPage() {
                   <Leaf size={14} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
+                <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>

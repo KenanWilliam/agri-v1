@@ -745,7 +745,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-[100dvh] min-h-[600px] md:min-h-[850px] lg:min-h-[1000px] flex flex-col overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-dvh min-h-150 md:min-h-212.5 lg:min-h-250 flex flex-col overflow-hidden">
       {/* Main Interactive Workspace — full bleed, edge to edge */}
       <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
@@ -798,7 +798,7 @@ export default function InteractiveMap() {
         {/* Dossier — Bottom Sheet on Mobile, Floating Overlay on Desktop */}
         <div 
           ref={desktopDossierRef} 
-          className="absolute inset-0 pointer-events-none z-30 lg:left-0 lg:top-0 lg:inset-auto lg:w-[420px] lg:h-auto"
+          className="absolute inset-0 pointer-events-none z-30 lg:left-0 lg:top-0 lg:inset-auto lg:w-105 lg:h-auto"
         >
           <AnimatePresence>
             {selectedCountry && (
@@ -830,13 +830,13 @@ export default function InteractiveMap() {
               </div>
 
               {/* Header */}
-              <div className="flex-shrink-0 flex items-start justify-between gap-3 px-6 pt-4 lg:pt-6 pb-4 relative">
+              <div className="shrink-0 flex items-start justify-between gap-3 px-6 pt-4 lg:pt-6 pb-4 relative">
                 <div className="space-y-2">
                   <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
                     <Globe size={11} className="opacity-60" />
                     {selectedCountry.region}
                   </div>
-                  <h3 className="text-white text-2xl lg:text-[28px] font-serif tracking-tight leading-none font-bold flex items-center gap-3">
+                  <h3 className="text-white text-2xl lg:text-[28px] font-serif tracking-tight pb-2 leading-tight font-bold flex items-center gap-3">
                     <img 
                       src={`/flags/${selectedCountry.code.toLowerCase()}.png`}
                       alt={`${selectedCountry.code} flag`} 
@@ -855,7 +855,7 @@ export default function InteractiveMap() {
               </div>
 
               {/* Subtle separator */}
-              <div className="mx-6 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="mx-6 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
               {/* Scrollable Content */}
               <div className="flex-1 overflow-y-auto px-6 py-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">

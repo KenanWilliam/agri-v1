@@ -109,7 +109,7 @@ const methodology = [
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-primary-blue font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
@@ -160,7 +160,7 @@ const methodology = [
               transition={{ duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('types_title')}
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
@@ -194,7 +194,7 @@ const methodology = [
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight mb-3">
+                      <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-3">
                         {study.title}
                       </h3>
                       <p className="text-charcoal/80 font-light leading-relaxed text-sm">
@@ -218,7 +218,7 @@ const methodology = [
               transition={{ duration: 0.6 }}
               className="mb-20"
             >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('meth_title')}
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
@@ -255,7 +255,7 @@ const methodology = [
                         <Icon size={18} />
                       </div>
 
-                      <h3 className="text-lg font-serif font-bold text-deep-forest tracking-tight mb-2">
+                      <h3 className="text-lg font-serif font-bold text-deep-forest tracking-tight pb-2 mb-2">
                         {item.title}
                       </h3>
                       <p className="text-charcoal/80 font-light leading-relaxed text-sm max-w-[280px]">
@@ -286,7 +286,7 @@ const methodology = [
                     <MapPin size={14} />
                     {t('cs_tag')}
                   </span>
-                  <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mt-4">
+                  <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mt-4">
                     {t('cs_title')}
                   </h2>
                 </div>
@@ -347,7 +347,7 @@ const methodology = [
                           <div className="text-xs text-white/50 tracking-wide uppercase mb-1">
                             {detail.label}
                           </div>
-                          <div className="text-lg font-serif font-bold text-white tracking-tight">
+                          <div className="text-lg font-serif font-bold text-white tracking-tight pb-2">
                             {detail.value}
                           </div>
                         </div>
@@ -380,7 +380,7 @@ const methodology = [
               transition={{ duration: 0.6 }}
               className="text-center mb-14"
             >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('clients_title')}
               </h2>
             </motion.div>
@@ -405,7 +405,7 @@ const methodology = [
                     <div className="w-12 h-12 rounded-full bg-primary-blue/10 flex items-center justify-center text-primary-blue mx-auto mb-4">
                       <Icon size={22} />
                     </div>
-                    <h3 className="text-base font-serif font-bold text-deep-forest tracking-tight mb-2">
+                    <h3 className="text-base font-serif font-bold text-deep-forest tracking-tight pb-2 mb-2">
                       {client.label}
                     </h3>
                     <p className="text-charcoal/70 font-light leading-relaxed text-xs">
@@ -443,7 +443,7 @@ const methodology = [
                 transition={{ duration: 0.7 }}
                 className="max-w-3xl mx-auto"
               >
-                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-6">
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6">
                   {t('cta_title')}
                 </h2>
                 <p className="text-white/70 font-light leading-relaxed text-lg mb-10">

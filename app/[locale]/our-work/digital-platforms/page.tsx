@@ -111,7 +111,7 @@ export default function DigitalPlatformsPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title')}
                 </h1>
                 <p className="text-primary-green font-medium text-lg tracking-wide">
@@ -171,7 +171,7 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 Platform Deep Dive
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
@@ -208,7 +208,7 @@ export default function DigitalPlatformsPage() {
                     {/* Content */}
                     <div className={`mt-6 ${idx === 0 ? 'md:mt-0 flex-1' : 'flex-1 flex flex-col'}`}>
                       <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-2xl font-serif font-bold text-deep-forest tracking-tight">
+                        <h3 className="text-2xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                           {platform.title}
                         </h3>
                         {platform.link && (
@@ -242,7 +242,7 @@ export default function DigitalPlatformsPage() {
                 <Shield size={14} />
                 {t('oa_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight mb-6">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('oa_title')}
               </h2>
               <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
@@ -279,7 +279,7 @@ export default function DigitalPlatformsPage() {
                       <Icon size={22} />
                     </div>
 
-                    <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight mb-3">
+                    <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-3">
                       {item.title}
                     </h3>
                     <p className="text-charcoal/80 font-light leading-relaxed text-sm">
@@ -303,7 +303,7 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('why_title')}
               </h2>
               <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl mx-auto text-lg">
@@ -342,7 +342,7 @@ export default function DigitalPlatformsPage() {
                     <div className="w-14 h-14 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green mb-6">
                       <Icon size={26} />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight mb-3">
+                    <h3 className="text-xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-3">
                       {card.title}
                     </h3>
                     <p className="text-charcoal/80 font-light leading-relaxed text-sm">
@@ -384,7 +384,7 @@ export default function DigitalPlatformsPage() {
                   <MonitorSmartphone size={14} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight max-w-3xl mx-auto leading-[1.1]" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
+                <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>

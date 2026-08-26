@@ -115,7 +115,7 @@ export default function OurTeamPage() {
             transition={{ duration: 0.8 }}
             className="space-y-4 lg:space-y-[min(1.25rem,2vh)] text-center"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight pb-2">
               {t('title')}
             </h1>
             <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
@@ -216,7 +216,7 @@ export default function OurTeamPage() {
               {/* Left Side: Typography & Content */}
               <div className="flex-1 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
                 <div>
-                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-[1] lg:leading-[0.85] tracking-tight mb-6 lg:mb-8 pr-12 lg:pr-0">
+                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-tight tracking-tight pb-2 mb-6 lg:mb-8 pr-12 lg:pr-0">
                     {selectedMember.name.split(' ')[0]}
                     <br className="hidden lg:block" />
                     <span className="lg:hidden"> </span>

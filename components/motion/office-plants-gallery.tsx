@@ -283,7 +283,7 @@ export default function OfficePlantsGallery({ showMissionVision = false }: { sho
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center max-w-3xl text-center p-10 space-y-8"
           >
-            <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight">Old and New by Design</h1>
+            <h1 className="text-5xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight pb-2">Old and New by Design</h1>
             <p className="text-lg lg:text-xl text-charcoal/90 leading-relaxed font-light drop-shadow-sm bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-xl">
               Agri Experience is both an old and new company. Old because the direct experience of our group of principals dates back to 1991. New because Agri Experience, Ltd. was founded in 2012.
             </p>

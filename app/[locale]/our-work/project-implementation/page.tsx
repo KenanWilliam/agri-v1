@@ -144,7 +144,7 @@ export default function ProjectImplementationPage() {
                   <Leaf size={18} />
                   {t('our_work')}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-[1.1] tracking-tight" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
+                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-deep-forest font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
@@ -235,7 +235,7 @@ export default function ProjectImplementationPage() {
                 <Leaf size={16} />
                 {t('ia_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('ia_title')}
               </h2>
             </motion.div>
@@ -296,7 +296,7 @@ export default function ProjectImplementationPage() {
                 <Calendar size={16} />
                 {t('pm_tag')}
               </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight">
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('pm_title')}
               </h2>
             </motion.div>
@@ -419,7 +419,7 @@ export default function ProjectImplementationPage() {
                       <Leaf size={16} />
                       {t('cs_tag')}
                     </div>
-                    <h3 className="text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight leading-tight">
+                    <h3 className="text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
                       {t('cs_title')}
                     </h3>
                     <p className="text-white/70 font-light leading-relaxed">
@@ -535,7 +535,7 @@ export default function ProjectImplementationPage() {
                   <Sprout size={16} />
                   {t('cta_tag')}
                 </div>
-                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
+                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
                   {t('cta_desc')}
                 </p>
