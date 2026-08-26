@@ -1,0 +1,25 @@
+# Agri Experience
+
+> Agri Experience is an agricultural consulting firm transforming seed systems and agricultural value chains across 21 African countries. We focus on seed systems development, digital agricultural tools, field project implementation, and capacity building to strengthen food security and farmer livelihoods.
+
+## Core Pages
+- [Home](https://agri-experience.com/en): The main entry point to Agri Experience, highlighting our services and impact.
+- [About Us](https://agri-experience.com/en/about): Information about our mission, vision, values, and company journey timeline.
+- [Our Results](https://agri-experience.com/en/our-results): Key metrics and outcomes of our work across the African continent.
+- [Our Impact](https://agri-experience.com/en/our-impact): Our alignment with UN Sustainable Development Goals (SDGs) and key impact areas.
+- [Interactive Map](https://agri-experience.com/en/map): A detailed interactive map showcasing our projects and impact across 21 African countries.
+- [Our Team](https://agri-experience.com/en/our-team): Profiles of our leadership team and staff members.
+- [Contact](https://agri-experience.com/en/contact): Contact information and our regional office locations.
+
+## Our Work
+- [Capacity Building](https://agri-experience.com/en/our-work/capacity-building): Training and institutional strengthening for seed sector stakeholders.
+- [Client Advisory](https://agri-experience.com/en/our-work/client-advisory): Strategic consulting and advisory services for agricultural organizations.
+- [Digital Platforms](https://agri-experience.com/en/our-work/digital-platforms): Implementation of digital agricultural tools like MbeguChoice for the seed sector.
+- [Project Implementation](https://agri-experience.com/en/our-work/project-implementation): Execution of agricultural field projects and market interventions.
+- [Stakeholder Convenings](https://agri-experience.com/en/our-work/stakeholder-convenings): Facilitation of industry dialogues, workshops, and policy discussions.
+- [Technical Studies](https://agri-experience.com/en/our-work/technical-studies): Research, scoping studies, and detailed industry analysis.
+
+## Resources & Insights
+- [Resources](https://agri-experience.com/en/resources): Downloadable publications, case studies, toolkits, and manuals for the agricultural sector.
+- [Insights](https://agri-experience.com/en/insights): Articles, news, and blog posts regarding seed systems and African agriculture.
+- [Gallery](https://agri-experience.com/en/gallery): Photo gallery showcasing our work, events, and team in action.
