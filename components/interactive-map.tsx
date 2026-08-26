@@ -724,7 +724,7 @@ export default function InteractiveMap() {
         center: [17.0, -2.0],
         zoom: getOptimalZoom(),
         pitch: 0,
-        duration: 1800,
+        duration: 1000,
         essential: true
       });
     }

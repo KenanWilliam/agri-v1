@@ -31,7 +31,7 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
         zoom: getOptimalZoom(),
         pitch: 0,
         essential: true,
-        duration: immediate ? 1100 : 2200,
+        duration: immediate ? 800 : 1200,
         easing: smoothEasing
       });
     };
@@ -40,7 +40,7 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
       // If user drags or zooms, we restart the inactivity timer to return back
       if (e && e.originalEvent) {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => resetCenter(false), 2000); // 2 seconds of inactivity
+        timeoutRef.current = setTimeout(() => resetCenter(false), 8000); // 8 seconds of inactivity before auto-reset
       }
     };
 
@@ -58,8 +58,8 @@ export const MapAutoCenter: React.FC<MapAutoCenterProps> = ({ selectedCountryNam
 
     if (isFirstRender.current) {
       isFirstRender.current = false;
-      // On mount, position the map, but don't force a flying animation unless needed
-      timeoutRef.current = setTimeout(() => resetCenter(false), 2000);
+      // On mount, position the map quickly
+      timeoutRef.current = setTimeout(() => resetCenter(false), 150);
     } else if (!selectedCountryName) {
       // User closed the dossier panel -> refocus IMMEDIATELY!
       if (timeoutRef.current) clearTimeout(timeoutRef.current);

@@ -293,7 +293,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
                     center: camera.center,
                     zoom: camera.zoom,
                     pitch,
-                    duration: 2200,
+                    duration: 1200,
                     easing: smoothEasing,
                     essential: true
                   });
@@ -324,7 +324,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
                   zoom: targetZoom,
                   essential: true,
                   pitch,
-                  duration: 2200,
+                  duration: 1200,
                   easing: smoothEasing
                 });
                 isZoomedInRef.current = true;
@@ -335,7 +335,7 @@ export const MapHighlightedCountries: React.FC<MapHighlightedCountriesProps> = (
                 zoom: targetZoom,
                 essential: true,
                 pitch,
-                duration: 2200,
+                duration: 1200,
                 easing: smoothEasing
               });
               isZoomedInRef.current = true;
