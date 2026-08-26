@@ -175,11 +175,12 @@ export default function Home() {
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
             <div className="absolute inset-0 w-full h-full bg-mist">
                 <video
-                  src="/Videos/wheat-swaying.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="auto"
+                  poster="/Videos/hero-poster.jpg"
                   onCanPlay={() => {
                     if (!(window as any).__heroVideoReady) {
                       (window as any).__heroVideoReady = true;
@@ -188,6 +189,8 @@ export default function Home() {
                   }}
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 >
+                  <source src="/Videos/hero-video.webm" type="video/webm" />
+                  <source src="/Videos/hero-video.mp4" type="video/mp4" />
                   <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
                 </video>
                 <Image 
