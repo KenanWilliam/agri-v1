@@ -179,29 +179,6 @@ export default function StakeholderConveningsPage() {
           </div>
         </section>
 
-        {/* ===== INTRO ===== */}
-        <section className="w-full py-20 bg-mist/40">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="max-w-4xl"
-            >
-              <div className="inline-flex items-center gap-2 text-lighter-dark-green/60 font-bold text-xs tracking-[0.2em] uppercase mb-6">
-                <Leaf size={14} />
-                {t('pm_tag')}
-              </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-8">
-                {t('pm_title')}
-              </h2>
-              <p className="text-lg text-charcoal/80 font-light leading-relaxed">
-                {t('hero_desc2')}
-              </p>
-            </motion.div>
-          </div>
-        </section>
 
         {/* ===== CONVENING TYPES GRID ===== */}
         <section className="w-full py-16">
