@@ -100,7 +100,7 @@ export default function InsightsPage() {
             </p>
             <div className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center pt-2 sm:pt-6">
               <Link
-                href="/our-results"
+                href="/resources"
                 className="overflow-hidden relative group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-3 sm:px-8 sm:py-4 bg-deep-forest text-white rounded-full font-bold text-sm sm:text-base transition duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-deep-forest/20"
               >
 <RollingText className="gap-1.5 sm:gap-2">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useTransition } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, usePathname, useRouter } from '@/i18n/routing'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
@@ -46,7 +46,6 @@ export default function Header() {
   const [clickedPath, setClickedPath] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
-  const [isPending, startTransition] = useTransition()
   const params = useParams()
   const currentLocale = (params?.locale as string) || 'en'
 
@@ -209,7 +208,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className={`hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+            <div className={`hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-opacity opacity-100`}>
               {[
                 { code: 'en', label: 'EN' },
                 { code: 'fr', label: 'FR' }
@@ -220,9 +219,7 @@ export default function Header() {
                     key={loc.code}
                     onClick={() => {
                       if (!isActive) {
-                        startTransition(() => {
-                          router.replace(pathname, { locale: loc.code as any });
-                        });
+                        router.replace(pathname, { locale: loc.code as any, scroll: false });
                       }
                     }}
                     className={`text-xs font-bold px-2.5 py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
@@ -319,7 +316,7 @@ export default function Header() {
 
                 <div className="mt-auto pt-8 pb-6">
                   {/* Compact Language Toggle */}
-                  <div className={`flex items-center justify-center p-1 bg-black/5 rounded-full mb-6 transition-opacity ${isPending ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+                  <div className={`flex items-center justify-center p-1 bg-black/5 rounded-full mb-6 transition-opacity opacity-100`}>
                     {[
                       { code: 'en', label: 'English' },
                       { code: 'fr', label: 'Français' }
@@ -330,9 +327,7 @@ export default function Header() {
                           key={loc.code}
                           onClick={() => {
                             if (!isActive) {
-                              startTransition(() => {
-                                router.replace(pathname, { locale: loc.code as any });
-                              });
+                              router.replace(pathname, { locale: loc.code as any, scroll: false });
                               setIsOpen(false);
                             }
                           }}

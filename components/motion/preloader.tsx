@@ -50,13 +50,19 @@ const opacityVariants = {
   },
 };
 
+let hasRunPreloader = false;
+
 export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(!hasRunPreloader);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const [bgLoaded, setBgLoaded] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    hasRunPreloader = true;
+  }, []);
 
   // When both the internal background and the page video are ready, begin animation
   useEffect(() => {

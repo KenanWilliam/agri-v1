@@ -47,6 +47,7 @@ export interface CountryProject {
 }
 
 export interface CountryRecord {
+  id?: number
   name: string
   geoName?: string
   code: string
@@ -58,6 +59,7 @@ export interface CountryRecord {
   impact: string[]
   locations: string[]
   stats: Array<{ label: string; value: string }>
+  workDone: string[]
 }
 
 export interface DetailedCountryRecord extends CountryRecord {
@@ -811,11 +813,11 @@ export default function InteractiveMap() {
                 className={[
                   'pointer-events-auto',
                   // Mobile: bottom sheet — fills width, sits at bottom
-                  'absolute bottom-0 left-0 right-0 h-[60vh]',
+                  'absolute bottom-0 left-0 right-0 h-[470px]',
                   'rounded-t-3xl',
                   // Desktop: floating overlay card positioned right next to the selected country (which is centered)
                   'lg:relative lg:bottom-auto lg:left-auto lg:right-auto',
-                  'lg:w-full lg:max-h-[85vh]',
+                  'lg:w-full lg:h-auto lg:max-h-[85vh]',
                   'lg:rounded-2xl',
                   // Shared glass styling matching the label
                   'bg-deep-forest/80 lg:bg-deep-forest/70 backdrop-blur-xl',
@@ -858,53 +860,26 @@ export default function InteractiveMap() {
               <div className="mx-6 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto px-6 py-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="flex-1 overflow-y-auto px-6 pt-5 pb-[78px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="space-y-6">
 
-                  {/* Activities Details */}
-                  <div className="space-y-4 pt-2">
-                    {/* Activities Card */}
+                  {/* Work Done Details */}
+                  <div className="pt-2">
+                    {/* Work Done Card */}
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
-                        <Target size={12} /> {t('activities')}
+                      <div className="text-sm font-bold uppercase tracking-widest text-accent-gold/90 mb-4 flex items-center gap-2">
+                        <Target size={16} /> {t('work_done') || 'Work Done'}
                       </div>
-                      <ul className="space-y-2.5">
-                        {activeProjects.map((project, i) => (
-                          <li key={`activity-${i}`} className="flex items-start gap-2.5 text-[12px] leading-relaxed text-white/80">
+                      <ul className="space-y-3">
+                        {(selectedCountry.workDone || []).map((work, i) => (
+                          <li key={`work-${i}`} className="flex items-start gap-3 text-sm leading-relaxed text-white/80">
                             <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 mt-1.5 shrink-0" />
-                            <span>{project.summary}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Outcomes Card */}
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-sm">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold/90 mb-3 flex items-center gap-2">
-                        <Sparkles size={12} /> {t('outcomes')}
-                      </div>
-                      <ul className="space-y-2.5">
-                        {activeProjects.map((project, i) => (
-                          <li key={`outcome-${i}`} className="flex items-start gap-2.5 text-[12px] leading-relaxed text-white/80">
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 mt-1.5 shrink-0" />
-                            <span>{project.outcome}</span>
+                            <span>{work}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
-
-                  {/* CTA */}
-                  <Link
-                    href={`/our-results?country=${selectedCountry.code}`}
-                    className="group flex items-center justify-between w-full rounded-xl bg-white/10 border border-white/20 p-4 text-white transition-all duration-300 hover:bg-white/20 hover:scale-[1.01]"
-                  >
-                    <div className="space-y-0.5">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">{t('deep_dive')}</div>
-                      <div className="text-sm font-medium">{t('full_report', { country: selectedCountry.name })}</div>
-                    </div>
-                    <ArrowRight size={16} className="text-white/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
-                  </Link>
 
                 </div>
               </div>

@@ -1268,6 +1268,7 @@
     "activities": "Activities",
     "outcomes": "Outcomes",
     "deep_dive": "Deep Dive",
-    "full_report": "Full {country} report"
+    "full_report": "Full {country} report",
+    "work_done": "Work Done"
   }
 }

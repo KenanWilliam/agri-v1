@@ -20,6 +20,7 @@
   "InteractiveMap": {
     "activities": "Activités",
     "outcomes": "Résultats",
+    "work_done": "Work Done",
     "deep_dive": "Plongée profonde",
     "full_report": "Rapport complet sur {country}"
   },

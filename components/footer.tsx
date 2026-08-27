@@ -139,7 +139,6 @@ export default function Footer() {
                   {[
                     { key: 'about_us', href: '/about' },
                     { key: 'our_impact', href: '/our-impact' },
-                    { key: 'our_results', href: '/our-results' },
                     { key: 'contact', href: '/contact' },
                   ].map(link => (
                     <li key={link.key}>
@@ -289,7 +288,7 @@ export default function Footer() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 16px' }}>
             {[
               { titleKey: 'our_work', links: [{ key: 'seed_systems', href: '/our-work' }, { key: 'digital_tools', href: '/our-work' }, { key: 'field_projects', href: '/our-work' }, { key: 'case_studies', href: '/our-work' }] },
-              { titleKey: 'company', links: [{ key: 'about_us', href: '/about' }, { key: 'our_impact', href: '/our-impact' }, { key: 'our_results', href: '/our-results' }, { key: 'contact', href: '/contact' }] },
+              { titleKey: 'company', links: [{ key: 'about_us', href: '/about' }, { key: 'our_impact', href: '/our-impact' }, { key: 'contact', href: '/contact' }] },
               { titleKey: 'resources', links: [{ key: 'insights', href: '/insights' }, { key: 'newsletter', href: '/newsletter' }, { key: 'privacy', href: '/privacy' }, { key: 'terms', href: '/terms' }] },
               { titleKey: 'work_with_us', links: [{ key: 'request_concept', href: '/contact' }, { key: 'view_projects', href: '/our-work' }] },
             ].map(col => (
