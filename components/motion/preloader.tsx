@@ -205,7 +205,7 @@ export default function Preloader() {
             >
               <Image
                 src="/pexels-equalstock-27722065.jpg"
-                alt="Loading Background" sizes="100vw"
+                alt="Loading Background"
                 fill
                 className="object-cover"
                 priority fetchPriority="high"
@@ -238,7 +238,7 @@ export default function Preloader() {
             >
               <Image
                 src="/pexels-equalstock-27722065.jpg"
-                alt="Loading Background" sizes="100vw"
+                alt="Loading Background"
                 fill
                 className="object-cover"
                 priority fetchPriority="high"
