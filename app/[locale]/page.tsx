@@ -169,10 +169,10 @@ export default function Home() {
       <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-clip">
         
         {/* Premium Hero Section */}
-        <section ref={heroRef} className="relative w-full min-h-[85dvh] md:min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
+        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
           
           {/* Taller background to prevent revealing white space when translating down */}
-          <div ref={heroBgRef} className="absolute -top-[20dvh] left-0 w-full h-[120dvh] z-0 origin-center bg-black">
+          <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
             <div className="absolute inset-0 w-full h-full bg-mist">
                 <video
                   autoPlay
@@ -207,7 +207,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/90 via-white/60 to-transparent md:bg-gradient-to-r md:from-white md:from-[10%] md:via-white/80 md:via-[40%] md:to-transparent md:to-[75%] md:w-[80%] pointer-events-none"></div>
           
           <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
-            <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-8">
+            <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -273,7 +273,7 @@ export default function Home() {
         <div className="hidden md:motion-safe:block">
           {/* Pinned Horizontal Sequence Wrapper */}
           <div ref={sequenceWrapperRef} className="relative z-20 bg-mist">
-            <div className="relative h-dvh w-full overflow-hidden">
+            <div className="relative h-[100vh] w-full overflow-hidden">
                 
                 {/* Track 1: Why Agri Experience Layer */}
                 <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0">
@@ -405,7 +405,7 @@ export default function Home() {
         </section>
 
         {/* Premium CTA Section */}
-        <section className="relative w-full py-10 sm:py-20 lg:py-20 bg-deep-forest text-white overflow-hidden z-20">
+        <section className="relative w-full py-10 sm:py-20 lg:py-32 bg-deep-forest text-white overflow-hidden z-20">
           {/* Decorative Texture */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--accent-gold)_0%,transparent_70%)]"></div>

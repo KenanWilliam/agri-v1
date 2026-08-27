@@ -157,7 +157,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
       .to('.item-title-0', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item0+=0.25")
       .to('.dot-0', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item0+=0.25")
       
-      .to('.item-content-1', { height: "40dvh", duration: 1 }, "item0+=0.25")
+      .to('.item-content-1', { height: "50vh", duration: 1 }, "item0+=0.25")
       .to('.item-title-1', { color: "#3ab44a", duration: 1 }, "item0+=0.25")
       .to('.dot-1', { backgroundColor: "#3ab44a", duration: 1 }, "item0+=0.25")
       
@@ -168,7 +168,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
       .to('.item-title-1', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item1+=0.25")
       .to('.dot-1', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item1+=0.25")
       
-      .to('.item-content-2', { height: "40dvh", duration: 1 }, "item1+=0.25")
+      .to('.item-content-2', { height: "50vh", duration: 1 }, "item1+=0.25")
       .to('.item-title-2', { color: "#3ab44a", duration: 1 }, "item1+=0.25")
       .to('.dot-2', { backgroundColor: "#3ab44a", duration: 1 }, "item1+=0.25")
       
@@ -204,7 +204,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
         Skip this section
       </a>
       <section ref={containerRef} className="w-full relative h-[300vh] bg-mist">
-        <div className="sticky top-(--header-height) h-[calc(100dvh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
+        <div className="sticky top-(--header-height) h-[calc(100vh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
           
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50">
             {items.map((item, i) => (
@@ -217,7 +217,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
             ))}
           </div>
 
-          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-6 lg:py-8 justify-center">
+          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-12 justify-center">
 
             <div className="w-full flex flex-col">
               {items.map((item, i) => {
@@ -230,7 +230,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                 >
                   <h2 
                     onClick={() => scrollToItem(i)}
-                    className={`item-title-${i} group text-4xl sm:text-5xl lg:text-[clamp(2.5rem,5vw,4.5rem)] font-serif py-4 lg:py-5 cursor-pointer hover:opacity-80 transition-opacity`}
+                    className={`item-title-${i} group text-4xl sm:text-5xl lg:text-7xl font-serif py-6 cursor-pointer hover:opacity-80 transition-opacity`}
                     style={{ color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)" }}
                   >
                     <RollingText>{item.title}</RollingText>
@@ -238,9 +238,9 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                   
                   <div 
                     className={`item-content-${i} w-full overflow-hidden`}
-                    style={{ height: i === 0 ? "40dvh" : "0vh" }}
+                    style={{ height: i === 0 ? "50vh" : "0vh" }}
                   >
-                    <div className="flex flex-row gap-12 pb-6 pt-2 w-full h-[40dvh] min-h-60 max-h-150">
+                    <div className="flex flex-row gap-12 pb-6 pt-2 w-full h-[50vh] min-h-100 max-h-150">
                       {/* Text Side */}
                       <div 
                         aria-live="polite"

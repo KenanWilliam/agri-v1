@@ -236,7 +236,7 @@ function AccordionRow({
 }) {
   return (
     <div
-      className="flex flex-col lg:flex-row w-full lg:h-[min(520px,60dvh)] gap-2 lg:gap-1.5"
+      className="flex flex-col lg:flex-row w-full lg:h-[520px] gap-2 lg:gap-1.5"
       onMouseLeave={() => setActiveId(defaultId)}
     >
       {items.map((card) => (
