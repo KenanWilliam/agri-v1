@@ -36,7 +36,7 @@ export default function Footer() {
       {/* ─── Desktop ─── */}
       <div className="hidden md:block">
 
-        <div className="relative w-full overflow-hidden" style={{ height: '70vh' }}>
+        <div className="relative w-full overflow-hidden" style={{ height: 'clamp(280px, 50vh, 500px)' }}>
           <Image
             src="/pexels-flambo-388007-1112080.jpg"
             alt="Agricultural landscape"

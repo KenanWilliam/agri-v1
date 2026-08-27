@@ -110,7 +110,7 @@ export default function OurWorkPage() {
         </section>
 
         {/* Cards Section */}
-        <section className="w-full pt-16 lg:pt-28 pb-16 relative z-10">
+        <section className="w-full pt-12 lg:pt-16 pb-16 relative z-10">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
               {cards.map((card, idx) => {

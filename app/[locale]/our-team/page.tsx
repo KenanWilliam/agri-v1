@@ -203,7 +203,7 @@ export default function OurTeamPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-3xl lg:max-w-[1600px] h-auto max-h-[90vh] lg:h-[90vh] bg-white rounded-3xl lg:rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+              className="relative w-full max-w-3xl lg:max-w-[1600px] h-auto max-h-[90dvh] lg:h-auto lg:max-h-[90dvh] bg-white rounded-3xl lg:rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
             >
               {/* Close Button */}
               <button 
@@ -217,7 +217,7 @@ export default function OurTeamPage() {
               {/* Left Side: Typography & Content */}
               <div className="flex-1 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
                 <div>
-                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-tight tracking-tight pb-2 mb-6 lg:mb-8 pr-12 lg:pr-0">
+                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[clamp(4rem,8vw,7.5rem)] font-serif text-deep-forest font-normal leading-tight tracking-tight pb-2 mb-6 lg:mb-8 pr-12 lg:pr-0">
                     {selectedMember.name.split(' ')[0]}
                     <br className="hidden lg:block" />
                     <span className="lg:hidden"> </span>

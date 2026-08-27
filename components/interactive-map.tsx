@@ -747,7 +747,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <section className="w-full relative bg-primary-ivory h-dvh min-h-150 md:min-h-212.5 lg:min-h-250 flex flex-col overflow-hidden">
+    <section className="w-full relative bg-primary-ivory h-dvh min-h-150 md:min-h-212.5 lg:min-h-[min(1000px,100dvh)] flex flex-col overflow-hidden">
       {/* Main Interactive Workspace — full bleed, edge to edge */}
       <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden" ref={containerRef}>
         
