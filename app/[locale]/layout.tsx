@@ -83,6 +83,7 @@ import ScrollToTop from '@/components/scroll-to-top'
 import Preloader from '@/components/motion/preloader'
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
+import LanguageSwitchProvider from '@/components/language-switch-provider'
 
 export default async function RootLayout({
   children,
@@ -101,12 +102,14 @@ export default async function RootLayout({
     >
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
         <NextIntlClientProvider messages={messages}>
-          <Preloader />
-          <ScrollToTop />
-          <Header />
-          {children}
-          <Footer />
-          {process.env.NODE_ENV === 'production' && <Analytics />}
+          <LanguageSwitchProvider>
+            <Preloader />
+            <ScrollToTop />
+            <Header />
+            {children}
+            <Footer />
+            {process.env.NODE_ENV === 'production' && <Analytics />}
+          </LanguageSwitchProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -263,79 +263,6 @@ export default function CapacityBuildingPage() {
           </div>
         </section>
 
-        {/* ===== APPROACH / METHODOLOGY — Visual Path ===== */}
-        <section className="w-full py-16 bg-warm-earth/40 relative overflow-hidden">
-          {/* Decorative element */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-charcoal/[0.03] pointer-events-none" />
-
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center mb-20"
-            >
-              <div className="inline-flex items-center gap-2 text-charcoal/60 font-bold text-xs tracking-[0.2em] uppercase mb-6">
-                <Target size={14} />
-                {t('oa_tag')}
-              </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
-                {t('oa_title')}
-              </h2>
-              <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
-                {t('oa_desc')}
-              </p>
-            </motion.div>
-
-            {/* Steps — horizontal journey on desktop, vertical on mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
-              {/* Connecting line (desktop only) */}
-              <div className="hidden lg:block absolute top-[72px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-charcoal/15 to-transparent" />
-
-              {approachSteps.map((step, idx) => {
-                const Icon = step.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: idx * 0.15 }}
-                    className="text-center relative"
-                  >
-                    {/* Step circle */}
-                    <div className="relative mx-auto mb-8">
-                      <div className="w-20 h-20 rounded-full bg-white border-2 border-charcoal/10 flex items-center justify-center mx-auto relative z-10 shadow-sm">
-                        <Icon size={28} className="text-charcoal" />
-                      </div>
-                      {/* Step number floating badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-charcoal text-white text-xs font-bold flex items-center justify-center z-20 shadow-md">
-                        {step.step}
-                      </div>
-                    </div>
-
-                    <h3 className="text-lg font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-charcoal/60 font-light text-sm leading-relaxed max-w-[240px] mx-auto">
-                      {step.description}
-                    </p>
-
-                    {/* Arrow between steps (desktop only) */}
-                    {idx < approachSteps.length - 1 && (
-                      <div className="hidden lg:flex absolute top-[72px] -right-3 z-20">
-                        <ArrowRight size={16} className="text-charcoal/30" />
-                      </div>
-                    )}
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
         {/* ===== TOOLBOX HIGHLIGHT ===== */}
         <section className="w-full py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
@@ -449,36 +376,6 @@ export default function CapacityBuildingPage() {
           </div>
         </section>
 
-        {/* ===== IMPACT STATS BAR ===== */}
-        <section className="w-full py-16 bg-mist/60">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { value: t('stats.0.value'), label: t('stats.0.label'), icon: Users },
-                { value: t('stats.1.value'), label: t('stats.1.label'), icon: BookOpen },
-                { value: t('stats.2.value'), label: t('stats.2.label'), icon: Sprout },
-                { value: t('stats.3.value'), label: t('stats.3.label'), icon: Award },
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="text-center"
-                >
-                  <stat.icon size={24} className="text-charcoal/40 mx-auto mb-3" />
-                  <div className="text-3xl lg:text-4xl font-data text-charcoal tracking-wide">
-                    {stat.value}
-                  </div>
-                  <div className="text-charcoal/50 text-xs font-semibold uppercase tracking-wider mt-1">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ===== CTA ===== */}
         <section className="w-full relative overflow-hidden">

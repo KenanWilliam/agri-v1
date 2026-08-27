@@ -18,6 +18,7 @@ const navItems = [
 import LiquidGlass from './liquid-glass'
 import {useTranslations} from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
+import { triggerLanguageSwitch } from '@/components/language-switch-provider'
 
 const AnimatedHamburger = ({ isOpen }: { isOpen: boolean }) => (
   <div className="relative w-6 h-6 flex flex-col justify-center items-center">
@@ -219,6 +220,7 @@ export default function Header() {
                     key={loc.code}
                     onClick={() => {
                       if (!isActive) {
+                        triggerLanguageSwitch();
                         router.replace(pathname, { locale: loc.code as any, scroll: false });
                       }
                     }}
@@ -327,6 +329,7 @@ export default function Header() {
                           key={loc.code}
                           onClick={() => {
                             if (!isActive) {
+                              triggerLanguageSwitch();
                               router.replace(pathname, { locale: loc.code as any, scroll: false });
                               setIsOpen(false);
                             }

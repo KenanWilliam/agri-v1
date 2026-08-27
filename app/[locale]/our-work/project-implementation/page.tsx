@@ -190,36 +190,6 @@ export default function ProjectImplementationPage() {
           </div>
         </section>
 
-        {/* ─── Stats Bar ─── */}
-        <section className="w-full pb-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="rounded-[32px] bg-mist border border-mist p-8 text-center"
-                >
-                  <div className="text-4xl lg:text-5xl font-data text-deep-forest leading-none">
-                    {stat.value}
-                  </div>
-                  <div className="mt-2 text-sm text-charcoal/60 tracking-wide uppercase font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* ─── Key Implementation Areas ─── */}
         <section className="w-full pb-16">
@@ -282,102 +252,6 @@ export default function ProjectImplementationPage() {
           </div>
         </section>
 
-        {/* ─── Process / Timeline ─── */}
-        <section className="w-full pb-16">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center max-w-2xl mx-auto mb-16"
-            >
-              <div className="inline-flex items-center gap-2 text-deep-forest font-bold text-sm tracking-[0.2em] uppercase mb-4">
-                <Calendar size={16} />
-                {t('pm_tag')}
-              </div>
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
-                {t('pm_title')}
-              </h2>
-            </motion.div>
-
-            {/* Desktop timeline */}
-            <div className="hidden lg:block relative">
-              {/* Connecting line */}
-              <div className="absolute top-[52px] left-[10%] right-[10%] h-px bg-deep-forest/10" />
-
-              <div className="grid grid-cols-5 gap-6 relative">
-                {processSteps.map((step, idx) => {
-                  const Icon = step.icon
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: idx * 0.15 }}
-                      className="flex flex-col items-center text-center"
-                    >
-                      {/* Step Number */}
-                      <div className="text-xs font-data text-deep-forest/40 tracking-widest mb-3">
-                        STEP {step.step}
-                      </div>
-
-                      {/* Circle Node */}
-                      <div className="w-[56px] h-[56px] rounded-full bg-deep-forest text-white flex items-center justify-center mb-6 relative z-10 shadow-lg shadow-deep-forest/20">
-                        <Icon size={22} />
-                      </div>
-
-                      <h4 className="text-lg font-serif font-bold text-deep-forest mb-2">
-                        {step.title}
-                      </h4>
-                      <p className="text-sm text-charcoal/60 font-light leading-relaxed">
-                        {step.description}
-                      </p>
-                    </motion.div>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Mobile stacked */}
-            <div className="lg:hidden space-y-6">
-              {processSteps.map((step, idx) => {
-                const Icon = step.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="flex items-start gap-5"
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-full bg-deep-forest text-white flex items-center justify-center shrink-0 shadow-lg shadow-deep-forest/20">
-                        <Icon size={20} />
-                      </div>
-                      {idx < processSteps.length - 1 && (
-                        <div className="w-px h-12 bg-deep-forest/10 mt-2" />
-                      )}
-                    </div>
-                    <div className="pt-1">
-                      <div className="text-xs font-data text-deep-forest/40 tracking-widest mb-1">
-                        STEP {step.step}
-                      </div>
-                      <h4 className="text-lg font-serif font-bold text-deep-forest mb-1">
-                        {step.title}
-                      </h4>
-                      <p className="text-sm text-charcoal/60 font-light leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
 
         {/* ─── Case Study Highlight ─── */}
         <section className="w-full pb-16">

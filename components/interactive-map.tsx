@@ -813,7 +813,7 @@ export default function InteractiveMap() {
                 className={[
                   'pointer-events-auto',
                   // Mobile: bottom sheet — fills width, sits at bottom
-                  'absolute bottom-0 left-0 right-0 h-[470px]',
+                  'absolute bottom-0 left-0 right-0 h-[calc(50vh+100px)]',
                   'rounded-t-3xl',
                   // Desktop: floating overlay card positioned right next to the selected country (which is centered)
                   'lg:relative lg:bottom-auto lg:left-auto lg:right-auto',
@@ -860,7 +860,7 @@ export default function InteractiveMap() {
               <div className="mx-6 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto px-6 pt-5 pb-[78px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="flex-1 overflow-y-auto px-6 pt-5 pb-7 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="space-y-6">
 
                   {/* Work Done Details */}
