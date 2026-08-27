@@ -188,17 +188,17 @@ export const publicDownloads: PublicDownload[] = [
   {
     title: 'The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English)',
     link: '/resources/The-African-Seed-Company-Toolbox-52-Tools-Every-Seed-Company-Manager-Should-Know-How-to-Use-ENGLISH.pdf',
-    client: 'BMGF Agricultural Development, 2009',
+    client: 'Gates Foundation Agricultural Development, 2009',
     citation:
-      "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English Version). Nairobi: BMGF Agricultural Development.",
+      "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English Version). Nairobi: Gates Foundation Agricultural Development.",
     category: 'Toolkits & Guides',
   },
   {
     title: 'The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French)',
     link: '/resources/La-boite-a-outils-des-entreprises-semencieres-Africaines.pdf',
-    client: 'BMGF Agricultural Development, 2009',
+    client: 'Gates Foundation Agricultural Development, 2009',
     citation:
-      "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French Version). Nairobi: BMGF Agricultural Development.",
+      "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French Version). Nairobi: Gates Foundation Agricultural Development.",
     category: 'Toolkits & Guides',
   },
 ]

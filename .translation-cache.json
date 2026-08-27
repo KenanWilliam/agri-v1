@@ -497,14 +497,14 @@
       },
       "22": {
         "title": "The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English)",
-        "client": "BMGF Agricultural Development, 2009",
-        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English Version). Nairobi: BMGF Agricultural Development.",
+        "client": "Gates Foundation Agricultural Development, 2009",
+        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (English Version). Nairobi: Gates Foundation Agricultural Development.",
         "category": "Toolkits & Guides"
       },
       "23": {
         "title": "The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French)",
-        "client": "BMGF Agricultural Development, 2009",
-        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French Version). Nairobi: BMGF Agricultural Development.",
+        "client": "Gates Foundation Agricultural Development, 2009",
+        "citation": "O'Connor, A. (2009). The African Seed Company Toolbox: 52 Tools Every Seed Company Manager Should Know How to Use (French Version). Nairobi: Gates Foundation Agricultural Development.",
         "category": "Toolkits & Guides"
       }
     }
@@ -1203,7 +1203,7 @@
     "clients": {
       "0": {
         "label": "Development Partners",
-        "desc": "USAID, GIZ, Bill & Melinda Gates Foundation, and other development partners"
+        "desc": "USAID, GIZ, Gates Foundation, and other development partners"
       },
       "1": {
         "label": "Governments",
