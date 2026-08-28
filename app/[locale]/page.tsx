@@ -189,8 +189,8 @@ export default function Home() {
                   }}
                   className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
                 >
-                  <source src="/Videos/hero-video.webm" type="video/webm" />
                   <source src="/Videos/hero-video.mp4" type="video/mp4" />
+                  <source src="/Videos/hero-video.webm" type="video/webm" />
                   <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
                 </video>
                 <Image 
