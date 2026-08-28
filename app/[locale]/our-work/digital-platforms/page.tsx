@@ -131,11 +131,6 @@ export default function DigitalPlatformsPage() {
                   <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc')}
                   </p>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat1')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat2')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat3')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat4')}</span></div>
-                  <div className="flex items-center gap-3"><CheckCircle2 size={16} className="text-primary-green" /><span className="text-sm font-light text-charcoal/80">{t('sp_feat5')}</span></div>
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
@@ -162,7 +157,7 @@ export default function DigitalPlatformsPage() {
         </section>
 
         {/* ─── Platform Capabilities — Bento Grid ─── */}
-        <section className="w-full pb-28">
+        <section className="w-full pb-20">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -171,12 +166,11 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
-                Platform Deep Dive
-              </h2>
-              <p className="mt-4 text-charcoal/80 font-light leading-relaxed max-w-2xl text-lg">
-                Purpose-built digital tools that address critical gaps in seed systems and agricultural value chains.
-              </p>
+              <div className="inline-flex items-center gap-2 text-primary-green font-bold text-xs tracking-[0.2em] uppercase mb-4">
+                <MonitorSmartphone size={14} />
+                {t('dp_tag')}
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
             </motion.div>
 
             {/* Bento-style grid: first card spans 2 cols */}
@@ -225,6 +219,51 @@ export default function DigitalPlatformsPage() {
                 )
               })}
             </div>
+          </div>
+        </section>
+
+        {/* ─── Platform Spotlight — MbeguChoice ─── */}
+        <section className="w-full py-20 bg-mist">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="bg-deep-forest rounded-[40px] p-8 sm:p-12 lg:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-12 lg:gap-16 items-center"
+            >
+              {/* Background accents */}
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-green/[0.08] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary-blue/[0.08] rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+
+              {/* Left Column */}
+              <div className="flex-1 relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-primary-green font-bold text-xs tracking-widest uppercase">
+                  {t('sp_tag')}
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
+                    {t('sp_title')}
+                  </h3>
+                  <p className="text-white/60 font-light text-lg italic">
+                    {t('sp_subtitle')}
+                  </p>
+                </div>
+                <p className="text-white/80 font-light leading-relaxed">
+                  {t('sp_desc')}
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div className="flex-1 relative z-10 space-y-6 border-t lg:border-t-0 lg:border-l border-white/[0.1] pt-6 lg:pt-0 lg:pl-12">
+                <h4 className="text-2xl lg:text-3xl font-serif font-bold text-white tracking-tight pb-1">
+                  {t('sp_title2')}
+                </h4>
+                <p className="text-white/70 font-light leading-relaxed">
+                  {t('sp_desc2')}
+                </p>
+              </div>
+            </motion.div>
           </div>
         </section>
 
