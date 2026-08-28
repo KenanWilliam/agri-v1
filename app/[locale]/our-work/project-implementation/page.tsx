@@ -161,7 +161,7 @@ export default function ProjectImplementationPage() {
                   <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-base text-charcoal/60 leading-relaxed font-light">
+                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -219,28 +219,28 @@ export default function ProjectImplementationPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="rounded-[32px] bg-gradient-to-br from-deep-forest via-deep-forest to-deep-forest/95 p-6 sm:p-8 lg:p-10 text-white relative overflow-hidden sticky top-32"
+                    className="group rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-8 lg:p-10 flex flex-col relative overflow-hidden"
                   >
                     {/* Icon */}
-                    <div className="w-14 h-14 rounded-2xl bg-white/[0.1] flex items-center justify-center text-white mb-6 transition duration-200">
+                    <div className="w-14 h-14 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green mb-6 group-hover:bg-primary-green group-hover:text-white transition duration-200">
                       <Icon size={26} />
                     </div>
 
-                    <h3 className="text-xl font-serif font-bold text-deep-forest mb-4">
+                    <h3 className="text-xl font-serif font-bold text-deep-forest mb-4 tracking-tight pb-2">
                       {area.title}
                     </h3>
 
-                    <ul className="space-y-3">
+                    <ul className="space-y-3 flex-1">
                       {area.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-charcoal/70 font-light leading-relaxed text-sm"
+                          className="flex items-start gap-3 text-charcoal/80 font-light leading-relaxed text-sm"
                         >
                           <CheckCircle2
                             size={16}
                             className="text-primary-green mt-0.5 shrink-0"
                           />
-                          {point}
+                          <span>{point}</span>
                         </li>
                       ))}
                     </ul>
