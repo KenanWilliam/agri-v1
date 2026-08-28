@@ -282,7 +282,7 @@
    
    This rule forcefully shrinks the root font size based on viewport height,
    so those 'xl' classes mathematically shrink to fit perfectly on short laptops. */
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   html {
     /* 1.5dvh at 768px height = 11.52px (perfect aggressive reduction)
        1.5dvh at 1066px height = 16px (matches desktop baseline) */
