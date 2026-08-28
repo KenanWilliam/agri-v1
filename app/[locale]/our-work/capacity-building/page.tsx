@@ -2,6 +2,7 @@
 import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import {
   BookOpen,
   GraduationCap,
@@ -12,6 +13,7 @@ import {
   Leaf,
   Award,
   Target,
+  Download,
 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -225,92 +227,89 @@ export default function CapacityBuildingPage() {
         </section>
 
         {/* ===== TOOLBOX HIGHLIGHT ===== */}
-        <section className="w-full py-16">
+        <section className="w-full py-16 lg:py-24 bg-mist/30">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              {/* Left — visual block */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              {/* Left — Narrative details */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
+                className="lg:col-span-6 space-y-6"
               >
-                <div className="relative rounded-[32px] bg-gradient-to-br from-charcoal to-deep-forest p-6 sm:p-8 lg:p-16 text-white overflow-hidden">
-                  {/* Texture */}
-                  <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                      <filter id="noiseToolbox">
-                        <feTurbulence
-                          type="fractalNoise"
-                          baseFrequency="0.65"
-                          numOctaves="3"
-                          stitchTiles="stitch"
-                        />
-                      </filter>
-                      <rect width="100%" height="100%" filter="url(#noiseToolbox)" />
-                    </svg>
-                  </div>
-
-                  {/* Decorative circles */}
-                  <div className="absolute top-8 right-8 w-24 h-24 rounded-full border border-white/10" />
-                  <div className="absolute top-12 right-12 w-16 h-16 rounded-full border border-white/5" />
-                  <div className="absolute bottom-8 left-8 w-32 h-32 rounded-full bg-primary-green/10 blur-2xl" />
-
-                  <div className="relative z-10 space-y-6">
-                    <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center">
-                      <BookOpen size={32} className="text-white" />
-                    </div>
-
-                    <div className="space-y-1">
-                      <p className="text-white/50 font-bold text-xs tracking-[0.2em] uppercase">
-                        {t('fr_tag')}
-                      </p>
-                    </div>
-
-                    <h3 className="text-2xl lg:text-3xl font-serif font-bold leading-tight">
-                      {t('fr_title')}
-                    </h3>
-                    <p className="text-white/60 text-sm italic">
-                      {t('fr_subtitle')}
-                    </p>
-                    <div className="pt-4 border-t border-white/10">
-                      <p className="text-white/50 text-xs uppercase tracking-wider mb-1">
-                        {t('fr_author_label')}
-                      </p>
-                      <p className="text-white font-semibold">
-                        {t('fr_author_name')}{' '}
-                        <span className="text-white/40 font-normal">
-                          {t('fr_author_desc')}
-                        </span>
-                      </p>
-                    </div>
-
-                    <div className="font-data text-6xl lg:text-8xl text-white/[0.06] absolute bottom-4 right-8 leading-none">
-                      52
-                    </div>
-                  </div>
+                <div className="inline-flex items-center gap-2 text-deep-forest font-bold text-xs tracking-[0.2em] uppercase bg-primary-green/10 px-4 py-2 rounded-full mb-2">
+                  <Award size={16} className="text-primary-green" />
+                  {t('th_tag')}
                 </div>
+                <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 leading-tight">
+                  {t('th_title')}
+                </h2>
+                <p className="text-lg lg:text-xl text-charcoal/80 font-light leading-relaxed">
+                  {t('th_desc')}
+                </p>
               </motion.div>
 
-              {/* Right — details */}
+              {/* Right — Featured Resource Card */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="space-y-6"
+                className="lg:col-span-6"
               >
-                <div>
-                  <div className="inline-flex items-center gap-2 text-charcoal/60 font-bold text-xs tracking-[0.2em] uppercase mb-4">
-                    <Award size={14} />
-                    {t('th_tag')}
+                <div className="relative rounded-[32px] bg-gradient-to-br from-charcoal via-deep-forest to-charcoal p-6 sm:p-8 lg:p-10 text-white overflow-hidden shadow-2xl border border-white/10 flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-stretch">
+                  {/* Decorative background texture & glows */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary-green/10 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary-blue/10 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Book Cover Image */}
+                  <div className="relative w-44 sm:w-48 shrink-0 aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border border-white/20 group">
+                    <Image
+                      src="/images/african-seed-company-toolbox-cover.jpg"
+                      alt="The African Seed Company Toolbox Cover - Gates Foundation Agricultural Development, 2009"
+                      fill
+                      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 640px) 176px, 192px"
+                    />
                   </div>
-                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
-                    {t('th_title')}
-                  </h2>
-                  <p className="text-lg text-charcoal/80 font-light leading-relaxed">
-                    {t('th_desc')}
-                  </p>
+
+                  {/* Card Content & Details */}
+                  <div className="flex flex-col justify-between flex-1 relative z-10 space-y-4 text-center sm:text-left">
+                    <div>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-primary-green font-bold text-xs tracking-widest uppercase mb-3 border border-white/10">
+                        {t('fr_tag')}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-tight mb-2">
+                        {t('fr_title')}
+                      </h3>
+                      <p className="text-white/80 text-sm font-light leading-relaxed">
+                        {t('fr_subtitle')}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/15">
+                      <p className="text-white/60 text-xs uppercase tracking-wider mb-1">
+                        {t('fr_author_label')}
+                      </p>
+                      <p className="text-white font-medium text-sm mb-4">
+                        {t('fr_author_name')}{' '}
+                        <span className="text-white/70 font-normal">
+                          {t('fr_author_desc')}
+                        </span>
+                      </p>
+
+                      <a
+                        href="/resources/The-African-Seed-Company-Toolbox-52-Tools-Every-Seed-Company-Manager-Should-Know-How-to-Use-ENGLISH.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary-green hover:bg-primary-green/90 text-white rounded-full text-xs font-semibold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 w-full sm:w-auto"
+                      >
+                        <Download size={14} />
+                        <span>Download Resource</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
