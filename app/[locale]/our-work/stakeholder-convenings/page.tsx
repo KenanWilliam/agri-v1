@@ -247,6 +247,45 @@ export default function StakeholderConveningsPage() {
 
 
 
+        
+        {/* ===== FLAGSHIP EVENT ===== */}
+        <section className="w-full py-20 bg-mist">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="bg-deep-forest rounded-[40px] p-8 sm:p-12 lg:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-12 lg:gap-20 items-center"
+            >
+              {/* Background accents */}
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-green/[0.05] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-lighter-dark-green/[0.1] rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+              
+              <div className="flex-1 relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-primary-green font-bold text-xs tracking-widest uppercase">
+                  {t('sp_tag')}
+                </div>
+                <h3 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
+                  {t('sp_title')}
+                </h3>
+                <p className="text-white/60 font-light text-lg italic">
+                  {t('sp_subtitle')}
+                </p>
+              </div>
+
+              <div className="flex-1 relative z-10 space-y-6 border-l border-white/[0.08] pl-0 lg:pl-12">
+                <p className="text-white/80 font-light leading-relaxed">
+                  {t('sp_desc1')}
+                </p>
+                <p className="text-white/60 font-light leading-relaxed">
+                  {t('sp_desc2')}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ===== CTA ===== */}
         <section className="w-full relative overflow-hidden">
           <div className="bg-deep-forest py-16 lg:py-20 relative">

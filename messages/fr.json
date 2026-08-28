@@ -534,7 +534,7 @@
     "hero_title1": "Développer des compétences,",
     "hero_title2": "Un avenir en croissance.",
     "hero_subtitle": "Renforcement des capacités",
-    "hero_desc": "Autonomiser les parties prenantes grâce à une formation ciblée, au développement des compétences et au transfert de connaissances pour assurer une croissance durable des systèmes agricoles.",
+    "hero_desc": "Autonomiser les parties prenantes grâce au développement ciblé des compétences et au transfert de connaissances pour assurer une croissance durable des systèmes agricoles.",
     "start_conversation": "Démarrer une conversation",
     "our_philosophy": "Notre philosophie",
     "phil_title": "Un changement durable passe par le renforcement des capacités locales.",
@@ -555,7 +555,7 @@
     "th6": "Utilisé dans les programmes de formation en Afrique subsaharienne",
     "tp_tag": "Programmes de formation",
     "tp_title": "Développement global des capacités",
-    "tp_desc": "Des dirigeants d’entreprises semencières aux éducateurs agricoles, nos programmes sont adaptés aux besoins uniques de chaque acteur de la chaîne de valeur agricole.",
+    "tp_desc": "Des chefs d’entreprise semencières aux agriculteurs, nos programmes sont adaptés aux besoins uniques de chaque acteur de la chaîne de valeur agricole.",
     "oa_tag": "Notre approche",
     "oa_title": "Une voie éprouvée vers la croissance des capacités",
     "oa_desc": "Chaque engagement de renforcement des capacités suit une approche structurée et participative qui garantit un impact durable.",
@@ -594,12 +594,12 @@
     "tp": {
       "0": {
         "title": "Formation en gestion d’entreprise semencière",
-        "description": "Former les dirigeants des entreprises semencières aux prévisions, au contrôle qualité, aux ressources humaines et aux opérations commerciales. Partenariat avec les doctorants du WACCI (West Africa Centre for Crop Improvement) en sélection végétale.",
+        "description": "Former les dirigeants des entreprises semencières aux prévisions, au contrôle qualité, aux ressources humaines et aux opérations commerciales. Partenariat avec les doctorants du WACCI en sélection végétale.",
         "detail": "Programme pratique et axé sur les affaires pour la professionnalisation des entreprises semencières."
       },
       "1": {
         "title": "Professionnalisation des entreprises semencières",
-        "description": "Utilisation de « La boîte à outils de l'African Seed Company : 52 outils que tout dirigeant d'une entreprise semencière devrait savoir utiliser » (écrit par Aline O'Connor).",
+        "description": "Utilisation de « La boîte à outils de l’African Seed Company : 52 outils que chaque responsable d’entreprise semencière devrait savoir utiliser » (écrit par Aline O’Connor).",
         "detail": "Couvre les « moments significatifs » avec les clients, la gestion commerciale et les stratégies opérationnelles conçues spécifiquement pour les entreprises semencières en Afrique."
       },
       "2": {
@@ -609,7 +609,7 @@
       },
       "3": {
         "title": "Formation d'éleveurs et de chercheurs",
-        "description": "Doter les sélectionneurs de plantes d’une sensibilisation commerciale et d’une connaissance du commerce des semences. Combler le fossé entre la recherche et le marché.",
+        "description": "Doter les sélectionneurs de plantes d’une sensibilisation commerciale et d’une connaissance du commerce des semences. Combler le fossé entre la recherche et les besoins du marché.",
         "detail": "Comprendre la production, la commercialisation et la distribution de semences."
       },
       "4": {
@@ -622,7 +622,10 @@
         "description": "Campagnes radio liées à la sensibilisation et à la qualité des semences. Éducation du public sur l’identification des semences authentiques et contrefaites.",
         "detail": "Formation des agriculteurs sur la sélection des variétés et les meilleures pratiques."
       }
-    }
+    },
+    "hero_title": "Développer les compétences, développer l’avenir.",
+    "philosophy_title": "Un changement durable passe par le renforcement des capacités locales.",
+    "philosophy_desc": "Les programmes de formation d’Agri Experience dotent les entreprises semencières, les sélectionneurs, les revendeurs agricoles, les agents de vulgarisation et les leaders de l’industrie des compétences et des connaissances dont ils ont besoin pour stimuler une croissance durable du secteur. Nous pensons que lorsque les individus disposent des outils et des connaissances adéquats, ils peuvent transformer leur organisation et leur communauté de l’intérieur."
   },
   "ClientAdvisory": {
     "our_work": "Notre travail",
@@ -667,19 +670,19 @@
     "adv_services": {
       "0": {
         "title": "Conseil stratégique",
-        "description": "Conseil sur le développement de systèmes semenciers et agricoles ; y compris la production, la commercialisation et la distribution de semences. Aider les entreprises du secteur privé à naviguer dans les environnements réglementaires. Planification stratégique à long terme pour les entreprises agricoles."
+        "description": "Conseil sur le développement des semences et des systèmes agricoles, y compris la production, la commercialisation et la distribution des semences. Aider les entreprises du secteur privé à naviguer dans les environnements réglementaires. Planification stratégique à long terme pour les entreprises agricoles."
       },
       "1": {
         "title": "Conseil politique",
-        "description": "Plaide pour des réformes réglementaires qui soutiennent les investissements du secteur privé. Soutenir l’harmonisation des protocoles de commerce des semences. Plaider pour une réforme de la réglementation fondée sur des données probantes – passer d’une réglementation préventive à une réglementation fondée sur la dissuasion."
+        "description": "Plaider en faveur de réformes réglementaires qui soutiennent les investissements du secteur privé. Soutenir l’harmonisation des protocoles de commerce des semences. Plaidoyer pour une réforme de la réglementation fondée sur des données probantes."
       },
       "2": {
         "title": "Avis des partenaires de développement",
         "description": "Examens des programmes financés par les partenaires de développement proposés ou en cours. Évaluation indépendante des approches de conception et de mise en œuvre du projet. Recommandations pour l'optimisation du programme."
       },
       "3": {
-        "title": "Stratégie de marché",
-        "description": "Conseil en positionnement sur le marché et en stratégie concurrentielle. Optimisation du canal de distribution. Stratégies de mise sur le marché pour les entreprises semencières pénétrant de nouveaux marchés."
+        "title": "Stratégie du marché des semences",
+        "description": "Conseil en positionnement sur le marché et en stratégie concurrentielle. Optimiser la production, la transformation et la distribution des semences. Optimisation du canal de distribution. Stratégies de mise sur le marché pour les entreprises semencières pénétrant de nouveaux marchés."
       },
       "4": {
         "title": "Navigation réglementaire",
@@ -741,7 +744,7 @@
     "sp_tag": "Pleins feux sur la plateforme",
     "sp_title": "MbeguChoix",
     "sp_subtitle": "Le premier catalogue de semences en ligne du Kenya",
-    "sp_desc": "Développé en partenariat avec KALRO, KEPHIS et Kenya Markets Trust, MbeguChoice aide les agriculteurs et les distributeurs agricoles à identifier les variétés de semences adaptées à leurs zones écologiques spécifiques, éliminant ainsi les incertitudes liées à la plantation.",
+    "sp_desc": "Développé en partenariat avec KALRO, KEPHIS, avec le soutien de Kenya Markets Trust/Gatsby Africa, MbeguChoice aide les agriculteurs et les distributeurs agricoles à identifier les variétés de semences adaptées à leurs zones écologiques spécifiques, éliminant ainsi les incertitudes liées à la plantation.",
     "sp_feat1": "Catalogue de variétés numérique",
     "sp_feat2": "Système numérique de certification des semences",
     "sp_feat3": "Plateformes d'information des parties prenantes",
@@ -773,12 +776,12 @@
     "platforms": [
       {
         "title": "Catalogue numérique des variétés de cultures en Afrique",
-        "description": "Le catalogue numérique des variétés de cultures en Afrique est une plateforme consultable en ligne qui consolide les variétés de cultures officiellement publiées et enregistrées de plusieurs pays africains dans une seule base de données.",
+        "description": "Une plateforme de recherche en ligne qui consolide les variétés de cultures officiellement publiées et enregistrées de plusieurs pays africains dans une seule base de données.",
         "tag": "Plate-forme"
       },
       {
-        "title": "Liste numérique des variétés de cultures du Kenya",
-        "description": "La liste numérique des variétés de cultures du Kenya est une plate-forme de recherche en ligne contenant toutes les variétés de cultures officiellement publiées et enregistrées au Kenya, avec un accès public aux variétés disponibles sur le marché et un accès restreint pour KEPHIS et les entités de diffusion aux informations détaillées sur les variétés.",
+        "title": "Liste des variétés végétales du Kenya",
+        "description": "Une plateforme de recherche en ligne contenant toutes les variétés de cultures officiellement publiées et enregistrées au Kenya, offrant à la fois un accès public pour les informations générales et un accès restreint pour les informations exclusives.",
         "tag": "Plate-forme"
       },
       {
@@ -851,7 +854,7 @@
     "our_work": "Notre travail",
     "hero_title": "Mise en œuvre du projet",
     "hero_subtitle": "Transformer la stratégie agricole en réalité sur le terrain",
-    "hero_desc1": "Combler le fossé entre la stratégie agricole et l’exécution sur le terrain. Nous gérons des programmes complexes et multipartites qui produisent des résultats tangibles sur le terrain.",
+    "hero_desc1": "Combler le fossé entre la stratégie agricole et l’exécution sur le terrain. Agri Experience exécute des programmes complexes et multipartites qui produisent des résultats tangibles et durables sur le terrain, bénéficiant aux acteurs permanents et aux agriculteurs.",
     "hero_desc2": "Notre pratique de mise en œuvre combine une expertise technique approfondie avec une gestion de projet rigoureuse pour exécuter des interventions dans le secteur semencier, des programmes de renforcement des capacités des distributeurs agricoles et des déploiements technologiques à travers l'Afrique subsaharienne.",
     "req_partnership": "Discutez du partenariat",
     "ia_tag": "Domaines de mise en œuvre",
@@ -869,7 +872,7 @@
     "pm_step4_desc": "Nous ne nous contentons pas d'exécuter ; nous renforçons les capacités locales. Our projects are designed to transfer knowledge and operational skills to local institutions, ensuring that impact sustains long after our direct involvement ends.",
     "cs_tag": "Étude de cas",
     "cs_title": "Optimisation du réseau de concessionnaires agricoles au Kenya",
-    "cs_desc": "Une initiative globale visant à renforcer la livraison sur le dernier kilomètre de variétés de semences améliorées aux petits exploitants agricoles grâce au renforcement des capacités des distributeurs agricoles.",
+    "cs_desc": "Une initiative globale visant à renforcer la livraison sur le dernier kilomètre de variétés de cultures améliorées aux petits exploitants agricoles grâce au renforcement des capacités des distributeurs agricoles et à l'établissement de liens stratégiques.",
     "cs_res1": "45+",
     "cs_res1_label": "Comtés atteints",
     "cs_res2": "1 200+",
@@ -883,7 +886,7 @@
     "cta_btn2": "Explorez notre travail",
     "areas": {
       "0": {
-        "title": "Développement du système de semences",
+        "title": "Développement de systèmes de semences",
         "points": {
           "0": "Concevoir et mettre en œuvre des outils pour améliorer la qualité et la transparence des semences",
           "1": "Construire des infrastructures pour un meilleur accès et une meilleure distribution des semences",
@@ -902,28 +905,28 @@
         "title": "Commerce régional des semences",
         "points": {
           "0": "Développement de stratégies pour promouvoir le commerce régional des semences",
-          "1": "Soutenir l’harmonisation des protocoles de commerce des semences",
+          "1": "Soutenir l’harmonisation des réglementations en matière de certification des semences",
           "2": "Faciliter le mouvement transfrontalier des semences et la conformité"
         }
       },
       "3": {
         "title": "Programmes d'assurance qualité",
         "points": {
-          "0": "Mettre en œuvre des systèmes de vérification de la qualité des semences",
-          "1": "Soutenir la conformité et les normes phytosanitaires",
-          "2": "Bâtir la confiance dans la chaîne d’approvisionnement en semences"
+          "0": "Réaliser des évaluations du secteur semencier",
+          "1": "Concevoir et mettre en œuvre des systèmes de vérification de la qualité des semences",
+          "2": "Développer des cadres pour la certification des semences privées autorisées"
         }
       },
       "4": {
         "title": "Gestion des opérations sur le terrain",
         "points": {
-          "0": "Coordonner les activités de terrain multi-comtés et multi-acteurs",
+          "0": "Coordonner les activités de terrain régionales et multipartites",
           "1": "Gestion des équipes d'enquête, de la collecte de données et de la logistique",
-          "2": "Garantir la qualité et le respect des délais des livrables"
+          "2": "Assurer la qualité et la rapidité des livrables des enquêtes de terrain"
         }
       },
       "5": {
-        "title": "Suivi et évaluation",
+        "title": "Suivi, évaluation et apprentissage",
         "points": {
           "0": "Suivi des résultats du projet et des mesures d'impact",
           "1": "Gestion adaptative basée sur les données de terrain",
@@ -955,23 +958,23 @@
     },
     "stats": {
       "0": {
-        "value": "20+",
-        "label": "Pays"
+        "value": "45+",
+        "label": "Comtés atteints"
       },
       "1": {
-        "value": "250+",
-        "label": "Projets"
+        "value": "1 200+",
+        "label": "Des revendeurs de produits agricoles formés"
       },
       "2": {
-        "value": "12",
-        "label": "Comtés (KCDMS)"
+        "value": "300%",
+        "label": "Augmentation des ventes de semences certifiées"
       },
       "3": {
         "value": "85+",
         "label": "Années d'expérience"
       }
     },
-    "cs_period": "Période de projet 2017 – 2022",
+    "cs_period": "Période de projet 2014 – 2018",
     "cs_client_label": "Client",
     "cs_client_val": "RTI International — Activité des systèmes de culture et de marché des produits laitiers de l'USAID au Kenya",
     "cs_meth_label": "Méthodologies testées",
@@ -983,16 +986,17 @@
     "cs_scope_label": "Portée supplémentaire",
     "cs_scope_points": {
       "0": "Études de cadrage des associations d'agro-commerçants",
-      "1": "Matériel végétal pour les cultures de la chaîne de valeur",
+      "1": "Agrodealer a dirigé des démonstrations en collaboration avec des entreprises semencières",
       "2": "Analyse du matériel végétal de pâturage et de fourrage"
-    }
+    },
+    "cs_client": "Client : Kenya Markets Trust/Gatsby Afrique"
   },
   "StakeholderConvenings": {
     "our_work": "Notre travail",
     "hero_title1": "Partie prenante",
     "hero_title2": "Convocations",
-    "hero_subtitle": "Rassembler l’écosystème agricole",
-    "hero_desc1": "Les défis agricoles complexes nécessitent une action coordonnée. Nous concevons, facilitons et gérons des réunions qui transforment des parties prenantes disparates en partenariats alignés.",
+    "hero_subtitle": "Rassembler l’écosystème agricole axé sur les semences",
+    "hero_desc1": "Les défis agricoles complexes nécessitent une action coordonnée. Agri Experience conçoit, facilite et gère des réunions qui transforment des parties prenantes disparates en partenariats alignés axés sur un objectif commun.",
     "hero_desc2": "Des tables rondes politiques de haut niveau aux voyages d'apprentissage transfrontaliers, Agri Experience fournit la précision logistique et la connaissance sectorielle nécessaires pour que chaque réunion ait un impact.",
     "req_convening": "Demander une convocation",
     "ct_tag": "Nos formats",
@@ -1031,12 +1035,12 @@
       "0": {
         "title": "Tables rondes de l'industrie des semences",
         "description": "Plateformes de dialogue multipartites réunissant le gouvernement, le secteur privé et les partenaires de développement. Forums de discussion politique et de plaidoyer en faveur de réformes.",
-        "detail": "Comme la série de tables rondes sur le secteur privé de l'industrie semencière avec le Kenya Markets Trust."
+        "detail": "Comme la série « Table ronde du secteur privé de l’industrie semencière » avec Kenya Markets Trust."
       },
       "1": {
         "title": "Voyages d'apprentissage et visites sur le terrain",
-        "description": "Expériences immersives visitant des systèmes semenciers et des opérations agricoles réussis. Échange de connaissances entre pays pour les décideurs politiques et les praticiens.",
-        "detail": "Exposition aux meilleures pratiques en matière de production, de distribution et d'assurance qualité."
+        "description": "Expériences immersives visitant des systèmes semenciers et des opérations agricoles réussis dans d'autres pays, permettant l'échange de connaissances pour les décideurs politiques et les praticiens.",
+        "detail": "Exposition aux meilleures pratiques en matière de législation sur les semences, de production, de distribution et d'assurance qualité."
       },
       "2": {
         "title": "Plateformes multipartites",
@@ -1109,7 +1113,12 @@
         "label": "Régions africaines"
       }
     },
-    "callout_text": "De Nairobi à Accra, de Lusaka à Lagos, nous rassemblons les parties prenantes là où cela compte le plus."
+    "callout_text": "De Nairobi à Accra, de Lusaka à Lagos, nous rassemblons les parties prenantes là où cela compte le plus.",
+    "sp_tag": "Événement phare",
+    "sp_title": "Tables rondes du secteur privé de l’industrie semencière",
+    "sp_subtitle": "En partenariat avec Kenya Markets Trust",
+    "sp_desc1": "Agri Experience a animé une série cruciale de tables rondes qui ont réuni des sociétés semencières privées, des organismes de réglementation et des partenaires de développement pour remédier aux goulots d'étranglement systémiques dans le secteur semencier du Kenya.",
+    "sp_desc2": "Ces réunions ont joué un rôle déterminant dans l'établissement d'un consensus autour des réformes politiques, l'harmonisation des normes et la promotion d'une relation plus collaborative entre les secteurs public et privé. En conséquence, le Règlement sur les semences a été révisé et publié au Journal officiel en 2016, permettant ainsi un environnement plus favorable au secteur privé."
   },
   "TechnicalStudies": {
     "our_work": "Notre travail",
@@ -1124,8 +1133,8 @@
     "meth_title": "Méthodologie rigoureuse et testée sur le terrain",
     "cs_tag": "Étude de cas",
     "cs_title": "Projet de cartographie des distributeurs agricoles KCDMS",
-    "cs_desc1": "Commandé par RTI International dans le cadre de l’activité Kenya Crops and Dairy Market Systems (KCDMS) de l’USAID, Agri Experience a réalisé une étude de cadrage complète dans 12 comtés du Kenya.",
-    "cs_desc2": "Nous avons cartographié les réseaux de distributeurs agricoles existants, évalué les lacunes dans la livraison du dernier kilomètre et fourni des recommandations concrètes pour renforcer les systèmes de distribution d'intrants pour les petits exploitants agricoles.",
+    "cs_desc1": "Commandé par RTI International dans le cadre de l'activité USAID Kenya Crops and Dairy Market Systems (KCDMS), Agri Experience a réalisé une cartographie complète des concessionnaires agricoles dans 12 comtés, avec géolocalisation et informations de contact.",
+    "cs_desc2": "Agri Experience a cartographié les réseaux de distributeurs agricoles existants, évalué les lacunes dans la livraison sur le dernier kilomètre et fourni des recommandations concrètes pour renforcer les systèmes de distribution d'intrants pour les petits exploitants agricoles.",
     "cta_tag": "Commencer une étude",
     "cta_title": "Besoin d'informations basées sur les données ?",
     "cta_desc": "Que vous ayez besoin d’une évaluation sectorielle complète ou d’une étude de faisabilité ciblée, nos équipes de recherche sont prêtes à se déployer.",
@@ -1207,19 +1216,27 @@
     "clients": {
       "0": {
         "label": "Partenaires de développement",
-        "desc": "USAID, GIZ, Fondation Bill & Melinda Gates et autres partenaires de développement"
+        "desc": "USAID, GIZ, Fondation Bill & Melinda Gates et autres partenaires de développement",
+        "title": "Partenaires de développement",
+        "description": "Plusieurs partenaires de développement tels que la Fondation Gates, l'USAID, AdamSmith International, l'Alliance pour une révolution verte en Afrique"
       },
       "1": {
         "label": "Gouvernements",
-        "desc": "Autorités nationales semencières et ministères de l’agriculture à travers l’Afrique"
+        "desc": "Autorités nationales semencières et ministères de l’agriculture à travers l’Afrique",
+        "title": "Gouvernements",
+        "description": "Autorités nationales semencières et ministères de l’agriculture à travers l’Afrique"
       },
       "2": {
         "label": "Secteur privé",
-        "desc": "Entreprises semencières, entreprises agroalimentaires et fabricants d’intrants à la recherche d’informations sur le marché"
+        "desc": "Entreprises semencières, entreprises agroalimentaires et fabricants d’intrants à la recherche d’informations sur le marché",
+        "title": "Secteur privé",
+        "description": "Entreprises semencières, entreprises agroalimentaires et fabricants d’intrants à la recherche d’informations sur le marché"
       },
       "3": {
         "label": "Institutions de recherche",
-        "desc": "Centres CGIAR, organismes de recherche nationaux et institutions universitaires"
+        "desc": "Centres CGIAR, organismes de recherche nationaux et institutions universitaires",
+        "title": "Institutions de recherche",
+        "description": "Centres CGIAR, organismes de recherche nationaux et institutions universitaires"
       }
     },
     "clients_title": "À qui servent nos études",

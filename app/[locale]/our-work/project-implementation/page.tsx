@@ -116,7 +116,6 @@ export default function ProjectImplementationPage() {
     { value: t('stats.0.value'), label: t('stats.0.label') },
     { value: t('stats.1.value'), label: t('stats.1.label') },
     { value: t('stats.2.value'), label: t('stats.2.label') },
-    { value: t('stats.3.value'), label: t('stats.3.label') },
   ]
 
   return (
