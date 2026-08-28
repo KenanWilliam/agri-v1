@@ -79,7 +79,7 @@ function ExpertiseAccordion({ t }: { t: ReturnType<typeof useTranslations<'About
 export default function AboutPage() {
   const t = useTranslations('About')
   return (
-    <>      <main className="bg-white min-min-h-[100dvh]">
+    <>      <main className="bg-white min-h-[100dvh]">
 
         {/* Editorial Hero */}
         <section className="relative w-full pt-16 lg:pt-28 pb-10 overflow-hidden snap-start scroll-mt-20 bg-mist">

@@ -166,10 +166,10 @@ export default function Home() {
 
   return (
     <>
-      <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-clip">
+      <main className="-mt-[4.5rem] lg:-mt-[5.5rem] bg-background overflow-x-clip">
         
         {/* Premium Hero Section */}
-        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
+        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[6.5rem] pb-10 bg-white z-0">
           
           {/* Taller background to prevent revealing white space when translating down */}
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
@@ -280,7 +280,7 @@ export default function Home() {
                   <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,var(--warm-earth)_0%,transparent_60%)] opacity-20 blur-3xl pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
                   <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,var(--primary-green)_0%,transparent_60%)] opacity-[0.05] blur-3xl pointer-events-none rounded-full -translate-x-1/4 translate-y-1/4" />
 
-                  <div ref={track1InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-24">
+                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-24">
                     <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
                       <motion.div>
                         <h2 className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-6">
@@ -313,7 +313,7 @@ export default function Home() {
                 <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20 pointer-events-none"></div>
                   
-                  <div ref={track2InnerRef} className="flex h-full items-center pt-[72px] lg:pt-[88px] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-[10vw]">
+                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-[10vw]">
                     <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
                       <motion.div>
                         <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-6">{t('what_we_believe')}</h2>

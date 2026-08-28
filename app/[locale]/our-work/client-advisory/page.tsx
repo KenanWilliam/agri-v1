@@ -107,7 +107,7 @@ export default function ClientAdvisoryPage() {
 
   return (
     <>
-      <main className="bg-white min-min-h-[100dvh]">
+      <main className="bg-white min-h-[100dvh]">
         {/* ─── Hero ─── */}
         <section className="relative w-full pt-16 lg:pt-28 pb-20 overflow-hidden">
           {/* Luxury background accents */}

@@ -39,7 +39,7 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <main className="bg-white min-min-h-[100dvh]">
+      <main className="bg-white min-h-[100dvh]">
         {/* Downloads */}
         <section className="w-full pt-16 lg:pt-28 pb-10 bg-white relative">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
