@@ -181,8 +181,26 @@ export default function Home() {
                   playsInline
                   preload="auto"
                   poster="/Videos/hero-poster.jpg"
+                  onLoadedMetadata={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  onLoadedData={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
                   onCanPlay={() => {
-                    if (!(window as any).__heroVideoReady) {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  onPlay={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
                       (window as any).__heroVideoReady = true;
                       window.dispatchEvent(new Event('hero-video-ready'));
                     }

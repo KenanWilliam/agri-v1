@@ -71,11 +71,12 @@ export default function Preloader() {
     }
   }, [bgLoaded, videoReady]);
 
-  // Safety fallback if something hangs
+  // Safety fallback if video is slow or blocked
   useEffect(() => {
     const timer = setTimeout(() => {
+      setVideoReady(true);
       setStartAnimation(true);
-    }, 4000);
+    }, 600);
     return () => clearTimeout(timer);
   }, []);
   
@@ -95,7 +96,7 @@ export default function Preloader() {
       setVideoReady(true);
     };
 
-    if ((window as any).__heroVideoReady) {
+    if (typeof window !== 'undefined' && (window as any).__heroVideoReady) {
       resolve();
       return;
     }
@@ -105,12 +106,12 @@ export default function Preloader() {
     const checkTimer = setTimeout(() => {
       const video = document.querySelector('video');
       const isDesktop = window.innerWidth >= 768;
-      if (!video || !isDesktop) {
+      if (!video || !isDesktop || (video && video.readyState >= 1)) {
         resolve();
       }
     }, 50);
 
-    const maxTimer = setTimeout(resolve, 8000);
+    const maxTimer = setTimeout(resolve, 800);
 
     return () => {
       window.removeEventListener('hero-video-ready', resolve);
