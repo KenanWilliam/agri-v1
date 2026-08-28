@@ -213,6 +213,8 @@ export default function Preloader() {
                 src="/pexels-equalstock-27722065.jpg"
                 alt="Loading Background"
                 fill
+                sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+                quality={75}
                 className="object-cover"
                 priority fetchPriority="high"
                 onLoad={() => setBgLoaded(true)}
@@ -246,6 +248,8 @@ export default function Preloader() {
                 src="/pexels-equalstock-27722065.jpg"
                 alt="Loading Background"
                 fill
+                sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+                quality={75}
                 className="object-cover"
                 priority fetchPriority="high"
                 onLoad={() => setBgLoaded(true)}

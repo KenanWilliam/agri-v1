@@ -41,7 +41,8 @@ export default function Footer() {
             src="/pexels-flambo-388007-1112080.jpg"
             alt="Agricultural landscape"
             fill
-            sizes="100vw"
+            sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+            quality={75}
             className="object-cover object-center"
           />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to top, #0d0d0d, transparent)' }} />

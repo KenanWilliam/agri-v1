@@ -136,13 +136,6 @@ export default function ProjectImplementationPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <Link
-                  href="/our-work"
-                  className="inline-flex items-center gap-2 text-deep-forest font-bold text-sm tracking-[0.2em] uppercase hover:opacity-80 transition"
-                >
-                  <Leaf size={18} />
-                  {t('our_work')}
-                </Link>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-deep-forest font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
@@ -200,10 +193,6 @@ export default function ProjectImplementationPage() {
               transition={{ duration: 0.7 }}
               className="max-w-2xl mb-16"
             >
-              <div className="inline-flex items-center gap-2 text-deep-forest font-bold text-sm tracking-[0.2em] uppercase mb-4">
-                <Leaf size={16} />
-                {t('ia_tag')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('ia_title')}
               </h2>
@@ -288,10 +277,6 @@ export default function ProjectImplementationPage() {
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
                   {/* Left content */}
                   <div className="flex-1 space-y-8">
-                    <div className="inline-flex items-center gap-2 text-primary-green font-bold text-sm tracking-[0.2em] uppercase">
-                      <Leaf size={16} />
-                      {t('cs_tag')}
-                    </div>
                     <h3 className="text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
                       {t('cs_title')}
                     </h3>
@@ -403,10 +388,6 @@ export default function ProjectImplementationPage() {
                 transition={{ duration: 0.8 }}
                 className="text-center max-w-3xl mx-auto"
               >
-                <div className="inline-flex items-center gap-2 text-primary-green font-bold text-sm tracking-[0.2em] uppercase mb-6">
-                  <Sprout size={16} />
-                  {t('cta_tag')}
-                </div>
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
                   {t('cta_desc')}

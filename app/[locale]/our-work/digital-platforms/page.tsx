@@ -104,13 +104,6 @@ export default function DigitalPlatformsPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <Link
-                  href="/our-work"
-                  className="inline-flex items-center gap-2 text-primary-green font-bold text-sm tracking-[0.2em] uppercase hover:opacity-80 transition"
-                >
-                  <Leaf size={18} />
-                  {t('our_work')}
-                </Link>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title')}
                 </h1>
@@ -166,10 +159,6 @@ export default function DigitalPlatformsPage() {
               transition={{ duration: 0.6 }}
               className="mb-16"
             >
-              <div className="inline-flex items-center gap-2 text-primary-green font-bold text-xs tracking-[0.2em] uppercase mb-4">
-                <MonitorSmartphone size={14} />
-                {t('dp_tag')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
             </motion.div>
 
@@ -238,9 +227,6 @@ export default function DigitalPlatformsPage() {
 
               {/* Left Column */}
               <div className="flex-1 relative z-10 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-primary-green font-bold text-xs tracking-widest uppercase">
-                  {t('sp_tag')}
-                </div>
                 <div className="space-y-2">
                   <h3 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
                     {t('sp_title')}
@@ -293,10 +279,6 @@ export default function DigitalPlatformsPage() {
                 transition={{ duration: 0.7 }}
                 className="max-w-3xl mx-auto"
               >
-                <div className="inline-flex items-center gap-2 text-primary-green font-bold text-xs tracking-[0.2em] uppercase">
-                  <MonitorSmartphone size={14} />
-                  {t('cta_tag')}
-                </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}

@@ -113,13 +113,6 @@ export default function ClientAdvisoryPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <Link
-                  href="/our-work"
-                  className="inline-flex items-center gap-2 text-accent-gold font-bold text-sm tracking-[0.2em] uppercase hover:opacity-80 transition"
-                >
-                  <Leaf size={18} />
-                  {t('our_work')}
-                </Link>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <span className="block text-accent-gold">{t('hero_title2')}</span>
@@ -179,10 +172,6 @@ export default function ClientAdvisoryPage() {
               transition={{ duration: 0.7 }}
               className="max-w-2xl mb-16"
             >
-              <div className="inline-flex items-center gap-2 text-accent-gold font-bold text-sm tracking-[0.2em] uppercase mb-4">
-                <Briefcase size={16} />
-                {t('adv_services_tag')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('adv_services_title') }} />
             </motion.div>
 
@@ -236,10 +225,6 @@ export default function ClientAdvisoryPage() {
               transition={{ duration: 0.7 }}
               className="text-center max-w-2xl mx-auto mb-16"
             >
-              <div className="inline-flex items-center gap-2 text-accent-gold font-bold text-sm tracking-[0.2em] uppercase mb-4">
-                <Compass size={16} />
-                {t('oa_tag')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                 {t('oa_title')}
               </h2>
@@ -316,10 +301,6 @@ export default function ClientAdvisoryPage() {
                 transition={{ duration: 0.8 }}
                 className="text-center max-w-3xl mx-auto"
               >
-                <div className="inline-flex items-center gap-2 text-accent-gold font-bold text-sm tracking-[0.2em] uppercase mb-6">
-                  <LineChart size={16} />
-                  {t('cta_tag')}
-                </div>
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
                 <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
                   {t('cta_desc')}

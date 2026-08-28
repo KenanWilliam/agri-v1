@@ -29,13 +29,6 @@ export default function TechnicalStudiesPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <Link
-                  href="/our-work"
-                  className="inline-flex items-center gap-2 text-primary-blue font-bold text-sm tracking-[0.2em] uppercase hover:opacity-80 transition"
-                >
-                  <Leaf size={18} />
-                  {t('our_work')}
-                </Link>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
                 <p className="text-primary-blue font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
@@ -88,11 +81,7 @@ export default function TechnicalStudiesPage() {
               className="max-w-4xl space-y-8"
             >
               <div>
-                <span className="inline-flex items-center gap-2 text-xs font-bold text-primary-blue tracking-[0.2em] uppercase bg-primary-blue/10 px-4 py-2 rounded-full mb-6">
-                  <MapPin size={14} />
-                  {t('cs_tag')}
-                </span>
-                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mt-4">
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                   {t('cs_title')}
                 </h2>
               </div>

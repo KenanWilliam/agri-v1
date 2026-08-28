@@ -90,13 +90,6 @@ export default function CapacityBuildingPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <Link
-                  href="/our-work"
-                  className="inline-flex items-center gap-2 text-charcoal font-bold text-sm tracking-[0.2em] uppercase hover:opacity-80 transition"
-                >
-                  <Leaf size={18} />
-                  {t('our_work')}
-                </Link>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <br />
@@ -152,10 +145,6 @@ export default function CapacityBuildingPage() {
               transition={{ duration: 0.7 }}
               className="max-w-4xl"
             >
-              <div className="inline-flex items-center gap-2 text-charcoal/60 font-bold text-xs tracking-[0.2em] uppercase mb-6">
-                <Leaf size={14} />
-                {t('our_philosophy')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-8">
                 {t('phil_title')}
               </h2>
@@ -176,10 +165,6 @@ export default function CapacityBuildingPage() {
               transition={{ duration: 0.7 }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 text-charcoal/60 font-bold text-xs tracking-[0.2em] uppercase mb-6">
-                <GraduationCap size={14} />
-                {t('tp_tag')}
-              </div>
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('tp_title')}
               </h2>
@@ -238,10 +223,6 @@ export default function CapacityBuildingPage() {
                 transition={{ duration: 0.8 }}
                 className="lg:col-span-6 space-y-6"
               >
-                <div className="inline-flex items-center gap-2 text-deep-forest font-bold text-xs tracking-[0.2em] uppercase bg-primary-green/10 px-4 py-2 rounded-full mb-2">
-                  <Award size={16} className="text-primary-green" />
-                  {t('th_tag')}
-                </div>
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 leading-tight">
                   {t('th_title')}
                 </h2>
@@ -277,9 +258,6 @@ export default function CapacityBuildingPage() {
                   {/* Card Content & Details */}
                   <div className="flex flex-col justify-between flex-1 relative z-10 space-y-4 text-center sm:text-left">
                     <div>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-primary-green font-bold text-xs tracking-widest uppercase mb-3 border border-white/10">
-                        {t('fr_tag')}
-                      </span>
                       <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-tight mb-2">
                         {t('fr_title')}
                       </h3>
@@ -347,10 +325,6 @@ export default function CapacityBuildingPage() {
                 transition={{ duration: 0.8 }}
                 className="space-y-8"
               >
-                <div className="inline-flex items-center gap-2 text-primary-green font-bold text-xs tracking-[0.2em] uppercase">
-                  <Leaf size={14} />
-                  {t('cta_tag')}
-                </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight">
                   {t('cta_title')}
                 </h2>

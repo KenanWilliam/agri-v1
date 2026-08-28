@@ -58,13 +58,6 @@ export default function OurWorkPage() {
     },
   ]
 
-  const stats = [
-    { value: '120+', label: t('s1_label'), icon: Users },
-    { value: '250+', label: t('s2_label'), icon: Briefcase },
-    { value: '35+', label: t('s3_label'), icon: Globe },
-    { value: '100%', label: t('s4_label'), icon: Target },
-  ]
-
   return (
     <>      <main className="bg-white min-h-[100dvh]">
         {/* Top Section */}
@@ -82,10 +75,6 @@ export default function OurWorkPage() {
                 transition={{ duration: 0.8 }}
                 className="flex-1 space-y-6"
               >
-                <div className="inline-flex items-center gap-2 text-primary-green font-bold text-sm tracking-[0.2em] uppercase">
-                  <Leaf size={18} />
-                  {t('practice')}
-                </div>
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('title')}
                 </h1>
@@ -208,37 +197,6 @@ export default function OurWorkPage() {
                   </Link>
                 )
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Bottom Banner */}
-        <section className="w-full">
-          <div className="w-full bg-deep-forest py-12 px-6 overflow-hidden relative">
-             {/* Decorative wave background */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <filter id="noiseFilterMap">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseFilterMap)" />
-              </svg>
-            </div>
-            
-            <div className="max-w-[1800px] mx-auto relative z-10 grid grid-cols-2 gap-y-12 gap-x-6 lg:flex lg:justify-between lg:items-center lg:gap-12">
-              {stats.map((stat, i) => (
-                <div key={i} className="flex flex-col lg:flex-row items-center gap-3 lg:gap-4 lg:min-w-[200px] text-center lg:text-left">
-                  <stat.icon className="text-primary-green opacity-80 shrink-0" size={28} />
-                  <div className="flex flex-col items-center lg:items-start">
-                    <div className="text-2xl lg:text-3xl font-serif font-bold text-white leading-tight">{stat.value}</div>
-                    <div className="text-[11.5px] lg:text-xs text-white/70 tracking-wide mt-1.5 lg:mt-1 leading-tight">{stat.label}</div>
-                  </div>
-                  {/* Vertical separator (hidden on mobile, visible on desktop between items) */}
-                  {i < stats.length - 1 && (
-                    <div className="hidden lg:block w-px h-12 bg-white/10 ml-8 lg:ml-12"></div>
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         </section>
