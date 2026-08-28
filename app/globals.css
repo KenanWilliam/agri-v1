@@ -275,26 +275,25 @@
   }
 }
 
-/* ─── Premium Desktop Compression (14-inch & 15-inch) ───
-   Subtly zooms out the entire UI by 6.25% (15px instead of 16px base)
-   for a more refined, premium aesthetic with extra breathing room. */
-@media (min-width: 1440px) {
-  html {
-    font-size: 15px;
+/* ─── Global Navbar Height (REM Based) ─── */
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5.5rem;
   }
 }
 
-/* ─── Universal Height-Based Proportional Downscaling (13-inch) ─── 
-   Tailwind's breakpoints (lg: 1024px, xl: 1280px) are purely width-based.
-   A 1366x768 screen triggers the 'xl' breakpoint, applying massive typography
-   and spacing meant for tall 1080p monitors, causing everything to overflow.
-   
-   This rule forcefully shrinks the root font size based on viewport height,
-   so those 'xl' classes mathematically shrink to fit perfectly on short laptops. */
+/* ─── 14-inch & 15-inch Baseline ─── */
+@media (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* ─── Aggressive Height-Based Hero Downscaling (13-inch) ─── */
 @media (min-width: 1024px) and (max-width: 1439px) {
   html {
-    /* 1.5dvh at 768px height = 11.52px (perfect aggressive reduction)
-       Maxes out at 15px to seamlessly match the premium 1440px+ baseline */
-    font-size: clamp(9px, 1.5dvh, 15px);
+    /* Floor is strictly 13.75px to ensure 'text-sm' (0.875rem) never drops below 12px.
+       This prevents Chrome from artificially enlarging the text relative to the shrunk padding! */
+    font-size: clamp(10px, 1.5dvh, 15px);
   }
 }

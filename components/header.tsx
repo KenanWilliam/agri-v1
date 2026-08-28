@@ -189,7 +189,7 @@ export default function Header() {
                     if (el) buttonRefs.current.set(item.href, el);
                     else buttonRefs.current.delete(item.href);
                   }}
-                  className={`relative px-4 py-2 text-[14px] font-medium rounded-full transition-colors duration-150 ${
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors duration-150 ${
                     isActive
                       ? 'text-deep-forest z-20'
                       : 'text-charcoal/80 hover:text-deep-forest z-10'
@@ -235,7 +235,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => { setClickedPath('/contact'); }}
-              className="group relative overflow-hidden hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-[14px] font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
+              className="group relative overflow-hidden hidden md:inline-flex px-5 py-2.5 bg-deep-forest text-white rounded-full text-sm font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
               <RollingText>
                 {t('contact')}
@@ -303,7 +303,7 @@ export default function Header() {
                         key={item.href}
                         href={item.href}
                         onClick={() => { setIsOpen(false); }}
-                        className={`px-4 py-3.5 text-[15px] font-semibold rounded-2xl transition-all duration-200 flex items-center justify-between ${
+                        className={`px-4 py-3.5 text-base font-semibold rounded-2xl transition-all duration-200 flex items-center justify-between ${
                           isActive 
                             ? 'text-deep-forest bg-[#F1F6F3]' 
                             : 'text-charcoal/80 hover:text-deep-forest hover:bg-black/5'
@@ -345,7 +345,7 @@ export default function Header() {
                   <Link
                     href="/contact"
                     onClick={() => { setIsOpen(false); }}
-                    className="group relative overflow-hidden w-full py-4 bg-deep-forest text-white rounded-2xl text-[15px] font-semibold text-center shadow-lg flex items-center justify-center transition-transform active:scale-[0.98]"
+                    className="group relative overflow-hidden w-full py-4 bg-deep-forest text-white rounded-2xl text-base font-semibold text-center shadow-lg flex items-center justify-center transition-transform active:scale-[0.98]"
                   >
                     <RollingText>
                       {t('contact')}
