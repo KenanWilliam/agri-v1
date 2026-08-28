@@ -44,16 +44,6 @@ export default function ClientAdvisoryPage() {
       title: t('adv_services.3.title'),
       description: t('adv_services.3.description'),
     },
-    {
-      icon: Shield,
-      title: t('adv_services.4.title'),
-      description: t('adv_services.4.description'),
-    },
-    {
-      icon: Lightbulb,
-      title: t('adv_services.5.title'),
-      description: t('adv_services.5.description'),
-    },
   ]
 
   const approachPillars = [

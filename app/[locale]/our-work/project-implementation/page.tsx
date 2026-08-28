@@ -348,7 +348,6 @@ export default function ProjectImplementationPage() {
                         {[
                           t('cs_scope_points.0'),
                           t('cs_scope_points.1'),
-                          t('cs_scope_points.2'),
                         ].map((item, i) => (
                           <li
                             key={i}

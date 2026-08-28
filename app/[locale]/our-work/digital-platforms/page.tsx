@@ -192,7 +192,7 @@ export default function DigitalPlatformsPage() {
                     <div className={`space-y-4 ${idx === 0 ? 'md:flex-shrink-0' : ''}`}>
                       <div className={platform.image ? "h-12 lg:h-16 flex items-center" : "w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green"}>
                         {platform.image ? (
-                          <Image src={platform.image} alt={platform.title} width={160} height={64} className="h-full w-auto object-contain object-left" />
+                          <Image src={platform.image} alt={platform.title} width={160} height={64} style={{ width: 'auto', height: '100%' }} className="h-full w-auto object-contain object-left" />
                         ) : Icon ? (
                           <Icon size={30} />
                         ) : null}

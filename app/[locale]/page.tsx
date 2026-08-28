@@ -197,7 +197,7 @@ export default function Home() {
                   src="/hero-bg.png"
                   alt="Agricultural landscape"
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   priority
                   className="md:hidden object-cover object-center"
                 />
