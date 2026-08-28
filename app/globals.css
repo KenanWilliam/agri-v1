@@ -275,7 +275,16 @@
   }
 }
 
-/* ─── Universal Height-Based Proportional Downscaling ─── 
+/* ─── Premium Desktop Compression (14-inch & 15-inch) ───
+   Subtly zooms out the entire UI by 6.25% (15px instead of 16px base)
+   for a more refined, premium aesthetic with extra breathing room. */
+@media (min-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* ─── Universal Height-Based Proportional Downscaling (13-inch) ─── 
    Tailwind's breakpoints (lg: 1024px, xl: 1280px) are purely width-based.
    A 1366x768 screen triggers the 'xl' breakpoint, applying massive typography
    and spacing meant for tall 1080p monitors, causing everything to overflow.
@@ -285,7 +294,7 @@
 @media (min-width: 1024px) and (max-width: 1439px) {
   html {
     /* 1.5dvh at 768px height = 11.52px (perfect aggressive reduction)
-       1.5dvh at 1066px height = 16px (matches desktop baseline) */
-    font-size: clamp(9px, 1.5dvh, 16px);
+       Maxes out at 15px to seamlessly match the premium 1440px+ baseline */
+    font-size: clamp(9px, 1.5dvh, 15px);
   }
 }
