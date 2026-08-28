@@ -2,85 +2,12 @@
 import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
-import { ClipboardCheck, Search, FileText, TrendingUp, Users, MapPin, Microscope, ArrowRight, Leaf, BarChart3, CheckCircle2 } from 'lucide-react'
+import { FileText, TrendingUp, Users, MapPin, Microscope, ArrowRight, Leaf } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 
 export default function TechnicalStudiesPage() {
   const t = useTranslations('TechnicalStudies')
-
-  const caseStudyDetails = [
-    { label: t('caseStudyDetails.0.label'), value: t('caseStudyDetails.0.value') },
-    { label: t('caseStudyDetails.1.label'), value: t('caseStudyDetails.1.value') },
-    { label: t('caseStudyDetails.2.label'), value: t('caseStudyDetails.2.value') },
-    { label: t('caseStudyDetails.3.label'), value: t('caseStudyDetails.3.value') },
-  ]
-
-  const studyTypes = [
-    {
-      title: t('studyTypes.0.title'),
-      description: t('studyTypes.0.description'),
-      icon: TrendingUp,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-    {
-      title: t('studyTypes.1.title'),
-      description: t('studyTypes.1.description'),
-      icon: Search,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-    {
-      title: t('studyTypes.2.title'),
-      description: t('studyTypes.2.description'),
-      icon: BarChart3,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-    {
-      title: t('studyTypes.3.title'),
-      description: t('studyTypes.3.description'),
-      icon: ClipboardCheck,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-    {
-      title: t('studyTypes.4.title'),
-      description: t('studyTypes.4.description'),
-      icon: FileText,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-    {
-      title: t('studyTypes.5.title'),
-      description: t('studyTypes.5.description'),
-      icon: Microscope,
-      accent: 'from-primary-blue/10 to-primary-blue/5',
-    },
-  ]
-
-const methodology = [
-    {
-      step: 1,
-      title: t('methodology.0.title'),
-      description: t('methodology.0.description'),
-      icon: Search,
-    },
-    {
-      step: 2,
-      title: t('methodology.1.title'),
-      description: t('methodology.1.description'),
-      icon: MapPin,
-    },
-    {
-      step: 3,
-      title: t('methodology.2.title'),
-      description: t('methodology.2.description'),
-      icon: BarChart3,
-    },
-    {
-      step: 4,
-      title: t('methodology.3.title'),
-      description: t('methodology.3.description'),
-      icon: FileText,
-    },
-  ]
 
 
 
@@ -151,103 +78,33 @@ const methodology = [
         </section>
 
         {/* ─── Case Study: KCDMS Agrodealer Mapping ─── */}
-        <section className="w-full py-28">
+        <section className="w-full py-20 lg:py-28">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-              {/* Left column: Label + text (3 cols) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="lg:col-span-3 space-y-8"
-              >
-                <div>
-                  <span className="inline-flex items-center gap-2 text-xs font-bold text-primary-blue tracking-[0.2em] uppercase bg-primary-blue/10 px-4 py-2 rounded-full mb-6">
-                    <MapPin size={14} />
-                    {t('cs_tag')}
-                  </span>
-                  <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mt-4">
-                    {t('cs_title')}
-                  </h2>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="max-w-4xl space-y-8"
+            >
+              <div>
+                <span className="inline-flex items-center gap-2 text-xs font-bold text-primary-blue tracking-[0.2em] uppercase bg-primary-blue/10 px-4 py-2 rounded-full mb-6">
+                  <MapPin size={14} />
+                  {t('cs_tag')}
+                </span>
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mt-4">
+                  {t('cs_title')}
+                </h2>
+              </div>
 
-                <p className="text-charcoal/80 font-light leading-relaxed text-lg">
-                  {t('cs_desc1')}
-                </p>
+              <p className="text-charcoal/80 font-light leading-relaxed text-lg">
+                {t('cs_desc1')}
+              </p>
 
-                <p className="text-charcoal/80 font-light leading-relaxed text-lg">
-                  {t('cs_desc2')}
-                </p>
-
-                {/* Key highlights list */}
-                <div className="space-y-4 pt-4">
-                  {[
-                    t('cs_bullets.0'),
-                    t('cs_bullets.1'),
-                    t('cs_bullets.2'),
-                    t('cs_bullets.3'),
-                    t('cs_bullets.4'),
-                  ].map((item, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -15 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.2 + idx * 0.07 }}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle2 size={18} className="text-primary-blue flex-shrink-0 mt-1" />
-                      <span className="text-charcoal/80 font-light leading-relaxed">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Right column: Stats card (2 cols) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.15 }}
-                className="lg:col-span-2"
-              >
-                <div className="rounded-[32px] bg-gradient-to-br from-deep-forest via-deep-forest to-deep-forest/95 p-8 lg:p-10 text-white relative overflow-hidden sticky top-32">
-                  {/* Decorative overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(36,132,198,0.15),transparent_60%)] pointer-events-none" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(58,180,74,0.08),transparent_50%)] pointer-events-none" />
-
-                  <div className="relative z-10">
-                    <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-primary-blue mb-8">
-                      Project Details
-                    </h4>
-
-                    <div className="space-y-6">
-                      {caseStudyDetails.map((detail, idx) => (
-                        <div key={idx} className="border-b border-white/10 pb-5 last:border-b-0 last:pb-0">
-                          <div className="text-xs text-white/50 tracking-wide uppercase mb-1">
-                            {detail.label}
-                          </div>
-                          <div className="text-lg font-serif font-bold text-white tracking-tight pb-2">
-                            {detail.value}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Decorative element */}
-                    <div className="mt-8 pt-6 border-t border-white/10">
-                      <div className="flex items-center gap-3">
-                        <Users size={20} className="text-primary-blue/70" />
-                        <span className="text-white/60 text-sm font-light">
-                          {t('funded_by')}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+              <p className="text-charcoal/80 font-light leading-relaxed text-lg">
+                {t('cs_desc2')}
+              </p>
+            </motion.div>
           </div>
         </section>
 
@@ -266,12 +123,12 @@ const methodology = [
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { label: t('clients.0.label'), desc: t('clients.0.desc'), icon: Users },
-                { label: t('clients.1.label'), desc: t('clients.1.desc'), icon: FileText },
-                { label: t('clients.2.label'), desc: t('clients.2.desc'), icon: TrendingUp },
-                { label: t('clients.3.label'), desc: t('clients.3.desc'), icon: Microscope },
+                { label: t('clients.0.title'), desc: t('clients.0.description'), icon: Users },
+                { label: t('clients.1.title'), desc: t('clients.1.description'), icon: FileText },
+                { label: t('clients.2.title'), desc: t('clients.2.description'), icon: TrendingUp },
+                { label: t('clients.3.title'), desc: t('clients.3.description'), icon: Microscope },
               ].map((client, idx) => {
                 const Icon = client.icon
                 return (
@@ -281,7 +138,7 @@ const methodology = [
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-white rounded-[24px] p-6 lg:p-8 border border-transparent hover:border-primary-blue/15 hover:shadow-lg transition-[background-color,border-color,box-shadow] duration-200 text-center"
+                    className="bg-white rounded-[24px] p-6 lg:p-8 border border-transparent hover:border-primary-blue/15 hover:shadow-lg transition-[background-color,border-color,box-shadow] duration-200 text-center flex flex-col items-center"
                   >
                     <div className="w-12 h-12 rounded-full bg-primary-blue/10 flex items-center justify-center text-primary-blue mx-auto mb-4">
                       <Icon size={22} />
