@@ -7,14 +7,11 @@ import {
   GraduationCap,
   Users,
   Radio,
-  Presentation,
   Sprout,
   ArrowRight,
   Leaf,
-  CheckCircle2,
   Award,
   Target,
-  Lightbulb,
 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -59,42 +56,6 @@ export default function CapacityBuildingPage() {
       detail: t('tp.5.detail'),
       icon: Radio,
     },
-  ]
-
-  const approachSteps = [
-    {
-      step: '01',
-      title: t('step1_title'),
-      description: t('step1_desc'),
-      icon: Lightbulb,
-    },
-    {
-      step: '02',
-      title: t('step2_title'),
-      description: t('step2_desc'),
-      icon: BookOpen,
-    },
-    {
-      step: '03',
-      title: t('step3_title'),
-      description: t('step3_desc'),
-      icon: Presentation,
-    },
-    {
-      step: '04',
-      title: t('step4_title'),
-      description: t('step4_desc'),
-      icon: CheckCircle2,
-    },
-  ]
-
-  const toolboxHighlights = [
-    t('th1'),
-    t('th2'),
-    t('th3'),
-    t('th4'),
-    t('th5'),
-    t('th6'),
   ]
 
   return (
@@ -331,46 +292,26 @@ export default function CapacityBuildingPage() {
                 </div>
               </motion.div>
 
-              {/* Right — checklist details */}
+              {/* Right — details */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="space-y-8"
+                className="space-y-6"
               >
                 <div>
                   <div className="inline-flex items-center gap-2 text-charcoal/60 font-bold text-xs tracking-[0.2em] uppercase mb-4">
                     <Award size={14} />
                     {t('th_tag')}
                   </div>
-                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-4">
+                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                     {t('th_title')}
                   </h2>
-                  <p className="text-charcoal/70 font-light leading-relaxed">
+                  <p className="text-lg text-charcoal/80 font-light leading-relaxed">
                     {t('th_desc')}
                   </p>
                 </div>
-
-                <ul className="space-y-4">
-                  {toolboxHighlights.map((item, idx) => (
-                    <motion.li
-                      key={idx}
-                      initial={{ opacity: 0, x: 10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: idx * 0.08 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div className="w-6 h-6 rounded-full bg-charcoal/[0.06] flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckCircle2 size={14} className="text-charcoal" />
-                      </div>
-                      <span className="text-charcoal/80 font-light text-sm leading-relaxed">
-                        {item}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
               </motion.div>
             </div>
           </div>
