@@ -117,7 +117,7 @@ export default function AboutPage() {
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 md:gap-8">
               <div className="max-w-2xl space-y-4">
-                <h2 className="text-deep-forest">{t('expertise_title')}</h2>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">{t('expertise_title')}</h2>
                 <p className="text-base md:text-xl text-charcoal/70 font-light">
                   {t('expertise_desc')}
                 </p>
@@ -174,7 +174,7 @@ export default function AboutPage() {
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="space-y-16">
               <div className="text-center space-y-4">
-                <h2 className="text-deep-forest">{t('values_title')}</h2>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">{t('values_title')}</h2>
                 <p className="text-charcoal/50 font-bold uppercase tracking-widest text-xs">{t('values_subtitle')}</p>
               </div>
               
