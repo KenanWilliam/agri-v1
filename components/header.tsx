@@ -104,7 +104,7 @@ export default function Header() {
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? t('aria_close_menu') : t('aria_open_menu')}
               aria-expanded={isOpen}
-              className="lg:hidden pointer-events-auto p-3 text-deep-forest hover:bg-black/5 rounded-full transition-colors flex items-center justify-center min-w-[48px] min-h-[48px]"
+              className="xl:hidden pointer-events-auto p-3 text-deep-forest hover:bg-black/5 rounded-full transition-colors flex items-center justify-center min-w-[48px] min-h-[48px]"
             >
               <AnimatedHamburger isOpen={isOpen} />
             </button>
@@ -147,7 +147,7 @@ export default function Header() {
 
           {/* Desktop Navigation - AngelList Style Pill */}
           <nav 
-            className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
+            className="hidden xl:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
             onMouseLeave={handleMouseLeave}
             ref={containerRef as any}
           >
@@ -243,7 +243,7 @@ export default function Header() {
             </Link>
 
             {/* Invisible spacer so layout doesn't shift — the real button is in the sticky layer above */}
-            <div className="lg:hidden w-10 h-10" />
+            <div className="xl:hidden w-10 h-10" />
           </div>
         </div>
       </header>
@@ -262,7 +262,7 @@ export default function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-deep-forest/40 backdrop-blur-sm z-[85] lg:hidden"
+              className="fixed inset-0 bg-deep-forest/40 backdrop-blur-sm z-[85] xl:hidden"
             />
             
             {/* Sidebar */}
@@ -271,7 +271,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[320px] bg-white shadow-2xl z-[90] lg:hidden flex flex-col overflow-hidden rounded-none border-l border-white/20"
+              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[320px] bg-white shadow-2xl z-[90] xl:hidden flex flex-col overflow-hidden rounded-none border-l border-white/20"
             >
               {/* Sidebar Header — logo only, vertically aligned to match navbar */}
               <div className="h-[var(--header-height)] flex items-center px-6 shrink-0">

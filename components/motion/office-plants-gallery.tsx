@@ -276,7 +276,7 @@ export default function OfficePlantsGallery({ showMissionVision = false }: { sho
   return (
     <section ref={containerRef} className={`relative w-full ${showMissionVision ? 'h-[300vh]' : 'h-[150vh]'} bg-white`}>
       {showMissionVision && (
-        <div className="absolute top-0 left-0 w-full h-screen z-30 flex items-center justify-center pointer-events-none px-4">
+        <div className="absolute top-0 left-0 w-full min-h-[100dvh] z-30 flex items-center justify-center pointer-events-none px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -290,7 +290,7 @@ export default function OfficePlantsGallery({ showMissionVision = false }: { sho
           </motion.div>
         </div>
       )}
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+      <div className="sticky top-0 w-full min-h-[100dvh] overflow-hidden">
         
         {/* HTML Text Overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-4">
@@ -324,11 +324,12 @@ export default function OfficePlantsGallery({ showMissionVision = false }: { sho
         </div>
 
         {/* 3D Canvas */}
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 touch-pan-y">
           <Canvas
               shadows={{ type: THREE.PCFShadowMap }}
               camera={{ position: [0, 0, 18], fov: 42 }}
               dpr={[1, 1]}
+              style={{ touchAction: 'pan-y' }}
             >
               <Environment preset="city" />
               <ambientLight intensity={1.2} />

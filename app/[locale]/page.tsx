@@ -169,7 +169,7 @@ export default function Home() {
       <main className="-mt-[72px] lg:-mt-[88px] bg-background overflow-x-clip">
         
         {/* Premium Hero Section */}
-        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100vh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
+        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[104px] pb-10 bg-white z-0">
           
           {/* Taller background to prevent revealing white space when translating down */}
           <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
@@ -273,7 +273,7 @@ export default function Home() {
         <div className="hidden md:motion-safe:block">
           {/* Pinned Horizontal Sequence Wrapper */}
           <div ref={sequenceWrapperRef} className="relative z-20 bg-mist">
-            <div className="relative h-[100vh] w-full overflow-hidden">
+            <div className="relative h-[100dvh] w-full overflow-hidden">
                 
                 {/* Track 1: Why Agri Experience Layer */}
                 <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0">

@@ -66,7 +66,7 @@ export default function OurWorkPage() {
   ]
 
   return (
-    <>      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-min-h-[100dvh]">
         {/* Top Section */}
         <section className="relative w-full pt-16 lg:pt-28 pb-0 overflow-hidden">
           {/* Subtle background decorative shapes */}

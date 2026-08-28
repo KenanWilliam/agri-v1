@@ -44,7 +44,7 @@ export default function OurImpactPage() {
   ]
 
   return (
-    <>      <main className="bg-white min-h-screen">
+    <>      <main className="bg-white min-min-h-[100dvh]">
 
 
         <InteractiveMap />

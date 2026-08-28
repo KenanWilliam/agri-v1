@@ -204,7 +204,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
         Skip this section
       </a>
       <section ref={containerRef} className="w-full relative h-[300vh] bg-mist">
-        <div className="sticky top-(--header-height) h-[calc(100vh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
+        <div className="sticky top-(--header-height) h-[calc(100dvh-var(--header-height))] w-full overflow-hidden flex flex-col justify-center">
           
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50">
             {items.map((item, i) => (

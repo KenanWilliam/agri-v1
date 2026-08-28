@@ -165,20 +165,34 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
   
-  /* Professional Typography */
+  /* Professional Typography - Fluid Scaling */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight text-[#1A4D2E];
     line-height: 1.25;
   }
 
-  h1 { font-size: clamp(2rem, 3.5vw + 1rem, 3.75rem); } /* ~32px to ~60px */
-  h2 { font-size: clamp(1.75rem, 3vw + 1rem, 3rem); } /* ~28px to ~48px */
-  h3 { font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem); } /* ~24px to ~36px */
+  h1 { font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem); } /* Fluid scaling */
+  h2 { font-size: clamp(1.75rem, 4vw + 1rem, 3.5rem); }
+  h3 { font-size: clamp(1.5rem, 3vw + 0.75rem, 2.5rem); }
   h4 { font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem); }
+  h5 { font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem); }
+  h6 { font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem); }
 
   p {
-    @apply font-sans text-gray-600 leading-relaxed;
-    font-size: clamp(0.95rem, 1vw + 0.5rem, 1.125rem); /* ~15px to ~18px */
+    @apply font-sans text-gray-600 leading-relaxed max-w-prose;
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem); /* Prevents small text breaking */
+    overflow-wrap: anywhere; /* Fallback for unbreakable strings */
+  }
+
+  a, span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Prevent string overflow globally for text containers */
+  .text-wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 
@@ -264,5 +278,16 @@
 @media (min-width: 1024px) {
   :root {
     --header-height: 88px;
+  }
+}
+
+/* Dynamic UI Scaling for Short Displays (e.g. 13"/14" laptops with fixed taskbars) */
+@media (min-width: 1024px) and (max-height: 900px) {
+  html {
+    /* Scale root font size proportionally as height decreases below 900px.
+       Since Tailwind utilizes 'rem' for padding, margins, heights, and fonts,
+       this perfectly scales down the entire layout proportionally without 
+       altering the intended design proportions. */
+    font-size: clamp(12px, calc(16px * (100dvh / 900)), 16px);
   }
 }

@@ -103,7 +103,7 @@ export default function OurTeamPage() {
   ]
 
   return (
-    <main className="bg-[#FAFAFA] min-h-screen">
+    <main className="bg-[#FAFAFA] min-min-h-[100dvh]">
       
       {/* Editorial Hero */}
       <section className="relative w-full pt-16 lg:pt-[min(5.5rem,8vh)] pb-8 lg:pb-[min(2.75rem,4vh)] overflow-hidden border-b border-mist snap-start scroll-mt-20">
