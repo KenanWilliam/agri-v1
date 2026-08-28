@@ -275,9 +275,17 @@
   }
 }
 
-/* ─── Targeted Proportional Downscaling (13/14 Laptops) ─── */
-@media (min-width: 1024px) and (max-width: 1439px) {
+/* ─── Universal Height-Based Proportional Downscaling ─── 
+   Tailwind's breakpoints (lg: 1024px, xl: 1280px) are purely width-based.
+   A 1366x768 screen triggers the 'xl' breakpoint, applying massive typography
+   and spacing meant for tall 1080p monitors, causing everything to overflow.
+   
+   This rule forcefully shrinks the root font size based on viewport height,
+   so those 'xl' classes mathematically shrink to fit perfectly on short laptops. */
+@media (min-width: 1024px) {
   html {
-    font-size: min(13.5px, calc(15px * (100dvh / 900)));
+    /* 1.5dvh at 768px height = 11.52px (perfect aggressive reduction)
+       1.5dvh at 1066px height = 16px (matches desktop baseline) */
+    font-size: clamp(9px, 1.5dvh, 16px);
   }
 }
