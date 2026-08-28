@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, DM_Sans, Bebas_Neue, Space_Grotesk } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import '../globals.css'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -108,7 +107,6 @@ export default async function RootLayout({
             <Header />
             {children}
             <Footer />
-            {process.env.NODE_ENV === 'production' && <Analytics />}
           </LanguageSwitchProvider>
         </NextIntlClientProvider>
       </body>
