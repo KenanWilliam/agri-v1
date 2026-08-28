@@ -152,27 +152,32 @@ export default function StakeholderConveningsPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-lighter-dark-green/15" />
-                <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
-                  {t('hero_desc1')}
-                </p>
-                <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contact"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-lighter-dark-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
-                  >
+                <div className="lg:pl-10 space-y-5">
+                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                    {t('hero_desc1')}
+                  </p>
+                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                    {t('hero_desc2')}
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <Link
+                      href="/contact"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-lighter-dark-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
+                    >
 <RollingText className="gap-2">
-                    {t('req_convening')}
-                    <ArrowRight size={16} />
-                  </RollingText>
+                      {t('req_convening')}
+                      <ArrowRight size={16} />
+                    </RollingText>
 </Link>
-                  <Link
-                    href="/our-work"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-lighter-dark-green/20 text-lighter-dark-green rounded-full font-semibold text-sm hover:bg-lighter-dark-green/5 transition-colors"
-                  >
+                    <Link
+                      href="/our-work"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-lighter-dark-green/20 text-lighter-dark-green rounded-full font-semibold text-sm hover:bg-lighter-dark-green/5 transition-colors"
+                    >
 <RollingText className="gap-2">
-                    {t('our_work')}
-                  </RollingText>
+                      {t('our_work')}
+                    </RollingText>
 </Link>
+                  </div>
                 </div>
               </motion.div>
             </div>
