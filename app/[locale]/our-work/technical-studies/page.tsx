@@ -150,7 +150,7 @@ const methodology = [
           </div>
         </section>
 
-        {/* ─── Case Study: KCDMS Agro-Dealer Mapping ─── */}
+        {/* ─── Case Study: KCDMS Agrodealer Mapping ─── */}
         <section className="w-full py-28">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">

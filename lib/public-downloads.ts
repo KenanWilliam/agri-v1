@@ -59,19 +59,19 @@ export const publicDownloads: PublicDownload[] = [
     category: 'Scoping Studies',
   },
   {
-    title: 'Agro Dealer Mapping in Twelve Counties in Kenya',
+    title: 'Agrodealer Mapping in Twelve Counties in Kenya',
     link: '/resources/Agro-Dealer-Mapping-in-Twelve-Counties-in-Kenya.pdf',
     client: 'USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018',
     citation:
-      'Agri Experience Ltd. (2018). Agro Dealer Mapping in Twelve KCMD Counties of Operation in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).',
+      'Agri Experience Ltd. (2018). Agrodealer Mapping in Twelve KCMD Counties of Operation in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).',
     category: 'Reports & Analysis',
   },
   {
-    title: 'Scoping Study: Agro Dealer Association Development in Twelve Counties in Kenya',
+    title: 'Scoping Study: Agrodealer Association Development in Twelve Counties in Kenya',
     link: '/resources/Scoping-Study-Agro-Dealer-Association-Development-in-Twelve-Counties-in-Kenya.pdf',
     client: 'USAID/Kenya Crop and Dairy Market Systems Activity (RTI), July 2018',
     citation:
-      'Agri Experience Ltd. (2018). Scoping Study: Agro Dealer Association Development in Twelve Counties in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).',
+      'Agri Experience Ltd. (2018). Scoping Study: Agrodealer Association Development in Twelve Counties in Kenya. Nairobi: Kenya Crops and Dairy Market Systems Activity (KCDMS).',
     category: 'Scoping Studies',
   },
   {
