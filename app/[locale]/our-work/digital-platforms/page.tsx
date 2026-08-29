@@ -14,21 +14,24 @@ export default function DigitalPlatformsPage() {
     {
       title: t('platforms.0.title'),
       description: t('platforms.0.description'),
-      icon: Globe,
+      image: '/platforms/africa-crop-variety-catalogue.png',
+      imageType: 'screenshot' as const,
       tag: t('platforms.0.tag'),
       link: "https://varietycatalogues.com/about/"
     },
     {
       title: t('platforms.1.title'),
       description: t('platforms.1.description'),
-      icon: Database,
+      image: '/platforms/kenya-plant-variety-list.png',
+      imageType: 'screenshot' as const,
       tag: t('platforms.1.tag'),
       link: "https://catalogueapi.varietycatalogues.com/"
     },
     {
       title: t('platforms.2.title'),
       description: t('platforms.2.description'),
-      icon: MonitorSmartphone,
+      image: '/platforms/tanzania-agri-inputs-platform.png',
+      imageType: 'screenshot' as const,
       tag: t('platforms.2.tag'),
       link: "https://tanzaniaagri-inputsplatform.com/"
     },
@@ -36,6 +39,7 @@ export default function DigitalPlatformsPage() {
       title: t('platforms.3.title'),
       description: t('platforms.3.description'),
       image: '/Mbegu Choice.png',
+      imageType: 'logo' as const,
       tag: t('platforms.3.tag'),
     },
     {
@@ -54,6 +58,7 @@ export default function DigitalPlatformsPage() {
       title: t('platforms.6.title'),
       description: t('platforms.6.description'),
       image: '/M3.png',
+      imageType: 'logo' as const,
       tag: t('platforms.6.tag'),
     }
   ]
@@ -165,7 +170,61 @@ export default function DigitalPlatformsPage() {
             {/* Bento-style grid: first card spans 2 cols */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {platforms.map((platform, idx) => {
-                const Icon = platform.icon
+                const Icon = 'icon' in platform ? platform.icon : null
+                const isScreenshot = platform.imageType === 'screenshot' && platform.image
+                const isLogo = platform.imageType === 'logo' && platform.image
+
+                if (idx === 0) {
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      className="group rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col md:col-span-2 md:flex-row md:items-center md:gap-12"
+                    >
+                      {/* Screenshot Preview */}
+                      {isScreenshot && (
+                        <div className="w-full md:w-[440px] lg:w-[500px] flex-shrink-0">
+                          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md border border-stone-200/80 bg-white transition-all duration-300">
+                            <Image
+                              src={platform.image!}
+                              alt={platform.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 500px"
+                              className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Content */}
+                      <div className="mt-6 md:mt-0 flex-1 flex flex-col justify-center">
+                        <div className="flex items-start justify-between gap-4">
+                          <h3 className="text-2xl lg:text-3xl font-serif font-bold text-deep-forest tracking-tight pb-2">
+                            {platform.title}
+                          </h3>
+                          {platform.link && (
+                            <a
+                              href={platform.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary-green hover:opacity-80 transition-opacity mt-1 flex-shrink-0"
+                              aria-label={`Open ${platform.title}`}
+                            >
+                              <ExternalLink size={22} />
+                            </a>
+                          )}
+                        </div>
+                        <p className="mt-3 text-charcoal/80 font-light leading-relaxed text-base lg:text-lg">
+                          {platform.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )
+                }
+
                 return (
                   <motion.div
                     key={idx}
@@ -173,29 +232,50 @@ export default function DigitalPlatformsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col ${
-                      idx === 0 ? 'md:col-span-2 md:flex-row md:items-center md:gap-12' : ''
-                    }`}
+                    className="group rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col"
                   >
-                    {/* Icon */}
-                    <div className={`space-y-4 ${idx === 0 ? 'md:flex-shrink-0' : ''}`}>
-                      <div className={platform.image ? "h-12 lg:h-16 flex items-center" : "w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green"}>
-                        {platform.image ? (
-                          <Image src={platform.image} alt={platform.title} width={160} height={64} style={{ width: 'auto', height: '100%' }} className="h-full w-auto object-contain object-left" />
-                        ) : Icon ? (
-                          <Icon size={30} />
-                        ) : null}
+                    {/* Visual Media Header */}
+                    {isScreenshot ? (
+                      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md border border-stone-200/80 bg-white mb-6 transition-all duration-300">
+                        <Image
+                          src={platform.image!}
+                          alt={platform.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                          className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                        />
                       </div>
-                    </div>
+                    ) : isLogo ? (
+                      <div className="h-12 lg:h-14 flex items-center mb-6">
+                        <Image
+                          src={platform.image!}
+                          alt={platform.title}
+                          width={180}
+                          height={56}
+                          style={{ width: 'auto', height: '100%' }}
+                          className="h-full w-auto object-contain object-left"
+                        />
+                      </div>
+                    ) : Icon ? (
+                      <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green mb-6">
+                        <Icon size={30} />
+                      </div>
+                    ) : null}
 
                     {/* Content */}
-                    <div className={`mt-6 ${idx === 0 ? 'md:mt-0 flex-1' : 'flex-1 flex flex-col'}`}>
+                    <div className="flex-1 flex flex-col">
                       <div className="flex items-start justify-between gap-4">
                         <h3 className="text-2xl font-serif font-bold text-deep-forest tracking-tight pb-2">
                           {platform.title}
                         </h3>
                         {platform.link && (
-                          <a href={platform.link} target="_blank" rel="noopener noreferrer" className="text-primary-green hover:opacity-80 transition-opacity mt-1">
+                          <a
+                            href={platform.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary-green hover:opacity-80 transition-opacity mt-1 flex-shrink-0"
+                            aria-label={`Open ${platform.title}`}
+                          >
                             <ExternalLink size={20} />
                           </a>
                         )}
