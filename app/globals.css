@@ -268,6 +268,47 @@
   z-index: 10;
 }
 
+/* Mapbox Cooperative Gesture Overlay - Snappy Dismissal & Subtle Visuals */
+@keyframes quickGestureDismiss {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  12% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+  }
+}
+
+.mapboxgl-scroll-zoom-blocker,
+.mapboxgl-touch-pan-blocker {
+  background: rgba(15, 38, 24, 0.55) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  font-family: var(--font-sans, inherit) !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: #ffffff !important;
+  padding: 1.25rem !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mapboxgl-scroll-zoom-blocker-show,
+.mapboxgl-touch-pan-blocker-show {
+  animation: quickGestureDismiss 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
 
 @media (min-width: 1024px) {
   :root {
