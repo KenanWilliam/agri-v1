@@ -38,7 +38,7 @@ export default function Footer() {
 
         <div className="relative w-full overflow-hidden" style={{ height: '70vh' }}>
           <Image
-            src="/pexels-flambo-388007-1112080.jpg"
+            src="/footer-landscape.jpg"
             alt="Agricultural landscape"
             fill
             sizes="100vw"
