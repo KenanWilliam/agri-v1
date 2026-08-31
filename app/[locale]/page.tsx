@@ -171,46 +171,61 @@ export default function Home() {
         {/* Premium Full-Bleed Video Hero Section */}
         <section ref={heroRef} className="relative w-full min-h-[90vh] md:min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-[6.5rem] pb-12 bg-white z-0">
           
-          {/* Background Video Container (Contained within hero section) */}
+          {/* Background Media Container (Contained within hero section) */}
           <div ref={heroBgRef} className="absolute inset-0 md:-top-[20vh] left-0 w-full h-full md:h-[120vh] z-0 origin-center bg-black overflow-hidden">
             <div className="absolute inset-0 w-full h-full bg-mist">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                poster="/our-vision-2026.jpg"
-                onLoadedMetadata={() => {
-                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                    (window as any).__heroVideoReady = true;
-                    window.dispatchEvent(new Event('hero-video-ready'));
-                  }
-                }}
-                onLoadedData={() => {
-                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                    (window as any).__heroVideoReady = true;
-                    window.dispatchEvent(new Event('hero-video-ready'));
-                  }
-                }}
-                onCanPlay={() => {
-                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                    (window as any).__heroVideoReady = true;
-                    window.dispatchEvent(new Event('hero-video-ready'));
-                  }
-                }}
-                onPlay={() => {
-                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                    (window as any).__heroVideoReady = true;
-                    window.dispatchEvent(new Event('hero-video-ready'));
-                  }
-                }}
-                className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
-              >
-                <source src="/Videos/hero-video.mp4" type="video/mp4" />
-                <source src="/Videos/hero-video.webm" type="video/webm" />
-                <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
-              </video>
+              {/* Mobile (< md): Instant LCP Image (0 MB video download over mobile networks) */}
+              <div className="block md:hidden absolute inset-0 w-full h-full">
+                <Image
+                  src="/our-vision-2026.jpg"
+                  alt="Agri Experience"
+                  fill
+                  priority
+                  fetchPriority="high"
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+
+              {/* Desktop (md+): Full-Bleed Video Background */}
+              <div className="hidden md:block absolute inset-0 w-full h-full">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster="/our-vision-2026.jpg"
+                  onLoadedMetadata={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  onLoadedData={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  onCanPlay={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  onPlay={() => {
+                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                      (window as any).__heroVideoReady = true;
+                      window.dispatchEvent(new Event('hero-video-ready'));
+                    }
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
+                >
+                  <source src="/Videos/hero-video.mp4" type="video/mp4" />
+                  <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
+                </video>
+              </div>
             </div>
           </div>
           
