@@ -47,31 +47,14 @@ function BentoCard({ pillar }: BentoCardProps) {
   const isDark = pillar.theme === "dark";
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      variants={{
-        hidden: { opacity: 0, y: 35 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
-        },
-      }}
-      whileHover={{
-        y: -4,
-        scale: 1.01,
-        transition: { duration: 0.25, ease: "easeOut" },
-      }}
-      className={`group relative rounded-[28px] sm:rounded-[32px] overflow-hidden flex flex-col justify-between p-6 sm:p-8 lg:p-9 transition-all duration-300 ${
+      className={`group relative rounded-[28px] sm:rounded-[32px] overflow-hidden flex flex-col justify-between p-6 sm:p-8 lg:p-9 bg-white border border-stone-200/80 text-deep-forest shadow-sm hover:shadow-xl hover:border-primary-green/30 hover:-translate-y-1 hover:scale-[1.01] transition-all duration-300 ${
         pillar.colSpanMd
-      } ${pillar.colSpanLg} ${
-        isDark
-          ? "bg-[#0F1A15] border border-[#1E3328] text-[#F5F2EB] shadow-xl hover:shadow-2xl hover:border-[#3ab44a]/40"
-          : "bg-white border border-stone-200/80 text-[#14261C] shadow-sm hover:shadow-xl hover:border-[#3ab44a]/30"
-      }`}
+      } ${pillar.colSpanLg}`}
     >
       {/* Interactive Cursor Ambient Glow (Hardware accelerated) */}
       <motion.div
@@ -80,26 +63,22 @@ function BentoCard({ pillar }: BentoCardProps) {
           background: useMotionTemplate`
             radial-gradient(
               450px circle at ${mouseX}px ${mouseY}px,
-              ${isDark ? "rgba(58, 180, 74, 0.18)" : "rgba(58, 180, 74, 0.09)"},
+              rgba(58, 180, 74, 0.10),
               transparent 80%
             )
           `,
         }}
       />
 
-      {/* Card Content (Typography-First, No Pill Explainers or Icons) */}
+      {/* Card Content */}
       <div className="relative z-10 space-y-4">
         <h3
-          className={`font-serif tracking-tight font-bold text-xl sm:text-2xl lg:text-[1.65rem] 2xl:text-[1.85rem] leading-[1.2] ${
-            isDark ? "text-[#F5F2EB]" : "text-[#0F1A15]"
-          }`}
+          className="font-serif tracking-tight font-bold text-xl sm:text-2xl lg:text-[1.65rem] 2xl:text-[1.85rem] leading-[1.2] text-deep-forest group-hover:text-primary-green transition-colors duration-200"
         >
           {pillar.title}
         </h3>
         <p
-          className={`font-sans font-light text-sm sm:text-base leading-relaxed ${
-            isDark ? "text-stone-300/90" : "text-stone-600"
-          }`}
+          className="font-sans font-light text-sm sm:text-base leading-relaxed text-charcoal/80"
         >
           {pillar.desc}
         </p>
@@ -107,15 +86,11 @@ function BentoCard({ pillar }: BentoCardProps) {
 
       {/* Bottom Footer: Impact Tag & Action Link with Spring Motion */}
       <div
-        className={`relative z-10 pt-6 mt-8 flex items-center justify-between border-t ${
-          isDark ? "border-white/[0.08]" : "border-stone-100"
-        }`}
+        className="relative z-10 pt-6 mt-8 flex items-center justify-between border-t border-stone-100"
       >
         {pillar.impactTag ? (
           <span
-            className={`text-xs font-semibold tracking-wide ${
-              isDark ? "text-stone-400" : "text-stone-500"
-            }`}
+            className="text-xs font-semibold tracking-wide text-stone-500"
           >
             {pillar.impactTag}
           </span>
@@ -125,11 +100,7 @@ function BentoCard({ pillar }: BentoCardProps) {
 
         <Link
           href={pillar.route || "/our-work"}
-          className={`inline-flex items-center gap-2 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
-            isDark
-              ? "text-[#3ab44a] hover:text-[#52c961]"
-              : "text-[#237031] hover:text-[#0F1A15]"
-          }`}
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary-green group-hover:text-deep-forest transition-colors duration-200"
         >
           <span>{pillar.actionLabel || "Explore Domain"}</span>
           <motion.div
@@ -140,7 +111,7 @@ function BentoCard({ pillar }: BentoCardProps) {
           </motion.div>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -250,20 +221,7 @@ export default function ServicesBentoGrid() {
         </div>
 
         {/* Bento Grid (Responsive: 1 col on mobile, 2 cols on tablet, 12-col Bento on desktop) */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.08,
-              },
-            },
-          }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6">
           {pillars.map((pillar, idx) => (
             <BentoCard
               key={pillar.key}
@@ -271,7 +229,7 @@ export default function ServicesBentoGrid() {
               index={idx}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

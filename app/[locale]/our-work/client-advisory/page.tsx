@@ -149,7 +149,7 @@ export default function ClientAdvisoryPage() {
 </Link>
                     <Link
                       href="/our-work"
-                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-charcoal/20 text-charcoal rounded-full font-semibold text-sm hover:bg-charcoal/5 transition-colors"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-accent-gold/40 text-deep-forest rounded-full font-semibold text-sm hover:bg-amber-50 transition-colors"
                     >
 <RollingText className="gap-2">
                       {t('our_work')}

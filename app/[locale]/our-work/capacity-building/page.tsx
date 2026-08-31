@@ -93,9 +93,9 @@ export default function CapacityBuildingPage() {
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <br />
-                  <span className="text-charcoal/70">{t('hero_title2')}</span>
+                  <span className="text-[#B45309]/80">{t('hero_title2')}</span>
                 </h1>
-                <p className="text-charcoal font-medium text-lg tracking-wide">
+                <p className="text-[#B45309] font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -107,14 +107,14 @@ export default function CapacityBuildingPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex-1 lg:pt-16 relative"
               >
-                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-charcoal/10" />
+                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#B45309]/20" />
                 <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
                   {t('hero_desc')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
                   <Link
                     href="/contact"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-charcoal text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#B45309] text-white rounded-full font-semibold text-sm hover:bg-[#92400E] transition-colors shadow-sm shadow-[#B45309]/20"
                   >
 <RollingText className="gap-2">
                     {t('start_conversation')}
@@ -123,7 +123,7 @@ export default function CapacityBuildingPage() {
 </Link>
                   <Link
                     href="/our-work"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-charcoal/20 text-charcoal rounded-full font-semibold text-sm hover:bg-charcoal/5 transition-colors"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-[#B45309]/30 text-[#B45309] rounded-full font-semibold text-sm hover:bg-[#B45309]/5 transition-colors"
                   >
 <RollingText className="gap-2">
                     {t('our_work')}

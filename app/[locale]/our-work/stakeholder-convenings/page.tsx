@@ -130,9 +130,9 @@ export default function StakeholderConveningsPage() {
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')},
                   <br />
-                  <span className="text-lighter-dark-green/70">{t('hero_title2')}.</span>
+                  <span className="text-teal-800/80">{t('hero_title2')}.</span>
                 </h1>
-                <p className="text-lighter-dark-green font-medium text-lg tracking-wide">
+                <p className="text-teal-800 font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -144,7 +144,7 @@ export default function StakeholderConveningsPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex-1 lg:pt-16 relative"
               >
-                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-lighter-dark-green/15" />
+                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-teal-800/20" />
                 <div className="lg:pl-10 space-y-5">
                   <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc1')}
@@ -155,7 +155,7 @@ export default function StakeholderConveningsPage() {
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
-                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-lighter-dark-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-teal-700 text-white rounded-full font-semibold text-sm hover:bg-teal-800 transition-colors shadow-sm shadow-teal-700/20"
                     >
 <RollingText className="gap-2">
                       {t('req_convening')}
@@ -164,7 +164,7 @@ export default function StakeholderConveningsPage() {
 </Link>
                     <Link
                       href="/our-work"
-                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-lighter-dark-green/20 text-lighter-dark-green rounded-full font-semibold text-sm hover:bg-lighter-dark-green/5 transition-colors"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-teal-700/30 text-teal-800 rounded-full font-semibold text-sm hover:bg-teal-50 transition-colors"
                     >
 <RollingText className="gap-2">
                       {t('our_work')}
