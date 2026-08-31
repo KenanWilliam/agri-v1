@@ -41,7 +41,7 @@ export default function Footer() {
             src="/pexels-flambo-388007-1112080.jpg"
             alt="Agricultural landscape"
             fill
-            sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+            sizes="100vw"
             quality={75}
             className="object-cover object-center"
           />

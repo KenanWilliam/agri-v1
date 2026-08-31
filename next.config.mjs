@@ -12,10 +12,13 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   allowedDevOrigins: ['192.168.100.10', 'http://192.168.100.10:3000'],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|jpeg|png|webp|avif|mp4|webm|pdf|woff|woff2|ttf|eot|ico)',
+        source: '/:path*\\.(svg|jpg|jpeg|png|webp|avif|mp4|webm|pdf|woff|woff2|ttf|eot|ico)',
         headers: [
           {
             key: 'Cache-Control',
@@ -25,6 +28,24 @@ const nextConfig = {
       },
       {
         source: '/Videos/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/SDGs/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/SDG-images/:path*',
         headers: [
           {
             key: 'Cache-Control',
