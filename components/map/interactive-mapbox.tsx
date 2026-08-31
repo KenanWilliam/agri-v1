@@ -7,7 +7,6 @@ import { MapMarker } from './map-marker';
 import { MapPopup } from './map-popup';
 import { MapHighlightedCountries } from './map-highlighted-countries';
 import { MapAutoCenter } from './map-auto-center';
-import { MapActiveProjectFlyTo } from './map-active-project-fly-to';
 import { Building, Store, Coffee, Car, AlertCircle, MapPin, Navigation, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -67,12 +66,6 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
     <div className="w-full h-full relative">
       <MapProvider onMapReady={onMapReady}>
         <MapAutoCenter selectedCountryName={selectedCountryName} />
-        <MapActiveProjectFlyTo 
-          selectedCountryName={selectedCountryName}
-          activeProjects={activeProjects}
-          selectedProjectIndex={selectedProjectIndex}
-          cityCoordinates={cityCoordinates}
-        />
         <MapControls />
         
         <MapHighlightedCountries 
@@ -81,42 +74,6 @@ export const InteractiveMapbox: React.FC<InteractiveMapboxProps> = ({
           setTooltipPos={setTooltipPos}
           selectedCountryName={selectedCountryName}
         />
-
-        {/* Render Project Markers when a country is selected */}
-        {selectedCountryName && activeProjects.map((project, index) => {
-          const cityKey = project.location.split(' / ')[0];
-          const coords = cityCoordinates[cityKey];
-          const isActive = index === selectedProjectIndex;
-          
-          if (!coords) return null;
-
-          return (
-            <MapMarker key={index} lng={coords[0]} lat={coords[1]}>
-              <div 
-                className="relative group cursor-pointer flex flex-col items-center"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (setSelectedProjectIndex) setSelectedProjectIndex(index);
-                }}
-              >
-                {/* Custom Elegant Ring Marker */}
-                <div className={`relative flex items-center justify-center w-6 h-6 transition-transform duration-500 ease-out ${isActive ? 'scale-110' : 'hover:scale-110'}`}>
-                  {/* Outer pulse ring for active state */}
-                  {isActive && <div className="absolute inset-0 rounded-full border border-accent-gold animate-ping opacity-20" />}
-                  {/* Outer glass ring */}
-                  <div className={`absolute inset-0 rounded-full border backdrop-blur-sm transition-colors duration-300 ${isActive ? 'border-accent-gold/40 bg-accent-gold/10' : 'border-white/30 bg-white/10 group-hover:border-white/60'}`} />
-                  {/* Inner solid core */}
-                  <div className={`w-2 h-2 rounded-full shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-colors duration-300 ${isActive ? 'bg-accent-gold' : 'bg-white group-hover:bg-accent-gold'}`} />
-                </div>
-                
-                {/* Sophisticated Label */}
-                <div className={`absolute top-full mt-2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full backdrop-blur-md border transition-all duration-400 ease-out ${isActive ? 'bg-white/90 border-white text-deep-forest shadow-lg opacity-100 transform translate-y-0' : 'bg-deep-forest/40 border-white/10 text-white shadow-md opacity-0 transform -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
-                  {cityKey}
-                </div>
-              </div>
-            </MapMarker>
-          );
-        })}
 
         {/* Global Search Location Marker */}
         {selectedLocation && (
