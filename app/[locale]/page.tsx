@@ -180,7 +180,7 @@ export default function Home() {
                 muted
                 playsInline
                 preload="auto"
-                poster="/vision-v2.jpg"
+                poster="/our-vision-2026.jpg"
                 onLoadedMetadata={() => {
                   if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
                     (window as any).__heroVideoReady = true;

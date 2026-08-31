@@ -47,13 +47,13 @@ export function ScrollAccordion({
       id: 0,
       title: visionTitle,
       desc: visionDesc,
-      image: '/vision-v2.jpg' // Our Vision
+      image: '/our-vision-2026.jpg' // Our Vision
     },
     {
       id: 1,
       title: missionTitle,
       desc: missionDesc,
-      image: '/mission-v2.jpg' // Our Mission
+      image: '/our-mission-2026.jpg' // Our Mission
     },
     {
       id: 2,
