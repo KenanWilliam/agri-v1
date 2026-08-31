@@ -68,12 +68,12 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
     }
   }, [bgLoaded, videoReady]);
 
-  // Safety fallback if video is slow or blocked
+  // Safety fallback if video is slow or blocked (2.5s)
   useEffect(() => {
     const timer = setTimeout(() => {
       setVideoReady(true);
       setStartAnimation(true);
-    }, 600);
+    }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -81,7 +81,7 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
     setDims({ w: window.innerWidth, h: window.innerHeight });
   }, []);
 
-  // Wait for hero video readiness (or resolve immediately on non-video pages / mobile)
+  // Wait for hero video readiness
   useEffect(() => {
     let resolved = false;
     const resolve = () => {
@@ -97,24 +97,24 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
 
     window.addEventListener('hero-video-ready', resolve);
 
-    const checkTimer = setTimeout(() => {
+    const checkInterval = setInterval(() => {
       const video = document.querySelector('video');
       const isDesktop = window.innerWidth >= 768;
-      if (!video || !isDesktop || (video && video.readyState >= 1)) {
+      if (!isDesktop || (video && video.readyState >= 2)) {
         resolve();
       }
     }, 50);
 
-    const maxTimer = setTimeout(resolve, 800);
+    const maxTimer = setTimeout(resolve, 2500);
 
     return () => {
       window.removeEventListener('hero-video-ready', resolve);
-      clearTimeout(checkTimer);
+      clearInterval(checkInterval);
       clearTimeout(maxTimer);
     };
   }, []);
 
-  // When animation starts, schedule the dismissal
+  // When animation starts, schedule dismissal
   useEffect(() => {
     if (startAnimation) {
       const timer = setTimeout(() => {
@@ -221,7 +221,7 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
             />
           </div>
 
-          {/* STATIC CSS FALLBACK */}
+          {/* STATIC CSS FALLBACK: Instant paint during SSR / initial document load */}
           <div
             className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
             style={{
@@ -269,15 +269,11 @@ export default function Preloader() {
 
   useEffect(() => {
     setMounted(true);
-
     if (isHome) {
       const seen = sessionStorage.getItem("agri_home_preloader_seen");
       if (!seen && !hasRunHomePreloader) {
         setIsVisible(true);
         hasRunHomePreloader = true;
-        try {
-          sessionStorage.setItem("agri_home_preloader_seen", "true");
-        } catch (e) {}
       } else {
         setIsVisible(false);
       }
@@ -286,10 +282,18 @@ export default function Preloader() {
     }
   }, [isHome]);
 
-  // Always return null during SSR, initial hydration, and on any subpage
   if (!mounted || !isVisible || !isHome) {
     return null;
   }
 
-  return <PreloaderAnimation onComplete={() => setIsVisible(false)} />;
+  return (
+    <PreloaderAnimation
+      onComplete={() => {
+        setIsVisible(false);
+        try {
+          sessionStorage.setItem("agri_home_preloader_seen", "true");
+        } catch (e) {}
+      }}
+    />
+  );
 }
