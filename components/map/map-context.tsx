@@ -50,7 +50,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, initialOptio
       zoom: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0.8 : 1.6, // Zoomed in closer for better framing on laptops
       pitch: 0,        // Completely flat top-down view until zoomed in
       projection: { name: 'globe' }, // Ensure globe projection is used
-      scrollZoom: false, // Allow page scrolling over the map
+      cooperativeGestures: true, // Allow page scrolling over map on mobile & desktop with cooperative gesture guidance
       renderWorldCopies: false,
     };
 
