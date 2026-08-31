@@ -117,11 +117,7 @@ export default function Home() {
         duration: ratio2
       });
 
-      const handleRefresh = () => ScrollTrigger.refresh();
-      window.addEventListener('resize', handleRefresh);
-      
       return () => {
-        window.removeEventListener('resize', handleRefresh);
         tl.kill();
       }
     });
