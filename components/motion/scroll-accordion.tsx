@@ -47,13 +47,13 @@ export function ScrollAccordion({
       id: 0,
       title: visionTitle,
       desc: visionDesc,
-      image: '/pexels-halis-collu-2057418323-29219216.jpg' // Our Vision
+      image: '/vision-v2.jpg' // Our Vision
     },
     {
       id: 1,
       title: missionTitle,
       desc: missionDesc,
-      image: '/pexels-elvis-kambire-434351765-38025863.jpg' // Our Mission
+      image: '/mission-v2.jpg' // Our Mission
     },
     {
       id: 2,
