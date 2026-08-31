@@ -44,23 +44,25 @@ export default function DigitalPlatformsPage() {
       link: "https://tanzaniaagri-inputsplatform.com/"
     },
     {
-      title: t('platforms.6.title'),
-      description: t('platforms.6.description'),
-      image: '/M3.png',
-      imageType: 'logo' as const,
-      tag: t('platforms.6.tag'),
-    },
-    {
       title: t('platforms.4.title'),
       description: t('platforms.4.description'),
-      icon: Database,
+      image: '/platforms/seed-sector-platform-kenya.png',
+      imageType: 'screenshot' as const,
       tag: t('platforms.4.tag'),
     },
     {
       title: t('platforms.5.title'),
       description: t('platforms.5.description'),
-      icon: Database,
+      image: '/platforms/uganda-agri-inputs-platform.png',
+      imageType: 'screenshot' as const,
       tag: t('platforms.5.tag'),
+    },
+    {
+      title: t('platforms.6.title'),
+      description: t('platforms.6.description'),
+      image: '/M3.png',
+      imageType: 'logo' as const,
+      tag: t('platforms.6.tag'),
     },
   ]
 
