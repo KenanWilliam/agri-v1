@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, animate as framerAnimate } from "framer-motion";
 import { interpolate } from "flubber";
+import { usePathname } from "@/i18n/routing";
 
 import svgpath from "svgpath";
 import Image from "next/image";
@@ -50,10 +51,15 @@ const opacityVariants = {
   },
 };
 
-let hasRunPreloader = false;
+let hasRunHomePreloader = false;
 
 export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(!hasRunPreloader);
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "";
+  const isImpact = pathname === "/our-impact" || pathname.startsWith("/our-impact");
+
+  const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
@@ -61,8 +67,31 @@ export default function Preloader() {
   const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    hasRunPreloader = true;
-  }, []);
+    setMounted(true);
+    setDims({ w: window.innerWidth, h: window.innerHeight });
+
+    if (isHome) {
+      const seen = sessionStorage.getItem("agri_home_preloader_seen");
+      if (!seen && !hasRunHomePreloader) {
+        setIsVisible(true);
+        hasRunHomePreloader = true;
+        try {
+          sessionStorage.setItem("agri_home_preloader_seen", "true");
+        } catch (e) {}
+      } else {
+        setIsVisible(false);
+      }
+    } else if (isImpact) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [isHome, isImpact]);
+
+  // Always return null during SSR and initial hydration so server and client trees match 100%
+  if (!mounted || !isVisible || (!isHome && !isImpact)) {
+    return null;
+  }
 
   // When both the internal background and the page video are ready, begin animation
   useEffect(() => {
