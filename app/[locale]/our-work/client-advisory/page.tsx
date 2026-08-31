@@ -51,19 +51,19 @@ export default function ClientAdvisoryPage() {
       icon: Target,
       title: t('pillars.0.title'),
       description: t('pillars.0.description'),
-      accent: 'from-accent-gold/20 to-accent-gold/5',
+      accent: 'from-[#435826]/20 to-[#435826]/5',
     },
     {
       icon: Lightbulb,
       title: t('pillars.1.title'),
       description: t('pillars.1.description'),
-      accent: 'from-accent-gold/15 to-accent-gold/5',
+      accent: 'from-[#435826]/15 to-[#435826]/5',
     },
     {
       icon: Leaf,
       title: t('pillars.2.title'),
       description: t('pillars.2.description'),
-      accent: 'from-accent-gold/10 to-accent-gold/5',
+      accent: 'from-[#435826]/10 to-[#435826]/5',
     },
   ]
 
@@ -115,9 +115,9 @@ export default function ClientAdvisoryPage() {
               >
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
-                  <span className="block text-accent-gold">{t('hero_title2')}</span>
+                  <span className="block text-[#435826]">{t('hero_title2')}</span>
                 </h1>
-                <p className="text-accent-gold font-medium text-lg tracking-wide">
+                <p className="text-[#435826] font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -129,7 +129,7 @@ export default function ClientAdvisoryPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex-1 lg:pt-16 relative"
               >
-                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-accent-gold/20" />
+                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#435826]/20" />
                 <div className="lg:pl-10 space-y-5">
                   <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
                     {t('hero_desc1')}
@@ -140,7 +140,7 @@ export default function ClientAdvisoryPage() {
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
-                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-accent-gold text-deep-forest rounded-full font-semibold text-sm hover:opacity-90 transition-opacity"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#435826] text-white rounded-full font-semibold text-sm hover:bg-[#34441B] transition-colors shadow-sm shadow-[#435826]/20"
                     >
 <RollingText className="gap-2">
                       {t('req_advisory')}
@@ -149,7 +149,7 @@ export default function ClientAdvisoryPage() {
 </Link>
                     <Link
                       href="/our-work"
-                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-accent-gold/40 text-deep-forest rounded-full font-semibold text-sm hover:bg-amber-50 transition-colors"
+                      className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-[#435826]/30 text-[#435826] rounded-full font-semibold text-sm hover:bg-[#F4F7EE] transition-colors"
                     >
 <RollingText className="gap-2">
                       {t('our_work')}
@@ -186,16 +186,16 @@ export default function ClientAdvisoryPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`rounded-[32px] border border-mist hover:border-accent-gold/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 group relative overflow-hidden ${
-                      idx % 2 === 0 ? 'bg-mist' : 'bg-warm-earth/30'
+                    className={`rounded-[32px] border border-mist hover:border-[#435826]/30 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 group relative overflow-hidden ${
+                      idx % 2 === 0 ? 'bg-mist' : 'bg-[#F4F7EE]/40'
                     }`}
                   >
-                    {/* Subtle gold corner accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gold/[0.04] rounded-bl-[80px] pointer-events-none group-hover:bg-accent-gold/[0.08] transition duration-300" />
+                    {/* Subtle olive corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#435826]/[0.04] rounded-bl-[80px] pointer-events-none group-hover:bg-[#435826]/[0.08] transition duration-300" />
 
                     <div className="relative z-10 flex flex-col sm:flex-row gap-6">
                       {/* Icon */}
-                      <div className="w-14 h-14 rounded-2xl bg-accent-gold/10 flex items-center justify-center text-accent-gold shrink-0 group-hover:bg-accent-gold group-hover:text-white transition duration-200">
+                      <div className="w-14 h-14 rounded-2xl bg-[#435826]/10 flex items-center justify-center text-[#435826] shrink-0 group-hover:bg-[#435826] group-hover:text-white transition duration-200">
                         <Icon size={26} />
                       </div>
 
@@ -242,15 +242,15 @@ export default function ClientAdvisoryPage() {
                     transition={{ duration: 0.6, delay: idx * 0.15 }}
                     className="relative group"
                   >
-                    {/* Vertical gold line on top */}
-                    <div className="w-12 h-1 bg-accent-gold rounded-full mb-8 group-hover:w-20 transition-all duration-300" />
+                    {/* Vertical olive line on top */}
+                    <div className="w-12 h-1 bg-[#435826] rounded-full mb-8 group-hover:w-20 transition-all duration-300" />
 
                     {/* Step number */}
-                    <div className="text-6xl font-data text-accent-gold/15 leading-none mb-4">
+                    <div className="text-6xl font-data text-[#435826]/15 leading-none mb-4">
                       0{idx + 1}
                     </div>
 
-                    <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center text-accent-gold mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-[#435826]/10 flex items-center justify-center text-[#435826] mb-5">
                       <Icon size={22} />
                     </div>
 
@@ -270,9 +270,9 @@ export default function ClientAdvisoryPage() {
         {/* ─── CTA Section ─── */}
         <section className="w-full">
           <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] overflow-hidden relative">
-            {/* Radial gradient overlay — gold tint for advisory */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(200,164,74,0.08),transparent_60%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(200,164,74,0.04),transparent_50%)] pointer-events-none" />
+            {/* Radial gradient overlay — olive tint for advisory */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(67,88,38,0.12),transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(67,88,38,0.06),transparent_50%)] pointer-events-none" />
 
             {/* Noise texture */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -308,7 +308,7 @@ export default function ClientAdvisoryPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-accent-gold text-deep-forest rounded-full font-semibold hover:scale-[1.02] hover:shadow-xl hover:shadow-accent-gold/20 transition-all"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#435826] text-white rounded-full font-semibold hover:bg-[#34441B] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#435826]/20 transition-all"
                   >
 <RollingText className="gap-2">
                     {t('cta_btn1')}

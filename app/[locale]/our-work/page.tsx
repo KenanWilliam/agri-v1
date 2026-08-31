@@ -1,5 +1,3 @@
-'use client'
-
 import { MonitorSmartphone, ClipboardCheck, Tractor, Globe, ArrowRight, BookOpen, LineChart } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -49,11 +47,11 @@ export default function OurWorkPage() {
       mobileDescription: t('c4_mobile_desc'),
       icon: LineChart,
       link: '/our-work/client-advisory',
-      borderClass: 'border-amber-200/90 hover:border-amber-500',
-      textClass: 'text-amber-950',
-      iconBgClass: 'bg-amber-700 text-white shadow-sm shadow-amber-700/20',
-      cardBgClass: 'bg-[#FAF5ED] hover:bg-white',
-      btnBgClass: 'bg-amber-700 text-white group-hover:bg-amber-800',
+      borderClass: 'border-lime-200/90 hover:border-lime-600',
+      textClass: 'text-[#233110]',
+      iconBgClass: 'bg-[#435826] text-white shadow-sm shadow-[#435826]/20',
+      cardBgClass: 'bg-[#F4F7EE] hover:bg-white',
+      btnBgClass: 'bg-[#435826] text-white group-hover:bg-[#34441B]',
     },
     {
       title: t('c5_title'),
@@ -63,9 +61,9 @@ export default function OurWorkPage() {
       link: '/our-work/capacity-building',
       borderClass: 'border-orange-200/90 hover:border-orange-500',
       textClass: 'text-[#451A03]',
-      iconBgClass: 'bg-[#B45309] text-white shadow-sm shadow-[#B45309]/20',
-      cardBgClass: 'bg-[#FAF1EC] hover:bg-white',
-      btnBgClass: 'bg-[#B45309] text-white group-hover:bg-[#92400E]',
+      iconBgClass: 'bg-[#9A3412] text-white shadow-sm shadow-[#9A3412]/20',
+      cardBgClass: 'bg-[#FAF0E9] hover:bg-white',
+      btnBgClass: 'bg-[#9A3412] text-white group-hover:bg-[#7C2D12]',
     },
     {
       title: t('c6_title'),

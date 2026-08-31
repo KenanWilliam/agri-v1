@@ -93,9 +93,9 @@ export default function CapacityBuildingPage() {
                 <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
                   {t('hero_title1')}
                   <br />
-                  <span className="text-[#B45309]/80">{t('hero_title2')}</span>
+                  <span className="text-[#9A3412]/80">{t('hero_title2')}</span>
                 </h1>
-                <p className="text-[#B45309] font-medium text-lg tracking-wide">
+                <p className="text-[#9A3412] font-medium text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -107,14 +107,14 @@ export default function CapacityBuildingPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex-1 lg:pt-16 relative"
               >
-                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#B45309]/20" />
+                <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#9A3412]/20" />
                 <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
                   {t('hero_desc')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
                   <Link
                     href="/contact"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#B45309] text-white rounded-full font-semibold text-sm hover:bg-[#92400E] transition-colors shadow-sm shadow-[#B45309]/20"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#9A3412] text-white rounded-full font-semibold text-sm hover:bg-[#7C2D12] transition-colors shadow-sm shadow-[#9A3412]/20"
                   >
 <RollingText className="gap-2">
                     {t('start_conversation')}
@@ -123,7 +123,7 @@ export default function CapacityBuildingPage() {
 </Link>
                   <Link
                     href="/our-work"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-[#B45309]/30 text-[#B45309] rounded-full font-semibold text-sm hover:bg-[#B45309]/5 transition-colors"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 border border-[#9A3412]/30 text-[#9A3412] rounded-full font-semibold text-sm hover:bg-[#FAF0E9] transition-colors"
                   >
 <RollingText className="gap-2">
                     {t('our_work')}
@@ -183,14 +183,14 @@ export default function CapacityBuildingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="group rounded-[32px] bg-mist border border-mist hover:border-charcoal/15 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col"
+                    className="group rounded-[32px] bg-mist border border-mist hover:border-[#9A3412]/30 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col"
                   >
                     {/* Icon with number badge */}
                     <div className="flex items-start justify-between mb-8">
-                      <div className="w-14 h-14 rounded-2xl bg-charcoal/[0.06] border border-charcoal/10 flex items-center justify-center text-charcoal group-hover:bg-charcoal group-hover:text-white transition duration-200">
+                      <div className="w-14 h-14 rounded-2xl bg-[#9A3412]/10 border border-[#9A3412]/20 flex items-center justify-center text-[#9A3412] group-hover:bg-[#9A3412] group-hover:text-white transition duration-200">
                         <Icon size={24} />
                       </div>
-                      <span className="font-data text-4xl text-charcoal/10 group-hover:text-charcoal/20 transition-colors leading-none">
+                      <span className="font-data text-4xl text-[#9A3412]/15 group-hover:text-[#9A3412]/25 transition-colors leading-none">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
                     </div>
@@ -334,7 +334,7 @@ export default function CapacityBuildingPage() {
                 <div className="flex flex-wrap justify-center gap-4 pt-4">
                   <Link
                     href="/contact"
-                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-white text-deep-forest rounded-full font-semibold text-sm hover:bg-primary-green hover:text-white transition-colors"
+                    className="overflow-hidden relative group inline-flex items-center gap-2 px-8 py-4 bg-[#9A3412] text-white rounded-full font-semibold text-sm hover:bg-[#7C2D12] transition-colors shadow-lg shadow-[#9A3412]/20"
                   >
 <RollingText className="gap-2">
                     {t('cta_btn1')}
