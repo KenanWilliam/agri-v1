@@ -53,45 +53,13 @@ const opacityVariants = {
 
 let hasRunHomePreloader = false;
 
-export default function Preloader() {
-  const pathname = usePathname();
-  const isHome = pathname === "/" || pathname === "";
-  const isImpact = pathname === "/our-impact" || pathname.startsWith("/our-impact");
-
-  const [mounted, setMounted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const [bgLoaded, setBgLoaded] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setDims({ w: window.innerWidth, h: window.innerHeight });
-
-    if (isHome) {
-      const seen = sessionStorage.getItem("agri_home_preloader_seen");
-      if (!seen && !hasRunHomePreloader) {
-        setIsVisible(true);
-        hasRunHomePreloader = true;
-        try {
-          sessionStorage.setItem("agri_home_preloader_seen", "true");
-        } catch (e) {}
-      } else {
-        setIsVisible(false);
-      }
-    } else if (isImpact) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  }, [isHome, isImpact]);
-
-  // Always return null during SSR and initial hydration so server and client trees match 100%
-  if (!mounted || !isVisible || (!isHome && !isImpact)) {
-    return null;
-  }
+  const pathRef = useRef<SVGPathElement>(null);
 
   // When both the internal background and the page video are ready, begin animation
   useEffect(() => {
@@ -108,11 +76,8 @@ export default function Preloader() {
     }, 600);
     return () => clearTimeout(timer);
   }, []);
-  
-  const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDims({ w: window.innerWidth, h: window.innerHeight });
   }, []);
 
@@ -153,11 +118,11 @@ export default function Preloader() {
   useEffect(() => {
     if (startAnimation) {
       const timer = setTimeout(() => {
-        setIsVisible(false);
+        onComplete();
       }, 1300); // 1300ms covers the visible parts of the 1.5s timeline
       return () => clearTimeout(timer);
     }
-  }, [startAnimation]);
+  }, [startAnimation, onComplete]);
 
   useEffect(() => {
     if (!dims || !pathRef.current) return;
@@ -208,93 +173,123 @@ export default function Preloader() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      <motion.div
+        key="preloader"
+        exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
+        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+        className="fixed inset-0 z-9999 bg-mist pointer-events-none"
+      >
         <motion.div
-          key="preloader"
-          exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
-          transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-9999 bg-mist pointer-events-none"
+          variants={clipVariants}
+          initial="initial"
+          animate={startAnimation ? "animate" : "initial"}
+          className="absolute inset-0 w-full h-full overflow-hidden"
         >
-          <motion.div
-            variants={clipVariants}
-            initial="initial"
-            animate={startAnimation ? "animate" : "initial"}
-            className="absolute inset-0 w-full h-full overflow-hidden"
+          <svg width="0" height="0" className="absolute">
+            <defs>
+              <clipPath id="loaderMorphClip" clipPathUnits="userSpaceOnUse">
+                <path ref={pathRef} d="" clipRule="evenodd" fillRule="evenodd" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          {/* DYNAMIC FLUBBER LAYER */}
+          <div
+            style={{
+              clipPath: "url(#loaderMorphClip)",
+              WebkitClipPath: "url(#loaderMorphClip)",
+              opacity: dims ? 1 : 0,
+            }}
+            className="absolute inset-0 w-full h-full"
           >
-            <svg width="0" height="0" className="absolute">
-              <defs>
-                <clipPath id="loaderMorphClip" clipPathUnits="userSpaceOnUse">
-                  {/* Added fillRule and clipRule so compound holes render perfectly */}
-                  <path ref={pathRef} d="" clipRule="evenodd" fillRule="evenodd" />
-                </clipPath>
-              </defs>
-            </svg>
+            <Image
+              src="/our-vision-2026.jpg"
+              alt="Loading Background"
+              fill
+              sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+              quality={75}
+              className="object-cover"
+              priority fetchPriority="high"
+              onLoad={() => setBgLoaded(true)}
+            />
 
-            {/* DYNAMIC FLUBBER LAYER: Takes over the exact same pixel space once JS hydrates */}
-            <div
-              style={{
-                clipPath: "url(#loaderMorphClip)",
-                WebkitClipPath: "url(#loaderMorphClip)",
-                opacity: dims ? 1 : 0,
-              }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <Image
-                src="/our-vision-2026.jpg"
-                alt="Loading Background"
-                fill
-                sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-                quality={75}
-                className="object-cover"
-                priority fetchPriority="high"
-                onLoad={() => setBgLoaded(true)}
-              />
+            <motion.div
+              variants={opacityVariants}
+              initial="initial"
+              animate={startAnimation ? "animate" : "initial"}
+              className="absolute inset-0 bg-[#3ab44a]"
+            />
+          </div>
 
-              <motion.div
-                variants={opacityVariants}
-                initial="initial"
-                animate={startAnimation ? "animate" : "initial"}
-                className="absolute inset-0 bg-[#3ab44a]"
-              />
-            </div>
+          {/* STATIC CSS FALLBACK */}
+          <div
+            className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
+            style={{
+              opacity: isReady ? 0 : 1,
+              maskImage: MASK_IMAGE_URL,
+              WebkitMaskImage: MASK_IMAGE_URL,
+              maskPosition: "center",
+              WebkitMaskPosition: "center",
+              maskRepeat: "no-repeat",
+              WebkitMaskRepeat: "no-repeat",
+              maskSize: "12vmin",
+              WebkitMaskSize: "12vmin",
+            }}
+          >
+            <Image
+              src="/our-vision-2026.jpg"
+              alt="Loading Background"
+              fill
+              sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+              quality={75}
+              className="object-cover"
+              priority fetchPriority="high"
+              onLoad={() => setBgLoaded(true)}
+            />
 
-            {/* STATIC CSS FALLBACK: Renders instantly on screen before JavaScript loads. 
-                Sits on top of the flubber layer and fades out smoothly to reveal it. */}
-            <div
-              className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
-              style={{
-                opacity: isReady ? 0 : 1,
-                maskImage: MASK_IMAGE_URL,
-                WebkitMaskImage: MASK_IMAGE_URL,
-                maskPosition: "center",
-                WebkitMaskPosition: "center",
-                maskRepeat: "no-repeat",
-                WebkitMaskRepeat: "no-repeat",
-                maskSize: "12vmin",
-                WebkitMaskSize: "12vmin",
-              }}
-            >
-              <Image
-                src="/our-vision-2026.jpg"
-                alt="Loading Background"
-                fill
-                sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-                quality={75}
-                className="object-cover"
-                priority fetchPriority="high"
-                onLoad={() => setBgLoaded(true)}
-              />
-
-              <motion.div
-                variants={opacityVariants}
-                initial="initial"
-                animate={startAnimation ? "animate" : "initial"}
-                className="absolute inset-0 bg-[#3ab44a]"
-              />
-            </div>
-          </motion.div>
+            <motion.div
+              variants={opacityVariants}
+              initial="initial"
+              animate={startAnimation ? "animate" : "initial"}
+              className="absolute inset-0 bg-[#3ab44a]"
+            />
+          </div>
         </motion.div>
-      )}
+      </motion.div>
     </AnimatePresence>
   );
+}
+
+export default function Preloader() {
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "";
+
+  const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    if (isHome) {
+      const seen = sessionStorage.getItem("agri_home_preloader_seen");
+      if (!seen && !hasRunHomePreloader) {
+        setIsVisible(true);
+        hasRunHomePreloader = true;
+        try {
+          sessionStorage.setItem("agri_home_preloader_seen", "true");
+        } catch (e) {}
+      } else {
+        setIsVisible(false);
+      }
+    } else {
+      setIsVisible(false);
+    }
+  }, [isHome]);
+
+  // Always return null during SSR, initial hydration, and on any subpage
+  if (!mounted || !isVisible || !isHome) {
+    return null;
+  }
+
+  return <PreloaderAnimation onComplete={() => setIsVisible(false)} />;
 }
