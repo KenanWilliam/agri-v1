@@ -168,69 +168,62 @@ export default function Home() {
     <>
       <main className="-mt-[4.5rem] lg:-mt-[5.5rem] bg-background overflow-x-clip">
         
-        {/* Premium Hero Section */}
-        <section ref={heroRef} className="relative w-full min-h-[85vh] md:min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-[6.5rem] pb-10 bg-white z-0">
+        {/* Premium Full-Bleed Video Hero Section */}
+        <section ref={heroRef} className="relative w-full min-h-[90vh] md:min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-[6.5rem] pb-12 bg-white z-0">
           
-          {/* Taller background to prevent revealing white space when translating down */}
-          <div ref={heroBgRef} className="absolute -top-[20vh] left-0 w-full h-[120vh] z-0 origin-center bg-black">
+          {/* Background Video Container (Contained within hero section) */}
+          <div ref={heroBgRef} className="absolute inset-0 md:-top-[20vh] left-0 w-full h-full md:h-[120vh] z-0 origin-center bg-black overflow-hidden">
             <div className="absolute inset-0 w-full h-full bg-mist">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  poster="/Videos/hero-poster.jpg"
-                  onLoadedMetadata={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onLoadedData={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onCanPlay={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onPlay={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  className="hidden md:block absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%] 3xl:object-[center_40%]"
-                >
-                  <source src="/Videos/hero-video.mp4" type="video/mp4" />
-                  <source src="/Videos/hero-video.webm" type="video/webm" />
-                  <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
-                </video>
-                <Image 
-                  src="/hero-bg.png"
-                  alt="Agricultural landscape"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                  className="md:hidden object-cover object-center"
-                />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster="/vision-v2.jpg"
+                onLoadedMetadata={() => {
+                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                    (window as any).__heroVideoReady = true;
+                    window.dispatchEvent(new Event('hero-video-ready'));
+                  }
+                }}
+                onLoadedData={() => {
+                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                    (window as any).__heroVideoReady = true;
+                    window.dispatchEvent(new Event('hero-video-ready'));
+                  }
+                }}
+                onCanPlay={() => {
+                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                    (window as any).__heroVideoReady = true;
+                    window.dispatchEvent(new Event('hero-video-ready'));
+                  }
+                }}
+                onPlay={() => {
+                  if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
+                    (window as any).__heroVideoReady = true;
+                    window.dispatchEvent(new Event('hero-video-ready'));
+                  }
+                }}
+                className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
+              >
+                <source src="/Videos/hero-video.mp4" type="video/mp4" />
+                <source src="/Videos/hero-video.webm" type="video/webm" />
+                <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
+              </video>
             </div>
           </div>
           
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/90 via-white/60 to-transparent md:bg-gradient-to-r md:from-white md:from-[10%] md:via-white/80 md:via-[40%] md:to-transparent md:to-[75%] md:w-[80%] pointer-events-none"></div>
-          
+          {/* Directional Scrim: 100% text legibility on the left, pure video visible on the right */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/95 via-white/85 to-white/30 md:bg-gradient-to-r md:from-white/95 md:from-[15%] md:via-white/80 md:via-[45%] md:to-transparent md:to-[75%] md:w-[75%] pointer-events-none" />
+
           <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
             <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-serif tracking-tight pb-2 text-[#1A4D2E] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
+                className="font-serif tracking-tight pb-2 text-[#1A4D2E] text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight"
               >
                 {t('hero_title_1')} <br />
                 {t('hero_title_2')} <br />
@@ -241,7 +234,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-gray-800 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-sm md:text-base lg:text-lg"
+                className="text-gray-900 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-base sm:text-lg lg:text-xl"
               >
                 {t('hero_desc')}
               </motion.p>
@@ -252,7 +245,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="pt-2"
               >
-                <Link href="/our-impact" className="group relative overflow-hidden inline-flex items-center justify-center gap-3 px-6 py-3 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base">
+                <Link href="/our-impact" className="group relative overflow-hidden inline-flex items-center justify-center gap-3 px-6 py-3.5 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base shadow-lg shadow-[#1A4D2E]/20 hover:shadow-xl hover:scale-[1.02]">
                   <RollingText className="gap-3">
                     {t('explore_impact')}
                     <ArrowRight size={18} />
