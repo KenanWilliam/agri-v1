@@ -57,60 +57,46 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
-  const [bgLoaded, setBgLoaded] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
   const pathRef = useRef<SVGPathElement>(null);
 
-  // When both the internal background and the page video are ready, begin animation
-  useEffect(() => {
-    if (bgLoaded && videoReady) {
-      setStartAnimation(true);
-    }
-  }, [bgLoaded, videoReady]);
-
-  // Safety fallback if video is slow or blocked (2.5s)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVideoReady(true);
-      setStartAnimation(true);
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
-
+  // Set viewport dimensions
   useEffect(() => {
     setDims({ w: window.innerWidth, h: window.innerHeight });
   }, []);
 
-  // Wait for hero video readiness
+  // Listen for video readiness or trigger fallback after reasonable timeout
   useEffect(() => {
+    let timer: NodeJS.Timeout;
     let resolved = false;
-    const resolve = () => {
+
+    const start = () => {
       if (resolved) return;
       resolved = true;
-      setVideoReady(true);
+      setStartAnimation(true);
     };
 
-    if (typeof window !== 'undefined' && (window as any).__heroVideoReady) {
-      resolve();
+    if (typeof window !== "undefined" && (window as any).__heroVideoReady) {
+      start();
       return;
     }
 
-    window.addEventListener('hero-video-ready', resolve);
+    window.addEventListener("hero-video-ready", start);
 
     const checkInterval = setInterval(() => {
-      const video = document.querySelector('video');
+      const video = document.querySelector("video");
       const isDesktop = window.innerWidth >= 768;
-      if (!isDesktop || (video && video.readyState >= 2)) {
-        resolve();
+      if (!isDesktop || (video && video.readyState >= 1)) {
+        start();
       }
     }, 50);
 
-    const maxTimer = setTimeout(resolve, 2500);
+    // Fallback timer: start animation within 800ms regardless of video buffering
+    timer = setTimeout(start, 800);
 
     return () => {
-      window.removeEventListener('hero-video-ready', resolve);
+      window.removeEventListener("hero-video-ready", start);
       clearInterval(checkInterval);
-      clearTimeout(maxTimer);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -119,23 +105,22 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
     if (startAnimation) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 1300); // 1300ms covers the visible parts of the 1.5s timeline
+      }, 1350);
       return () => clearTimeout(timer);
     }
   }, [startAnimation, onComplete]);
 
+  // Morph SVG path via Flubber
   useEffect(() => {
     if (!dims || !pathRef.current) return;
 
     const { w, h } = dims;
-
-    // Target shape: full-viewport rectangle, in real pixel coordinates.
     const rectPath = `M0,0 L${w},0 L${w},${h} L0,${h} Z`;
 
     const iconTargetSize = Math.min(w, h) * 0.12;
     const maxDimension = Math.max(ICON_VIEWBOX_WIDTH, ICON_VIEWBOX_HEIGHT);
     const scaleFactor = iconTargetSize / maxDimension;
-    
+
     const scaledWidth = ICON_VIEWBOX_WIDTH * scaleFactor;
     const scaledHeight = ICON_VIEWBOX_HEIGHT * scaleFactor;
 
@@ -146,15 +131,12 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
 
     pathRef.current.setAttribute("d", normalizedIconPath);
 
-    // Ensure the browser has fully parsed and painted the new SVG path beneath 
-    // before we trigger the CSS fallback's fade out. The setTimeout guarantees a paint cycle.
     requestAnimationFrame(() => {
-      setTimeout(() => setIsReady(true), 50);
+      setTimeout(() => setIsReady(true), 40);
     });
 
     if (!startAnimation) return;
 
-    // Using flubber to interpolate between the true full icon and the fullscreen rectangle
     const interpolator = interpolate(normalizedIconPath, rectPath, {
       maxSegmentLength: 2,
     });
@@ -172,91 +154,89 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
   }, [dims, startAnimation]);
 
   return (
-    <AnimatePresence>
+    <motion.div
+      key="preloader"
+      exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
+      transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+      className="fixed inset-0 z-9999 bg-mist pointer-events-none"
+    >
       <motion.div
-        key="preloader"
-        exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
-        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed inset-0 z-9999 bg-mist pointer-events-none"
+        variants={clipVariants}
+        initial="initial"
+        animate={startAnimation ? "animate" : "initial"}
+        className="absolute inset-0 w-full h-full overflow-hidden"
       >
-        <motion.div
-          variants={clipVariants}
-          initial="initial"
-          animate={startAnimation ? "animate" : "initial"}
-          className="absolute inset-0 w-full h-full overflow-hidden"
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <clipPath id="loaderMorphClip" clipPathUnits="userSpaceOnUse">
+              <path ref={pathRef} d="" clipRule="evenodd" fillRule="evenodd" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        {/* DYNAMIC FLUBBER LAYER */}
+        <div
+          style={{
+            clipPath: "url(#loaderMorphClip)",
+            WebkitClipPath: "url(#loaderMorphClip)",
+            opacity: dims ? 1 : 0,
+          }}
+          className="absolute inset-0 w-full h-full"
         >
-          <svg width="0" height="0" className="absolute">
-            <defs>
-              <clipPath id="loaderMorphClip" clipPathUnits="userSpaceOnUse">
-                <path ref={pathRef} d="" clipRule="evenodd" fillRule="evenodd" />
-              </clipPath>
-            </defs>
-          </svg>
+          <Image
+            src="/hero-video-frame.jpg"
+            alt="Loading Background"
+            fill
+            sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+            quality={85}
+            className="object-cover"
+            priority
+            fetchPriority="high"
+          />
 
-          {/* DYNAMIC FLUBBER LAYER */}
-          <div
-            style={{
-              clipPath: "url(#loaderMorphClip)",
-              WebkitClipPath: "url(#loaderMorphClip)",
-              opacity: dims ? 1 : 0,
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src="/hero-video-frame.jpg"
-              alt="Loading Background"
-              fill
-              sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-              quality={85}
-              className="object-cover"
-              priority fetchPriority="high"
-              onLoad={() => setBgLoaded(true)}
-            />
+          <motion.div
+            variants={opacityVariants}
+            initial="initial"
+            animate={startAnimation ? "animate" : "initial"}
+            className="absolute inset-0 bg-[#3ab44a]"
+          />
+        </div>
 
-            <motion.div
-              variants={opacityVariants}
-              initial="initial"
-              animate={startAnimation ? "animate" : "initial"}
-              className="absolute inset-0 bg-[#3ab44a]"
-            />
-          </div>
+        {/* STATIC CSS FALLBACK */}
+        <div
+          className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
+          style={{
+            opacity: isReady ? 0 : 1,
+            maskImage: MASK_IMAGE_URL,
+            WebkitMaskImage: MASK_IMAGE_URL,
+            maskPosition: "center",
+            WebkitMaskPosition: "center",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskSize: "12vmin",
+            WebkitMaskSize: "12vmin",
+          }}
+        >
+          <Image
+            src="/hero-video-frame.jpg"
+            alt="Loading Background"
+            fill
+            sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
+            quality={85}
+            className="object-cover"
+            priority
+            fetchPriority="high"
+          />
 
-          {/* STATIC CSS FALLBACK: Instant paint during SSR / initial document load */}
-          <div
-            className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
-            style={{
-              opacity: isReady ? 0 : 1,
-              maskImage: MASK_IMAGE_URL,
-              WebkitMaskImage: MASK_IMAGE_URL,
-              maskPosition: "center",
-              WebkitMaskPosition: "center",
-              maskRepeat: "no-repeat",
-              WebkitMaskRepeat: "no-repeat",
-              maskSize: "12vmin",
-              WebkitMaskSize: "12vmin",
-            }}
-          >
-            <Image
-              src="/hero-video-frame.jpg"
-              alt="Loading Background"
-              fill
-              sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-              quality={85}
-              className="object-cover"
-              priority fetchPriority="high"
-              onLoad={() => setBgLoaded(true)}
-            />
-
-            <motion.div
-              variants={opacityVariants}
-              initial="initial"
-              animate={startAnimation ? "animate" : "initial"}
-              className="absolute inset-0 bg-[#3ab44a]"
-            />
-          </div>
-        </motion.div>
+          <motion.div
+            variants={opacityVariants}
+            initial="initial"
+            animate={startAnimation ? "animate" : "initial"}
+            className="absolute inset-0 bg-[#3ab44a]"
+          />
+        </div>
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -287,13 +267,17 @@ export default function Preloader() {
   }
 
   return (
-    <PreloaderAnimation
-      onComplete={() => {
-        setIsVisible(false);
-        try {
-          sessionStorage.setItem("agri_home_preloader_seen", "true");
-        } catch (e) {}
-      }}
-    />
+    <AnimatePresence>
+      {isVisible && (
+        <PreloaderAnimation
+          onComplete={() => {
+            setIsVisible(false);
+            try {
+              sessionStorage.setItem("agri_home_preloader_seen", "true");
+            } catch (e) {}
+          }}
+        />
+      )}
+    </AnimatePresence>
   );
 }
