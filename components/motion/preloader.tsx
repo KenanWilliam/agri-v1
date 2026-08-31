@@ -203,11 +203,11 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
             className="absolute inset-0 w-full h-full"
           >
             <Image
-              src="/our-vision-2026.jpg"
+              src="/hero-video-frame.jpg"
               alt="Loading Background"
               fill
               sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-              quality={75}
+              quality={85}
               className="object-cover"
               priority fetchPriority="high"
               onLoad={() => setBgLoaded(true)}
@@ -237,11 +237,11 @@ function PreloaderAnimation({ onComplete }: { onComplete: () => void }) {
             }}
           >
             <Image
-              src="/our-vision-2026.jpg"
+              src="/hero-video-frame.jpg"
               alt="Loading Background"
               fill
               sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 1400px, 1600px"
-              quality={75}
+              quality={85}
               className="object-cover"
               priority fetchPriority="high"
               onLoad={() => setBgLoaded(true)}

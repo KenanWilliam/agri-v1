@@ -171,9 +171,10 @@ export default function Home() {
           <div ref={heroBgRef} className="absolute inset-0 md:-top-[20vh] left-0 w-full h-full md:h-[120vh] z-0 origin-center bg-black overflow-hidden">
             <div className="absolute inset-0 w-full h-full bg-mist">
               {/* Mobile (< md): Instant LCP Image (0 MB video download over mobile networks) */}
+              {/* Mobile (< md): Instant LCP Image (Exact video frame screenshot) */}
               <div className="block md:hidden absolute inset-0 w-full h-full">
                 <Image
-                  src="/our-vision-2026.jpg"
+                  src="/hero-video-frame.jpg"
                   alt="Agri Experience"
                   fill
                   priority
@@ -191,7 +192,7 @@ export default function Home() {
                   muted
                   playsInline
                   preload="metadata"
-                  poster="/our-vision-2026.jpg"
+                  poster="/hero-video-frame.jpg"
                   onLoadedMetadata={() => {
                     if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
                       (window as any).__heroVideoReady = true;
