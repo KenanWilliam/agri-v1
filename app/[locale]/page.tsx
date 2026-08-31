@@ -193,30 +193,6 @@ export default function Home() {
                   playsInline
                   preload="metadata"
                   poster="/hero-video-frame.jpg"
-                  onLoadedMetadata={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onLoadedData={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onCanPlay={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
-                  onPlay={() => {
-                    if (typeof window !== 'undefined' && !(window as any).__heroVideoReady) {
-                      (window as any).__heroVideoReady = true;
-                      window.dispatchEvent(new Event('hero-video-ready'));
-                    }
-                  }}
                   className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
                 >
                   <source src="/Videos/hero-video.mp4" type="video/mp4" />

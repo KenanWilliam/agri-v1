@@ -79,7 +79,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 import ScrollToTop from '@/components/scroll-to-top'
-import Preloader from '@/components/motion/preloader'
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import LanguageSwitchProvider from '@/components/language-switch-provider'
@@ -102,7 +101,6 @@ export default async function RootLayout({
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
         <NextIntlClientProvider messages={messages}>
           <LanguageSwitchProvider>
-            <Preloader />
             <ScrollToTop />
             <Header />
             {children}
