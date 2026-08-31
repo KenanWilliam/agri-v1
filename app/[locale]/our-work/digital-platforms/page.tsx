@@ -10,7 +10,24 @@ import Image from 'next/image'
 export default function DigitalPlatformsPage() {
   const t = useTranslations('DigitalPlatforms')
 
-  const platforms = [
+  const mbeguChoice = {
+    title: t('platforms.3.title'),
+    subtitle: t('sp_subtitle'),
+    description: t('platforms.3.description'),
+    spotlightDesc: t('sp_desc'),
+    spotlightDesc2: t('sp_desc2'),
+    image: '/Mbegu Choice.png',
+    tag: t('platforms.3.tag'),
+    link: "https://mbeguchoice.com",
+    stats: [
+      { value: t('stats.0.value'), label: t('stats.0.label') },
+      { value: t('stats.1.value'), label: t('stats.1.label') },
+      { value: t('stats.2.value'), label: t('stats.2.label') },
+      { value: t('stats.3.value'), label: t('stats.3.label') },
+    ]
+  }
+
+  const otherPlatforms = [
     {
       title: t('platforms.0.title'),
       description: t('platforms.0.description'),
@@ -36,11 +53,11 @@ export default function DigitalPlatformsPage() {
       link: "https://tanzaniaagri-inputsplatform.com/"
     },
     {
-      title: t('platforms.3.title'),
-      description: t('platforms.3.description'),
-      image: '/Mbegu Choice.png',
+      title: t('platforms.6.title'),
+      description: t('platforms.6.description'),
+      image: '/M3.png',
       imageType: 'logo' as const,
-      tag: t('platforms.3.tag'),
+      tag: t('platforms.6.tag'),
     },
     {
       title: t('platforms.4.title'),
@@ -54,41 +71,6 @@ export default function DigitalPlatformsPage() {
       icon: Database,
       tag: t('platforms.5.tag'),
     },
-    {
-      title: t('platforms.6.title'),
-      description: t('platforms.6.description'),
-      image: '/M3.png',
-      imageType: 'logo' as const,
-      tag: t('platforms.6.tag'),
-    }
-  ]
-
-  const approach = [
-    {
-      step: '01',
-      title: t('approach.0.title'),
-      description: t('approach.0.description'),
-      icon: Globe,
-    },
-    {
-      step: '02',
-      title: t('approach.1.title'),
-      description: t('approach.1.description'),
-      icon: Wifi,
-    },
-    {
-      step: '03',
-      title: t('approach.2.title'),
-      description: t('approach.2.description'),
-      icon: Shield,
-    },
-  ]
-
-  const spotlightStats = [
-    { value: t('stats.0.value'), label: t('stats.0.label') },
-    { value: t('stats.1.value'), label: t('stats.1.label') },
-    { value: t('stats.2.value'), label: t('stats.2.label') },
-    { value: t('stats.3.value'), label: t('stats.3.label') },
   ]
 
   return (
@@ -162,68 +144,104 @@ export default function DigitalPlatformsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-16"
+              className="mb-12"
             >
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('dp_title') }} />
             </motion.div>
 
-            {/* Bento-style grid: first card spans 2 cols */}
+            {/* Flagship Hero Card: MbeguChoice */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="group rounded-[36px] bg-gradient-to-br from-[#0F2218] via-[#142D20] to-[#0A1A12] text-white p-8 sm:p-10 lg:p-14 border border-[#1A4D2E]/40 shadow-2xl relative overflow-hidden mb-10"
+            >
+              {/* Background ambient lighting */}
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-green/[0.12] rounded-full blur-[100px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-emerald-500/[0.08] rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-14 items-start justify-between">
+                {/* Left: Branding & Core Story */}
+                <div className="flex-1 space-y-6">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="inline-flex items-center px-4 py-2 rounded-2xl bg-white shadow-sm">
+                      <Image
+                        src={mbeguChoice.image}
+                        alt="MbeguChoice"
+                        width={150}
+                        height={48}
+                        className="h-8 w-auto object-contain"
+                      />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-primary-green/20 text-emerald-300 border border-primary-green/30">
+                      Flagship Platform
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-1">
+                      {mbeguChoice.title}
+                    </h3>
+                    <p className="text-emerald-300/90 font-medium text-lg sm:text-xl">
+                      {mbeguChoice.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-white/80 font-light leading-relaxed text-base sm:text-lg max-w-2xl">
+                    {mbeguChoice.description}
+                  </p>
+
+                  <p className="text-white/70 font-light leading-relaxed text-sm sm:text-base max-w-2xl border-l-2 border-primary-green/40 pl-4">
+                    {mbeguChoice.spotlightDesc}
+                  </p>
+
+                  <div className="pt-2">
+                    <a
+                      href={mbeguChoice.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/btn relative overflow-hidden inline-flex items-center gap-2 px-7 py-3.5 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-white hover:text-deep-forest transition-colors shadow-sm"
+                    >
+                      <RollingText className="gap-2">
+                        <span>Visit MbeguChoice Platform</span>
+                        <ExternalLink size={16} />
+                      </RollingText>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right: Key Platform Metrics / Highlights */}
+                <div className="w-full lg:w-[380px] xl:w-[420px] flex-shrink-0 bg-white/[0.04] backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/[0.08] space-y-6">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+                    Platform Impact & Reach
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    {mbeguChoice.stats.map((stat, i) => (
+                      <div key={i} className="bg-white/[0.04] rounded-2xl p-4 border border-white/[0.06]">
+                        <div className="text-2xl sm:text-3xl font-serif font-bold text-white mb-1">
+                          {stat.value}
+                        </div>
+                        <div className="text-xs text-white/60 font-medium leading-snug">
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-xs text-white/60 font-light leading-relaxed pt-2 border-t border-white/[0.08]">
+                    {mbeguChoice.spotlightDesc2}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Other Platforms Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {platforms.map((platform, idx) => {
+              {otherPlatforms.map((platform, idx) => {
                 const Icon = 'icon' in platform ? platform.icon : null
                 const isScreenshot = platform.imageType === 'screenshot' && platform.image
                 const isLogo = platform.imageType === 'logo' && platform.image
-
-                if (idx === 0) {
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: idx * 0.1 }}
-                      className="group rounded-[32px] bg-mist border border-mist hover:border-primary-green/20 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 flex flex-col md:col-span-2 md:flex-row md:items-center md:gap-12"
-                    >
-                      {/* Screenshot Preview */}
-                      {isScreenshot && (
-                        <div className="w-full md:w-[440px] lg:w-[500px] flex-shrink-0">
-                          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md border border-stone-200/80 bg-white transition-all duration-300">
-                            <Image
-                              src={platform.image!}
-                              alt={platform.title}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 500px"
-                              className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Content */}
-                      <div className="mt-6 md:mt-0 flex-1 flex flex-col justify-center">
-                        <div className="flex items-start justify-between gap-4">
-                          <h3 className="text-2xl lg:text-3xl font-serif font-bold text-deep-forest tracking-tight pb-2">
-                            {platform.title}
-                          </h3>
-                          {platform.link && (
-                            <a
-                              href={platform.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-primary-green hover:opacity-80 transition-opacity mt-1 flex-shrink-0"
-                              aria-label={`Open ${platform.title}`}
-                            >
-                              <ExternalLink size={22} />
-                            </a>
-                          )}
-                        </div>
-                        <p className="mt-3 text-charcoal/80 font-light leading-relaxed text-base lg:text-lg">
-                          {platform.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )
-                }
 
                 return (
                   <motion.div
@@ -288,48 +306,6 @@ export default function DigitalPlatformsPage() {
                 )
               })}
             </div>
-          </div>
-        </section>
-
-        {/* ─── Platform Spotlight — MbeguChoice ─── */}
-        <section className="w-full py-20 bg-mist">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="bg-deep-forest rounded-[40px] p-8 sm:p-12 lg:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-12 lg:gap-16 items-center"
-            >
-              {/* Background accents */}
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-green/[0.08] rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary-blue/[0.08] rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
-
-              {/* Left Column */}
-              <div className="flex-1 relative z-10 space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
-                    {t('sp_title')}
-                  </h3>
-                  <p className="text-white/60 font-light text-lg italic">
-                    {t('sp_subtitle')}
-                  </p>
-                </div>
-                <p className="text-white/80 font-light leading-relaxed">
-                  {t('sp_desc')}
-                </p>
-              </div>
-
-              {/* Right Column */}
-              <div className="flex-1 relative z-10 space-y-6 border-t lg:border-t-0 lg:border-l border-white/[0.1] pt-6 lg:pt-0 lg:pl-12">
-                <h4 className="text-2xl lg:text-3xl font-serif font-bold text-white tracking-tight pb-1">
-                  {t('sp_title2')}
-                </h4>
-                <p className="text-white/70 font-light leading-relaxed">
-                  {t('sp_desc2')}
-                </p>
-              </div>
-            </motion.div>
           </div>
         </section>
 
