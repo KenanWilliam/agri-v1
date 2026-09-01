@@ -201,7 +201,7 @@ export default function Home() {
           {/* Directional Scrim: 100% text legibility on the left, pure video visible on the right */}
           <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/95 via-white/85 to-white/30 md:bg-gradient-to-r md:from-white/95 md:from-[20%] md:via-white/90 md:via-[55%] md:to-transparent md:to-[85%] md:w-[85%] pointer-events-none" />
 
-          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full flex-1 flex flex-col justify-center">
+          <div className="relative z-10 max-w-[1400px] min-[1440px]:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 w-full flex-1 flex flex-col justify-center">
             <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
