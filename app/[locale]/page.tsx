@@ -236,7 +236,7 @@ export default function Home() {
                 <Link href="/our-impact" className="group relative overflow-hidden inline-flex items-center justify-center gap-3 px-6 py-3.5 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base shadow-lg shadow-[#1A4D2E]/20 hover:shadow-xl hover:scale-[1.02]">
                   <RollingText className="gap-3">
                     {t('explore_impact')}
-                    <ArrowRight size={18} />
+                    <ArrowRight size={18} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                   </RollingText>
                 </Link>
               </motion.div>

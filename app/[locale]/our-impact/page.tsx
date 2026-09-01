@@ -69,7 +69,7 @@ export default function OurImpactPage() {
                 >
                 <RollingText className="gap-1.5 sm:gap-2">
                   {t('work_with_us')}
-                  <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                  <ArrowRight size={18} className="sm:w-5 sm:h-5 transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                 </RollingText>
                 </Link>
                 <Link
@@ -78,7 +78,7 @@ export default function OurImpactPage() {
                 >
                 <RollingText className="gap-1.5 sm:gap-2">
                   {t('partner_with_us')}
-                  <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                  <ArrowRight size={18} className="sm:w-5 sm:h-5 transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                 </RollingText>
               </Link>
             </div>

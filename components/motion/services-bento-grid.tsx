@@ -40,7 +40,7 @@ function BentoCard({ pillar }: BentoCardProps) {
           className="inline-flex items-center gap-2 text-sm lg:text-[14.5px] font-bold text-[#1A4D2E] group-hover:text-primary-green transition-colors duration-200"
         >
           <span>Explore Domain</span>
-          <ArrowRight size={15} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out" />
+          <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
         </Link>
       </div>
     </div>
@@ -132,7 +132,7 @@ export default function ServicesBentoGrid() {
             className="group shrink-0 inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#0F1A15] hover:bg-[#1A4D2E] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
           >
             <span>{t('view_services')}</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={16} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
           </Link>
         </div>
 

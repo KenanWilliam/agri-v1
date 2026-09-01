@@ -118,7 +118,7 @@ export default function CapacityBuildingPage() {
                   >
 <RollingText className="gap-2">
                     {t('start_conversation')}
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                   </RollingText>
 </Link>
                   <Link
@@ -338,7 +338,7 @@ export default function CapacityBuildingPage() {
                   >
 <RollingText className="gap-2">
                     {t('cta_btn1')}
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                   </RollingText>
 </Link>
                   <Link

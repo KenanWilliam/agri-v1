@@ -159,7 +159,7 @@ export default function StakeholderConveningsPage() {
                     >
 <RollingText className="gap-2">
                       {t('req_convening')}
-                      <ArrowRight size={16} />
+                      <ArrowRight size={16} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                     </RollingText>
 </Link>
                     <Link
@@ -180,7 +180,7 @@ export default function StakeholderConveningsPage() {
 
         {/* ===== CONVENING TYPES GRID ===== */}
         <section className="w-full py-16">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +217,7 @@ export default function StakeholderConveningsPage() {
                         <div className="w-10 h-10 rounded-full bg-lighter-dark-green/[0.04] flex items-center justify-center">
                           <ArrowRight
                             size={16}
-                            className="text-lighter-dark-green/30 group-hover:text-lighter-dark-green -rotate-45 group-hover:rotate-0 transition-all duration-200"
+                            className="text-lighter-dark-green/30 group-hover:text-lighter-dark-green transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out"
                           />
                         </div>
                       </div>
@@ -333,7 +333,7 @@ export default function StakeholderConveningsPage() {
                   >
 <RollingText className="gap-2">
                     {t('cta_btn1')}
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                   </RollingText>
 </Link>
                   <Link
