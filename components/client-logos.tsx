@@ -64,7 +64,7 @@ const bottomRowCategories = [
     titleKey: 'private_sector',
     logos: [
       { name: 'STAK', src: '/stak-logo.png', alt: 'STAK', href: 'https://stak.or.ke/' },
-      { name: 'TASTA', src: '/tasta-logo.png', alt: 'TASTA', href: 'https://tasta.or.tz/' },
+      { name: 'TASTA', src: '/tasta-logo-v2.png', alt: 'TASTA', href: 'https://tasta.or.tz/' },
       { name: 'USTA', src: '/usta-logo.png', alt: 'USTA', href: 'http://www.usta.ug/' },
       { name: 'NASTAG', src: '/nastag-logo.png', alt: 'NASTAG', href: 'https://nastag.org/' },
       { name: 'CIMMYT', src: '/cimmyt-logo.svg', alt: 'CIMMYT', href: 'https://www.cimmyt.org/' },

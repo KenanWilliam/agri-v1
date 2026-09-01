@@ -60,7 +60,7 @@ export default function DigitalPlatformsPage() {
     {
       title: t('platforms.6.title'),
       description: t('platforms.6.description'),
-      image: '/M3.png',
+      image: '/m3-logo.svg',
       imageType: 'logo' as const,
       tag: t('platforms.6.tag'),
     },
@@ -175,15 +175,16 @@ export default function DigitalPlatformsPage() {
                         </div>
                       </div>
                     ) : isLogo ? (
-                      <div className={isFirst ? "w-full md:w-[280px] lg:w-[320px] flex-shrink-0 flex items-center justify-center p-6 bg-white rounded-2xl border border-stone-200/60 shadow-sm" : "h-12 lg:h-14 flex items-center mb-6"}>
-                        <Image
-                          src={platform.image!}
-                          alt={platform.title}
-                          width={isFirst ? 240 : 180}
-                          height={isFirst ? 80 : 56}
-                          style={{ width: 'auto', height: isFirst ? '48px' : '100%' }}
-                          className="w-auto object-contain object-left"
-                        />
+                      <div className={isFirst ? "w-full md:w-[280px] lg:w-[320px] flex-shrink-0 flex items-center justify-center p-6 bg-white rounded-2xl border border-stone-200/80 shadow-sm" : "relative w-full h-36 sm:h-44 lg:h-48 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md border border-stone-200/80 bg-white mb-6 flex items-center justify-center p-6 transition-all duration-300"}>
+                        <div className="relative w-full h-20 sm:h-24 lg:h-28 flex items-center justify-center">
+                          <Image
+                            src={platform.image!}
+                            alt={platform.title}
+                            width={240}
+                            height={120}
+                            className="max-h-full max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
                       </div>
                     ) : Icon ? (
                       <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green mb-6">
