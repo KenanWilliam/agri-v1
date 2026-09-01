@@ -335,6 +335,6 @@
   html {
     /* Floor is strictly 13.75px to ensure 'text-sm' (0.875rem) never drops below 12px.
        This prevents Chrome from artificially enlarging the text relative to the shrunk padding! */
-    font-size: clamp(10px, 1.5dvh, 15px);
+    font-size: clamp(13.75px, 1.5dvh, 15px);
   }
 }
