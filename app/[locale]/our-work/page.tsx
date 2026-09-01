@@ -139,7 +139,7 @@ export default function OurWorkPage() {
                             {card.title}
                           </h2>
                           <p
-                            className="text-charcoal/90 font-normal leading-relaxed text-[12px] min-[1440px]:text-[15px]"
+                            className="text-charcoal/90 font-normal leading-relaxed text-[13.5px] min-[1440px]:text-[15px]"
                           >
                             {card.description}
                           </p>
