@@ -443,22 +443,6 @@ const countrySeeds: DetailedCountryRecord[] = [
     ],
   },
   {
-    name: 'Cameroon',
-    code: 'CM',
-    region: 'Central Africa',
-    projects: 4,
-    engagement: 51000,
-    overview: 'Cameroon is represented as a central hub for value-addition, processing, and business support.',
-    focus: ['Value addition', 'Processing', 'Business support'],
-    impact: ['Broader regional insight', 'Practical enterprise learning', 'Central Africa visibility'],
-    locations: ['Yaoundé', 'Douala', 'Bamenda'],
-    stats: [
-      { label: 'Active projects', value: '4' },
-      { label: 'Engagement', value: '51K+' },
-      { label: 'Hub cities', value: '3' },
-    ],
-  },
-  {
     name: 'Congo',
     geoName: 'Dem. Rep. Congo',
     code: 'CD',

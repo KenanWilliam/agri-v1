@@ -31,7 +31,6 @@ const regionColors: Record<string, string> = {
   'NG': '#E2703A',
   'LR': '#E2703A',
   'SL': '#E2703A',
-  'CM': '#E2703A',
   'CD': '#E2703A'
 };
 
