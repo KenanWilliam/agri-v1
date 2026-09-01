@@ -32,8 +32,7 @@ function BentoCard({ pillar }: BentoCardProps) {
           {pillar.title}
         </h3>
         <p
-          className="font-sans font-normal leading-relaxed text-charcoal/90"
-          style={{ fontSize: 'clamp(0.875rem, 0.84rem + 0.15vw, 1rem)' }}
+          className="font-sans font-normal leading-relaxed text-charcoal/90 text-sm min-[1440px]:text-[15.5px]"
         >
           {pillar.desc}
         </p>

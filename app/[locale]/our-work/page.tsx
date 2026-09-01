@@ -120,7 +120,7 @@ export default function OurWorkPage() {
                           <h2 className={`text-lg font-serif font-bold ${card.textClass} leading-snug truncate`}>
                             {card.title}
                           </h2>
-                          <p className="text-sm text-charcoal/85 leading-relaxed line-clamp-2 pr-1">
+                          <p className="text-base text-charcoal/85 leading-relaxed line-clamp-2 pr-1">
                             {card.mobileDescription}
                           </p>
                         </div>
@@ -139,8 +139,7 @@ export default function OurWorkPage() {
                             {card.title}
                           </h2>
                           <p
-                            className="text-charcoal/90 font-normal leading-relaxed"
-                            style={{ fontSize: 'clamp(0.875rem, 0.84rem + 0.15vw, 1rem)' }}
+                            className="text-charcoal/90 font-normal leading-relaxed text-sm min-[1440px]:text-[15px]"
                           >
                             {card.description}
                           </p>

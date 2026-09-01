@@ -228,7 +228,7 @@ export default function StakeholderConveningsPage() {
                       <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                         {type.title}
                       </h3>
-                      <p className="text-charcoal/70 font-light leading-relaxed text-sm mb-4 flex-1">
+                      <p className="text-charcoal/75 font-light leading-relaxed text-sm sm:text-base mb-4 flex-1">
                         {type.description}
                       </p>
                       <p className="text-lighter-dark-green/60 text-sm font-light italic border-t border-lighter-dark-green/[0.08] pt-4">
@@ -244,7 +244,7 @@ export default function StakeholderConveningsPage() {
 
 
 
-        
+
         {/* ===== FLAGSHIP EVENT ===== */}
         <section className="w-full py-20 bg-mist">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
@@ -284,12 +284,12 @@ export default function StakeholderConveningsPage() {
         <section className="w-full relative overflow-hidden">
           <div className="bg-deep-forest py-16 lg:py-20 relative">
             {/* Radial gradient overlay */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(5,99,42,0.2),_transparent_60%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(36,132,198,0.08),_transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(58,180,74,0.12),_transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(28,43,34,0.4),_transparent_60%)] pointer-events-none" />
 
             {/* Noise texture */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <svg width="100%" height="100%">
                 <filter id="noiseCTA_SC">
                   <feTurbulence
                     type="fractalNoise"
@@ -326,7 +326,7 @@ export default function StakeholderConveningsPage() {
                 className="space-y-8"
               >
                 <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-white/60 font-light text-lg max-w-xl mx-auto leading-relaxed">
+                <p className="text-white/60 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-4">

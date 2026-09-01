@@ -230,7 +230,7 @@ export default function ProjectImplementationPage() {
                       {area.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-charcoal/80 font-light leading-relaxed text-sm"
+                          className="flex items-start gap-3 text-charcoal/80 font-light leading-relaxed text-sm sm:text-base"
                         >
                           <CheckCircle2
                             size={16}
@@ -396,7 +396,7 @@ export default function ProjectImplementationPage() {
                 className="text-center max-w-3xl mx-auto"
               >
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
+                <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

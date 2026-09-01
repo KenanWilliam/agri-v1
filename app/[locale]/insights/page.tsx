@@ -70,7 +70,7 @@ export default function InsightsPage() {
                       >
                         {item.title}
                       </h3>
-                      <p className="text-charcoal/85 font-normal leading-relaxed text-sm">
+                      <p className="text-charcoal/85 font-normal leading-relaxed text-sm min-[1440px]:text-base">
                         {item.summary}
                       </p>
                     </div>

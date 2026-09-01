@@ -137,7 +137,7 @@ export default function ClientAdvisoryPage() {
                   <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-sm sm:text-base text-charcoal/75 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -210,7 +210,7 @@ export default function ClientAdvisoryPage() {
                         <h3 className="text-xl font-serif font-bold text-deep-forest">
                           {service.title}
                         </h3>
-                        <p className="text-charcoal/70 font-light leading-relaxed text-sm">
+                        <p className="text-charcoal/70 font-light leading-relaxed text-sm sm:text-base">
                           {service.description}
                         </p>
                       </div>
@@ -277,9 +277,9 @@ export default function ClientAdvisoryPage() {
         {/* ─── CTA Section ─── */}
         <section className="w-full">
           <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] overflow-hidden relative">
-            {/* Radial gradient overlay — olive tint for advisory */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(67,88,38,0.12),transparent_60%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(67,88,38,0.06),transparent_50%)] pointer-events-none" />
+            {/* Radial gradient overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(58,180,74,0.08),transparent_60%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(36,132,198,0.05),transparent_50%)] pointer-events-none" />
 
             {/* Noise texture */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -309,7 +309,7 @@ export default function ClientAdvisoryPage() {
                 className="text-center max-w-3xl mx-auto"
               >
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
+                <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

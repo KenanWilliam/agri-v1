@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
-import { ArrowRight, TrendingUp, Users, Earth, Globe, Zap, Leaf, Shield, Award, BarChart , BookOpen , Handshake , Target, Briefcase, Building2 } from 'lucide-react'
+import { ArrowRight, Earth, Briefcase, Building2 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import WhyAgriExperience from '@/components/motion/why-agri-experience'
 import Image from 'next/image'
@@ -127,37 +127,33 @@ export default function Home() {
 
   const beliefs = [
     {
-      icon: <Users className="text-primary-green" size={24} />,
       title: t('belief_4_title'),
       text: t('belief_4_text'),
-      width: "w-[300px] lg:w-[360px]"
+      width: "w-[260px] lg:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
     },
     {
-      icon: <Shield className="text-primary-green" size={24} />,
       title: t('belief_3_title'),
       text: t('belief_3_text'),
-      width: "w-[300px] lg:w-[360px]"
+      width: "w-[260px] lg:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
     },
     {
-      icon: <Leaf className="text-primary-green" size={24} />,
       title: t('belief_1_title'),
       text: t('belief_1_text'),
-      width: "w-[350px] lg:w-[480px]"
+      width: "w-[280px] lg:w-[330px] min-[1440px]:w-[440px] 2xl:w-[480px]"
     },
     {
-      icon: <Target className="text-primary-green" size={24} />,
       title: t('belief_2_title'),
       text: t('belief_2_text'),
-      width: "w-[350px] lg:w-[480px]"
+      width: "w-[280px] lg:w-[330px] min-[1440px]:w-[440px] 2xl:w-[480px]"
     }
   ]
 
   const agriCards = [
-    { icon: <Users className="text-primary-green" size={32} />, text: tAgri('card_3'), width: "w-[300px] lg:w-[320px]" },
-    { icon: <Globe className="text-primary-green" size={32} />, text: tAgri('card_2'), width: "w-[300px] lg:w-[320px]" },
-    { icon: <TrendingUp className="text-primary-green" size={32} />, text: tAgri('card_5'), width: "w-[320px] lg:w-[360px]" },
-    { icon: <BookOpen className="text-primary-green" size={32} />, text: tAgri('card_1'), width: "w-[320px] lg:w-[360px]" },
-    { icon: <Handshake className="text-primary-green" size={32} />, text: tAgri('card_4'), width: "w-[400px] lg:w-[500px]" }
+    { text: tAgri('card_3'), width: "w-[230px] lg:w-[250px] min-[1440px]:w-[320px] 2xl:w-[340px]" },
+    { text: tAgri('card_2'), width: "w-[230px] lg:w-[250px] min-[1440px]:w-[320px] 2xl:w-[340px]" },
+    { text: tAgri('card_5'), width: "w-[240px] lg:w-[260px] min-[1440px]:w-[360px] 2xl:w-[380px]" },
+    { text: tAgri('card_1'), width: "w-[240px] lg:w-[260px] min-[1440px]:w-[360px] 2xl:w-[380px]" },
+    { text: tAgri('card_4'), width: "w-[260px] lg:w-[280px] min-[1440px]:w-[460px] 2xl:w-[500px]" }
   ]
 
   return (
@@ -266,7 +262,7 @@ export default function Home() {
                         >
                           {stat.value}
                         </div>
-                        <div className="text-[11px] lg:text-xs font-bold tracking-[0.12em] text-charcoal/70 mt-1 whitespace-nowrap">{stat.label}</div>
+                        <div className="text-[11px] sm:text-xs lg:text-[14px] min-[1440px]:text-xs font-bold tracking-[0.08em] min-[1440px]:tracking-[0.12em] text-charcoal/70 mt-1 whitespace-nowrap">{stat.label}</div>
                       </div>
                     </div>
                   ))}
@@ -282,34 +278,30 @@ export default function Home() {
             <div className="relative h-[100dvh] w-full overflow-hidden">
                 
                 {/* Track 1: Why Agri Experience Layer */}
-                <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0">
+                <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0 flex lg:max-[1439px]:justify-center">
                   <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,var(--warm-earth)_0%,transparent_60%)] opacity-20 blur-3xl pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
                   <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,var(--primary-green)_0%,transparent_60%)] opacity-[0.05] blur-3xl pointer-events-none rounded-full -translate-x-1/4 translate-y-1/4" />
 
-                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-8 md:px-16 lg:px-24 gap-8 lg:gap-16 relative z-10 w-max pr-12 lg:pr-24">
-                    <div className="w-[280px] lg:w-[380px] shrink-0 space-y-6">
+                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-6 md:px-8 lg:max-[1439px]:px-4 min-[1440px]:px-16 2xl:px-24 gap-6 lg:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:max-[1439px]:pr-4 min-[1440px]:pr-16 2xl:pr-24">
+                    <div className="w-[200px] lg:w-[235px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-4 min-[1440px]:space-y-6">
                       <motion.div>
-                        <h2 className="text-4xl lg:text-5xl 2xl:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-4 lg:mb-6">
+                        <h2 className="text-3xl lg:text-[38px] min-[1440px]:text-5xl 2xl:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-3 min-[1440px]:mb-6 leading-[1.12]">
                           {tAgri('title')}
                         </h2>
                         <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-4 lg:gap-6 xl:gap-8 shrink-0 py-6 lg:py-8">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-4 lg:py-6 h-[clamp(320px,50vh,460px)]">
                       {agriCards.map((item, idx) => (
                         <div
                           key={idx}
-                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-6 xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-colors duration-500 group relative overflow-hidden flex flex-col justify-between shadow-sm`}
+                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-5.5 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-all duration-300 group relative overflow-hidden flex flex-col justify-center shadow-sm hover:shadow-md`}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          <div className="relative z-10 flex flex-col justify-between h-full">
-                            <div className="w-11 h-11 lg:w-13 lg:h-13 shrink-0 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
-                              {item.icon}
-                            </div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="relative z-10 flex flex-col justify-center h-full">
                             <p
-                              className="text-charcoal/90 font-normal leading-relaxed"
-                              style={{ fontSize: 'clamp(0.875rem, 0.82rem + 0.25vw, 1.125rem)' }}
+                              className="text-charcoal/90 font-medium leading-relaxed text-sm sm:text-base lg:text-[15px] min-[1440px]:text-lg 2xl:text-xl"
                             >
                               {item.text}
                             </p>
@@ -321,31 +313,27 @@ export default function Home() {
                 </div>
 
                 {/* Track 2: What We Believe Layer */}
-                <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full">
+                <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full flex lg:max-[1439px]:justify-center">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20 pointer-events-none"></div>
                   
-                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-8 md:px-16 lg:px-24 gap-8 lg:gap-16 relative z-10 w-max pr-12 lg:pr-[10vw]">
-                    <div className="w-[280px] lg:w-[380px] shrink-0 space-y-6">
+                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-6 md:px-8 lg:max-[1439px]:px-4 min-[1440px]:px-16 2xl:px-24 gap-6 lg:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:max-[1439px]:pr-4 min-[1440px]:pr-16 2xl:pr-24">
+                    <div className="w-[200px] lg:w-[235px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-4 min-[1440px]:space-y-6">
                       <motion.div>
-                        <h2 className="text-3xl lg:text-4xl 2xl:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-4 lg:mb-6">{t('what_we_believe')}</h2>
+                        <h2 className="text-3xl lg:text-[34px] min-[1440px]:text-4xl 2xl:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-3 min-[1440px]:mb-6 leading-[1.15]">{t('what_we_believe')}</h2>
                         <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-4 lg:gap-6 xl:gap-8 shrink-0 py-6 lg:py-8">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-4 lg:py-6 h-[clamp(320px,50vh,460px)]">
                       {beliefs.map((belief, idx) => (
                         <div
                           key={idx}
-                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-6 xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-colors flex flex-col justify-between`}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-5.5 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center`}
                         >
-                          <div className="w-11 h-11 lg:w-13 lg:h-13 shrink-0 rounded-2xl bg-white/10 flex items-center justify-center mb-4">
-                            {belief.icon}
-                          </div>
-                          <div className="flex flex-col gap-2">
-                            <h3 className="text-lg lg:text-xl font-serif text-white">{belief.title}</h3>
+                          <div className="flex flex-col justify-center gap-2 min-[1440px]:gap-3 h-full">
+                            <h3 className="text-base sm:text-lg min-[1440px]:text-xl 2xl:text-2xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
                             <p
-                              className="text-white/80 font-normal leading-relaxed text-sm"
-                              style={{ fontSize: 'clamp(0.875rem, 0.82rem + 0.25vw, 1rem)' }}
+                              className="text-white/80 font-normal leading-relaxed text-xs sm:text-sm lg:text-[14px] min-[1440px]:text-base 2xl:text-lg"
                             >
                               {belief.text}
                             </p>
@@ -389,14 +377,11 @@ export default function Home() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-colors flex items-start gap-4 md:gap-5"
+                        className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-2xl hover:bg-white/10 transition-colors flex flex-col justify-center"
                       >
-                        <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center mt-1">
-                          {belief.icon}
-                        </div>
                         <div className="flex flex-col">
-                          <h3 className="text-xl font-serif text-white mb-2">{belief.title}</h3>
-                          <p className="text-white/70 font-light text-sm leading-relaxed">{belief.text}</p>
+                          <h3 className="text-xl font-serif text-white mb-2 font-bold">{belief.title}</h3>
+                          <p className="text-white/80 font-normal text-base leading-relaxed">{belief.text}</p>
                         </div>
                       </motion.div>
                     ))}

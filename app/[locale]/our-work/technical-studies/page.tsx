@@ -93,11 +93,11 @@ export default function TechnicalStudiesPage() {
                 </h2>
               </div>
 
-              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-xl">
                 {t('cs_desc1')}
               </p>
 
-              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-xl">
                 {t('cs_desc2')}
               </p>
             </motion.div>
@@ -142,7 +142,7 @@ export default function TechnicalStudiesPage() {
                     <h3 className="text-base font-serif font-bold text-deep-forest tracking-tight pb-2 mb-2">
                       {client.label}
                     </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed text-xs">
+                    <p className="text-charcoal/70 font-light leading-relaxed text-xs sm:text-sm">
                       {client.desc}
                     </p>
                   </motion.div>
@@ -180,7 +180,7 @@ export default function TechnicalStudiesPage() {
                 <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6">
                   {t('cta_title')}
                 </h2>
-                <p className="text-white/70 font-light leading-relaxed text-lg mb-10">
+                <p className="text-white/70 font-light leading-relaxed text-base sm:text-lg mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Globe, Users, Handshake, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export default function WhyAgriExperience() {
@@ -10,26 +9,11 @@ export default function WhyAgriExperience() {
   const sectionRef = useRef(null);
 
   const cards = [
-    {
-      icon: <BookOpen className="text-primary-green" size={32} />,
-      text: t('card_1'),
-    },
-    {
-      icon: <Globe className="text-primary-green" size={32} />,
-      text: t('card_2'),
-    },
-    {
-      icon: <Users className="text-primary-green" size={32} />,
-      text: t('card_3'),
-    },
-    {
-      icon: <Handshake className="text-primary-green" size={32} />,
-      text: t('card_4'),
-    },
-    {
-      icon: <TrendingUp className="text-primary-green" size={32} />,
-      text: t('card_5'),
-    }
+    { text: t('card_1') },
+    { text: t('card_2') },
+    { text: t('card_3') },
+    { text: t('card_4') },
+    { text: t('card_5') }
   ];
 
   const bgColors = ['bg-gray-100/90', 'bg-gray-50/90', 'bg-[#FAFAFA]/90', 'bg-[#FDFDFD]/90', 'bg-white/90'];
@@ -101,16 +85,13 @@ export default function WhyAgriExperience() {
                   backdrop-blur-xl p-6 md:p-10 rounded-3xl md:rounded-[2rem] 
                   border border-white/80 
                   shadow-[0_-4px_20px_rgba(0,0,0,0.04)] md:shadow-md
-                  group relative overflow-hidden h-full
+                  group relative overflow-hidden h-full flex flex-col justify-center
                 `}
               >
                 {/* Card Hover Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
-                    {item.icon}
-                  </div>
                   <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
                 </div>
               </div>
