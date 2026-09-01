@@ -47,7 +47,7 @@ export default function TechnicalStudiesPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-primary-blue/20" />
-                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
                   {t('hero_desc1')} {t('hero_desc2')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
@@ -93,11 +93,11 @@ export default function TechnicalStudiesPage() {
                 </h2>
               </div>
 
-              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-xl">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg 2xl:text-xl">
                 {t('cs_desc1')}
               </p>
 
-              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-xl">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg 2xl:text-xl">
                 {t('cs_desc2')}
               </p>
             </motion.div>
@@ -180,7 +180,7 @@ export default function TechnicalStudiesPage() {
                 <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6">
                   {t('cta_title')}
                 </h2>
-                <p className="text-white/70 font-light leading-relaxed text-base sm:text-lg mb-10 max-w-xl mx-auto">
+                <p className="text-white/70 font-light leading-relaxed text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

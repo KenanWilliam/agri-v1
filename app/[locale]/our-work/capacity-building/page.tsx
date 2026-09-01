@@ -111,7 +111,7 @@ export default function CapacityBuildingPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#9A3412]/20" />
-                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
                   {t('hero_desc')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
@@ -151,7 +151,7 @@ export default function CapacityBuildingPage() {
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-8">
                 {t('phil_title')}
               </h2>
-              <p className="text-lg text-charcoal/80 font-light leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg text-charcoal/80 font-light leading-relaxed">
                 {t('phil_desc')}
               </p>
             </motion.div>
@@ -171,7 +171,7 @@ export default function CapacityBuildingPage() {
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 mb-6">
                 {t('tp_title')}
               </h2>
-              <p className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg text-charcoal/70 font-light max-w-2xl mx-auto">
                 {t('tp_desc')}
               </p>
             </motion.div>
@@ -229,7 +229,7 @@ export default function CapacityBuildingPage() {
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2 leading-tight">
                   {t('th_title')}
                 </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 font-light leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/80 font-light leading-relaxed">
                   {t('th_desc')}
                 </p>
               </motion.div>
@@ -264,7 +264,7 @@ export default function CapacityBuildingPage() {
                       <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-tight mb-2">
                         {t('fr_title')}
                       </h3>
-                      <p className="text-white/90 text-base font-normal leading-relaxed">
+                      <p className="text-white/90 text-sm sm:text-base lg:text-[14.5px] min-[1440px]:text-base font-normal leading-relaxed">
                         {t('fr_subtitle')}
                       </p>
                     </div>
@@ -331,7 +331,7 @@ export default function CapacityBuildingPage() {
                 <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight">
                   {t('cta_title')}
                 </h2>
-                <p className="text-white/60 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                <p className="text-white/60 font-light text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-4">

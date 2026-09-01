@@ -134,10 +134,10 @@ export default function ClientAdvisoryPage() {
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#435826]/20" />
                 <div className="lg:pl-10 space-y-4">
-                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-base sm:text-lg text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -264,7 +264,7 @@ export default function ClientAdvisoryPage() {
                     <h3 className="text-2xl font-serif font-bold text-deep-forest mb-4">
                       {pillar.title}
                     </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed">
+                    <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
                       {pillar.description}
                     </p>
                   </motion.div>
@@ -309,7 +309,7 @@ export default function ClientAdvisoryPage() {
                 className="text-center max-w-3xl mx-auto"
               >
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

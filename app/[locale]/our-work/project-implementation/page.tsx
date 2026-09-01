@@ -155,10 +155,10 @@ export default function ProjectImplementationPage() {
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-deep-forest/10" />
                 <div className="lg:pl-10 space-y-4">
-                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -287,7 +287,7 @@ export default function ProjectImplementationPage() {
                     <h3 className="text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight pb-2 leading-tight">
                       {t('cs_title')}
                     </h3>
-                    <p className="text-white/70 font-light leading-relaxed">
+                    <p className="text-white/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
                       {t('cs_desc')}
                     </p>
 
@@ -303,7 +303,7 @@ export default function ProjectImplementationPage() {
                       <div className="text-xs text-primary-green tracking-widest uppercase font-bold mb-3">
                         {t('cs_client_label')}
                       </div>
-                      <p className="text-white/90 font-light">
+                      <p className="text-white/90 font-light text-[14.5px] min-[1440px]:text-base">
                         {t('cs_client_val')}
                       </p>
                     </div>
@@ -320,7 +320,7 @@ export default function ProjectImplementationPage() {
                         ].map((item, i) => (
                           <li
                             key={i}
-                            className="flex items-center gap-2 text-white/80 font-light text-sm"
+                            className="flex items-center gap-2 text-white/80 font-light text-[14px] min-[1440px]:text-sm"
                           >
                             <CheckCircle2
                               size={14}
@@ -343,7 +343,7 @@ export default function ProjectImplementationPage() {
                         ].map((item, i) => (
                           <li
                             key={i}
-                            className="flex items-center gap-2 text-white/80 font-light text-sm"
+                            className="flex items-center gap-2 text-white/80 font-light text-[14px] min-[1440px]:text-sm"
                           >
                             <CheckCircle2
                               size={14}
@@ -396,7 +396,7 @@ export default function ProjectImplementationPage() {
                 className="text-center max-w-3xl mx-auto"
               >
                 <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white tracking-tight pb-2 mb-6" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg text-white/60 font-light leading-relaxed mb-10 max-w-xl mx-auto">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

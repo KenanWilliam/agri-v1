@@ -103,7 +103,7 @@ export default function DigitalPlatformsPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-primary-green/20" />
-                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
                   {t('hero_desc')}
                 </p>
                   <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
@@ -249,7 +249,7 @@ export default function DigitalPlatformsPage() {
                 className="max-w-3xl mx-auto"
               >
                 <h2 className="text-2xl sm:text-3xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-white/60 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                <p className="text-white/60 font-light text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-4">

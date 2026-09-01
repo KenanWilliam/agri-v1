@@ -149,10 +149,10 @@ export default function StakeholderConveningsPage() {
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-teal-800/20" />
                 <div className="lg:pl-10 space-y-4">
-                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -269,10 +269,10 @@ export default function StakeholderConveningsPage() {
               </div>
 
               <div className="flex-1 relative z-10 space-y-6 border-l border-white/[0.08] pl-0 lg:pl-12">
-                <p className="text-white/80 font-light leading-relaxed">
+                <p className="text-white/80 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
                   {t('sp_desc1')}
                 </p>
-                <p className="text-white/60 font-light leading-relaxed">
+                <p className="text-white/60 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
                   {t('sp_desc2')}
                 </p>
               </div>
@@ -326,7 +326,7 @@ export default function StakeholderConveningsPage() {
                 className="space-y-8"
               >
                 <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white tracking-tight pb-2 max-w-3xl mx-auto leading-tight" dangerouslySetInnerHTML={{ __html: t('cta_title') }} />
-                <p className="text-white/60 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                <p className="text-white/60 font-light text-base sm:text-lg lg:text-[14.5px] min-[1440px]:text-lg max-w-xl mx-auto leading-relaxed">
                   {t('cta_desc')}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 pt-4">
