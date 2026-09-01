@@ -228,7 +228,7 @@ export default function StakeholderConveningsPage() {
                       <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                         {type.title}
                       </h3>
-                      <p className="text-charcoal/75 font-light leading-relaxed text-sm sm:text-base mb-4 flex-1">
+                      <p className="text-charcoal/75 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base mb-4 flex-1">
                         {type.description}
                       </p>
                       <p className="text-lighter-dark-green/60 text-sm font-light italic border-t border-lighter-dark-green/[0.08] pt-4">

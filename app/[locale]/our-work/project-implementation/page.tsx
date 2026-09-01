@@ -230,7 +230,7 @@ export default function ProjectImplementationPage() {
                       {area.points.map((point, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-charcoal/80 font-light leading-relaxed text-sm sm:text-base"
+                          className="flex items-start gap-3 text-charcoal/80 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base"
                         >
                           <CheckCircle2
                             size={16}

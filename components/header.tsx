@@ -189,7 +189,7 @@ export default function Header() {
                     if (el) buttonRefs.current.set(item.href, el);
                     else buttonRefs.current.delete(item.href);
                   }}
-                  className={`relative px-3 py-1.5 min-[1440px]:px-4 min-[1440px]:py-2 text-[12px] min-[1440px]:text-sm font-medium rounded-full transition-colors duration-150 ${
+                  className={`relative px-3 py-1.5 min-[1440px]:px-4 min-[1440px]:py-2 text-[13px] min-[1440px]:text-sm font-medium rounded-full transition-colors duration-150 ${
                     isActive
                       ? 'text-deep-forest z-20'
                       : 'text-charcoal/80 hover:text-deep-forest z-10'
@@ -224,7 +224,7 @@ export default function Header() {
                         router.replace(pathname, { locale: loc.code as any, scroll: false });
                       }
                     }}
-                    className={`text-[11px] min-[1440px]:text-xs font-bold px-2 min-[1440px]:px-2.5 py-1 min-[1440px]:py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
+                    className={`text-[11.5px] min-[1440px]:text-xs font-bold px-2 min-[1440px]:px-2.5 py-1 min-[1440px]:py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
                   >
                     {loc.label}
                   </button>
@@ -235,7 +235,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => { setClickedPath('/contact'); }}
-              className="group relative overflow-hidden hidden md:inline-flex px-3.5 py-1.5 min-[1440px]:px-5 min-[1440px]:py-2.5 bg-deep-forest text-white rounded-full text-[12px] min-[1440px]:text-sm font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
+              className="group relative overflow-hidden hidden md:inline-flex px-3.5 py-1.5 min-[1440px]:px-5 min-[1440px]:py-2.5 bg-deep-forest text-white rounded-full text-[13px] min-[1440px]:text-sm font-medium hover:bg-deep-forest/90 transition-colors duration-200 ease-in-out"
             >
               <RollingText>
                 {t('contact')}

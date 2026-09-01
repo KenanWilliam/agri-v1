@@ -142,7 +142,7 @@ export default function TechnicalStudiesPage() {
                     <h3 className="text-base font-serif font-bold text-deep-forest tracking-tight pb-2 mb-2">
                       {client.label}
                     </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed text-xs sm:text-sm">
+                    <p className="text-charcoal/70 font-light leading-relaxed text-[14px] min-[1440px]:text-sm">
                       {client.desc}
                     </p>
                   </motion.div>

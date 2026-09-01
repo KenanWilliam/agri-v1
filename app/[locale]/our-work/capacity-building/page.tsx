@@ -201,7 +201,7 @@ export default function CapacityBuildingPage() {
                     <h3 className="text-xl font-serif font-bold text-deep-forest mb-3 tracking-tight pb-2">
                       {program.title}
                     </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed text-sm sm:text-base mb-4 flex-1">
+                    <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base mb-4 flex-1">
                       {program.description}
                     </p>
                     <p className="text-charcoal/50 text-sm font-light italic border-t border-charcoal/5 pt-4">

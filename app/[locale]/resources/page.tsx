@@ -98,7 +98,7 @@ export default function ResourcesPage() {
 
                   <div className="p-4 lg:p-5 flex flex-col flex-grow">
                     <p className="text-sm font-bold text-primary-green tracking-wide mb-2 uppercase">{t(`downloads.${originalIdx}.client`)}</p>
-                    <p className="text-sm text-charcoal/70 font-light leading-relaxed mb-4 flex-grow">{t(`downloads.${originalIdx}.citation`)}</p>
+                    <p className="text-[14px] min-[1440px]:text-sm text-charcoal/70 font-light leading-relaxed mb-4 flex-grow">{t(`downloads.${originalIdx}.citation`)}</p>
                     <div className="flex flex-wrap gap-4 pt-3 border-t border-black/5 text-sm font-bold mt-auto">
                       <a
                         href={download.link}

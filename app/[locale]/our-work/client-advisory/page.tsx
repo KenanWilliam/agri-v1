@@ -210,7 +210,7 @@ export default function ClientAdvisoryPage() {
                         <h3 className="text-xl font-serif font-bold text-deep-forest">
                           {service.title}
                         </h3>
-                        <p className="text-charcoal/70 font-light leading-relaxed text-sm sm:text-base">
+                        <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
                           {service.description}
                         </p>
                       </div>

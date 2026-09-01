@@ -330,11 +330,10 @@
   }
 }
 
-/* ─── Aggressive Height-Based Hero Downscaling (13-inch) ─── */
+/* ─── Baseline (13-inch) ─── */
 @media (min-width: 1024px) and (max-width: 1439px) {
   html {
-    /* Floor is strictly 13.75px to ensure 'text-sm' (0.875rem) never drops below 12px.
-       This prevents Chrome from artificially enlarging the text relative to the shrunk padding! */
-    font-size: clamp(13.75px, 1.5dvh, 15px);
+    /* Baseline between 14px and 15px for 13-inch displays */
+    font-size: clamp(14px, 1.6dvh, 15px);
   }
 }

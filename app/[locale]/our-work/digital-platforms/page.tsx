@@ -211,7 +211,7 @@ export default function DigitalPlatformsPage() {
                           </a>
                         )}
                       </div>
-                      <p className="mt-3 text-charcoal/80 font-light leading-relaxed flex-1">
+                      <p className="mt-3 text-charcoal/80 font-light leading-relaxed flex-1 text-[14.5px] min-[1440px]:text-base">
                         {platform.description}
                       </p>
                     </div>
