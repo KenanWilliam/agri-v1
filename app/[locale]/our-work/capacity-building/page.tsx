@@ -88,14 +88,17 @@ export default function CapacityBuildingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 lg:space-y-6"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                >
                   {t('hero_title1')}
                   <br />
                   <span className="text-[#9A3412]/80">{t('hero_title2')}</span>
                 </h1>
-                <p className="text-[#9A3412] font-medium text-lg tracking-wide">
+                <p className="text-[#9A3412] font-semibold text-base sm:text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -108,7 +111,7 @@ export default function CapacityBuildingPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-[#9A3412]/20" />
-                <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
                   {t('hero_desc')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">

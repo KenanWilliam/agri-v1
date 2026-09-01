@@ -79,7 +79,10 @@ export default function OurWorkPage() {
               
               {/* Left Side: Title */}
               <div className="flex-1 space-y-4">
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                >
                   {t('title')}
                 </h1>
               </div>
@@ -88,7 +91,7 @@ export default function OurWorkPage() {
               <div className="flex-1 lg:pt-12 relative">
                 {/* Vertical divider line for desktop */}
                 <div className="hidden lg:block absolute left-0 top-12 bottom-0 w-px bg-stone-200/80"></div>
-                <p className="text-lg sm:text-xl lg:text-2xl text-charcoal/90 leading-relaxed font-normal lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-charcoal/90 leading-relaxed font-normal lg:pl-10">
                   {t('subtitle')}
                 </p>
               </div>
@@ -105,7 +108,11 @@ export default function OurWorkPage() {
                 return (
                   <Link key={idx} href={card.link} className="block h-full group">
                     <div
-                      className={`rounded-[20px] md:rounded-[24px] lg:rounded-[26px] border ${card.borderClass} ${card.cardBgClass} p-5 sm:p-6 lg:p-6 xl:p-7 flex flex-col justify-between h-full min-h-0 md:min-h-[210px] lg:min-h-[220px] xl:min-h-[240px] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
+                      className={`rounded-[20px] md:rounded-[24px] lg:rounded-[26px] border ${card.borderClass} ${card.cardBgClass} flex flex-col justify-between h-full shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
+                      style={{
+                        padding: 'clamp(1.25rem, 1rem + 0.7vw, 1.75rem)',
+                        minHeight: 'clamp(200px, 18vh + 120px, 240px)',
+                      }}
                     >
                       {/* Mobile Layout (< md) */}
                       <div className="flex items-center justify-between gap-3.5 sm:gap-4 md:hidden">
@@ -125,10 +132,16 @@ export default function OurWorkPage() {
                       {/* Desktop Layout (md+) */}
                       <div className="hidden md:flex flex-col justify-between h-full space-y-4 lg:space-y-5">
                         <div className="space-y-2 lg:space-y-2.5">
-                          <h2 className={`text-xl sm:text-2xl lg:text-[1.3rem] xl:text-[1.45rem] font-serif font-bold ${card.textClass} tracking-tight pb-0.5 leading-snug`}>
+                          <h2
+                            className={`font-serif font-bold ${card.textClass} tracking-tight pb-0.5 leading-snug`}
+                            style={{ fontSize: 'clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem)' }}
+                          >
                             {card.title}
                           </h2>
-                          <p className="text-charcoal/90 font-normal leading-relaxed text-[15px] lg:text-[15.5px] xl:text-[16px]">
+                          <p
+                            className="text-charcoal/90 font-normal leading-relaxed"
+                            style={{ fontSize: 'clamp(0.875rem, 0.84rem + 0.15vw, 1rem)' }}
+                          >
                             {card.description}
                           </p>
                         </div>

@@ -82,12 +82,15 @@ export default function DigitalPlatformsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 lg:space-y-6"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                >
                   {t('hero_title')}
                 </h1>
-                <p className="text-primary-green font-medium text-lg tracking-wide">
+                <p className="text-primary-green font-semibold text-base sm:text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -100,11 +103,10 @@ export default function DigitalPlatformsPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-primary-green/20" />
-                <div className="lg:pl-10 space-y-6">
-                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
-                    {t('hero_desc')}
-                  </p>
-                  <div className="mt-8 flex flex-wrap gap-4">
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
+                  {t('hero_desc')}
+                </p>
+                  <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
                     <Link
                       href="/contact"
                       className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-deep-forest transition-colors"
@@ -123,7 +125,6 @@ export default function DigitalPlatformsPage() {
                       </RollingText>
                     </Link>
                   </div>
-                </div>
               </motion.div>
             </div>
           </div>

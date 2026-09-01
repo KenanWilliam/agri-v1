@@ -27,10 +27,14 @@ export default function TechnicalStudiesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 lg:space-y-6"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
-                <p className="text-primary-blue font-medium text-lg tracking-wide">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                  dangerouslySetInnerHTML={{ __html: t('hero_title') }}
+                />
+                <p className="text-primary-blue font-semibold text-base sm:text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -43,7 +47,7 @@ export default function TechnicalStudiesPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-primary-blue/20" />
-                <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light lg:pl-10">
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal lg:pl-10">
                   {t('hero_desc1')} {t('hero_desc2')}
                 </p>
                 <div className="lg:pl-10 mt-8 flex flex-wrap gap-4">
@@ -71,26 +75,29 @@ export default function TechnicalStudiesPage() {
         </section>
 
         {/* ─── Case Study: KCDMS Agrodealer Mapping ─── */}
-        <section className="w-full py-20 lg:py-28">
+        <section className="w-full py-16 lg:py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="max-w-4xl space-y-8"
+              className="max-w-4xl space-y-6 lg:space-y-8"
             >
               <div>
-                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
+                <h2
+                  className="font-serif font-bold text-deep-forest tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.75rem, 1.3rem + 2vw, 3rem)' }}
+                >
                   {t('cs_title')}
                 </h2>
               </div>
 
-              <p className="text-charcoal/80 font-light leading-relaxed text-lg">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg">
                 {t('cs_desc1')}
               </p>
 
-              <p className="text-charcoal/80 font-light leading-relaxed text-lg">
+              <p className="text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg">
                 {t('cs_desc2')}
               </p>
             </motion.div>

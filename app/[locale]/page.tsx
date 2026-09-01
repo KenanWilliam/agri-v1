@@ -203,15 +203,16 @@ export default function Home() {
           </div>
           
           {/* Directional Scrim: 100% text legibility on the left, pure video visible on the right */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/95 via-white/85 to-white/30 md:bg-gradient-to-r md:from-white/95 md:from-[15%] md:via-white/80 md:via-[45%] md:to-transparent md:to-[75%] md:w-[75%] pointer-events-none" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/95 via-white/85 to-white/30 md:bg-gradient-to-r md:from-white/95 md:from-[20%] md:via-white/90 md:via-[55%] md:to-transparent md:to-[85%] md:w-[85%] pointer-events-none" />
 
-          <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
-            <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8 xl:space-y-10">
+          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full flex-1 flex flex-col justify-center">
+            <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="font-serif tracking-tight pb-2 text-[#1A4D2E] text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight"
+                className="font-serif tracking-tight pb-2 text-[#1A4D2E] font-bold leading-[1.15]"
+                style={{ fontSize: 'clamp(1.875rem, 1.2rem + 3.2vw, 3.75rem)' }}
               >
                 {t('hero_title_1')} <br />
                 {t('hero_title_2')} <br />
@@ -222,7 +223,8 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-gray-900 leading-relaxed font-medium max-w-xl xl:max-w-2xl text-base sm:text-lg lg:text-xl"
+                className="text-charcoal leading-relaxed font-normal max-w-xl xl:max-w-2xl"
+                style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
               >
                 {t('hero_desc')}
               </motion.p>
@@ -258,8 +260,13 @@ export default function Home() {
                         <stat.icon size={18} className="lg:w-5 lg:h-5" />
                       </div>
                       <div className="flex flex-col text-left">
-                        <div className="text-lg lg:text-xl font-bold text-[#1A4D2E] leading-none">{stat.value}</div>
-                        <div className="text-[10px] lg:text-[11px] font-bold tracking-[0.15em] text-gray-500 mt-1.5 whitespace-nowrap">{stat.label}</div>
+                        <div
+                          className="font-bold text-[#1A4D2E] leading-none"
+                          style={{ fontSize: 'clamp(1.125rem, 1rem + 0.6vw, 1.5rem)' }}
+                        >
+                          {stat.value}
+                        </div>
+                        <div className="text-[11px] lg:text-xs font-bold tracking-[0.12em] text-charcoal/70 mt-1 whitespace-nowrap">{stat.label}</div>
                       </div>
                     </div>
                   ))}
@@ -279,28 +286,33 @@ export default function Home() {
                   <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,var(--warm-earth)_0%,transparent_60%)] opacity-20 blur-3xl pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
                   <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,var(--primary-green)_0%,transparent_60%)] opacity-[0.05] blur-3xl pointer-events-none rounded-full -translate-x-1/4 translate-y-1/4" />
 
-                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-24">
-                    <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
+                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-8 md:px-16 lg:px-24 gap-8 lg:gap-16 relative z-10 w-max pr-12 lg:pr-24">
+                    <div className="w-[280px] lg:w-[380px] shrink-0 space-y-6">
                       <motion.div>
-                        <h2 className="text-5xl lg:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-6">
+                        <h2 className="text-4xl lg:text-5xl 2xl:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-4 lg:mb-6">
                           {tAgri('title')}
                         </h2>
-                        <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                        <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-6 lg:gap-8 shrink-0 py-8">
+                    <div className="grid grid-rows-2 grid-flow-col gap-4 lg:gap-6 xl:gap-8 shrink-0 py-6 lg:py-8">
                       {agriCards.map((item, idx) => (
                         <div
                           key={idx}
-                          className={`${item.width} h-full shrink-0 bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/40 hover:bg-white transition-colors duration-500 group relative overflow-hidden flex flex-col`}
+                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-6 xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-colors duration-500 group relative overflow-hidden flex flex-col justify-between shadow-sm`}
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          <div className="relative z-10 flex flex-col">
-                            <div className="w-14 h-14 shrink-0 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                          <div className="relative z-10 flex flex-col justify-between h-full">
+                            <div className="w-11 h-11 lg:w-13 lg:h-13 shrink-0 rounded-2xl bg-white shadow-sm border border-mist flex items-center justify-center mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
                               {item.icon}
                             </div>
-                            <p className="text-lg lg:text-xl text-charcoal/80 font-medium leading-relaxed">{item.text}</p>
+                            <p
+                              className="text-charcoal/90 font-normal leading-relaxed"
+                              style={{ fontSize: 'clamp(0.875rem, 0.82rem + 0.25vw, 1.125rem)' }}
+                            >
+                              {item.text}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -312,26 +324,31 @@ export default function Home() {
                 <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20 pointer-events-none"></div>
                   
-                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-12 md:px-24 gap-12 lg:gap-20 relative z-10 w-max pr-12 lg:pr-[10vw]">
-                    <div className="w-[300px] lg:w-[400px] shrink-0 space-y-6">
+                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-8 md:px-16 lg:px-24 gap-8 lg:gap-16 relative z-10 w-max pr-12 lg:pr-[10vw]">
+                    <div className="w-[280px] lg:w-[380px] shrink-0 space-y-6">
                       <motion.div>
-                        <h2 className="text-4xl lg:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-6">{t('what_we_believe')}</h2>
-                        <div className="w-20 h-1 bg-primary-green rounded-full"></div>
+                        <h2 className="text-3xl lg:text-4xl 2xl:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-4 lg:mb-6">{t('what_we_believe')}</h2>
+                        <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-6 lg:gap-8 shrink-0 py-8">
+                    <div className="grid grid-rows-2 grid-flow-col gap-4 lg:gap-6 xl:gap-8 shrink-0 py-6 lg:py-8">
                       {beliefs.map((belief, idx) => (
                         <div
                           key={idx}
-                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors flex flex-col`}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-6 xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-colors flex flex-col justify-between`}
                         >
-                          <div className="w-14 h-14 shrink-0 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
+                          <div className="w-11 h-11 lg:w-13 lg:h-13 shrink-0 rounded-2xl bg-white/10 flex items-center justify-center mb-4">
                             {belief.icon}
                           </div>
-                          <div className="flex flex-col gap-4">
-                            <h3 className="text-xl font-serif text-white">{belief.title}</h3>
-                            <p className="text-white/70 font-light leading-relaxed text-sm lg:text-base">{belief.text}</p>
+                          <div className="flex flex-col gap-2">
+                            <h3 className="text-lg lg:text-xl font-serif text-white">{belief.title}</h3>
+                            <p
+                              className="text-white/80 font-normal leading-relaxed text-sm"
+                              style={{ fontSize: 'clamp(0.875rem, 0.82rem + 0.25vw, 1rem)' }}
+                            >
+                              {belief.text}
+                            </p>
                           </div>
                         </div>
                       ))}

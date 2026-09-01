@@ -50,10 +50,13 @@ export default function ResourcesPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8 text-center mb-16"
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight pb-2">
+              <h1
+                className="font-serif text-deep-forest font-bold tracking-tight pb-2"
+                style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+              >
                 {t('title')}
               </h1>
-              <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light mb-12">
+              <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 max-w-3xl mx-auto leading-relaxed font-normal mb-8 lg:mb-12">
                 {t('subtitle')}
               </p>
 

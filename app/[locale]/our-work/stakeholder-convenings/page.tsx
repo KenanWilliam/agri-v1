@@ -125,14 +125,17 @@ export default function StakeholderConveningsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 lg:space-y-6"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                >
                   {t('hero_title1')},
                   <br />
                   <span className="text-teal-800/80">{t('hero_title2')}.</span>
                 </h1>
-                <p className="text-teal-800 font-medium text-lg tracking-wide">
+                <p className="text-teal-800 font-semibold text-base sm:text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -145,11 +148,11 @@ export default function StakeholderConveningsPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-teal-800/20" />
-                <div className="lg:pl-10 space-y-5">
-                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                <div className="lg:pl-10 space-y-4">
+                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">

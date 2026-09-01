@@ -152,23 +152,23 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
 
     // We add symmetric "dead zones" (0.5s total gap) between transitions.
     // This requires the user to intentionally scroll a bit before the next item starts opening.
-    tl.add("item0")
-      .to('.item-content-0', { height: "0vh", duration: 1 }, "item0+=0.25")
+    tl.addLabel("item0", 0)
+      .to('.item-content-0', { height: "0px", duration: 1 }, "item0+=0.25")
       .to('.item-title-0', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item0+=0.25")
       .to('.dot-0', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item0+=0.25")
       
-      .to('.item-content-1', { height: "50vh", duration: 1 }, "item0+=0.25")
+      .to('.item-content-1', { height: "clamp(300px, 46vh, 420px)", duration: 1 }, "item0+=0.25")
       .to('.item-title-1', { color: "#3ab44a", duration: 1 }, "item0+=0.25")
       .to('.dot-1', { backgroundColor: "#3ab44a", duration: 1 }, "item0+=0.25")
       
       // Label in the exact middle of the dead zone
       .add("item1", "item0+=1.5")
       
-      .to('.item-content-1', { height: "0vh", duration: 1 }, "item1+=0.25")
+      .to('.item-content-1', { height: "0px", duration: 1 }, "item1+=0.25")
       .to('.item-title-1', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item1+=0.25")
       .to('.dot-1', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item1+=0.25")
       
-      .to('.item-content-2', { height: "50vh", duration: 1 }, "item1+=0.25")
+      .to('.item-content-2', { height: "clamp(300px, 46vh, 420px)", duration: 1 }, "item1+=0.25")
       .to('.item-title-2', { color: "#3ab44a", duration: 1 }, "item1+=0.25")
       .to('.dot-2', { backgroundColor: "#3ab44a", duration: 1 }, "item1+=0.25")
       
@@ -217,7 +217,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
             ))}
           </div>
 
-          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-12 justify-center">
+          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-8 lg:py-12 justify-center">
 
             <div className="w-full flex flex-col">
               {items.map((item, i) => {
@@ -230,21 +230,24 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                 >
                   <h2 
                     onClick={() => scrollToItem(i)}
-                    className={`item-title-${i} group text-4xl sm:text-5xl lg:text-7xl font-serif py-6 cursor-pointer hover:opacity-80 transition-opacity`}
-                    style={{ color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)" }}
+                    className={`item-title-${i} group font-serif py-3.5 lg:py-4 cursor-pointer hover:opacity-80 transition-opacity`}
+                    style={{ 
+                      color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)",
+                      fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)'
+                    }}
                   >
                     <RollingText>{item.title}</RollingText>
                   </h2>
                   
                   <div 
                     className={`item-content-${i} w-full overflow-hidden`}
-                    style={{ height: i === 0 ? "50vh" : "0vh" }}
+                    style={{ height: i === 0 ? "clamp(300px, 46vh, 420px)" : "0px" }}
                   >
-                    <div className="flex flex-row gap-12 pb-6 pt-2 w-full h-[50vh] min-h-100 max-h-150">
+                    <div className="flex flex-row gap-8 lg:gap-12 pb-4 pt-2 w-full h-full" style={{ height: 'clamp(300px, 46vh, 420px)' }}>
                       {/* Text Side */}
                       <div 
                         aria-live="polite"
-                        className="w-2/5 flex flex-col justify-start pt-2 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-light"
+                        className="w-2/5 flex flex-col justify-start pt-2 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto"
                       >
                         <p>{item.desc}</p>
                         

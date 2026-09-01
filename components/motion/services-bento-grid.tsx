@@ -25,10 +25,16 @@ function BentoCard({ pillar }: BentoCardProps) {
     >
       {/* Content */}
       <div className="space-y-3">
-        <h3 className="font-serif tracking-tight font-bold text-xl sm:text-2xl lg:text-[1.4rem] xl:text-[1.75rem] leading-[1.25] text-deep-forest group-hover:text-primary-green transition-colors duration-200">
+        <h3
+          className="font-serif tracking-tight font-bold leading-[1.25] text-deep-forest group-hover:text-primary-green transition-colors duration-200"
+          style={{ fontSize: 'clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem)' }}
+        >
           {pillar.title}
         </h3>
-        <p className="font-sans font-normal text-[15px] sm:text-base lg:text-[15.5px] xl:text-[16.5px] leading-relaxed text-charcoal/90">
+        <p
+          className="font-sans font-normal leading-relaxed text-charcoal/90"
+          style={{ fontSize: 'clamp(0.875rem, 0.84rem + 0.15vw, 1rem)' }}
+        >
           {pillar.desc}
         </p>
       </div>

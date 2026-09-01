@@ -285,7 +285,8 @@ export default function ImpactAlignment() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl lg:text-5xl font-serif font-bold text-deep-forest mb-4"
+            className="font-serif font-bold text-deep-forest mb-4"
+            style={{ fontSize: 'clamp(2.25rem, 2rem + 1vw, 3rem)' }}
           >
             {t("sdgs.header_title")}
           </motion.h2>
@@ -293,7 +294,7 @@ export default function ImpactAlignment() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-charcoal/70 font-light max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-charcoal/85 font-normal max-w-2xl mx-auto leading-relaxed"
           >
             {t("sdgs.header_desc")}
           </motion.p>

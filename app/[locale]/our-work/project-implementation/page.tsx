@@ -134,10 +134,14 @@ export default function ProjectImplementationPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex-1 space-y-6"
+                className="flex-1 space-y-4 lg:space-y-6"
               >
-                <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2" dangerouslySetInnerHTML={{ __html: t('hero_title') }} />
-                <p className="text-deep-forest font-medium text-lg tracking-wide">
+                <h1
+                  className="font-serif text-deep-forest font-bold leading-tight tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+                  dangerouslySetInnerHTML={{ __html: t('hero_title') }}
+                />
+                <p className="text-deep-forest font-semibold text-base sm:text-lg tracking-wide">
                   {t('hero_subtitle')}
                 </p>
               </motion.div>
@@ -150,11 +154,11 @@ export default function ProjectImplementationPage() {
                 className="flex-1 lg:pt-16 relative"
               >
                 <div className="hidden lg:block absolute left-0 top-16 bottom-0 w-px bg-deep-forest/10" />
-                <div className="lg:pl-10 space-y-5">
-                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                <div className="lg:pl-10 space-y-4">
+                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc1')}
                   </p>
-                  <p className="text-lg lg:text-xl text-charcoal/80 leading-relaxed font-light">
+                  <p className="text-base sm:text-lg lg:text-xl text-charcoal/85 leading-relaxed font-normal">
                     {t('hero_desc2')}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
@@ -191,9 +195,12 @@ export default function ProjectImplementationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="max-w-2xl mb-16"
+              className="max-w-2xl mb-12 lg:mb-16"
             >
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-deep-forest tracking-tight pb-2">
+              <h2
+                className="font-serif font-bold text-deep-forest tracking-tight pb-2"
+                style={{ fontSize: 'clamp(1.75rem, 1.3rem + 2vw, 3rem)' }}
+              >
                 {t('ia_title')}
               </h2>
             </motion.div>

@@ -52,8 +52,16 @@ export default function Footer() {
         <footer style={{ background: '#0d0d0d', color: '#e8e8e8', position: 'relative' }}>
 
           {/* Main content grid — matches reference: left | col1 | col2 | col3 | right */}
-          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '56px 64px 0 64px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr 1fr 1fr 260px', gap: '0 48px' }}>
+          <div style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            padding: 'clamp(2rem, 1.5rem + 2vw, 3.5rem) clamp(1.5rem, 1rem + 2vw, 4rem) 0',
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(200px, 300px) repeat(3, minmax(0, 1fr)) minmax(180px, 260px)',
+              gap: 'clamp(1.5rem, 1rem + 2vw, 3rem)',
+            }}>
 
               {/* ── LEFT: Newsletter ── */}
               <div>
@@ -199,8 +207,12 @@ export default function Footer() {
           </div>
 
           {/* Logo pinned to bottom-left — compact */}
-          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 64px 32px 64px' }}>
-            <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '32px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+          <div style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            padding: 'clamp(1.5rem, 1rem + 1vw, 2rem) clamp(1.5rem, 1rem + 2vw, 4rem)',
+          }}>
+            <div style={{ borderTop: '1px solid #1f1f1f', paddingTop: '24px', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
               <Link href="/" aria-label="Agri Experience" style={{ display: 'inline-flex' }}>
                 <div 
                   className="h-18 w-37.5 bg-[#888] transition-colors hover:bg-white"

@@ -147,7 +147,7 @@ export default function Header() {
 
           {/* Desktop Navigation - AngelList Style Pill */}
           <nav 
-            className="hidden xl:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
+            className="hidden lg:flex items-center bg-black/5 rounded-full px-1.5 py-1.5 border border-black/5 relative"
             onMouseLeave={handleMouseLeave}
             ref={containerRef as any}
           >

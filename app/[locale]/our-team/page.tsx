@@ -115,10 +115,13 @@ export default function OurTeamPage() {
             transition={{ duration: 0.8 }}
             className="space-y-4 lg:space-y-[min(1.25rem,2vh)] text-center"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-7xl font-serif text-deep-forest font-bold tracking-tight pb-2">
+            <h1
+              className="font-serif text-deep-forest font-bold tracking-tight pb-2"
+              style={{ fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)' }}
+            >
               {t('title')}
             </h1>
-            <p className="text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-base sm:text-lg lg:text-xl text-charcoal/90 max-w-3xl mx-auto leading-relaxed font-normal">
               {t('subtitle')}
             </p>
           </motion.div>
@@ -139,7 +142,10 @@ export default function OurTeamPage() {
               onClick={() => setSelectedMember(member)}
             >
               {/* Image Container */}
-              <div className="relative w-full aspect-square sm:aspect-[4/5] lg:max-h-[42vh] 2xl:max-h-[48vh] rounded-none group-hover:rounded-xl transition-all duration-[800ms] ease-out overflow-hidden shadow-lg mb-5 lg:mb-[min(1.5rem,2vh)] bg-[#EFEFEF]">
+              <div
+                className="relative w-full aspect-square sm:aspect-[4/5] rounded-none group-hover:rounded-xl transition-all duration-[800ms] ease-out overflow-hidden shadow-lg mb-5 lg:mb-[min(1.5rem,2vh)] bg-[#EFEFEF]"
+                style={{ maxHeight: 'min(42vh, 380px)' }}
+              >
                 {member.image && member.image !== '/team/placeholder.jpg' ? (
                   <>
                     <Image 
@@ -171,10 +177,10 @@ export default function OurTeamPage() {
 
               {/* Text Information */}
               <div className="text-left px-2">
-                <h3 className="text-2xl font-serif font-bold text-deep-forest group-hover:text-primary-green transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-deep-forest group-hover:text-primary-green transition-colors duration-300">
                   {member.name}
                 </h3>
-                <p className="text-sm font-bold uppercase tracking-[0.15em] text-charcoal/60 mt-2">
+                <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-charcoal/70 mt-1.5">
                   {member.role}
                 </p>
               </div>
@@ -203,21 +209,28 @@ export default function OurTeamPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-3xl lg:max-w-[1600px] h-auto max-h-[90vh] lg:h-[90vh] bg-white rounded-3xl lg:rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+              className="relative w-full max-w-3xl lg:max-w-[1600px] bg-white rounded-3xl lg:rounded-none overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+              style={{ height: 'min(90vh, 900px)', maxHeight: '92vh' }}
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-4 right-4 lg:top-10 lg:right-10 z-20 w-10 h-10 lg:w-16 lg:h-16 rounded-full bg-white/90 lg:bg-[#FAFAFA] backdrop-blur-md lg:backdrop-blur-none hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5 shadow-sm lg:shadow-none"
+                className="absolute top-4 right-4 lg:top-8 lg:right-8 z-20 w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-white/90 lg:bg-[#FAFAFA] backdrop-blur-md lg:backdrop-blur-none hover:bg-[#F0F0F0] flex items-center justify-center transition-colors border border-black/5 shadow-sm lg:shadow-none"
                 aria-label="Close modal"
               >
-                <X className="text-deep-forest w-6 h-6 lg:w-8 lg:h-8" strokeWidth={1} />
+                <X className="text-deep-forest w-6 h-6 lg:w-7 lg:h-7" strokeWidth={1.5} />
               </button>
 
               {/* Left Side: Typography & Content */}
-              <div className="flex-1 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between overflow-y-auto">
+              <div
+                className="flex-1 flex flex-col overflow-y-auto"
+                style={{ padding: 'clamp(1.5rem, 1rem + 2.5vw, 4rem)', gap: 'clamp(1rem, 0.5rem + 2vh, 2rem)' }}
+              >
                 <div>
-                  <h2 className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[7.5rem] font-serif text-deep-forest font-normal leading-tight tracking-tight pb-2 mb-6 lg:mb-8 pr-12 lg:pr-0">
+                  <h2
+                    className="font-serif text-deep-forest font-normal leading-tight tracking-tight pb-2 mb-4 lg:mb-6 pr-12 lg:pr-0"
+                    style={{ fontSize: 'clamp(2.25rem, 9vh, 7.5rem)' }}
+                  >
                     {selectedMember.name.split(' ')[0]}
                     <br className="hidden lg:block" />
                     <span className="lg:hidden"> </span>
@@ -225,7 +238,7 @@ export default function OurTeamPage() {
                   </h2>
 
                   <div className="space-y-4 max-w-xl">
-                    <p className="text-charcoal/80 text-[15px] sm:text-base lg:text-[1.125rem] font-light leading-relaxed">
+                    <p className="text-charcoal/90 text-sm sm:text-base lg:text-[1.125rem] font-normal leading-relaxed">
                       {selectedMember.bio}
                     </p>
                   </div>
@@ -233,15 +246,15 @@ export default function OurTeamPage() {
 
                 {/* Tags / Projects area */}
                 {selectedMember.projects && selectedMember.projects.length > 0 && (
-                  <div className="mt-8 lg:mt-10 space-y-4">
-                    <h4 className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.2em] text-charcoal/40">
+                  <div className="mt-4 lg:mt-6 space-y-3">
+                    <h4 className="text-[0.65rem] lg:text-xs font-bold uppercase tracking-[0.2em] text-charcoal/50">
                       {t('expertise_label')}
                     </h4>
-                    <div className="flex flex-wrap gap-2 lg:gap-3">
+                    <div className="flex flex-wrap gap-2 lg:gap-2.5">
                       {selectedMember.projects.map((project, i) => (
                         <span 
                           key={i} 
-                          className="px-4 py-2 lg:px-5 lg:py-2.5 rounded-full border border-black/10 text-charcoal/70 text-[11px] lg:text-xs hover:border-primary-green hover:text-primary-green transition-colors cursor-default"
+                          className="px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-full border border-black/10 text-charcoal/80 text-[11px] lg:text-xs hover:border-primary-green hover:text-primary-green transition-colors cursor-default bg-black/[0.02]"
                         >
                           {project} ↗
                         </span>

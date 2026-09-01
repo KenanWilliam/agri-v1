@@ -55,11 +55,14 @@ export default function OurImpactPage() {
         <section className="w-full py-10 lg:py-20 bg-deep-forest text-white overflow-hidden relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,var(--accent-gold)_0%,transparent_40%)] opacity-20"></div>
           
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 lg:space-y-10 relative z-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold text-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center space-y-6 lg:space-y-8 relative z-10">
+            <h2
+              className="font-serif font-bold text-white"
+              style={{ fontSize: 'clamp(1.75rem, 1.3rem + 2vw, 3rem)' }}
+            >
               {t('cta_title')}
             </h2>
-            <p className="text-lg lg:text-2xl text-white/80 font-light leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-white/90 font-normal leading-relaxed max-w-3xl mx-auto">
               {t('cta_desc')}
             </p>
             <div className="flex flex-row flex-wrap gap-3 sm:gap-6 justify-center pt-2 sm:pt-6">
