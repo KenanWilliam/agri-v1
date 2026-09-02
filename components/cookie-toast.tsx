@@ -55,61 +55,24 @@ export default function CookieToast() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ opacity: 0, y: 60, scale: 0.88 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 30, scale: 0.92 }}
-          transition={{
-            type: 'spring',
-            stiffness: 380,
-            damping: 24,
-            mass: 0.85,
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 15 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           role="dialog"
           aria-live="polite"
           aria-label="Cookie consent"
           className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[999] w-[calc(100%-2rem)] max-w-[420px] rounded-[24px] bg-white/75 backdrop-blur-2xl backdrop-saturate-150 border border-white/70 shadow-[0_20px_50px_-10px_rgba(26,77,46,0.22),0_1px_2px_rgba(255,255,255,0.9)_inset] overflow-hidden"
         >
-          {/* Subtle frosted glass specular shimmer on top edge */}
+          {/* Frosted glass top-edge reflection */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
 
           <div className="p-5 sm:p-6 w-full text-deep-forest text-left relative z-10">
             <div className="flex items-start justify-between gap-3 mb-2.5">
-              <div className="flex items-center gap-3">
-                {/* Animated Cookie Icon with playful wobble & beacon pulse */}
-                <motion.div
-                  initial={{ scale: 0.4, rotate: -25 }}
-                  animate={{
-                    scale: [0.4, 1.25, 0.92, 1],
-                    rotate: [0, -18, 16, -10, 6, 0],
-                  }}
-                  transition={{
-                    delay: 0.3,
-                    duration: 0.9,
-                    ease: 'easeOut',
-                  }}
-                  whileHover={{
-                    rotate: [0, -22, 22, -12, 12, 0],
-                    scale: 1.18,
-                    transition: { duration: 0.6 },
-                  }}
-                  className="relative w-9 h-9 rounded-full bg-primary-green/15 flex items-center justify-center text-primary-green shrink-0 cursor-pointer select-none"
-                >
-                  <Cookie size={19} className="relative z-10" />
-                  {/* Subtle welcoming beacon pulse */}
-                  <motion.span
-                    animate={{
-                      scale: [1, 1.7, 1],
-                      opacity: [0.55, 0, 0.55],
-                    }}
-                    transition={{
-                      duration: 2.4,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    className="absolute inset-0 rounded-full bg-primary-green/25 pointer-events-none"
-                  />
-                </motion.div>
-
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-primary-green/15 flex items-center justify-center text-primary-green shrink-0">
+                  <Cookie size={18} />
+                </div>
                 <h3 className="font-serif font-bold text-base sm:text-lg text-deep-forest tracking-tight">
                   {t('title')}
                 </h3>
@@ -142,21 +105,12 @@ export default function CookieToast() {
               >
                 {t('decline')}
               </button>
-              <motion.button
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  delay: 1.3,
-                  duration: 0.7,
-                  ease: 'easeInOut',
-                  repeat: 1,
-                }}
+              <button
                 onClick={() => handleConsent('granted')}
-                className="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-primary-green hover:bg-[#1A4D2E] active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-primary-green/25"
+                className="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-primary-green hover:bg-[#1A4D2E] active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 {t('accept')}
-              </motion.button>
+              </button>
             </div>
           </div>
         </motion.div>
