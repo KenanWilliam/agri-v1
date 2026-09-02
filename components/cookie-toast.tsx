@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+import LiquidGlass from './liquid-glass'
 
 export default function CookieToast() {
   const t = useTranslations('CookieToast')
@@ -50,51 +51,64 @@ export default function CookieToast() {
           role="dialog"
           aria-live="polite"
           aria-label="Cookie consent"
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100%-2rem)] max-w-[420px] bg-white/95 backdrop-blur-md border border-stone-200 shadow-2xl rounded-2xl p-5 text-deep-forest"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100%-2rem)] max-w-[420px] rounded-[24px] shadow-2xl overflow-hidden border border-black/10"
         >
-          <div className="flex items-start justify-between gap-3 mb-2">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-primary-green/10 flex items-center justify-center text-primary-green shrink-0">
-                <Cookie size={18} />
+          <LiquidGlass
+            blurAmount={0.25}
+            elasticity={0}
+            displacementScale={100}
+            saturation={120}
+            cornerRadius={24}
+            padding="0"
+            overLight={false}
+            className="w-full"
+          >
+            <div className="p-5 sm:p-6 w-full text-deep-forest text-left">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-primary-green/15 flex items-center justify-center text-primary-green shrink-0">
+                    <Cookie size={18} />
+                  </div>
+                  <h3 className="font-serif font-bold text-base sm:text-lg text-deep-forest">
+                    {t('title')}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => handleConsent('denied')}
+                  className="text-charcoal/50 hover:text-charcoal p-1 rounded-full hover:bg-black/5 transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={16} />
+                </button>
               </div>
-              <h3 className="font-serif font-bold text-base text-deep-forest">
-                {t('title')}
-              </h3>
+
+              <p className="text-xs sm:text-[13.5px] text-charcoal/85 font-normal leading-relaxed mb-4">
+                {t('desc')}{' '}
+                <Link
+                  href="/privacy"
+                  className="text-primary-green font-medium underline underline-offset-2 hover:text-deep-forest transition-colors"
+                >
+                  {t('privacy_policy')}
+                </Link>
+                .
+              </p>
+
+              <div className="flex items-center justify-end gap-2.5 pt-1">
+                <button
+                  onClick={() => handleConsent('denied')}
+                  className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-charcoal/70 bg-black/5 hover:bg-black/10 transition-colors"
+                >
+                  {t('decline')}
+                </button>
+                <button
+                  onClick={() => handleConsent('granted')}
+                  className="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-primary-green hover:bg-[#1A4D2E] transition-all duration-200 shadow-sm hover:shadow-md"
+                >
+                  {t('accept')}
+                </button>
+              </div>
             </div>
-            <button
-              onClick={() => handleConsent('denied')}
-              className="text-charcoal/50 hover:text-charcoal p-1 rounded-full transition-colors"
-              aria-label="Close"
-            >
-              <X size={16} />
-            </button>
-          </div>
-
-          <p className="text-xs sm:text-sm text-charcoal/80 font-light leading-relaxed mb-4">
-            {t('desc')}{' '}
-            <Link
-              href="/privacy"
-              className="text-primary-green font-medium underline underline-offset-2 hover:text-deep-forest transition-colors"
-            >
-              {t('privacy_policy')}
-            </Link>
-            .
-          </p>
-
-          <div className="flex items-center justify-end gap-2.5 pt-1">
-            <button
-              onClick={() => handleConsent('denied')}
-              className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-charcoal/70 bg-stone-100 hover:bg-stone-200 transition-colors"
-            >
-              {t('decline')}
-            </button>
-            <button
-              onClick={() => handleConsent('granted')}
-              className="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-primary-green hover:bg-[#1A4D2E] transition-all duration-200 shadow-sm hover:shadow-md"
-            >
-              {t('accept')}
-            </button>
-          </div>
+          </LiquidGlass>
         </motion.div>
       )}
     </AnimatePresence>
