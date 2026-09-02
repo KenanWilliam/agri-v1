@@ -17,27 +17,37 @@ const row1Logos: ClientLogo[] = [
     src: '/Gates_Foundation_Logo.svg',
     alt: 'Gates Foundation',
     href: 'https://www.gatesfoundation.org/',
-    containerClassName: 'w-50 sm:w-58 md:w-68 lg:w-74',
+    containerClassName: 'w-48 sm:w-56 md:w-64 lg:w-72',
     imageClassName: 'scale-115',
   },
-  { name: 'Adam Smith International', src: '/adam-smith-international-logo.png', alt: 'Adam Smith International', href: 'https://adamsmithinternational.com/' },
-  { name: 'AGRA', src: '/AGRA.png', alt: 'AGRA', href: 'https://agra.org/' },
   {
-    name: 'Ministry of Agriculture Kenya',
-    src: '/moa-kenya-logo.png',
-    alt: 'Ministry of Agriculture and Livestock Development Kenya',
-    href: 'https://kilimo.go.ke/',
-    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
-    imageClassName: 'scale-120',
+    name: 'NARO Uganda',
+    src: '/naro-logo.png',
+    alt: 'National Agricultural Research Organisation Uganda',
+    href: 'https://naro.go.ug/',
+    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
   },
-  { name: 'Catholic Relief Services', src: '/crs-logo.png', alt: 'Catholic Relief Services', href: 'https://www.crs.org/where-we-work/africa/kenya' },
+  {
+    name: 'AGRA',
+    src: '/AGRA.png',
+    alt: 'AGRA',
+    href: 'https://agra.org/',
+    containerClassName: 'w-36 sm:w-44 md:w-48 lg:w-54',
+  },
   {
     name: 'KEPHIS',
     src: '/kephis-logo.png',
     alt: 'KEPHIS',
     href: 'https://www.kephis.org/',
-    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
+    containerClassName: 'w-48 sm:w-56 md:w-66 lg:w-74',
     imageClassName: 'scale-120',
+  },
+  {
+    name: 'TARI',
+    src: '/tari-logo.png',
+    alt: 'TARI',
+    href: 'https://www.tari.go.tz/',
+    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
   },
   {
     name: 'CIMMYT',
@@ -48,42 +58,124 @@ const row1Logos: ClientLogo[] = [
     imageClassName: 'scale-120',
   },
   {
-    name: 'KALRO',
-    src: '/kalro-logo.png',
-    alt: 'KALRO',
-    href: 'https://www.kalro.org/',
-    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
-    imageClassName: 'scale-120',
+    name: 'Catholic Relief Services',
+    src: '/crs-logo.png',
+    alt: 'Catholic Relief Services',
+    href: 'https://www.crs.org/where-we-work/africa/kenya',
+    containerClassName: 'w-36 sm:w-44 md:w-50 lg:w-56',
   },
-  { name: 'STAK', src: '/stak-logo.png', alt: 'STAK', href: 'https://stak.or.ke/' },
-  { name: 'USAID', src: '/USAID-Identity.svg', alt: 'USAID', href: 'https://www.usaid.gov/' },
+  {
+    name: 'Ministry of Agriculture Tanzania',
+    src: '/moa-tanzania-logo.png',
+    alt: 'Ministry of Agriculture Tanzania',
+    href: 'https://www.kilimo.go.tz/',
+    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
+  },
+  {
+    name: 'USAID',
+    src: '/USAID-Identity.svg',
+    alt: 'USAID',
+    href: 'https://www.usaid.gov/',
+    containerClassName: 'w-44 sm:w-52 md:w-58 lg:w-64',
+  },
+  {
+    name: 'STAK',
+    src: '/stak-logo.png',
+    alt: 'STAK',
+    href: 'https://stak.or.ke/',
+    containerClassName: 'w-26 sm:w-30 md:w-34 lg:w-38',
+  },
+  {
+    name: 'AgDevCo',
+    src: '/agdevco-logo.png',
+    alt: 'AgDevCo',
+    href: 'https://www.agdevco.com/',
+    containerClassName: 'w-44 sm:w-52 md:w-60 lg:w-68',
+  },
 ]
 
 const row2Logos: ClientLogo[] = [
-  { name: 'Gatsby Africa', src: '/gatsby-logo.png', alt: 'Gatsby Africa', href: 'https://www.gatsbyafrica.org.uk/' },
-  { name: 'IFDC', src: '/ifdc-logo.png', alt: 'IFDC', href: 'https://ifdc.org/' },
-  { name: 'Ministry of Agriculture Tanzania', src: '/moa-tanzania-logo.png', alt: 'Ministry of Agriculture Tanzania', href: 'https://www.kilimo.go.tz/' },
-  { name: 'NARO Uganda', src: '/naro-logo.png', alt: 'National Agricultural Research Organisation Uganda', href: 'https://naro.go.ug/' },
   {
-    name: 'TOSCI',
-    src: '/tosci-logo.jpg',
-    alt: 'TOSCI',
-    href: 'https://www.tosci.go.tz/',
-    containerClassName: 'w-50 sm:w-58 md:w-68 lg:w-76',
-    imageClassName: 'scale-115',
+    name: 'Adam Smith International',
+    src: '/adam-smith-international-logo.png',
+    alt: 'Adam Smith International',
+    href: 'https://adamsmithinternational.com/',
+    containerClassName: 'w-40 sm:w-48 md:w-54 lg:w-60',
+  },
+  {
+    name: 'Ministry of Agriculture Kenya',
+    src: '/moa-kenya-logo.png',
+    alt: 'Ministry of Agriculture and Livestock Development Kenya',
+    href: 'https://kilimo.go.ke/',
+    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
+    imageClassName: 'scale-120',
   },
   {
     name: 'NASC',
     src: '/nasc-logo.svg',
     alt: 'NASC',
     href: 'https://seedcouncil.gov.ng/',
+    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
     imageClassName: 'scale-115',
   },
-  { name: 'TARI', src: '/tari-logo.png', alt: 'TARI', href: 'https://www.tari.go.tz/' },
-  { name: 'TASTA', src: '/tasta-logo-v2.png', alt: 'TASTA', href: 'https://tasta.or.tz/' },
-  { name: 'elan', src: '/elan-logo.png', alt: 'elan RDC', href: 'https://www.beamexchange.org/practice/programme-database/elan-rdc/' },
-  { name: 'NASTAG', src: '/nastag-logo.png', alt: 'NASTAG', href: 'https://nastag.org/' },
-  { name: 'USTA', src: '/usta-logo.png', alt: 'USTA', href: 'http://www.usta.ug/' },
+  {
+    name: 'IFDC',
+    src: '/ifdc-logo.png',
+    alt: 'IFDC',
+    href: 'https://ifdc.org/',
+    containerClassName: 'w-44 sm:w-52 md:w-60 lg:w-68',
+  },
+  {
+    name: 'elan',
+    src: '/elan-logo.png',
+    alt: 'elan RDC',
+    href: 'https://www.beamexchange.org/practice/programme-database/elan-rdc/',
+    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
+  },
+  {
+    name: 'KALRO',
+    src: '/kalro-logo.png',
+    alt: 'KALRO',
+    href: 'https://www.kalro.org/',
+    containerClassName: 'w-48 sm:w-56 md:w-66 lg:w-74',
+    imageClassName: 'scale-120',
+  },
+  {
+    name: 'Gatsby Africa',
+    src: '/gatsby-logo.png',
+    alt: 'Gatsby Africa',
+    href: 'https://www.gatsbyafrica.org.uk/',
+    containerClassName: 'w-36 sm:w-44 md:w-50 lg:w-56',
+  },
+  {
+    name: 'TOSCI',
+    src: '/tosci-logo.jpg',
+    alt: 'TOSCI',
+    href: 'https://www.tosci.go.tz/',
+    containerClassName: 'w-48 sm:w-56 md:w-66 lg:w-74',
+    imageClassName: 'scale-115',
+  },
+  {
+    name: 'USTA',
+    src: '/usta-logo.png',
+    alt: 'USTA',
+    href: 'http://www.usta.ug/',
+    containerClassName: 'w-26 sm:w-30 md:w-34 lg:w-38',
+  },
+  {
+    name: 'TASTA',
+    src: '/tasta-logo-v2.png',
+    alt: 'TASTA',
+    href: 'https://tasta.or.tz/',
+    containerClassName: 'w-44 sm:w-52 md:w-60 lg:w-68',
+  },
+  {
+    name: 'NASTAG',
+    src: '/nastag-logo.png',
+    alt: 'NASTAG',
+    href: 'https://nastag.org/',
+    containerClassName: 'w-38 sm:w-46 md:w-52 lg:w-58',
+  },
 ]
 
 const LogoItem = ({ logo }: { logo: ClientLogo }) => (
@@ -92,17 +184,17 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={logo.name}
-    className={`group flex items-center justify-center shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 h-16 sm:h-20 md:h-24 lg:h-28 transition-transform duration-300 hover:scale-105 ${
-      logo.containerClassName || 'w-44 sm:w-52 md:w-60 lg:w-64'
+    className={`group flex items-center justify-center shrink-0 mx-3 sm:mx-4 md:mx-6 lg:mx-8 h-14 sm:h-18 md:h-22 lg:h-24 transition-transform duration-300 hover:scale-105 ${
+      logo.containerClassName || 'w-36 sm:w-44 md:w-52 lg:w-60'
     }`}
   >
     <div className="relative w-full h-full flex items-center justify-center">
       <Image
         src={logo.src}
         alt={logo.alt}
-        width={260}
+        width={280}
         height={90}
-        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 260px"
+        sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, 280px"
         quality={85}
         className={`max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply ${
           logo.imageClassName || ''
