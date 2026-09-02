@@ -37,23 +37,23 @@ const row2Logos: ClientLogo[] = [
   { name: 'USTA', src: '/usta-logo.png', alt: 'USTA', href: 'http://www.usta.ug/' },
 ]
 
-const LogoCard = ({ logo }: { logo: ClientLogo }) => (
+const LogoItem = ({ logo }: { logo: ClientLogo }) => (
   <a
     href={logo.href}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={logo.name}
-    className="group flex items-center justify-center shrink-0 mx-2 sm:mx-3 md:mx-4 bg-white rounded-2xl md:rounded-3xl border border-stone-200/80 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08)] hover:border-primary-green/40 px-4 sm:px-6 md:px-8 py-3 sm:py-4 h-16 sm:h-20 md:h-24 w-36 sm:w-48 md:w-56 transition-all duration-300"
+    className="group flex items-center justify-center shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 h-16 sm:h-20 md:h-24 lg:h-28 w-44 sm:w-52 md:w-60 lg:w-64 transition-transform duration-300 hover:scale-105"
   >
     <div className="relative w-full h-full flex items-center justify-center">
       <Image
         src={logo.src}
         alt={logo.alt}
-        width={180}
-        height={64}
-        sizes="(max-width: 640px) 120px, (max-width: 768px) 150px, 180px"
-        quality={80}
-        className="max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+        width={240}
+        height={90}
+        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 240px"
+        quality={85}
+        className="max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply"
       />
     </div>
   </a>
@@ -99,12 +99,12 @@ export default function ClientLogos() {
       `}} />
 
       {/* Marquee Rows Container */}
-      <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 w-full">
+      <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
         {/* Top Row (Moves Left) */}
         <div className="flex w-full overflow-hidden marquee-container">
           <div className="flex items-center shrink-0 w-max animate-marquee-left py-2">
             {topRepeated.map((logo, index) => (
-              <LogoCard key={`top-${logo.name}-${index}`} logo={logo} />
+              <LogoItem key={`top-${logo.name}-${index}`} logo={logo} />
             ))}
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function ClientLogos() {
         <div className="flex w-full overflow-hidden marquee-container">
           <div className="flex items-center shrink-0 w-max animate-marquee-right py-2">
             {bottomRepeated.map((logo, index) => (
-              <LogoCard key={`bottom-${logo.name}-${index}`} logo={logo} />
+              <LogoItem key={`bottom-${logo.name}-${index}`} logo={logo} />
             ))}
           </div>
         </div>
