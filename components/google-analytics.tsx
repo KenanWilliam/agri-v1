@@ -11,7 +11,7 @@ declare global {
 }
 
 export default function GoogleAnalytics({ gaId }: { gaId?: string }) {
-  const measurementId = gaId || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  const measurementId = gaId || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-0ZV66F5FK6'
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.gtag) {
@@ -28,12 +28,14 @@ export default function GoogleAnalytics({ gaId }: { gaId?: string }) {
     }
   }, [])
 
-  if (!measurementId) return null
-
   return (
     <>
       <Script
-        id="google-consent-init"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+      />
+      <Script
+        id="google-analytics-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -53,20 +55,7 @@ export default function GoogleAnalytics({ gaId }: { gaId?: string }) {
               'ad_user_data': 'denied',
               'ad_personalization': 'denied'
             });
-          `,
-        }}
-      />
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-      />
-      <Script
-        id="google-analytics-config"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+
             gtag('js', new Date());
             gtag('config', '${measurementId}', {
               page_path: window.location.pathname,
