@@ -247,7 +247,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                     className={`item-content-${i} w-full overflow-hidden`}
                     style={{ height: i === 0 ? "50vh" : "0vh" }}
                   >
-                    <div className="w-full lg:w-2/5 flex flex-col justify-start pt-2 pb-4 pr-4 lg:pr-8 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto h-full">
+                    <div className="w-full lg:w-2/5 flex flex-col justify-start pt-2 pb-4 pr-4 lg:pr-8 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-hidden h-full">
                       <p>{item.desc}</p>
                       
                       {item.isGoal && (
