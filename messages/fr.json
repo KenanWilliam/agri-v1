@@ -62,36 +62,28 @@
     "goal_title": "Notre objectif",
     "goal_desc": "Pour accomplir cette mission, notre objectif est de devenir le conseiller et le fournisseur de services le plus respecté dans le secteur des semences végétales auprès des acteurs privés et publics et des principaux partenaires de développement, et de contribuer à la réalisation des objectifs de développement durable suivants : <br/><br/>",
     "expertise_title": "Notre expertise",
-    "expertise_desc": "We build resilient seed systems by supporting policy interventions, strengthening quality seed production, distribution, quality assurance, and improving farmer access to improved seed.",
+    "expertise_desc": "Nous renforçons la résilience des systèmes semenciers en appuyant les interventions politiques, en renforçant la production, la distribution et l'assurance qualité des semences de qualité, et en améliorant l'accès des agriculteurs aux semences améliorées.",
     "view_services": "Voir tous les services",
     "expertise_cards": [
       {
-        "title": "Seed Systems and Market Development",
-        "desc": "Tracking seed market performance and developing actionable recommendations from longitudinal seed data to support evidence-based decision-making and guide investment and policy, while analyzing value chains and business ecosystems to improve competitiveness, investment, and market access for producers and agribusinesses."
+        "title": "Développement des systèmes semenciers et des marchés",
+        "desc": "Suivre la performance du marché des semences et élaborer des recommandations concrètes à partir de données semencières longitudinales pour soutenir la prise de décision fondée sur des données probantes et guider les investissements et les politiques, tout en analysant les chaînes de valeur et les écosystèmes d'affaires pour améliorer la compétitivité, les investissements et l'accès au marché pour les producteurs et les entreprises agroalimentaires."
       },
       {
-        "title": "Policy and Regulatory Advisory",
-        "desc": "Providing technical support for policy development, regulatory reforms, institutional governance, and implementation of seed industry standards and guidelines."
+        "title": "Conseil en politiques et réglementation",
+        "desc": "Fournir un appui technique pour l'élaboration de politiques, les réformes réglementaires, la gouvernance institutionnelle et la mise en œuvre des normes et lignes directrices du secteur semencier."
       },
       {
-        "title": "Capacity Building",
-        "desc": "Strengthening the skills and institutional capacity of governments, research institutions, seed companies, extension services, agrodealers and farmer organizations through training and technical assistance."
+        "title": "Renforcement des capacités",
+        "desc": "Renforcer les compétences et la capacité institutionnelle des gouvernements, des instituts de recherche, des entreprises semencières, des services de vulgarisation, des distributeurs d'intrants et des organisations paysannes grâce à des formations et à une assistance technique."
       },
       {
-        "title": "Strategic Advisory, Monitoring, Evaluation and Learning (MEL)",
-        "desc": "Conducting thematic studies, assessments, feasibility analyses, and strategic planning to support investment decisions and agricultural transformation programs. Designing comprehensive MEL frameworks and learning processes to measure project performance, outcomes, and impact."
-      },
-      {
-        "title": "Digital Platforms",
-        "desc": "Designing, developing, and implementing web and mobile platforms, databases, dashboards, and information systems that improve data management, service delivery, collaboration, and decision-making across the seed sector."
+        "title": "Conseil stratégique, suivi, évaluation et apprentissage (MEL)",
+        "desc": "Réaliser des études thématiques, des évaluations, des analyses de faisabilité et des planifications stratégiques pour éclairer les décisions d'investissement et les programmes de transformation agricole. Concevoir des cadres de suivi-évaluation et des processus d'apprentissage complets pour mesurer la performance, les résultats et l'impact des projets."
       },
       {
         "title": "Plateformes numériques",
-        "desc": "Concevoir, développer et mettre en œuvre des plates-formes Web et mobiles, des bases de données, des tableaux de bord et des systèmes d'information qui améliorent la gestion des données, la prestation de services, la collaboration et la prise de décision dans l'ensemble du secteur semencier."
-      },
-      {
-        "title": "Suivi, évaluation et apprentissage (MEL)",
-        "desc": "Concevoir des cadres MEL, des indicateurs, des systèmes de collecte de données et des processus d'apprentissage pour mesurer les performances, les résultats et l'impact du projet."
+        "desc": "Concevoir, développer et mettre en œuvre des plateformes Web et mobiles, des bases de données, des tableaux de bord et des systèmes d'information qui améliorent la gestion des données, la prestation de services, la collaboration et la prise de décision dans l'ensemble du secteur semencier."
       }
     ],
     "values_title": "Nos valeurs fondamentales",

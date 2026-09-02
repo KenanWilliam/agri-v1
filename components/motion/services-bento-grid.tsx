@@ -55,48 +55,43 @@ function BentoCard({ pillar }: BentoCardProps) {
 export default function ServicesBentoGrid() {
   const t = useTranslations('About')
 
-  const pillars: ServicePillar[] = [
+  const cardLayouts = [
     {
-      key: '0',
-      title: t('expertise_cards.0.title'),
-      desc: t('expertise_cards.0.desc'),
       colSpanMd: 'md:col-span-2',
       colSpanLg: 'lg:col-span-7',
       route: '/our-work/project-implementation',
     },
     {
-      key: '1',
-      title: t('expertise_cards.1.title'),
-      desc: t('expertise_cards.1.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-5',
       route: '/our-work/client-advisory',
     },
     {
-      key: '2',
-      title: t('expertise_cards.2.title'),
-      desc: t('expertise_cards.2.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
       route: '/our-work/capacity-building',
     },
     {
-      key: '3',
-      title: t('expertise_cards.3.title'),
-      desc: t('expertise_cards.3.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
       route: '/our-work/technical-studies',
     },
     {
-      key: '4',
-      title: t('expertise_cards.4.title'),
-      desc: t('expertise_cards.4.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
       route: '/our-work/digital-platforms',
     },
   ]
+
+  const rawCards = (t.raw('expertise_cards') as Array<{ title: string; desc: string }>) || []
+  const pillars: ServicePillar[] = rawCards.slice(0, 5).map((card, idx) => ({
+    key: String(idx),
+    title: card.title,
+    desc: card.desc,
+    colSpanMd: cardLayouts[idx]?.colSpanMd || 'md:col-span-1',
+    colSpanLg: cardLayouts[idx]?.colSpanLg || 'lg:col-span-4',
+    route: cardLayouts[idx]?.route || '/our-work',
+  }))
 
   return (
     <section className="w-full py-12 md:py-16 lg:py-20 2xl:py-24 bg-[#F8F6F0] relative border-t border-stone-200/60 overflow-hidden">
