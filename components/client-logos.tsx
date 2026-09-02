@@ -184,7 +184,7 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={logo.name}
-    className={`group flex items-center justify-center shrink-0 mx-3 sm:mx-4 md:mx-6 lg:mx-8 h-14 sm:h-18 md:h-22 lg:h-24 transition-transform duration-300 hover:scale-105 ${
+    className={`group flex items-center justify-center shrink-0 mx-6 sm:mx-8 md:mx-10 lg:mx-12 xl:mx-14 h-14 sm:h-18 md:h-22 lg:h-24 transition-transform duration-300 hover:scale-105 ${
       logo.containerClassName || 'w-36 sm:w-44 md:w-52 lg:w-60'
     }`}
   >
