@@ -153,22 +153,26 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
     // We add symmetric "dead zones" (0.5s total gap) between transitions.
     // This requires the user to intentionally scroll a bit before the next item starts opening.
     tl.addLabel("item0", 0)
-      .to('.item-content-0', { height: "0px", marginTop: "0px", duration: 1 }, "item0+=0.25")
+      .to('.item-content-0', { height: "0vh", duration: 1 }, "item0+=0.25")
+      .to('.item-image-0', { opacity: 0, duration: 0.5 }, "item0+=0.25")
       .to('.item-title-0', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item0+=0.25")
       .to('.dot-0', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item0+=0.25")
       
-      .to('.item-content-1', { height: "clamp(400px, 58vh, 560px)", marginTop: "-68px", duration: 1 }, "item0+=0.25")
+      .to('.item-content-1', { height: "50vh", duration: 1 }, "item0+=0.25")
+      .to('.item-image-1', { opacity: 1, duration: 0.5 }, "item0+=0.25")
       .to('.item-title-1', { color: "#3ab44a", duration: 1 }, "item0+=0.25")
       .to('.dot-1', { backgroundColor: "#3ab44a", duration: 1 }, "item0+=0.25")
       
       // Label in the exact middle of the dead zone
       .add("item1", "item0+=1.5")
       
-      .to('.item-content-1', { height: "0px", marginTop: "0px", duration: 1 }, "item1+=0.25")
+      .to('.item-content-1', { height: "0vh", duration: 1 }, "item1+=0.25")
+      .to('.item-image-1', { opacity: 0, duration: 0.5 }, "item1+=0.25")
       .to('.item-title-1', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item1+=0.25")
       .to('.dot-1', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item1+=0.25")
       
-      .to('.item-content-2', { height: "clamp(400px, 58vh, 560px)", marginTop: "-68px", duration: 1 }, "item1+=0.25")
+      .to('.item-content-2', { height: "50vh", duration: 1 }, "item1+=0.25")
+      .to('.item-image-2', { opacity: 1, duration: 0.5 }, "item1+=0.25")
       .to('.item-title-2', { color: "#3ab44a", duration: 1 }, "item1+=0.25")
       .to('.dot-2', { backgroundColor: "#3ab44a", duration: 1 }, "item1+=0.25")
       
@@ -225,12 +229,12 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                 <div 
                   key={item.id} 
                   className={cn(
-                    "border-t border-deep-forest/20 flex flex-col"
+                    "border-t border-deep-forest/20 flex flex-col relative"
                   )}
                 >
                   <h2 
                     onClick={() => scrollToItem(i)}
-                    className={`item-title-${i} group font-serif pt-2 pb-1 lg:pt-2.5 lg:pb-1.5 cursor-pointer hover:opacity-80 transition-opacity z-20 relative w-full lg:w-2/5`}
+                    className={`item-title-${i} group font-serif py-3 lg:py-3.5 cursor-pointer hover:opacity-80 transition-opacity z-20 relative w-full lg:w-2/5`}
                     style={{ 
                       color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)",
                       fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)'
@@ -241,50 +245,45 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                   
                   <div 
                     className={`item-content-${i} w-full overflow-hidden`}
-                    style={{ height: i === 0 ? "clamp(400px, 58vh, 560px)" : "0px", marginTop: i === 0 ? "-68px" : "0px" }}
+                    style={{ height: i === 0 ? "50vh" : "0vh" }}
                   >
-                    <div className="flex flex-row gap-8 lg:gap-12 pb-3 pt-0 w-full h-full" style={{ height: 'clamp(400px, 58vh, 560px)' }}>
-                      {/* Text Side */}
-                      <div 
-                        aria-live="polite"
-                        className="w-2/5 flex flex-col justify-start pt-16 lg:pt-18 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto"
-                      >
-                        <p>{item.desc}</p>
-                        
-                        {item.isGoal && (
-                          <div className="mt-2 lg:mt-4 xl:mt-6">
-                            <div className="grid grid-cols-3 gap-1.5 lg:gap-3 xl:gap-4 w-3/5 lg:w-1/2 xl:w-3/5 mx-auto">
-                              {[1, 2, 3, 5, 8, 13].map((num) => (
-                                <div key={num} className="w-full aspect-square relative">
-                                  <Image
-                                    src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
-                                    alt={`SDG ${num}`}
-                                    fill
-                                    sizes="(max-width: 768px) 33vw, 20vw"
-                                    className="object-contain shadow-md bg-white"
-                                    unoptimized={locale === 'fr'}
-                                  />
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                    <div className="w-full lg:w-2/5 flex flex-col justify-start pt-2 pb-4 pr-4 lg:pr-8 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto h-full">
+                      <p>{item.desc}</p>
                       
-                      {/* Image Side */}
-                      <div 
-                        className="w-3/5 relative h-full overflow-hidden shadow-sm"
-                      >
-                        <Image 
-                          src={item.image} 
-                          alt={item.title} 
-                          fill 
-                          sizes="60vw"
-                          className="object-cover object-center" 
-                          priority={i === 0}
-                        />
-                      </div>
+                      {item.isGoal && (
+                        <div className="mt-3 lg:mt-6">
+                          <div className="grid grid-cols-3 gap-1.5 lg:gap-3 w-4/5 lg:w-3/4 mx-auto">
+                            {[1, 2, 3, 5, 8, 13].map((num) => (
+                              <div key={num} className="w-full aspect-square relative">
+                                <Image
+                                  src={locale === 'fr' ? `/SDG-images/fr/${num}.webp` : `/SDGs/SDG-${num}.svg`}
+                                  alt={`SDG ${num}`}
+                                  fill
+                                  sizes="(max-width: 768px) 33vw, 20vw"
+                                  className="object-contain shadow-md bg-white"
+                                  unoptimized={locale === 'fr'}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
+                  </div>
+
+                  {/* Full-Height Image spanning from top of title row to bottom of content */}
+                  <div 
+                    className={`item-image-${i} absolute top-0 right-0 w-3/5 h-full overflow-hidden pointer-events-none shadow-sm`}
+                    style={{ opacity: i === 0 ? 1 : 0 }}
+                  >
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      fill 
+                      sizes="60vw"
+                      className="object-cover object-center" 
+                      priority={i === 0}
+                    />
                   </div>
                 </div>
                 )
