@@ -39,15 +39,15 @@ const row1Logos: ClientLogo[] = [
     src: '/kephis-logo.png',
     alt: 'KEPHIS',
     href: 'https://www.kephis.org/',
-    containerClassName: 'w-48 sm:w-56 md:w-66 lg:w-74',
-    imageClassName: 'scale-120',
+    containerClassName: 'w-36 sm:w-44 md:w-52 lg:w-60',
+    imageClassName: 'scale-115',
   },
   {
     name: 'TARI',
     src: '/tari-logo.png',
     alt: 'TARI',
     href: 'https://www.tari.go.tz/',
-    containerClassName: 'w-24 sm:w-28 md:w-32 lg:w-36',
+    containerClassName: 'w-20 sm:w-22 md:w-24 lg:w-26',
   },
   {
     name: 'CIMMYT',
