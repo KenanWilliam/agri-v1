@@ -82,6 +82,8 @@ import ScrollToTop from '@/components/scroll-to-top'
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import LanguageSwitchProvider from '@/components/language-switch-provider'
+import GoogleAnalytics from '@/components/google-analytics'
+import CookieToast from '@/components/cookie-toast'
 
 export default async function RootLayout({
   children,
@@ -99,12 +101,14 @@ export default async function RootLayout({
       className={`${playfairDisplay.variable} ${dmSans.variable} ${bebasNeue.variable} ${spaceGrotesk.variable} bg-background`}
     >
       <body suppressHydrationWarning className="font-dm-sans antialiased text-foreground">
+        <GoogleAnalytics />
         <NextIntlClientProvider messages={messages}>
           <LanguageSwitchProvider>
             <ScrollToTop />
             <Header />
             {children}
             <Footer />
+            <CookieToast />
           </LanguageSwitchProvider>
         </NextIntlClientProvider>
       </body>

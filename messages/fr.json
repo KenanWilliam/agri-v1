@@ -1234,6 +1234,13 @@
     "clients_title": "À qui servent nos études",
     "funded_by": "Financé par l'USAID via RTI International"
   },
+  "CookieToast": {
+    "title": "Nous respectons votre vie privée",
+    "desc": "Nous utilisons des cookies d'analyse pour comprendre comment les visiteurs interagissent avec notre site web et nous aider à améliorer votre expérience.",
+    "privacy_policy": "Politique de confidentialité",
+    "accept": "Tout accepter",
+    "decline": "Refuser"
+  },
   "Metadata": {
     "about_title": "À propos de nous",
     "about_desc": "Découvrez Agri Experience, notre mission, nos valeurs et notre engagement à transformer les chaînes de valeur agricoles en Afrique subsaharienne.",

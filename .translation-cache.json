@@ -1279,5 +1279,12 @@
     "deep_dive": "Deep Dive",
     "full_report": "Full {country} report",
     "work_done": "Work Done"
+  },
+  "CookieToast": {
+    "title": "We value your privacy",
+    "desc": "We use analytics cookies to understand how visitors interact with our website and help us improve your experience.",
+    "privacy_policy": "Privacy Policy",
+    "accept": "Accept All",
+    "decline": "Decline"
   }
 }
