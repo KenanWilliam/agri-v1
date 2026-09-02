@@ -153,22 +153,22 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
     // We add symmetric "dead zones" (0.5s total gap) between transitions.
     // This requires the user to intentionally scroll a bit before the next item starts opening.
     tl.addLabel("item0", 0)
-      .to('.item-content-0', { height: "0px", duration: 1 }, "item0+=0.25")
+      .to('.item-content-0', { height: "0px", marginTop: "0px", duration: 1 }, "item0+=0.25")
       .to('.item-title-0', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item0+=0.25")
       .to('.dot-0', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item0+=0.25")
       
-      .to('.item-content-1', { height: "clamp(360px, 52vh, 520px)", duration: 1 }, "item0+=0.25")
+      .to('.item-content-1', { height: "clamp(400px, 58vh, 560px)", marginTop: "-68px", duration: 1 }, "item0+=0.25")
       .to('.item-title-1', { color: "#3ab44a", duration: 1 }, "item0+=0.25")
       .to('.dot-1', { backgroundColor: "#3ab44a", duration: 1 }, "item0+=0.25")
       
       // Label in the exact middle of the dead zone
       .add("item1", "item0+=1.5")
       
-      .to('.item-content-1', { height: "0px", duration: 1 }, "item1+=0.25")
+      .to('.item-content-1', { height: "0px", marginTop: "0px", duration: 1 }, "item1+=0.25")
       .to('.item-title-1', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item1+=0.25")
       .to('.dot-1', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item1+=0.25")
       
-      .to('.item-content-2', { height: "clamp(360px, 52vh, 520px)", duration: 1 }, "item1+=0.25")
+      .to('.item-content-2', { height: "clamp(400px, 58vh, 560px)", marginTop: "-68px", duration: 1 }, "item1+=0.25")
       .to('.item-title-2', { color: "#3ab44a", duration: 1 }, "item1+=0.25")
       .to('.dot-2', { backgroundColor: "#3ab44a", duration: 1 }, "item1+=0.25")
       
@@ -230,7 +230,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                 >
                   <h2 
                     onClick={() => scrollToItem(i)}
-                    className={`item-title-${i} group font-serif pt-2 pb-1 lg:pt-2.5 lg:pb-1.5 cursor-pointer hover:opacity-80 transition-opacity`}
+                    className={`item-title-${i} group font-serif pt-2 pb-1 lg:pt-2.5 lg:pb-1.5 cursor-pointer hover:opacity-80 transition-opacity z-20 relative w-full lg:w-2/5`}
                     style={{ 
                       color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)",
                       fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)'
@@ -241,13 +241,13 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                   
                   <div 
                     className={`item-content-${i} w-full overflow-hidden`}
-                    style={{ height: i === 0 ? "clamp(360px, 52vh, 520px)" : "0px" }}
+                    style={{ height: i === 0 ? "clamp(400px, 58vh, 560px)" : "0px", marginTop: i === 0 ? "-68px" : "0px" }}
                   >
-                    <div className="flex flex-row gap-8 lg:gap-12 pb-3 pt-0 w-full h-full" style={{ height: 'clamp(360px, 52vh, 520px)' }}>
+                    <div className="flex flex-row gap-8 lg:gap-12 pb-3 pt-0 w-full h-full" style={{ height: 'clamp(400px, 58vh, 560px)' }}>
                       {/* Text Side */}
                       <div 
                         aria-live="polite"
-                        className="w-2/5 flex flex-col justify-start pt-2 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto"
+                        className="w-2/5 flex flex-col justify-start pt-16 lg:pt-18 text-sm lg:text-base xl:text-lg text-charcoal/80 leading-snug lg:leading-normal font-normal overflow-y-auto"
                       >
                         <p>{item.desc}</p>
                         
@@ -273,14 +273,15 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                       
                       {/* Image Side */}
                       <div 
-                        className="w-3/5 relative h-full overflow-hidden rounded-2xl shadow-sm"
+                        className="w-3/5 relative h-full overflow-hidden shadow-sm"
                       >
                         <Image 
                           src={item.image} 
                           alt={item.title} 
                           fill 
                           sizes="60vw"
-                          className="object-cover" 
+                          className="object-cover object-center" 
+                          priority={i === 0}
                         />
                       </div>
                     </div>
@@ -348,7 +349,7 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
                     >
                       <div className="pb-8 pt-2 flex flex-col gap-8">
                         
-                        <div className="relative w-full h-72 sm:h-80 rounded-3xl overflow-hidden shadow-md">
+                        <div className="relative w-full h-72 sm:h-80 overflow-hidden shadow-md">
                           <Image 
                             src={item.image} 
                             alt={item.title} 
