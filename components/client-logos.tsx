@@ -149,7 +149,7 @@ const row2Logos: ClientLogo[] = [
   },
   {
     name: 'TOSCI',
-    src: '/tosci-logo.jpg',
+    src: '/tosci-logo.png',
     alt: 'TOSCI',
     href: 'https://www.tosci.go.tz/',
     containerClassName: 'w-48 sm:w-56 md:w-66 lg:w-74',
