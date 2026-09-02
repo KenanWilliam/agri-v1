@@ -9,8 +9,7 @@ export interface ServicePillar {
   key: string
   title: string
   desc: string
-  colSpanMd: string
-  colSpanLg: string
+  gridClass: string
   route: string
 }
 
@@ -21,7 +20,7 @@ interface BentoCardProps {
 function BentoCard({ pillar }: BentoCardProps) {
   return (
     <div
-      className={`group relative rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden flex flex-col justify-between h-full p-5 sm:p-7 lg:p-7 xl:p-9 bg-white border border-stone-200/80 text-deep-forest shadow-sm hover:shadow-xl hover:border-primary-green/30 hover:-translate-y-1.5 transition-all duration-300 ${pillar.colSpanMd} ${pillar.colSpanLg}`}
+      className={`group relative rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden flex flex-col justify-between h-full p-5 sm:p-7 lg:p-7 xl:p-9 bg-white border border-stone-200/80 text-deep-forest shadow-sm hover:shadow-xl hover:border-primary-green/30 hover:-translate-y-1.5 transition-all duration-300 ${pillar.gridClass}`}
     >
       {/* Content */}
       <div className="space-y-3">
@@ -57,28 +56,23 @@ export default function ServicesBentoGrid() {
 
   const cardLayouts = [
     {
-      colSpanMd: 'md:col-span-2',
-      colSpanLg: 'lg:col-span-7',
+      gridClass: 'md:col-span-2',
       route: '/our-work/project-implementation',
     },
     {
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-5',
+      gridClass: 'md:col-span-2',
       route: '/our-work/client-advisory',
     },
     {
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-4',
+      gridClass: 'md:col-span-2',
       route: '/our-work/capacity-building',
     },
     {
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-4',
+      gridClass: 'md:col-span-2',
       route: '/our-work/technical-studies',
     },
     {
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-4',
+      gridClass: 'md:col-span-2 md:col-start-2',
       route: '/our-work/digital-platforms',
     },
   ]
@@ -88,8 +82,7 @@ export default function ServicesBentoGrid() {
     key: String(idx),
     title: card.title,
     desc: card.desc,
-    colSpanMd: cardLayouts[idx]?.colSpanMd || 'md:col-span-1',
-    colSpanLg: cardLayouts[idx]?.colSpanLg || 'lg:col-span-4',
+    gridClass: cardLayouts[idx]?.gridClass || 'md:col-span-2',
     route: cardLayouts[idx]?.route || '/our-work',
   }))
 
@@ -120,8 +113,8 @@ export default function ServicesBentoGrid() {
           </Link>
         </div>
 
-        {/* Bento Grid with stretch heights and perfectly aligned row baselines */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+        {/* 2-Column Layout with the last unpaired card centered */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6 items-stretch">
           {pillars.map((pillar) => (
             <BentoCard key={pillar.key} pillar={pillar} />
           ))}
