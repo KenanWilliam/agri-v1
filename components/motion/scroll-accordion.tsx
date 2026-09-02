@@ -157,7 +157,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
       .to('.item-title-0', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item0+=0.25")
       .to('.dot-0', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item0+=0.25")
       
-      .to('.item-content-1', { height: "clamp(300px, 46vh, 420px)", duration: 1 }, "item0+=0.25")
+      .to('.item-content-1', { height: "clamp(360px, 52vh, 520px)", duration: 1 }, "item0+=0.25")
       .to('.item-title-1', { color: "#3ab44a", duration: 1 }, "item0+=0.25")
       .to('.dot-1', { backgroundColor: "#3ab44a", duration: 1 }, "item0+=0.25")
       
@@ -168,7 +168,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
       .to('.item-title-1', { color: "rgba(26,77,46,0.5)", duration: 1 }, "item1+=0.25")
       .to('.dot-1', { backgroundColor: "rgba(28,43,34,0.2)", duration: 1 }, "item1+=0.25")
       
-      .to('.item-content-2', { height: "clamp(300px, 46vh, 420px)", duration: 1 }, "item1+=0.25")
+      .to('.item-content-2', { height: "clamp(360px, 52vh, 520px)", duration: 1 }, "item1+=0.25")
       .to('.item-title-2', { color: "#3ab44a", duration: 1 }, "item1+=0.25")
       .to('.dot-2', { backgroundColor: "#3ab44a", duration: 1 }, "item1+=0.25")
       
@@ -217,7 +217,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
             ))}
           </div>
 
-          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-8 lg:py-12 justify-center">
+          <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 flex flex-col h-full py-5 lg:py-7 justify-center">
 
             <div className="w-full flex flex-col">
               {items.map((item, i) => {
@@ -230,7 +230,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                 >
                   <h2 
                     onClick={() => scrollToItem(i)}
-                    className={`item-title-${i} group font-serif py-3.5 lg:py-4 cursor-pointer hover:opacity-80 transition-opacity`}
+                    className={`item-title-${i} group font-serif pt-2 pb-1 lg:pt-2.5 lg:pb-1.5 cursor-pointer hover:opacity-80 transition-opacity`}
                     style={{ 
                       color: i === 0 ? "#3ab44a" : "rgba(26,77,46,0.5)",
                       fontSize: 'clamp(1.875rem, 1.4rem + 2.4vw, 4.5rem)'
@@ -241,9 +241,9 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                   
                   <div 
                     className={`item-content-${i} w-full overflow-hidden`}
-                    style={{ height: i === 0 ? "clamp(300px, 46vh, 420px)" : "0px" }}
+                    style={{ height: i === 0 ? "clamp(360px, 52vh, 520px)" : "0px" }}
                   >
-                    <div className="flex flex-row gap-8 lg:gap-12 pb-4 pt-2 w-full h-full" style={{ height: 'clamp(300px, 46vh, 420px)' }}>
+                    <div className="flex flex-row gap-8 lg:gap-12 pb-3 pt-0 w-full h-full" style={{ height: 'clamp(360px, 52vh, 520px)' }}>
                       {/* Text Side */}
                       <div 
                         aria-live="polite"
@@ -273,7 +273,7 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                       
                       {/* Image Side */}
                       <div 
-                        className="w-3/5 relative h-full overflow-hidden"
+                        className="w-3/5 relative h-full overflow-hidden rounded-2xl shadow-sm"
                       >
                         <Image 
                           src={item.image} 
@@ -348,7 +348,7 @@ function MobileFallbackAccordion({ title, items }: { title: string, items: any[]
                     >
                       <div className="pb-8 pt-2 flex flex-col gap-8">
                         
-                        <div className="relative w-full h-60 rounded-3xl overflow-hidden shadow-md">
+                        <div className="relative w-full h-72 sm:h-80 rounded-3xl overflow-hidden shadow-md">
                           <Image 
                             src={item.image} 
                             alt={item.title} 
