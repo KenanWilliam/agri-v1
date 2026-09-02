@@ -271,9 +271,9 @@ function DesktopStickyAccordion({ title, items }: { title: string, items: any[] 
                     </div>
                   </div>
 
-                  {/* Full-Height Image spanning from top of title row to bottom of content */}
+                  {/* Full-Height Image spanning from below separator line to bottom of content */}
                   <div 
-                    className={`item-image-${i} absolute top-0 right-0 w-3/5 h-full overflow-hidden pointer-events-none shadow-sm`}
+                    className={`item-image-${i} absolute top-3 lg:top-4.5 bottom-2 right-0 w-3/5 overflow-hidden pointer-events-none shadow-sm`}
                     style={{ opacity: i === 0 ? 1 : 0 }}
                   >
                     <Image 
