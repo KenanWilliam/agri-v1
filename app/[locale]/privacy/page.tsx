@@ -83,17 +83,6 @@ export default function PrivacyPage() {
               We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.
             </p>
           </section>
-
-          <section className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-deep-forest">6. Contact Us</h2>
-            <p>
-              If you have questions or comments about this Privacy Policy, please contact us at:
-            </p>
-            <div className="bg-white border border-black/5 rounded-2xl p-6 inline-block space-y-2">
-              <p className="font-medium text-deep-forest">Agri Experience</p>
-              <p>Email: <a href="mailto:info@agriexperience.com" className="text-primary-green hover:underline">info@agriexperience.com</a></p>
-            </div>
-          </section>
         </div>
       </div>
     </main>
