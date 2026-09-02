@@ -62,28 +62,28 @@
     "goal_title": "Notre objectif",
     "goal_desc": "Pour accomplir cette mission, notre objectif est de devenir le conseiller et le fournisseur de services le plus respecté dans le secteur des semences végétales auprès des acteurs privés et publics et des principaux partenaires de développement, et de contribuer à la réalisation des objectifs de développement durable suivants : <br/><br/>",
     "expertise_title": "Notre expertise",
-    "expertise_desc": "Nous nous concentrons sur la conception et le renforcement de systèmes semenciers résilients par le biais de politiques, d'analyses de marché, de production de semences, d'assurance qualité et d'accès des agriculteurs à des semences améliorées sur un changement systémique positif et durable avec une approche hautement personnalisée pour chaque mission.",
+    "expertise_desc": "We build resilient seed systems by supporting policy interventions, strengthening quality seed production, distribution, quality assurance, and improving farmer access to improved seed.",
     "view_services": "Voir tous les services",
     "expertise_cards": [
       {
-        "title": "Développement des systèmes de marché",
-        "desc": "Analyser les marchés des semences, les chaînes de valeur et les écosystèmes commerciaux pour améliorer la compétitivité, les investissements et l'accès au marché pour les producteurs et les entreprises agroalimentaires."
+        "title": "Seed Systems and Market Development",
+        "desc": "Tracking seed market performance and developing actionable recommendations from longitudinal seed data to support evidence-based decision-making and guide investment and policy, while analyzing value chains and business ecosystems to improve competitiveness, investment, and market access for producers and agribusinesses."
       },
       {
-        "title": "Analyse des systèmes de semences",
-        "desc": "Générer des informations exploitables à partir des données des systèmes semenciers grâce à l'analyse, à la visualisation, aux prévisions et à la mesure des performances pour soutenir une prise de décision fondée sur des preuves, surveiller les performances du secteur et orienter les investissements et les politiques."
+        "title": "Policy and Regulatory Advisory",
+        "desc": "Providing technical support for policy development, regulatory reforms, institutional governance, and implementation of seed industry standards and guidelines."
       },
       {
-        "title": "Conseil et formulation en matière de politique et de réglementation",
-        "desc": "Fournir un soutien technique pour l’élaboration de politiques, les réformes réglementaires, le renforcement institutionnel et la mise en œuvre des normes et directives de l’industrie semencière."
+        "title": "Capacity Building",
+        "desc": "Strengthening the skills and institutional capacity of governments, research institutions, seed companies, extension services, agrodealers and farmer organizations through training and technical assistance."
       },
       {
-        "title": "Renforcement des capacités",
-        "desc": "Renforcer les compétences et les capacités institutionnelles des gouvernements, des instituts de recherche, des entreprises semencières, des services de vulgarisation, des distributeurs agricoles et des organisations d'agriculteurs par le biais de la formation et de l'assistance technique."
+        "title": "Strategic Advisory, Monitoring, Evaluation and Learning (MEL)",
+        "desc": "Conducting thematic studies, assessments, feasibility analyses, and strategic planning to support investment decisions and agricultural transformation programs. Designing comprehensive MEL frameworks and learning processes to measure project performance, outcomes, and impact."
       },
       {
-        "title": "Recherche et conseil stratégique",
-        "desc": "Réaliser des études, des évaluations, des analyses de faisabilité et une planification stratégique pour soutenir les décisions d'investissement et les programmes de transformation agricole."
+        "title": "Digital Platforms",
+        "desc": "Designing, developing, and implementing web and mobile platforms, databases, dashboards, and information systems that improve data management, service delivery, collaboration, and decision-making across the seed sector."
       },
       {
         "title": "Plateformes numériques",

@@ -70,7 +70,7 @@ export default function ServicesBentoGrid() {
       desc: t('expertise_cards.1.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-5',
-      route: '/our-work/technical-studies',
+      route: '/our-work/client-advisory',
     },
     {
       key: '2',
@@ -78,7 +78,7 @@ export default function ServicesBentoGrid() {
       desc: t('expertise_cards.2.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
-      route: '/our-work/client-advisory',
+      route: '/our-work/capacity-building',
     },
     {
       key: '3',
@@ -86,7 +86,7 @@ export default function ServicesBentoGrid() {
       desc: t('expertise_cards.3.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
-      route: '/our-work/capacity-building',
+      route: '/our-work/technical-studies',
     },
     {
       key: '4',
@@ -94,23 +94,7 @@ export default function ServicesBentoGrid() {
       desc: t('expertise_cards.4.desc'),
       colSpanMd: 'md:col-span-1',
       colSpanLg: 'lg:col-span-4',
-      route: '/our-work/client-advisory',
-    },
-    {
-      key: '5',
-      title: t('expertise_cards.5.title'),
-      desc: t('expertise_cards.5.desc'),
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-6',
       route: '/our-work/digital-platforms',
-    },
-    {
-      key: '6',
-      title: t('expertise_cards.6.title'),
-      desc: t('expertise_cards.6.desc'),
-      colSpanMd: 'md:col-span-1',
-      colSpanLg: 'lg:col-span-6',
-      route: '/our-work/technical-studies',
     },
   ]
 

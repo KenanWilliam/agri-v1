@@ -47,7 +47,7 @@
     "goal_title": "Our Goal",
     "goal_desc": "To accomplish this mission, our goal is to become the most respected advisor and service provider in the crop seed sector to private and public stakeholders and major development partners, and contribute towards achieving the following Sustainable Development Goals: <br/><br/>",
     "expertise_title": "Our Expertise",
-    "expertise_desc": "We focus on designing and strengthening resilient seed systems through policy, market analysis, seed production, quality assurance, and farmer access to improved seed on positive, sustainable systemic change with a highly customized approach for each assignment.",
+    "expertise_desc": "We build resilient seed systems by supporting policy interventions, strengthening quality seed production, distribution, quality assurance, and improving farmer access to improved seed.",
     "view_services": "View All Services",
     "feat1_title": "Systemic Change Focus",
     "feat1_desc": "We do not accept assignments that simply check a client's project or task box. We prioritize long-term, system-wide improvement.",
@@ -67,24 +67,24 @@
     "subtitle": "Transforming agricultural systems and empowering farmers across sub-Saharan Africa.",
     "expertise_cards": {
       "0": {
-        "title": "Market Systems Development",
-        "desc": "Analyzing seed markets, value chains, and business ecosystems to improve competitiveness, investment, and market access for producers and agribusinesses."
+        "title": "Seed Systems and Market Development",
+        "desc": "Tracking seed market performance and developing actionable recommendations from longitudinal seed data to support evidence-based decision-making and guide investment and policy, while analyzing value chains and business ecosystems to improve competitiveness, investment, and market access for producers and agribusinesses."
       },
       "1": {
-        "title": "Seed Systems Analytics",
-        "desc": "Generating actionable insights from seed systems data through analytics, visualization, forecasting, and performance measurement to support evidence-based decision-making, monitor sector performance, and guide investment and policy."
+        "title": "Policy and Regulatory Advisory",
+        "desc": "Providing technical support for policy development, regulatory reforms, institutional governance, and implementation of seed industry standards and guidelines."
       },
       "2": {
-        "title": "Policy and Regulatory Advisory and Formulation",
-        "desc": "Providing technical support for policy development, regulatory reforms, institutional strengthening, and implementation of seed industry standards and guidelines."
-      },
-      "3": {
         "title": "Capacity Building",
         "desc": "Strengthening the skills and institutional capacity of governments, research institutions, seed companies, extension services, agrodealers and farmer organizations through training and technical assistance."
       },
+      "3": {
+        "title": "Strategic Advisory, Monitoring, Evaluation and Learning (MEL)",
+        "desc": "Conducting thematic studies, assessments, feasibility analyses, and strategic planning to support investment decisions and agricultural transformation programs. Designing comprehensive MEL frameworks and learning processes to measure project performance, outcomes, and impact."
+      },
       "4": {
-        "title": "Research and Strategic Advisory",
-        "desc": "Conducting studies, assessments, feasibility analyses, and strategic planning to support investment decisions and agricultural transformation programs."
+        "title": "Digital Platforms",
+        "desc": "Designing, developing, and implementing web and mobile platforms, databases, dashboards, and information systems that improve data management, service delivery, collaboration, and decision-making across the seed sector."
       },
       "5": {
         "title": "Digital Platforms",
