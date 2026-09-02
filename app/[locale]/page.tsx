@@ -148,7 +148,7 @@ export default function Home() {
     }
   ]
 
-  const UNIFORM_CARD_WIDTH = "w-[270px] lg:w-[310px] min-[1440px]:w-[390px] 2xl:w-[430px]"
+  const UNIFORM_CARD_WIDTH = "w-[290px] lg:w-[330px] min-[1440px]:w-[410px] 2xl:w-[450px]"
 
   const agriCards = [
     { text: tAgri('card_3'), width: UNIFORM_CARD_WIDTH },
@@ -294,16 +294,16 @@ export default function Home() {
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-4 lg:py-6 h-[clamp(320px,50vh,460px)]">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-3 lg:py-4 h-[clamp(370px,56vh,540px)]">
                       {agriCards.map((item, idx) => (
                         <div
                           key={idx}
-                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-5.5 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-all duration-300 group relative overflow-hidden flex flex-col justify-center shadow-sm hover:shadow-md`}
+                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-all duration-300 group relative overflow-hidden flex flex-col justify-center shadow-sm hover:shadow-md`}
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="relative z-10 flex flex-col justify-center h-full">
+                          <div className="relative z-10 flex flex-col justify-center h-full overflow-hidden">
                             <p
-                              className="text-charcoal/90 font-medium leading-relaxed text-sm sm:text-base lg:text-[15px] min-[1440px]:text-lg 2xl:text-xl"
+                              className="text-charcoal/90 font-medium leading-relaxed text-xs sm:text-sm lg:text-[14.5px] min-[1440px]:text-[16.5px] 2xl:text-[18px]"
                             >
                               {item.text}
                             </p>
@@ -326,16 +326,16 @@ export default function Home() {
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-4 lg:py-6 h-[clamp(320px,50vh,460px)]">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-3 lg:py-4 h-[clamp(370px,56vh,540px)]">
                       {beliefs.map((belief, idx) => (
                         <div
                           key={idx}
-                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-5.5 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center`}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center overflow-hidden`}
                         >
-                          <div className="flex flex-col justify-center gap-2 min-[1440px]:gap-3 h-full">
-                            <h3 className="text-base sm:text-lg min-[1440px]:text-xl 2xl:text-2xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
+                          <div className="flex flex-col justify-center gap-1.5 min-[1440px]:gap-2.5 h-full overflow-hidden">
+                            <h3 className="text-sm sm:text-base min-[1440px]:text-lg 2xl:text-xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
                             <p
-                              className="text-white/80 font-normal leading-relaxed text-xs sm:text-sm lg:text-[14px] min-[1440px]:text-base 2xl:text-lg"
+                              className="text-white/80 font-normal leading-relaxed text-xs sm:text-[13.5px] lg:text-[14px] min-[1440px]:text-[15.5px] 2xl:text-[17px]"
                             >
                               {belief.text}
                             </p>
