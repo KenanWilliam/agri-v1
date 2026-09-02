@@ -7,18 +7,48 @@ interface ClientLogo {
   src: string
   alt: string
   href: string
+  containerClassName?: string
+  imageClassName?: string
 }
 
 const row1Logos: ClientLogo[] = [
-  { name: 'Gates Foundation', src: '/Gates_Foundation_Logo.svg', alt: 'Gates Foundation', href: 'https://www.gatesfoundation.org/' },
+  {
+    name: 'Gates Foundation',
+    src: '/Gates_Foundation_Logo.svg',
+    alt: 'Gates Foundation',
+    href: 'https://www.gatesfoundation.org/',
+    containerClassName: 'w-50 sm:w-58 md:w-68 lg:w-74',
+    imageClassName: 'scale-115',
+  },
   { name: 'Adam Smith International', src: '/adam-smith-international-logo.png', alt: 'Adam Smith International', href: 'https://adamsmithinternational.com/' },
   { name: 'AGRA', src: '/AGRA.png', alt: 'AGRA', href: 'https://agra.org/' },
-  { name: 'Ministry of Agriculture Kenya', src: '/moa-kenya-logo.png', alt: 'Ministry of Agriculture Kenya', href: 'https://kilimo.go.ke/' },
+  {
+    name: 'Ministry of Agriculture Kenya',
+    src: '/moa-kenya-logo.png',
+    alt: 'Ministry of Agriculture and Livestock Development Kenya',
+    href: 'https://kilimo.go.ke/',
+    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
+    imageClassName: 'scale-120',
+  },
   { name: 'Catholic Relief Services', src: '/crs-logo.png', alt: 'Catholic Relief Services', href: 'https://www.crs.org/where-we-work/africa/kenya' },
-  { name: 'KEPHIS', src: '/kephis-logo.png', alt: 'KEPHIS', href: 'https://www.kephis.org/' },
+  {
+    name: 'KEPHIS',
+    src: '/kephis-logo.png',
+    alt: 'KEPHIS',
+    href: 'https://www.kephis.org/',
+    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
+    imageClassName: 'scale-120',
+  },
   { name: 'AgDevCo', src: '/agdevco-logo.png', alt: 'AgDevCo', href: 'https://www.agdevco.com/' },
   { name: 'CIMMYT', src: '/cimmyt-logo.svg', alt: 'CIMMYT', href: 'https://www.cimmyt.org/' },
-  { name: 'KALRO', src: '/kalro-logo.png', alt: 'KALRO', href: 'https://www.kalro.org/' },
+  {
+    name: 'KALRO',
+    src: '/kalro-logo.png',
+    alt: 'KALRO',
+    href: 'https://www.kalro.org/',
+    containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
+    imageClassName: 'scale-120',
+  },
   { name: 'STAK', src: '/stak-logo.png', alt: 'STAK', href: 'https://stak.or.ke/' },
   { name: 'USAID', src: '/USAID-Identity.svg', alt: 'USAID', href: 'https://www.usaid.gov/' },
 ]
@@ -28,8 +58,21 @@ const row2Logos: ClientLogo[] = [
   { name: 'IFDC', src: '/ifdc-logo.png', alt: 'IFDC', href: 'https://ifdc.org/' },
   { name: 'Ministry of Agriculture Tanzania', src: '/moa-tanzania-logo.png', alt: 'Ministry of Agriculture Tanzania', href: 'https://www.kilimo.go.tz/' },
   { name: 'NARO Uganda', src: '/naro-logo.png', alt: 'National Agricultural Research Organisation Uganda', href: 'https://naro.go.ug/' },
-  { name: 'TOSCI', src: '/tosci-logo.jpg', alt: 'TOSCI', href: 'https://www.tosci.go.tz/' },
-  { name: 'NASC', src: '/nasc-logo.svg', alt: 'NASC', href: 'https://seedcouncil.gov.ng/' },
+  {
+    name: 'TOSCI',
+    src: '/tosci-logo.jpg',
+    alt: 'TOSCI',
+    href: 'https://www.tosci.go.tz/',
+    containerClassName: 'w-50 sm:w-58 md:w-68 lg:w-76',
+    imageClassName: 'scale-115',
+  },
+  {
+    name: 'NASC',
+    src: '/nasc-logo.svg',
+    alt: 'NASC',
+    href: 'https://seedcouncil.gov.ng/',
+    imageClassName: 'scale-115',
+  },
   { name: 'TARI', src: '/tari-logo.png', alt: 'TARI', href: 'https://www.tari.go.tz/' },
   { name: 'TASTA', src: '/tasta-logo-v2.png', alt: 'TASTA', href: 'https://tasta.or.tz/' },
   { name: 'elan', src: '/elan-logo.png', alt: 'elan RDC', href: 'https://www.beamexchange.org/practice/programme-database/elan-rdc/' },
@@ -43,17 +86,21 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={logo.name}
-    className="group flex items-center justify-center shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 h-16 sm:h-20 md:h-24 lg:h-28 w-44 sm:w-52 md:w-60 lg:w-64 transition-transform duration-300 hover:scale-105"
+    className={`group flex items-center justify-center shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 h-16 sm:h-20 md:h-24 lg:h-28 transition-transform duration-300 hover:scale-105 ${
+      logo.containerClassName || 'w-44 sm:w-52 md:w-60 lg:w-64'
+    }`}
   >
     <div className="relative w-full h-full flex items-center justify-center">
       <Image
         src={logo.src}
         alt={logo.alt}
-        width={240}
+        width={260}
         height={90}
-        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 240px"
+        sizes="(max-width: 640px) 160px, (max-width: 768px) 200px, 260px"
         quality={85}
-        className="max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply"
+        className={`max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply ${
+          logo.imageClassName || ''
+        }`}
       />
     </div>
   </a>
