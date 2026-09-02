@@ -148,12 +148,14 @@ export default function Home() {
     }
   ]
 
+  const UNIFORM_CARD_WIDTH = "w-[270px] lg:w-[310px] min-[1440px]:w-[390px] 2xl:w-[430px]"
+
   const agriCards = [
-    { text: tAgri('card_3'), width: "w-[230px] lg:w-[250px] min-[1440px]:w-[320px] 2xl:w-[340px]" },
-    { text: tAgri('card_2'), width: "w-[230px] lg:w-[250px] min-[1440px]:w-[320px] 2xl:w-[340px]" },
-    { text: tAgri('card_5'), width: "w-[240px] lg:w-[260px] min-[1440px]:w-[360px] 2xl:w-[380px]" },
-    { text: tAgri('card_1'), width: "w-[240px] lg:w-[260px] min-[1440px]:w-[360px] 2xl:w-[380px]" },
-    { text: tAgri('card_4'), width: "w-[260px] lg:w-[280px] min-[1440px]:w-[460px] 2xl:w-[500px]" }
+    { text: tAgri('card_3'), width: UNIFORM_CARD_WIDTH },
+    { text: tAgri('card_2'), width: UNIFORM_CARD_WIDTH },
+    { text: tAgri('card_5'), width: UNIFORM_CARD_WIDTH },
+    { text: tAgri('card_1'), width: UNIFORM_CARD_WIDTH },
+    { text: tAgri('card_4'), width: UNIFORM_CARD_WIDTH }
   ]
 
   return (

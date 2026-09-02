@@ -85,7 +85,7 @@ export default function WhyAgriExperience() {
                   backdrop-blur-xl p-6 md:p-10 rounded-3xl md:rounded-[2rem] 
                   border border-white/80 
                   shadow-[0_-4px_20px_rgba(0,0,0,0.04)] md:shadow-md
-                  group relative overflow-hidden h-full flex flex-col justify-center
+                  group relative overflow-hidden h-full flex flex-col justify-center min-h-[160px] sm:min-h-[180px]
                 `}
               >
                 {/* Card Hover Gradient */}
