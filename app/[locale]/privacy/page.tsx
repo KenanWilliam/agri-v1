@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@/i18n/routing'
-import { ArrowLeft, Shield } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export default function PrivacyPage() {
@@ -18,10 +18,7 @@ export default function PrivacyPage() {
         </Link>
 
         {/* Header */}
-        <div className="space-y-6 mb-16 border-b border-black/5 pb-10">
-          <div className="w-16 h-16 rounded-2xl bg-primary-green/10 flex items-center justify-center text-primary-green">
-            <Shield size={32} />
-          </div>
+        <div className="space-y-4 mb-16 border-b border-black/5 pb-10">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2">
             {t('privacy_title')}
           </h1>
