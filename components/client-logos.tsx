@@ -39,8 +39,14 @@ const row1Logos: ClientLogo[] = [
     containerClassName: 'w-52 sm:w-62 md:w-72 lg:w-80',
     imageClassName: 'scale-120',
   },
-  { name: 'AgDevCo', src: '/agdevco-logo.png', alt: 'AgDevCo', href: 'https://www.agdevco.com/' },
-  { name: 'CIMMYT', src: '/cimmyt-logo.svg', alt: 'CIMMYT', href: 'https://www.cimmyt.org/' },
+  {
+    name: 'CIMMYT',
+    src: '/cimmyt-logo.svg',
+    alt: 'CIMMYT',
+    href: 'https://www.cimmyt.org/',
+    containerClassName: 'w-56 sm:w-66 md:w-76 lg:w-84',
+    imageClassName: 'scale-120',
+  },
   {
     name: 'KALRO',
     src: '/kalro-logo.png',
