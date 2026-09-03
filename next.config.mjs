@@ -19,7 +19,16 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:path*(svg|jpg|jpeg|png|webp|avif|mp4|webm|pdf|woff|woff2|ttf|eot|ico)',
+        source: '/:file([^/]+\\.(?:svg|jpg|jpeg|png|webp|avif|mp4|webm|pdf|woff|woff2|ttf|eot|ico))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:folder+/:file([^/]+\\.(?:svg|jpg|jpeg|png|webp|avif|mp4|webm|pdf|woff|woff2|ttf|eot|ico))',
         headers: [
           {
             key: 'Cache-Control',
@@ -29,15 +38,6 @@ const nextConfig = {
       },
       {
         source: '/Videos/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/resources/:path*',
         headers: [
           {
             key: 'Cache-Control',

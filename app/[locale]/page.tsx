@@ -61,74 +61,68 @@ export default function Home() {
 
     let mm = gsap.matchMedia();
     
-    const timer = setTimeout(() => {
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        const container = sequenceWrapperRef.current;
-        if (!container) return;
-        
-        const getScroll1 = () => {
-          // Safely access scrollWidth, returning 0 if the ref is unmounted during mobile view
-          if (!track1InnerRef.current) return 0;
-          return Math.max(0, track1InnerRef.current.scrollWidth - window.innerWidth);
-        };
-        const getScroll2 = () => {
-          if (!track2InnerRef.current) return 0;
-          return Math.max(0, track2InnerRef.current.scrollWidth - window.innerWidth);
-        };
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const container = sequenceWrapperRef.current;
+      
+      const getScroll1 = () => {
+        // Safely access scrollWidth, returning 0 if the ref is unmounted during mobile view
+        if (!track1InnerRef.current) return 0;
+        return Math.max(0, track1InnerRef.current.scrollWidth - window.innerWidth);
+      };
+      const getScroll2 = () => {
+        if (!track2InnerRef.current) return 0;
+        return Math.max(0, track2InnerRef.current.scrollWidth - window.innerWidth);
+      };
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: () => `+=${getScroll1() + getScroll2() + window.innerWidth}`, 
-            scrub: 1.5,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          }
-        });
-
-        const scroll1 = getScroll1();
-        const scroll2 = getScroll2();
-        const ratio1 = scroll1 > 0 ? scroll1 / window.innerWidth : 0.1;
-        const ratio2 = scroll2 > 0 ? scroll2 / window.innerWidth : 0.1;
-
-        tl.to(track1InnerRef.current, {
-          x: () => -getScroll1(),
-          ease: "none",
-          duration: ratio1
-        });
-
-        tl.to(track1Ref.current, {
-          x: () => -window.innerWidth * 0.3,
-          ease: "power2.inOut",
-          duration: 0.8
-        }, "cover");
-
-        tl.fromTo(track2Ref.current, {
-          x: "100%"
-        }, {
-          x: "0%",
-          ease: "power2.inOut",
-          duration: 0.8
-        }, "cover");
-
-        tl.to(track2InnerRef.current, {
-          x: () => -getScroll2(),
-          ease: "none",
-          duration: ratio2
-        });
-
-        return () => {
-          tl.kill();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: () => `+=${getScroll1() + getScroll2() + window.innerWidth}`, 
+          scrub: 1.5,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         }
       });
-    }, 100);
 
-    return () => {
-      clearTimeout(timer);
-      mm.revert();
-    }
+      const scroll1 = getScroll1();
+      const scroll2 = getScroll2();
+      const ratio1 = scroll1 > 0 ? scroll1 / window.innerWidth : 0.1;
+      const ratio2 = scroll2 > 0 ? scroll2 / window.innerWidth : 0.1;
+
+      tl.to(track1InnerRef.current, {
+        x: () => -getScroll1(),
+        ease: "none",
+        duration: ratio1
+      });
+
+      tl.to(track1Ref.current, {
+        x: () => -window.innerWidth * 0.3,
+        ease: "power2.inOut",
+        duration: 0.8
+      }, "cover");
+
+      tl.fromTo(track2Ref.current, {
+        x: "100%"
+      }, {
+        x: "0%",
+        ease: "power2.inOut",
+        duration: 0.8
+      }, "cover");
+
+      tl.to(track2InnerRef.current, {
+        x: () => -getScroll2(),
+        ease: "none",
+        duration: ratio2
+      });
+
+      return () => {
+        tl.kill();
+      }
+    });
+
+    return () => mm.revert();
   }, [])
 
   const beliefs = [
@@ -211,32 +205,48 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] min-[1440px]:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 w-full flex-1 flex flex-col justify-center">
             <div className="max-w-2xl xl:max-w-3xl 3xl:max-w-4xl space-y-6 lg:space-y-8">
-              <h1
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
                 className="font-serif tracking-tight pb-2 text-[#1A4D2E] font-bold leading-[1.15]"
                 style={{ fontSize: 'clamp(1.875rem, 1.2rem + 3.2vw, 3.75rem)' }}
               >
                 {t('hero_title_1')} <br />
                 {t('hero_title_2')} <br />
                 {t('hero_title_3')}
-              </h1>
+              </motion.h1>
 
-              <p
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-charcoal leading-relaxed font-normal max-w-xl xl:max-w-2xl"
                 style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
               >
                 {t('hero_desc')}
-              </p>
+              </motion.p>
 
-              <div className="pt-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="pt-2"
+              >
                 <Link href="/our-impact" className="group relative overflow-hidden inline-flex items-center justify-center gap-3 px-6 py-3.5 lg:px-8 lg:py-4 bg-[#1A4D2E] text-white rounded-full font-bold transition duration-200 hover:bg-[#1A4D2E]/90 text-sm lg:text-base shadow-lg shadow-[#1A4D2E]/20 hover:shadow-xl hover:scale-[1.02]">
                   <RollingText className="gap-3">
                     {t('explore_impact')}
                     <ArrowRight size={18} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                   </RollingText>
                 </Link>
-              </div>
+              </motion.div>
 
-              <div className="pt-4 lg:pt-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="pt-4 lg:pt-6"
+              >
                 <div className="flex flex-wrap justify-start items-center gap-4 sm:gap-6 lg:gap-10 xl:gap-12">
                   {[
                     { value: t('stat_1_val'), label: t('stat_1_lbl'), icon: Earth },
@@ -259,7 +269,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
