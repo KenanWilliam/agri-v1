@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import ClientLogos from '@/components/client-logos'
 import { motion } from 'framer-motion'
 import { ArrowRight, Earth, Handshake, Building2 } from 'lucide-react'
@@ -30,6 +30,14 @@ export default function Home() {
   const track1InnerRef = useRef<HTMLDivElement>(null)
   const track2Ref = useRef<HTMLDivElement>(null)
   const track2InnerRef = useRef<HTMLDivElement>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768)
+    checkDesktop()
+    window.addEventListener('resize', checkDesktop)
+    return () => window.removeEventListener('resize', checkDesktop)
+  }, [])
 
   // Effect 1: Hero Parallax
   useGSAP(() => {
@@ -183,20 +191,22 @@ export default function Home() {
               </div>
 
               {/* Desktop (md+): Full-Bleed Video Background */}
-              <div className="hidden md:block absolute inset-0 w-full h-full">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  poster="/hero-video-frame.jpg"
-                  className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
-                >
-                  <source src="/Videos/hero-video.mp4" type="video/mp4" />
-                  <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
-                </video>
-              </div>
+              {isDesktop && (
+                <div className="hidden md:block absolute inset-0 w-full h-full">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    poster="/hero-video-frame.jpg"
+                    className="absolute inset-0 w-full h-full object-cover object-center lg:object-[center_30%]"
+                  >
+                    <source src="/Videos/hero-video.mp4" type="video/mp4" />
+                    <track kind="captions" src="/empty.vtt" srcLang="en" label="English" />
+                  </video>
+                </div>
+              )}
             </div>
           </div>
           

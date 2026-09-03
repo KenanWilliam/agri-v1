@@ -146,15 +146,16 @@ export default function Header() {
         </div>
       </div>
 
-      <motion.div
-        animate={{ 
-          y: isOpen ? '-100%' : 0,
-          opacity: isOpen ? 0 : 1,
-        }}
-        transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-        style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
-        className="sticky top-0 z-[80] w-full"
-      >
+      <div className="sticky top-0 z-[80] w-full pointer-events-none">
+        <motion.div
+          animate={{ 
+            y: isOpen ? '-100%' : 0,
+            opacity: isOpen ? 0 : 1,
+          }}
+          transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+          style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
+          className="w-full pointer-events-auto"
+        >
       <LiquidGlass 
         className="flex justify-center items-center h-[var(--header-height)] w-full"
       blurAmount={0.25} 
@@ -312,7 +313,8 @@ export default function Header() {
       </header>
 
       </LiquidGlass>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* Linguistic Review Glass Popup — portaled outside nav to avoid container clipping and ensure highest z-index */}
       {mounted && typeof document !== 'undefined' && createPortal(

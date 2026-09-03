@@ -19,7 +19,7 @@ export default function WhyAgriExperience() {
   const bgColors = ['bg-gray-100/90', 'bg-gray-50/90', 'bg-[#FAFAFA]/90', 'bg-[#FDFDFD]/90', 'bg-white/90'];
 
   return (
-    <section ref={sectionRef} className="w-full py-16 lg:py-40 bg-mist relative overflow-x-clip">
+    <section ref={sectionRef} className="w-full py-16 lg:py-40 bg-mist relative overflow-visible">
       {/* Scoped keyframes for the card entrance */}
       <style>{`
         @keyframes whyAeCardIn {
