@@ -344,18 +344,14 @@ export default function ProjectImplementationPage() {
 
                   {/* Card Content */}
                   <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-primary-green bg-primary-green/10 px-2.5 py-0.5 rounded-full">
-                        {t('cs_tag')}
-                      </span>
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <p className="text-xs font-bold text-primary-green uppercase tracking-wider">
+                        {t('cs_client_tag')}
+                      </p>
                       <span className="text-[10px] uppercase font-mono tracking-wider text-charcoal/50 bg-mist px-2 py-0.5 rounded">
                         PDF
                       </span>
                     </div>
-
-                    <p className="text-[11px] font-bold text-deep-forest/70 uppercase tracking-wide mb-1">
-                      {t('cs_client_tag')}
-                    </p>
 
                     <h4 className="text-base font-serif font-bold text-deep-forest mb-1.5 leading-snug group-hover:text-primary-green transition-colors line-clamp-2">
                       {study.title}
