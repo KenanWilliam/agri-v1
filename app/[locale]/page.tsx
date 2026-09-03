@@ -137,26 +137,26 @@ export default function Home() {
     {
       title: t('belief_4_title'),
       text: t('belief_4_text'),
-      width: "w-[250px] lg:w-[275px] xl:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
+      width: "w-[290px] lg:w-[330px] xl:w-[370px] min-[1440px]:w-[430px] 2xl:w-[470px]"
     },
     {
       title: t('belief_3_title'),
       text: t('belief_3_text'),
-      width: "w-[250px] lg:w-[275px] xl:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
+      width: "w-[290px] lg:w-[330px] xl:w-[370px] min-[1440px]:w-[430px] 2xl:w-[470px]"
     },
     {
       title: t('belief_1_title'),
       text: t('belief_1_text'),
-      width: "w-[270px] lg:w-[295px] xl:w-[325px] min-[1440px]:w-[440px] 2xl:w-[480px]"
+      width: "w-[310px] lg:w-[350px] xl:w-[400px] min-[1440px]:w-[470px] 2xl:w-[510px]"
     },
     {
       title: t('belief_2_title'),
       text: t('belief_2_text'),
-      width: "w-[270px] lg:w-[295px] xl:w-[325px] min-[1440px]:w-[440px] 2xl:w-[480px]"
+      width: "w-[310px] lg:w-[350px] xl:w-[400px] min-[1440px]:w-[470px] 2xl:w-[510px]"
     }
   ]
 
-  const UNIFORM_CARD_WIDTH = "w-[270px] lg:w-[295px] xl:w-[320px] min-[1440px]:w-[410px] 2xl:w-[450px]"
+  const UNIFORM_CARD_WIDTH = "w-[290px] lg:w-[320px] xl:w-[350px] min-[1440px]:w-[420px] 2xl:w-[460px]"
 
   const agriCards = [
     { text: tAgri('card_3'), width: UNIFORM_CARD_WIDTH },
@@ -336,16 +336,16 @@ export default function Home() {
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-3 lg:gap-3.5 xl:gap-4 min-[1440px]:gap-6 shrink-0 py-2 lg:py-3 h-[clamp(350px,52vh,520px)]">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 xl:gap-5 min-[1440px]:gap-6 shrink-0 py-2 lg:py-3 h-[clamp(360px,54vh,530px)]">
                       {beliefs.map((belief, idx) => (
                         <div
                           key={idx}
-                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-4 lg:p-5 xl:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center overflow-hidden`}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-4 sm:p-5 lg:p-6 xl:p-7 min-[1440px]:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center overflow-hidden`}
                         >
-                          <div className="flex flex-col justify-center gap-1 xl:gap-1.5 min-[1440px]:gap-2.5 h-full overflow-hidden">
-                            <h3 className="text-[13px] sm:text-sm xl:text-base min-[1440px]:text-lg 2xl:text-xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
+                          <div className="flex flex-col justify-center gap-1.5 xl:gap-2 min-[1440px]:gap-2.5 h-full overflow-hidden">
+                            <h3 className="text-sm sm:text-base lg:text-[17px] xl:text-lg min-[1440px]:text-xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
                             <p
-                              className="text-white/80 font-normal leading-relaxed text-[11.5px] sm:text-xs xl:text-[13.5px] min-[1440px]:text-[15.5px] 2xl:text-[17px]"
+                              className="text-white/80 font-normal leading-relaxed text-xs sm:text-[13px] lg:text-[13.5px] xl:text-[14px] min-[1440px]:text-[15.5px] 2xl:text-[17px]"
                             >
                               {belief.text}
                             </p>
