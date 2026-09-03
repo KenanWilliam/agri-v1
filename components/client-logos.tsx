@@ -184,7 +184,7 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={logo.name}
-    className={`group flex items-center justify-center shrink-0 mx-6 sm:mx-8 md:mx-10 lg:mx-12 xl:mx-14 h-14 sm:h-18 md:h-22 lg:h-24 transition-transform duration-300 hover:scale-105 ${
+    className={`group flex items-center justify-center shrink-0 mx-6 sm:mx-8 md:mx-10 lg:mx-12 xl:mx-14 h-14 sm:h-18 md:h-22 lg:h-24 transition-transform duration-300 hover:-translate-y-1 ${
       logo.containerClassName || 'w-36 sm:w-44 md:w-52 lg:w-60'
     }`}
   >
@@ -192,12 +192,10 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
       <Image
         src={logo.src}
         alt={logo.alt}
-        width={280}
-        height={90}
-        sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, 280px"
-        quality={85}
-        unoptimized={logo.src.endsWith('.svg')}
-        className={`max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply ${
+        width={320}
+        height={100}
+        unoptimized
+        className={`max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-[filter,opacity] duration-300 mix-blend-multiply ${
           logo.imageClassName || ''
         }`}
       />
@@ -206,8 +204,8 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
 )
 
 export default function ClientLogos() {
-  const topRepeated = [...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos]
-  const bottomRepeated = [...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos]
+  const topRepeated = [...row1Logos, ...row1Logos]
+  const bottomRepeated = [...row2Logos, ...row2Logos]
 
   return (
     <div className="relative w-full flex flex-col pt-4 pb-8 md:py-12 overflow-hidden">
@@ -225,18 +223,12 @@ export default function ClientLogos() {
           100% { transform: translate3d(0, 0, 0); }
         }
         .animate-marquee-left {
-          animation: marquee-left 60s linear infinite;
+          animation: marquee-left 40s linear infinite;
           will-change: transform;
-          transform: translateZ(0);
-          backface-visibility: hidden;
-          -webkit-font-smoothing: antialiased;
         }
         .animate-marquee-right {
-          animation: marquee-right 60s linear infinite;
+          animation: marquee-right 40s linear infinite;
           will-change: transform;
-          transform: translateZ(0);
-          backface-visibility: hidden;
-          -webkit-font-smoothing: antialiased;
         }
         .marquee-container:hover .animate-marquee-left,
         .marquee-container:hover .animate-marquee-right {
