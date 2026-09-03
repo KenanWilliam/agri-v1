@@ -22,8 +22,21 @@ import {
   Building2,
   BookOpen,
 } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+
+// Dynamically import PdfPreview with SSR disabled to render real PDF covers
+const PdfPreview = dynamic(() => import('@/components/pdf-preview'), {
+  ssr: false,
+  loading: () => (
+    <div className="relative w-full overflow-hidden bg-mist flex flex-col items-center justify-center gap-3 animate-pulse aspect-[1/1.2]">
+      <FileText size={32} className="text-primary-green/30" />
+      <div className="h-2 w-2/3 rounded-full bg-primary-green/10" />
+      <div className="h-2 w-1/2 rounded-full bg-primary-green/10" />
+    </div>
+  ),
+})
 
 export default function ProjectImplementationPage() {
   const t = useTranslations('ProjectImplementation')
@@ -121,31 +134,24 @@ export default function ProjectImplementationPage() {
   const kcdmsStudies = [
     {
       title: t('cs_study1_title'),
-      desc: t('cs_study1_desc'),
-      tag: t('cs_study1_tag'),
+      citation: t('cs_study1_citation'),
       file: '/resources/Scoping-Study-Pasture-and-Fodder-Planting-Materials-in-Kenya.pdf',
-      size: '1.8 MB',
     },
     {
       title: t('cs_study2_title'),
-      desc: t('cs_study2_desc'),
-      tag: t('cs_study2_tag'),
+      citation: t('cs_study2_citation'),
       file: '/resources/Scoping-Study-Planting-Materials-for-Value-Chain-Crops-in-Kenya-banana-avocado-mango-pineapples-passion-fruit-sweet-potatoes-African-leafy-vegetables.pdf',
-      size: '1.7 MB',
     },
     {
       title: t('cs_study3_title'),
-      desc: t('cs_study3_desc'),
-      tag: t('cs_study3_tag'),
+      citation: t('cs_study3_citation'),
       file: '/resources/Scoping-Study-Horticulture-Seedling-Nurseries-as-a-Viable-Business-Model-in-Kenya.pdf',
-      size: '1.6 MB',
+      clientLink: 'https://www.agrilinks.org/post/private-horticulture-seedling-nurseries-kenya',
     },
     {
       title: t('cs_study4_title'),
-      desc: t('cs_study4_desc'),
-      tag: t('cs_study4_tag'),
+      citation: t('cs_study4_citation'),
       file: '/resources/Scoping-Study-Agro-Dealer-Association-Development-in-Twelve-Counties-in-Kenya.pdf',
-      size: '929 KB',
     },
   ]
 
@@ -280,93 +286,116 @@ export default function ProjectImplementationPage() {
 
 
         {/* ─── Flagship Showcase: USAID's KCDMS Studies ─── */}
-        <section className="w-full pb-20">
+        <section className="w-full py-20 lg:py-28 bg-[#F0F4EC] border-y border-[#E0E7DC]">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="rounded-[36px] lg:rounded-[48px] bg-mist border border-black/[0.05] p-8 sm:p-12 lg:p-16 relative overflow-hidden"
+              className="space-y-10"
             >
-              <div className="relative z-10 space-y-10">
-                {/* ── Title & Explainer Text ── */}
-                <div className="max-w-4xl space-y-5">
-                  <h2
-                    className="font-serif font-bold text-deep-forest tracking-tight pb-2"
-                    style={{ fontSize: 'clamp(1.875rem, 1.3rem + 2vw, 3.25rem)' }}
-                  >
-                    {t('cs_title')}
-                  </h2>
+              {/* ── Title & Explainer Text ── */}
+              <div className="max-w-4xl space-y-5">
+                <h2
+                  className="font-serif font-bold text-deep-forest tracking-tight pb-2"
+                  style={{ fontSize: 'clamp(2rem, 1.4rem + 2.2vw, 3.5rem)' }}
+                >
+                  {t('cs_title')}
+                </h2>
 
-                  <div className="space-y-4 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
-                    <p>{t('cs_desc1')}</p>
-                    <p>{t('cs_desc2')}</p>
-                  </div>
+                <div className="space-y-4 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
+                  <p>{t('cs_desc1')}</p>
+                  <p>{t('cs_desc2')}</p>
+                </div>
+              </div>
+
+              {/* ── 4 Published Studies with Actual Doc Previews ── */}
+              <div className="pt-2">
+                <div className="flex items-center gap-2.5 mb-6">
+                  <BookOpen size={20} className="text-primary-green" />
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-deep-forest">
+                    {t('cs_studies_title')}
+                  </h3>
                 </div>
 
-                {/* ── 4 Published Studies Grid ── */}
-                <div className="pt-2">
-                  <div className="flex items-center gap-2.5 mb-6">
-                    <BookOpen size={20} className="text-primary-green" />
-                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-deep-forest">
-                      {t('cs_studies_title')}
-                    </h3>
-                  </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+                  {kcdmsStudies.map((study, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.08 }}
+                      className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:border-primary-green/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    >
+                      {/* Document Preview Thumbnail */}
+                      <div className="relative w-full aspect-[1/1.2] overflow-hidden bg-mist/60 border-b border-black/[0.05]">
+                        <PdfPreview pdfUrl={study.file} />
+                      </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {kcdmsStudies.map((study, idx) => (
-                      <div
-                        key={idx}
-                        className="group flex flex-col justify-between p-7 sm:p-8 rounded-2xl bg-white border border-black/[0.06] hover:border-primary-green/40 hover:shadow-lg hover:shadow-primary-green/[0.04] transition-all duration-300"
-                      >
-                        <div>
-                          <div className="flex items-center justify-between gap-3 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-wider text-primary-green bg-primary-green/10 px-3 py-1 rounded-full">
-                              {study.tag}
-                            </span>
-                            <span className="text-xs font-mono text-charcoal/40 bg-mist px-2.5 py-1 rounded-md">
-                              {study.size}
-                            </span>
-                          </div>
-
-                          <h4 className="text-xl font-serif font-bold text-deep-forest mb-3 leading-snug group-hover:text-primary-green transition-colors">
-                            {study.title}
-                          </h4>
-
-                          <p className="text-charcoal/70 font-light text-sm sm:text-[14.5px] leading-relaxed mb-6">
-                            {study.desc}
-                          </p>
+                      {/* Content */}
+                      <div className="p-5 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-primary-green bg-primary-green/10 px-2.5 py-0.5 rounded-full">
+                            {t('cs_tag')}
+                          </span>
+                          <span className="text-[10px] uppercase font-mono tracking-wider text-charcoal/50 bg-mist px-2 py-0.5 rounded">
+                            PDF
+                          </span>
                         </div>
 
-                        <div className="pt-4 border-t border-black/[0.05] flex items-center justify-between">
+                        <p className="text-[11px] font-bold text-deep-forest/70 uppercase tracking-wide mb-1.5">
+                          {t('cs_client_tag')}
+                        </p>
+
+                        <h4 className="text-base font-serif font-bold text-deep-forest mb-2 leading-snug group-hover:text-primary-green transition-colors line-clamp-3">
+                          {study.title}
+                        </h4>
+
+                        <p className="text-xs text-charcoal/70 font-light leading-relaxed mb-4 flex-grow line-clamp-4">
+                          {study.citation}
+                        </p>
+
+                        <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between mt-auto">
                           <a
                             href={study.file}
                             download
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-deep-forest hover:text-primary-green transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-deep-forest hover:text-primary-green transition-colors"
                           >
-                            <Download size={15} className="text-primary-green" />
+                            <Download size={13} className="text-primary-green" />
                             <span>{t('cs_download_pdf')}</span>
                           </a>
-                          <span className="text-xs text-charcoal/40 uppercase font-mono tracking-wider">PDF</span>
+
+                          {study.clientLink && (
+                            <a
+                              href={study.clientLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary-green hover:underline"
+                            >
+                              <span>Agrilinks</span>
+                              <ArrowRight size={11} />
+                            </a>
+                          )}
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </motion.div>
+                  ))}
                 </div>
+              </div>
 
-                {/* ── Bottom Link to Resource Library ── */}
-                <div className="pt-4 flex items-center justify-start">
-                  <Link
-                    href="/resources?tab=scoping-studies"
-                    className="group relative overflow-hidden inline-flex items-center gap-2 px-7 py-3.5 bg-deep-forest text-white rounded-full font-semibold text-sm hover:bg-deep-forest/90 transition-all shadow-sm"
-                  >
-                    <RollingText className="gap-2">
-                      {t('cs_view_all_studies')}
-                      <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
-                    </RollingText>
-                  </Link>
-                </div>
+              {/* ── Bottom Link to Resource Library ── */}
+              <div className="pt-4 flex items-center justify-start">
+                <Link
+                  href="/resources?tab=scoping-studies"
+                  className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 bg-deep-forest text-white rounded-full font-semibold text-sm hover:bg-deep-forest/90 transition-all shadow-md"
+                >
+                  <RollingText className="gap-2">
+                    {t('cs_view_all_studies')}
+                    <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
+                  </RollingText>
+                </Link>
               </div>
             </motion.div>
           </div>
