@@ -330,7 +330,7 @@ export default function Header() {
               {/* Glass container adopting the exact same frosted glass aesthetic as the navbar */}
               <div className="relative px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_12px_36px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)] text-deep-forest text-xs font-semibold whitespace-nowrap flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
-                <span className="tracking-tight font-medium">under linguistic review</span>
+                <span className="tracking-tight font-medium">Under Linguistic Review</span>
               </div>
             </motion.div>
           )}
@@ -444,7 +444,7 @@ export default function Header() {
                     {!TRANSLATION_FEATURE_ACTIVE && (
                       <div className="mt-2.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-black/[0.08] shadow-sm text-[11.5px] text-deep-forest font-semibold flex items-center gap-1.5 select-none">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
-                        <span className="tracking-tight font-medium">under linguistic review</span>
+                        <span className="tracking-tight font-medium">Under Linguistic Review</span>
                       </div>
                     )}
                   </div>
