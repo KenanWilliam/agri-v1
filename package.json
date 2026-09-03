@@ -2,7 +2,12 @@
   "name": "agri-experience",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "onFail": "ignore"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
