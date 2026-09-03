@@ -196,6 +196,7 @@ const LogoItem = ({ logo }: { logo: ClientLogo }) => (
         height={90}
         sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, 280px"
         quality={85}
+        unoptimized={logo.src.endsWith('.svg')}
         className={`max-h-full max-w-full object-contain object-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 mix-blend-multiply ${
           logo.imageClassName || ''
         }`}

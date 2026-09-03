@@ -177,7 +177,7 @@ export default function Home() {
                   fill
                   priority
                   fetchPriority="high"
-                  sizes="100vw"
+                  sizes="(max-width: 767px) 100vw, 1px"
                   className="object-cover object-center"
                 />
               </div>

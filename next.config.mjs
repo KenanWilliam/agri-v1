@@ -10,6 +10,7 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
+    qualities: [75, 85],
   },
   allowedDevOrigins: ['192.168.100.10', 'http://192.168.100.10:3000'],
   compiler: {
