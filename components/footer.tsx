@@ -132,10 +132,14 @@ export default function Footer() {
                 <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('our_work')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
                   {[
-                    { key: 'seed_systems' }, { key: 'digital_tools' }, { key: 'field_projects' }, { key: 'case_studies' }
+                    { key: 'seed_systems', href: '/our-work' },
+                    { key: 'digital_tools', href: '/our-work/digital-platforms' },
+                    { key: 'field_projects', href: '/our-work/project-implementation' },
+                    { key: 'technical_studies', href: '/our-work/technical-studies' },
+                    { key: 'case_studies', href: '/resources' },
                   ].map(item => (
                     <li key={item.key}>
-                      <Link href="/our-work" className={linkHoverClass}>{t(item.key as any)}</Link>
+                      <Link href={item.href} className={linkHoverClass}>{t(item.key as any)}</Link>
                     </li>
                   ))}
                 </ul>
@@ -162,6 +166,7 @@ export default function Footer() {
                 <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('resources')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
                   {[
+                    { key: 'resources', href: '/resources' },
                     { key: 'insights', href: '/insights' },
                     { key: 'newsletter', href: '/newsletter' },
                     { key: 'privacy', href: '/privacy' },
@@ -299,10 +304,40 @@ export default function Footer() {
           {/* Nav */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 16px' }}>
             {[
-              { titleKey: 'our_work', links: [{ key: 'seed_systems', href: '/our-work' }, { key: 'digital_tools', href: '/our-work' }, { key: 'field_projects', href: '/our-work' }, { key: 'case_studies', href: '/our-work' }] },
-              { titleKey: 'company', links: [{ key: 'about_us', href: '/about' }, { key: 'our_impact', href: '/our-impact' }, { key: 'contact', href: '/contact' }] },
-              { titleKey: 'resources', links: [{ key: 'insights', href: '/insights' }, { key: 'newsletter', href: '/newsletter' }, { key: 'privacy', href: '/privacy' }] },
-              { titleKey: 'work_with_us', links: [{ key: 'request_concept', href: '/contact' }, { key: 'view_projects', href: '/our-work' }] },
+              {
+                titleKey: 'our_work',
+                links: [
+                  { key: 'seed_systems', href: '/our-work' },
+                  { key: 'digital_tools', href: '/our-work/digital-platforms' },
+                  { key: 'field_projects', href: '/our-work/project-implementation' },
+                  { key: 'technical_studies', href: '/our-work/technical-studies' },
+                  { key: 'case_studies', href: '/resources' },
+                ],
+              },
+              {
+                titleKey: 'company',
+                links: [
+                  { key: 'about_us', href: '/about' },
+                  { key: 'our_impact', href: '/our-impact' },
+                  { key: 'contact', href: '/contact' },
+                ],
+              },
+              {
+                titleKey: 'resources',
+                links: [
+                  { key: 'resources', href: '/resources' },
+                  { key: 'insights', href: '/insights' },
+                  { key: 'newsletter', href: '/newsletter' },
+                  { key: 'privacy', href: '/privacy' },
+                ],
+              },
+              {
+                titleKey: 'work_with_us',
+                links: [
+                  { key: 'request_concept', href: '/contact' },
+                  { key: 'view_projects', href: '/our-work' },
+                ],
+              },
             ].map(col => (
               <div key={col.titleKey}>
                 <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', marginBottom: '12px' }}>{t(col.titleKey as any)}</p>
