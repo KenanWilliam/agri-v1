@@ -287,31 +287,19 @@ export default function ProjectImplementationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="rounded-[36px] lg:rounded-[44px] bg-deep-forest overflow-hidden relative border border-white/10 shadow-2xl"
+              className="rounded-[36px] lg:rounded-[48px] bg-mist border border-black/[0.05] p-8 sm:p-12 lg:p-16 relative overflow-hidden"
             >
-              {/* Subtle noise texture */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                  <filter id="noiseFilterCase">
-                    <feTurbulence
-                      type="fractalNoise"
-                      baseFrequency="0.65"
-                      numOctaves="3"
-                      stitchTiles="stitch"
-                    />
-                  </filter>
-                  <rect width="100%" height="100%" filter="url(#noiseFilterCase)" />
-                </svg>
-              </div>
-
-              <div className="relative z-10 p-6 sm:p-10 lg:p-14 xl:p-16 space-y-10">
+              <div className="relative z-10 space-y-10">
                 {/* ── Title & Explainer Text ── */}
                 <div className="max-w-4xl space-y-5">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15]">
+                  <h2
+                    className="font-serif font-bold text-deep-forest tracking-tight pb-2"
+                    style={{ fontSize: 'clamp(1.875rem, 1.3rem + 2vw, 3.25rem)' }}
+                  >
                     {t('cs_title')}
                   </h2>
 
-                  <div className="space-y-4 text-white/80 font-light leading-relaxed text-base sm:text-lg">
+                  <div className="space-y-4 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
                     <p>{t('cs_desc1')}</p>
                     <p>{t('cs_desc2')}</p>
                   </div>
@@ -319,48 +307,48 @@ export default function ProjectImplementationPage() {
 
                 {/* ── 4 Published Studies Grid ── */}
                 <div className="pt-2">
-                  <div className="flex items-center gap-2 mb-6">
-                    <BookOpen size={18} className="text-white/60" />
-                    <h3 className="text-lg sm:text-xl font-serif font-bold text-white">
+                  <div className="flex items-center gap-2.5 mb-6">
+                    <BookOpen size={20} className="text-primary-green" />
+                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-deep-forest">
                       {t('cs_studies_title')}
                     </h3>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {kcdmsStudies.map((study, idx) => (
                       <div
                         key={idx}
-                        className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white/[0.035] hover:bg-white/[0.065] border border-white/[0.08] hover:border-white/20 transition-all duration-300"
+                        className="group flex flex-col justify-between p-7 sm:p-8 rounded-2xl bg-white border border-black/[0.06] hover:border-primary-green/40 hover:shadow-lg hover:shadow-primary-green/[0.04] transition-all duration-300"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-3 mb-4">
-                            <span className="text-[11px] font-semibold tracking-[0.16em] uppercase text-white/50">
+                            <span className="text-xs font-bold uppercase tracking-wider text-primary-green bg-primary-green/10 px-3 py-1 rounded-full">
                               {study.tag}
                             </span>
-                            <span className="text-xs font-mono text-white/35">
+                            <span className="text-xs font-mono text-charcoal/40 bg-mist px-2.5 py-1 rounded-md">
                               {study.size}
                             </span>
                           </div>
 
-                          <h4 className="text-lg sm:text-xl font-serif font-bold text-white mb-3 leading-snug group-hover:text-primary-green transition-colors">
+                          <h4 className="text-xl font-serif font-bold text-deep-forest mb-3 leading-snug group-hover:text-primary-green transition-colors">
                             {study.title}
                           </h4>
 
-                          <p className="text-white/65 font-light text-sm leading-relaxed mb-6">
+                          <p className="text-charcoal/70 font-light text-sm sm:text-[14.5px] leading-relaxed mb-6">
                             {study.desc}
                           </p>
                         </div>
 
-                        <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                        <div className="pt-4 border-t border-black/[0.05] flex items-center justify-between">
                           <a
                             href={study.file}
                             download
-                            className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white transition-colors"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-deep-forest hover:text-primary-green transition-colors"
                           >
-                            <Download size={14} className="text-white/50 group-hover:text-white transition-colors" />
+                            <Download size={15} className="text-primary-green" />
                             <span>{t('cs_download_pdf')}</span>
                           </a>
-                          <span className="text-xs text-white/30 uppercase font-mono tracking-wider">PDF</span>
+                          <span className="text-xs text-charcoal/40 uppercase font-mono tracking-wider">PDF</span>
                         </div>
                       </div>
                     ))}
@@ -368,13 +356,15 @@ export default function ProjectImplementationPage() {
                 </div>
 
                 {/* ── Bottom Link to Resource Library ── */}
-                <div className="pt-4 flex items-center justify-center sm:justify-start">
+                <div className="pt-4 flex items-center justify-start">
                   <Link
                     href="/resources?tab=scoping-studies"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors px-6 py-3 rounded-full bg-white/[0.06] hover:bg-white/10 border border-white/10"
+                    className="group relative overflow-hidden inline-flex items-center gap-2 px-7 py-3.5 bg-deep-forest text-white rounded-full font-semibold text-sm hover:bg-deep-forest/90 transition-all shadow-sm"
                   >
-                    {t('cs_view_all_studies')}
-                    <ArrowRight size={14} />
+                    <RollingText className="gap-2">
+                      {t('cs_view_all_studies')}
+                      <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
+                    </RollingText>
                   </Link>
                 </div>
               </div>
