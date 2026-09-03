@@ -3,17 +3,12 @@ import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
 import {
-  LineChart,
-  Lightbulb,
   Scale,
   FileSearch,
   TrendingUp,
   Compass,
   ArrowRight,
-  Leaf,
-  CheckCircle2,
   Shield,
-  Target,
   Briefcase,
   ScrollText,
   ShieldCheck,
@@ -52,22 +47,16 @@ export default function ClientAdvisoryPage() {
 
   const approachPillars = [
     {
-      icon: Target,
       title: t('pillars.0.title'),
       description: t('pillars.0.description'),
-      accent: 'from-[#435826]/20 to-[#435826]/5',
     },
     {
-      icon: Lightbulb,
       title: t('pillars.1.title'),
       description: t('pillars.1.description'),
-      accent: 'from-[#435826]/15 to-[#435826]/5',
     },
     {
-      icon: Leaf,
       title: t('pillars.2.title'),
       description: t('pillars.2.description'),
-      accent: 'from-[#435826]/10 to-[#435826]/5',
     },
   ]
 
@@ -102,25 +91,21 @@ export default function ClientAdvisoryPage() {
   const regulatoryMilestones = [
     {
       icon: ShieldCheck,
-      tag: t('cs_pillar1_tag'),
       title: t('cs_pillar1_title'),
       desc: t('cs_pillar1_desc'),
     },
     {
       icon: Sprout,
-      tag: t('cs_pillar2_tag'),
       title: t('cs_pillar2_title'),
       desc: t('cs_pillar2_desc'),
     },
     {
       icon: Building2,
-      tag: t('cs_pillar3_tag'),
       title: t('cs_pillar3_title'),
       desc: t('cs_pillar3_desc'),
     },
     {
       icon: Globe2,
-      tag: t('cs_pillar4_tag'),
       title: t('cs_pillar4_title'),
       desc: t('cs_pillar4_desc'),
     },
@@ -269,38 +254,31 @@ export default function ClientAdvisoryPage() {
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {approachPillars.map((pillar, idx) => {
-                const Icon = pillar.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: idx * 0.15 }}
-                    className="relative group"
-                  >
-                    {/* Vertical olive line on top */}
-                    <div className="w-12 h-1 bg-[#435826] rounded-full mb-8 group-hover:w-20 transition-all duration-300" />
+              {approachPillars.map((pillar, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 }}
+                  className="relative group"
+                >
+                  {/* Vertical olive line on top */}
+                  <div className="w-12 h-1 bg-[#435826] rounded-full mb-8 group-hover:w-20 transition-all duration-300" />
 
-                    {/* Step number */}
-                    <div className="text-6xl font-data text-[#435826]/15 leading-none mb-4">
-                      0{idx + 1}
-                    </div>
+                  {/* Step number */}
+                  <div className="text-6xl font-data text-[#435826]/15 leading-none mb-4">
+                    0{idx + 1}
+                  </div>
 
-                    <div className="w-12 h-12 rounded-xl bg-[#435826]/10 flex items-center justify-center text-[#435826] mb-5">
-                      <Icon size={22} />
-                    </div>
-
-                    <h3 className="text-2xl font-serif font-bold text-deep-forest mb-4">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
-                      {pillar.description}
-                    </p>
-                  </motion.div>
-                )
-              })}
+                  <h3 className="text-2xl font-serif font-bold text-deep-forest mb-4">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
+                    {pillar.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -344,28 +322,18 @@ export default function ClientAdvisoryPage() {
                       className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.06] hover:border-[#435826]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                     >
                       <div>
-                        {/* Top Tag & Icon */}
-                        <div className="flex items-center justify-between gap-2 mb-4">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#435826] bg-[#435826]/10 px-2.5 py-1 rounded-full">
-                            {milestone.tag}
-                          </span>
-                          <div className="w-9 h-9 rounded-xl bg-[#435826]/10 text-[#435826] flex items-center justify-center shrink-0 group-hover:bg-[#435826] group-hover:text-white transition-colors">
-                            <Icon size={18} />
-                          </div>
+                        {/* Icon */}
+                        <div className="w-10 h-10 rounded-xl bg-[#435826]/10 text-[#435826] flex items-center justify-center shrink-0 mb-5 group-hover:bg-[#435826] group-hover:text-white transition-colors">
+                          <Icon size={20} />
                         </div>
 
                         <h4 className="text-base sm:text-lg font-serif font-bold text-deep-forest mb-2.5 leading-snug group-hover:text-[#435826] transition-colors">
                           {milestone.title}
                         </h4>
 
-                        <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed mb-4">
+                        <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed">
                           {milestone.desc}
                         </p>
-                      </div>
-
-                      <div className="pt-3.5 border-t border-black/[0.05] flex items-center gap-2 text-xs font-semibold text-[#435826]">
-                        <CheckCircle2 size={14} className="text-[#435826] shrink-0" />
-                        <span>Regulatory Co-Regulation</span>
                       </div>
                     </div>
                   )
