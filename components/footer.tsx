@@ -201,7 +201,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass}>
-                      Watermark Business Park, Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                      Watermark Business Park<br/>Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
                     </a>
                   </li>
                 </ul>
@@ -361,7 +361,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass} style={{ display: 'block', padding: '4px 0', lineHeight: 1.5 }}>
-                  Watermark Business Park, Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                  Watermark Business Park<br/>Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
                 </a>
               </li>
             </ul>

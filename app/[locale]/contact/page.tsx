@@ -272,7 +272,7 @@ export default function ContactPage() {
                       <div className="space-y-4">
                         <div className="flex gap-4 items-start">
                           <MapPin size={20} className="text-primary-green flex-shrink-0 mt-0.5" />
-                          <p className="text-charcoal/80 font-light leading-relaxed">{office.address}</p>
+                          <p className="text-charcoal/80 font-light leading-relaxed whitespace-pre-line">{office.address}</p>
                         </div>
                         <div className="flex gap-4 items-start">
                           <Mail size={20} className="text-primary-green flex-shrink-0 mt-0.5" />
