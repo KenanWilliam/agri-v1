@@ -1238,19 +1238,19 @@
     "clients": [
       {
         "title": "Development Partners",
-        "description": "Multiple development partners such as the Gates Foundation, USAID, AdamSmith International, the Alliance for a Green Revolution in Africa"
+        "description": "Bilateral donor agencies, philanthropic foundations, and multilateral development programs investing in agricultural transformation, food security, and market systems development across Sub-Saharan Africa."
       },
       {
-        "title": "Governments",
-        "description": "National seed authorities and ministries of agriculture across Africa"
+        "title": "Governments & Regulators",
+        "description": "National ministries of agriculture, plant health inspectorates, and public regulatory authorities modernizing seed certification standards and agricultural policy frameworks."
       },
       {
-        "title": "Private Sector",
-        "description": "Seed companies, agribusinesses, and input manufacturers seeking market intelligence"
+        "title": "Private Sector Enterprises",
+        "description": "Commercial seed producers, agricultural input enterprises, and last-mile distribution networks seeking empirical market intelligence and commercial viability insights."
       },
       {
         "title": "Research Institutions",
-        "description": "CGIAR centers, national research organizations, and academic institutions"
+        "description": "International agricultural research centers, national crop breeding institutes, and academic institutions translating scientific advances into accessible, commercial seed pathways for smallholder farmers."
       }
     ],
     "clients_title": "Who Our Studies Serve",

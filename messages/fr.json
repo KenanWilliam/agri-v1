@@ -1249,28 +1249,20 @@
     },
     "clients": {
       "0": {
-        "label": "Partenaires de développement",
-        "desc": "USAID, GIZ, Fondation Bill & Melinda Gates et autres partenaires de développement",
         "title": "Partenaires de développement",
-        "description": "Plusieurs partenaires de développement tels que la Fondation Gates, l'USAID, AdamSmith International, l'Alliance pour une révolution verte en Afrique"
+        "description": "Agences bilatérales de développement, fondations philanthropiques et programmes multilatéraux investissant dans la transformation agricole, la sécurité alimentaire et le développement des systèmes de marché en Afrique subsaharienne."
       },
       "1": {
-        "label": "Gouvernements",
-        "desc": "Autorités nationales semencières et ministères de l’agriculture à travers l’Afrique",
-        "title": "Gouvernements",
-        "description": "Autorités nationales semencières et ministères de l’agriculture à travers l’Afrique"
+        "title": "Gouvernements et régulateurs",
+        "description": "Ministères nationaux de l'agriculture, services d'inspection phytosanitaire et autorités publiques modernisant les normes de certification semencière et les cadres politiques."
       },
       "2": {
-        "label": "Secteur privé",
-        "desc": "Entreprises semencières, entreprises agroalimentaires et fabricants d’intrants à la recherche d’informations sur le marché",
-        "title": "Secteur privé",
-        "description": "Entreprises semencières, entreprises agroalimentaires et fabricants d’intrants à la recherche d’informations sur le marché"
+        "title": "Entreprises du secteur privé",
+        "description": "Producteurs commerciaux de semences, entreprises d'intrants agricoles et réseaux de distribution du dernier kilomètre recherchant des données de marché fiables et des analyses de viabilité commerciale."
       },
       "3": {
-        "label": "Institutions de recherche",
-        "desc": "Centres CGIAR, organismes de recherche nationaux et institutions universitaires",
         "title": "Institutions de recherche",
-        "description": "Centres CGIAR, organismes de recherche nationaux et institutions universitaires"
+        "description": "Centres internationaux de recherche agronomique, instituts nationaux de sélection végétale et établissements universitaires traduisant les avancées scientifiques en semences commerciales accessibles aux petits exploitants."
       }
     },
     "clients_title": "À qui servent nos études",

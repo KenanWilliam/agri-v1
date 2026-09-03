@@ -2,7 +2,7 @@
 import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
-import { FileText, TrendingUp, Users, MapPin, Microscope, ArrowRight, Leaf, Download } from 'lucide-react'
+import { ArrowRight, Download } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -118,33 +118,27 @@ export default function TechnicalStudiesPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { label: t('clients.0.title'), desc: t('clients.0.description'), icon: Users },
-                { label: t('clients.1.title'), desc: t('clients.1.description'), icon: FileText },
-                { label: t('clients.2.title'), desc: t('clients.2.description'), icon: TrendingUp },
-                { label: t('clients.3.title'), desc: t('clients.3.description'), icon: Microscope },
-              ].map((client, idx) => {
-                const Icon = client.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-white rounded-[24px] p-6 lg:p-8 border border-transparent hover:border-primary-blue/15 hover:shadow-lg transition-[background-color,border-color,box-shadow] duration-200 text-center flex flex-col items-center"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-primary-blue/10 flex items-center justify-center text-primary-blue mx-auto mb-4">
-                      <Icon size={22} />
-                    </div>
-                    <h3 className="text-base font-serif font-bold text-deep-forest tracking-tight pb-2 mb-2">
-                      {client.label}
-                    </h3>
-                    <p className="text-charcoal/70 font-light leading-relaxed text-[14px] min-[1440px]:text-sm">
-                      {client.desc}
-                    </p>
-                  </motion.div>
-                )
-              })}
+                { title: t('clients.0.title'), desc: t('clients.0.description') },
+                { title: t('clients.1.title'), desc: t('clients.1.description') },
+                { title: t('clients.2.title'), desc: t('clients.2.description') },
+                { title: t('clients.3.title'), desc: t('clients.3.description') },
+              ].map((client, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="bg-white rounded-[24px] p-6 lg:p-8 border border-transparent hover:border-primary-blue/20 hover:shadow-lg transition-all duration-200 text-left flex flex-col justify-start"
+                >
+                  <h3 className="text-lg sm:text-xl font-serif font-bold text-deep-forest tracking-tight pb-1 mb-3">
+                    {client.title}
+                  </h3>
+                  <p className="text-charcoal/75 font-light leading-relaxed text-[14px] min-[1440px]:text-[14.5px]">
+                    {client.desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
