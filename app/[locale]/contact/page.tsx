@@ -1,26 +1,58 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { RollingText } from '@/components/ui/rolling-text'
 
 export default function ContactPage() {
   const t = useTranslations('Contact')
+  const locale = useLocale()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     organization: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-    setFormData({ name: '', email: '', organization: '', message: '' })
+    if (status === 'submitting') return
+
+    setStatus('submitting')
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          locale,
+          honeypot,
+        }),
+      })
+
+      const data = await res.json().catch(() => ({}))
+
+      if (res.ok && data.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', organization: '', message: '' })
+      } else {
+        setStatus('error')
+        setErrorMessage(data.error || t('error_alert'))
+      }
+    } catch (err) {
+      console.error('Contact submission network error:', err)
+      setStatus('error')
+      setErrorMessage(t('error_alert'))
+    }
   }
 
   const offices = [
@@ -74,72 +106,138 @@ export default function ContactPage() {
                   {t('form_title')}
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-bold text-deep-forest mb-2">
-                      {t('name')}
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-deep-forest mb-2">
-                      {t('email')}
-                    </label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-deep-forest mb-2">
-                      {t('org')}
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.organization}
-                      onChange={(e) =>
-                        setFormData({ ...formData, organization: e.target.value })
-                      }
-                      className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-bold text-deep-forest mb-2">
-                      {t('message')}
-                    </label>
-                    <textarea
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors resize-none"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="group relative overflow-hidden w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center transition-[background-color,border-color,box-shadow] duration-200"
+                {status === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    className="p-8 sm:p-10 rounded-3xl bg-primary-green/5 border border-primary-green/20 text-center space-y-5"
                   >
-                    <RollingText className="gap-2">
-                      {submitted ? t('sent') : t('send')}
-                      {!submitted && <Send size={18} />}
-                    </RollingText>
-                  </motion.button>
-                </form>
+                    <div className="w-16 h-16 mx-auto rounded-full bg-primary-green/10 text-primary-green flex items-center justify-center">
+                      <CheckCircle size={32} />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-serif font-bold text-deep-forest">
+                        {t('success_title')}
+                      </h3>
+                      <p className="text-charcoal/80 leading-relaxed max-w-md mx-auto text-sm sm:text-base">
+                        {t('success_desc')}
+                      </p>
+                    </div>
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setStatus('idle')}
+                        className="px-6 py-2.5 bg-deep-forest text-white rounded-full text-sm font-bold hover:bg-deep-forest/90 transition-colors shadow-sm"
+                      >
+                        {t('send_another')}
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Hidden Honeypot field for bot protection */}
+                    <input
+                      type="text"
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: 0, width: 0 }}
+                      aria-hidden="true"
+                    />
+
+                    {status === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-3"
+                      >
+                        <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                        <span>{errorMessage || t('error_alert')}</span>
+                      </motion.div>
+                    )}
+
+                    <div>
+                      <label className="block text-sm font-bold text-deep-forest mb-2">
+                        {t('name')}
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        disabled={status === 'submitting'}
+                        className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors disabled:opacity-60"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold text-deep-forest mb-2">
+                        {t('email')}
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        disabled={status === 'submitting'}
+                        className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors disabled:opacity-60"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold text-deep-forest mb-2">
+                        {t('org')}
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.organization}
+                        onChange={(e) =>
+                          setFormData({ ...formData, organization: e.target.value })
+                        }
+                        disabled={status === 'submitting'}
+                        className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors disabled:opacity-60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold text-deep-forest mb-2">
+                        {t('message')}
+                      </label>
+                      <textarea
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        disabled={status === 'submitting'}
+                        rows={6}
+                        className="w-full px-4 py-3 rounded-xl border border-mist bg-mist/30 focus:border-primary-green focus:outline-none transition-colors resize-none disabled:opacity-60"
+                        required
+                      ></textarea>
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: status === 'submitting' ? 1 : 1.02 }}
+                      whileTap={{ scale: status === 'submitting' ? 1 : 0.98 }}
+                      type="submit"
+                      disabled={status === 'submitting'}
+                      className="group relative overflow-hidden w-full px-8 py-4 bg-deep-forest text-white rounded-full font-bold flex items-center justify-center transition-[background-color,border-color,box-shadow] duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
+                    >
+                      <RollingText className="gap-2">
+                        {status === 'submitting' ? (
+                          <>
+                            {t('sending')}
+                            <Loader2 size={18} className="animate-spin ml-1" />
+                          </>
+                        ) : (
+                          <>
+                            {t('send')}
+                            <Send size={18} />
+                          </>
+                        )}
+                      </RollingText>
+                    </motion.button>
+                  </form>
+                )}
               </motion.div>
 
               {/* Contact Info */}
