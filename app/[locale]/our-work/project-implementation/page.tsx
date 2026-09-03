@@ -125,7 +125,6 @@ export default function ProjectImplementationPage() {
       tag: t('cs_study1_tag'),
       file: '/resources/Scoping-Study-Pasture-and-Fodder-Planting-Materials-in-Kenya.pdf',
       size: '1.8 MB',
-      icon: Sprout,
     },
     {
       title: t('cs_study2_title'),
@@ -133,7 +132,6 @@ export default function ProjectImplementationPage() {
       tag: t('cs_study2_tag'),
       file: '/resources/Scoping-Study-Planting-Materials-for-Value-Chain-Crops-in-Kenya-banana-avocado-mango-pineapples-passion-fruit-sweet-potatoes-African-leafy-vegetables.pdf',
       size: '1.7 MB',
-      icon: Layers,
     },
     {
       title: t('cs_study3_title'),
@@ -141,7 +139,6 @@ export default function ProjectImplementationPage() {
       tag: t('cs_study3_tag'),
       file: '/resources/Scoping-Study-Horticulture-Seedling-Nurseries-as-a-Viable-Business-Model-in-Kenya.pdf',
       size: '1.6 MB',
-      icon: Building2,
     },
     {
       title: t('cs_study4_title'),
@@ -149,15 +146,7 @@ export default function ProjectImplementationPage() {
       tag: t('cs_study4_tag'),
       file: '/resources/Scoping-Study-Agro-Dealer-Association-Development-in-Twelve-Counties-in-Kenya.pdf',
       size: '929 KB',
-      icon: Users,
     },
-  ]
-
-  const kcdmsStats = [
-    { value: t('cs_res1'), label: t('cs_res1_label') },
-    { value: t('cs_res2'), label: t('cs_res2_label') },
-    { value: t('cs_res3'), label: t('cs_res3_label') },
-    { value: t('cs_res4'), label: t('cs_res4_label') },
   ]
 
   return (
@@ -298,7 +287,7 @@ export default function ProjectImplementationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#0c2616] via-deep-forest to-[#08180e] overflow-hidden relative border border-white/10 shadow-[0_25px_60px_-15px_rgba(10,40,20,0.55)]"
+              className="rounded-[36px] lg:rounded-[44px] bg-deep-forest overflow-hidden relative border border-white/10 shadow-2xl"
             >
               {/* Subtle noise texture */}
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -315,159 +304,78 @@ export default function ProjectImplementationPage() {
                 </svg>
               </div>
 
-              {/* Ambient radial glows */}
-              <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary-green/15 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-emerald-400/10 rounded-full blur-[130px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
-
-              <div className="relative z-10 p-6 sm:p-10 lg:p-14 xl:p-16 space-y-12">
-                {/* ── Header ── */}
-                <div className="space-y-5 max-w-4xl">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary-green/20 text-emerald-300 border border-primary-green/30 backdrop-blur-md">
-                      <Sparkles size={13} className="text-emerald-300 shrink-0" />
-                      {t('cs_tag')}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs text-white/70 bg-white/[0.05] border border-white/[0.08]">
-                      <Calendar size={13} className="text-white/40 shrink-0" />
-                      {t('cs_period')}
-                    </span>
-                  </div>
-
+              <div className="relative z-10 p-6 sm:p-10 lg:p-14 xl:p-16 space-y-10">
+                {/* ── Title & Explainer Text ── */}
+                <div className="max-w-4xl space-y-5">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15]">
                     {t('cs_title')}
                   </h2>
 
-                  <p className="text-white/75 font-light leading-relaxed text-[15px] sm:text-base lg:text-lg">
-                    {t('cs_desc')}
-                  </p>
-                </div>
-
-                {/* ── Stats Ribbon ── */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm">
-                  {kcdmsStats.map((st, i) => (
-                    <div key={i} className="flex flex-col items-center sm:items-start p-3 sm:p-4 text-center sm:text-left border-r last:border-r-0 border-white/[0.06]">
-                      <span className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight mb-1">
-                        {st.value}
-                      </span>
-                      <span className="text-xs sm:text-sm text-white/60 font-light">
-                        {st.label}
-                      </span>
-                    </div>
-                  ))}
+                  <div className="space-y-4 text-white/80 font-light leading-relaxed text-base sm:text-lg">
+                    <p>{t('cs_desc1')}</p>
+                    <p>{t('cs_desc2')}</p>
+                  </div>
                 </div>
 
                 {/* ── 4 Published Studies Grid ── */}
-                <div>
-                  <div className="flex items-center justify-between gap-4 mb-6">
-                    <h3 className="text-lg sm:text-xl font-serif font-bold text-white flex items-center gap-2">
-                      <BookOpen size={20} className="text-primary-green" />
+                <div className="pt-2">
+                  <div className="flex items-center gap-2 mb-6">
+                    <BookOpen size={18} className="text-white/60" />
+                    <h3 className="text-lg sm:text-xl font-serif font-bold text-white">
                       {t('cs_studies_title')}
                     </h3>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                    {kcdmsStudies.map((study, idx) => {
-                      const Icon = study.icon
-                      return (
-                        <div
-                          key={idx}
-                          className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] hover:border-primary-green/40 transition-all duration-300 shadow-sm"
-                        >
-                          <div>
-                            <div className="flex items-center justify-between gap-3 mb-4">
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-green/15 text-emerald-300 border border-primary-green/25">
-                                <Icon size={13} />
-                                {study.tag}
-                              </span>
-                              <span className="text-xs font-mono text-white/40 tracking-wider">
-                                {study.size}
-                              </span>
-                            </div>
-
-                            <h4 className="text-lg sm:text-xl font-serif font-bold text-white mb-2.5 leading-snug group-hover:text-emerald-300 transition-colors">
-                              {study.title}
-                            </h4>
-
-                            <p className="text-white/70 font-light text-sm leading-relaxed mb-6">
-                              {study.desc}
-                            </p>
+                    {kcdmsStudies.map((study, idx) => (
+                      <div
+                        key={idx}
+                        className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white/[0.035] hover:bg-white/[0.065] border border-white/[0.08] hover:border-white/20 transition-all duration-300"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between gap-3 mb-4">
+                            <span className="text-[11px] font-semibold tracking-[0.16em] uppercase text-white/50">
+                              {study.tag}
+                            </span>
+                            <span className="text-xs font-mono text-white/35">
+                              {study.size}
+                            </span>
                           </div>
 
-                          <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                            <a
-                              href={study.file}
-                              download
-                              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-green hover:text-emerald-300 transition-colors"
-                            >
-                              <Download size={15} />
-                              {t('cs_download_pdf')}
-                            </a>
-                            <FileText size={16} className="text-white/30 group-hover:text-primary-green transition-colors" />
-                          </div>
+                          <h4 className="text-lg sm:text-xl font-serif font-bold text-white mb-3 leading-snug group-hover:text-primary-green transition-colors">
+                            {study.title}
+                          </h4>
+
+                          <p className="text-white/65 font-light text-sm leading-relaxed mb-6">
+                            {study.desc}
+                          </p>
                         </div>
-                      )
-                    })}
+
+                        <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                          <a
+                            href={study.file}
+                            download
+                            className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white transition-colors"
+                          >
+                            <Download size={14} className="text-white/50 group-hover:text-white transition-colors" />
+                            <span>{t('cs_download_pdf')}</span>
+                          </a>
+                          <span className="text-xs text-white/30 uppercase font-mono tracking-wider">PDF</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* ── Methodologies & Scope ── */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
-                  <div className="rounded-2xl bg-white/[0.04] border border-white/[0.08] p-6 sm:p-7 backdrop-blur-sm">
-                    <div className="text-xs text-primary-green tracking-widest uppercase font-bold mb-4 flex items-center gap-2">
-                      <Target size={14} />
-                      {t('cs_meth_label')}
-                    </div>
-                    <ul className="space-y-3">
-                      {[
-                        t('cs_meth_points.0'),
-                        t('cs_meth_points.1'),
-                        t('cs_meth_points.2'),
-                        t('cs_meth_points.3'),
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-white/80 font-light text-sm leading-relaxed">
-                          <CheckCircle2 size={16} className="text-primary-green shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="rounded-2xl bg-white/[0.04] border border-white/[0.08] p-6 sm:p-7 backdrop-blur-sm flex flex-col justify-between">
-                    <div>
-                      <div className="text-xs text-primary-green tracking-widest uppercase font-bold mb-2">
-                        {t('cs_client_label')}
-                      </div>
-                      <p className="text-white font-medium text-base mb-5">
-                        {t('cs_client_val')}
-                      </p>
-
-                      <div className="text-xs text-primary-green tracking-widest uppercase font-bold mb-3">
-                        {t('cs_scope_label')}
-                      </div>
-                      <ul className="space-y-2.5 mb-6">
-                        {[
-                          t('cs_scope_points.0'),
-                          t('cs_scope_points.1'),
-                          t('cs_scope_points.2'),
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-white/75 font-light text-xs sm:text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary-green shrink-0 mt-1.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center gap-4">
-                      <Link
-                        href="/resources?tab=scoping-studies"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-emerald-300 transition-colors"
-                      >
-                        {t('cs_view_all_studies')}
-                        <ArrowRight size={14} />
-                      </Link>
-                    </div>
-                  </div>
+                {/* ── Bottom Link to Resource Library ── */}
+                <div className="pt-4 flex items-center justify-center sm:justify-start">
+                  <Link
+                    href="/resources?tab=scoping-studies"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors px-6 py-3 rounded-full bg-white/[0.06] hover:bg-white/10 border border-white/10"
+                  >
+                    {t('cs_view_all_studies')}
+                    <ArrowRight size={14} />
+                  </Link>
                 </div>
               </div>
             </motion.div>
