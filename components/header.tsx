@@ -40,6 +40,9 @@ const AnimatedHamburger = ({ isOpen }: { isOpen: boolean }) => (
   </div>
 );
 
+// Translation feature flag — shelf for now while keeping entire pipeline intact
+const TRANSLATION_FEATURE_ACTIVE = false;
+
 export default function Header() {
   const t = useTranslations('Header')
   const [isOpen, setIsOpen] = useState(false)
@@ -209,27 +212,53 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className={`hidden md:flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-opacity opacity-100`}>
-              {[
-                { code: 'en', label: 'EN' },
-                { code: 'fr', label: 'FR' }
-              ].map(loc => {
-                const isActive = loc.code === currentLocale;
-                return (
-                  <button
-                    key={loc.code}
-                    onClick={() => {
-                      if (!isActive) {
-                        triggerLanguageSwitch();
-                        router.replace(pathname, { locale: loc.code as any, scroll: false });
-                      }
-                    }}
-                    className={`text-[11.5px] min-[1440px]:text-xs font-bold px-2 min-[1440px]:px-2.5 py-1 min-[1440px]:py-1.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal hover:bg-black/5'}`}
-                  >
-                    {loc.label}
-                  </button>
-                )
-              })}
+            {/* Language Switcher */}
+            <div className="relative group hidden md:flex items-center">
+              <div
+                className={`flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-all ${
+                  !TRANSLATION_FEATURE_ACTIVE
+                    ? 'opacity-40 grayscale cursor-not-allowed select-none'
+                    : 'opacity-100'
+                }`}
+                aria-disabled={!TRANSLATION_FEATURE_ACTIVE}
+              >
+                {[
+                  { code: 'en', label: 'EN' },
+                  { code: 'fr', label: 'FR' }
+                ].map(loc => {
+                  const isActive = loc.code === currentLocale;
+                  return (
+                    <button
+                      key={loc.code}
+                      disabled={!TRANSLATION_FEATURE_ACTIVE}
+                      onClick={() => {
+                        if (TRANSLATION_FEATURE_ACTIVE && !isActive) {
+                          triggerLanguageSwitch();
+                          router.replace(pathname, { locale: loc.code as any, scroll: false });
+                        }
+                      }}
+                      className={`text-[11.5px] min-[1440px]:text-xs font-bold px-2 min-[1440px]:px-2.5 py-1 min-[1440px]:py-1.5 rounded-full transition-all ${
+                        isActive
+                          ? 'bg-white text-deep-forest shadow-sm'
+                          : 'text-charcoal/60 hover:text-charcoal'
+                      } ${!TRANSLATION_FEATURE_ACTIVE ? 'cursor-not-allowed pointer-events-none' : 'hover:bg-black/5'}`}
+                    >
+                      {loc.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Hover overlay when inactive */}
+              {!TRANSLATION_FEATURE_ACTIVE && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                  <div className="bg-deep-forest text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-lg whitespace-nowrap flex items-center gap-1.5 border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                    <span>under linguistic review</span>
+                  </div>
+                  <div className="w-2 h-2 bg-deep-forest rotate-45 absolute top-1 left-1/2 -translate-x-1/2 border-l border-t border-white/10" />
+                </div>
+              )}
             </div>
 
             <Link
@@ -317,29 +346,49 @@ export default function Header() {
                 </nav>
 
                 <div className="mt-auto pt-8 pb-6">
-                  {/* Compact Language Toggle */}
-                  <div className={`flex items-center justify-center p-1 bg-black/5 rounded-full mb-6 transition-opacity opacity-100`}>
-                    {[
-                      { code: 'en', label: 'English' },
-                      { code: 'fr', label: 'Français' }
-                    ].map(loc => {
-                      const isActive = loc.code === currentLocale;
-                      return (
-                        <button
-                          key={loc.code}
-                          onClick={() => {
-                            if (!isActive) {
-                              triggerLanguageSwitch();
-                              router.replace(pathname, { locale: loc.code as any, scroll: false });
-                              setIsOpen(false);
-                            }
-                          }}
-                          className={`flex-1 text-[13px] font-bold py-2.5 rounded-full transition-all ${isActive ? 'bg-white text-deep-forest shadow-sm' : 'text-charcoal/60 hover:text-charcoal'}`}
-                        >
-                          {loc.label}
-                        </button>
-                      )
-                    })}
+                  {/* Language Switcher */}
+                  <div className="relative group flex flex-col items-center mb-6">
+                    <div
+                      className={`w-full flex items-center justify-center p-1 bg-black/5 rounded-full border border-black/5 transition-all ${
+                        !TRANSLATION_FEATURE_ACTIVE
+                          ? 'opacity-40 grayscale cursor-not-allowed select-none'
+                          : 'opacity-100'
+                      }`}
+                      aria-disabled={!TRANSLATION_FEATURE_ACTIVE}
+                    >
+                      {[
+                        { code: 'en', label: 'English' },
+                        { code: 'fr', label: 'Français' }
+                      ].map(loc => {
+                        const isActive = loc.code === currentLocale;
+                        return (
+                          <button
+                            key={loc.code}
+                            disabled={!TRANSLATION_FEATURE_ACTIVE}
+                            onClick={() => {
+                              if (TRANSLATION_FEATURE_ACTIVE && !isActive) {
+                                triggerLanguageSwitch();
+                                router.replace(pathname, { locale: loc.code as any, scroll: false });
+                                setIsOpen(false);
+                              }
+                            }}
+                            className={`flex-1 text-[13px] font-bold py-2.5 rounded-full transition-all ${
+                              isActive
+                                ? 'bg-white text-deep-forest shadow-sm'
+                                : 'text-charcoal/60 hover:text-charcoal'
+                            } ${!TRANSLATION_FEATURE_ACTIVE ? 'cursor-not-allowed pointer-events-none' : ''}`}
+                          >
+                            {loc.label}
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {!TRANSLATION_FEATURE_ACTIVE && (
+                      <div className="mt-2 text-[11px] text-charcoal/60 font-medium flex items-center gap-1.5 select-none">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                        <span>under linguistic review</span>
+                      </div>
+                    )}
                   </div>
 
                   <Link
