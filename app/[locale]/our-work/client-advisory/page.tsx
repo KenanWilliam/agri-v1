@@ -2,20 +2,7 @@
 import { RollingText } from '@/components/ui/rolling-text';
 
 import { motion } from 'framer-motion'
-import {
-  Scale,
-  FileSearch,
-  TrendingUp,
-  Compass,
-  ArrowRight,
-  Shield,
-  Briefcase,
-  ScrollText,
-  ShieldCheck,
-  Sprout,
-  Building2,
-  Globe2,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 
@@ -24,22 +11,18 @@ export default function ClientAdvisoryPage() {
 
   const advisoryServices = [
     {
-      icon: Compass,
       title: t('adv_services.0.title'),
       description: t('adv_services.0.description'),
     },
     {
-      icon: Scale,
       title: t('adv_services.1.title'),
       description: t('adv_services.1.description'),
     },
     {
-      icon: FileSearch,
       title: t('adv_services.2.title'),
       description: t('adv_services.2.description'),
     },
     {
-      icon: TrendingUp,
       title: t('adv_services.3.title'),
       description: t('adv_services.3.description'),
     },
@@ -60,52 +43,20 @@ export default function ClientAdvisoryPage() {
     },
   ]
 
-  const clientsServed = [
-    {
-      category: t('clients.0.category'),
-      names: t('clients.0.names'),
-      icon: Briefcase,
-    },
-    {
-      category: t('clients.1.category'),
-      names: t('clients.1.names'),
-      icon: TrendingUp,
-    },
-    {
-      category: t('clients.2.category'),
-      names: t('clients.2.names'),
-      icon: Shield,
-    },
-    {
-      category: t('clients.3.category'),
-      names: t('clients.3.names'),
-      icon: FileSearch,
-    },
-    {
-      category: t('clients.4.category'),
-      names: t('clients.4.names'),
-      icon: ScrollText,
-    },
-  ]
-
   const regulatoryMilestones = [
     {
-      icon: ShieldCheck,
       title: t('cs_pillar1_title'),
       desc: t('cs_pillar1_desc'),
     },
     {
-      icon: Sprout,
       title: t('cs_pillar2_title'),
       desc: t('cs_pillar2_desc'),
     },
     {
-      icon: Building2,
       title: t('cs_pillar3_title'),
       desc: t('cs_pillar3_desc'),
     },
     {
-      icon: Globe2,
       title: t('cs_pillar4_title'),
       desc: t('cs_pillar4_desc'),
     },
@@ -200,40 +151,30 @@ export default function ClientAdvisoryPage() {
 
             {/* 2-column staggered layout for premium feel */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {advisoryServices.map((service, idx) => {
-                const Icon = service.icon
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`rounded-[32px] border border-mist hover:border-[#435826]/30 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 group relative overflow-hidden ${
-                      idx % 2 === 0 ? 'bg-mist' : 'bg-[#F4F7EE]/40'
-                    }`}
-                  >
-                    {/* Subtle olive corner accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#435826]/[0.04] rounded-bl-[80px] pointer-events-none group-hover:bg-[#435826]/[0.08] transition duration-300" />
+              {advisoryServices.map((service, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className={`rounded-[32px] border border-mist hover:border-[#435826]/30 hover:bg-white hover:shadow-xl transition-[background-color,border-color,box-shadow] duration-200 p-6 sm:p-8 lg:p-10 group relative overflow-hidden ${
+                    idx % 2 === 0 ? 'bg-mist' : 'bg-[#F4F7EE]/40'
+                  }`}
+                >
+                  {/* Subtle olive corner accent */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#435826]/[0.04] rounded-bl-[80px] pointer-events-none group-hover:bg-[#435826]/[0.08] transition duration-300" />
 
-                    <div className="relative z-10 flex flex-col sm:flex-row gap-6">
-                      {/* Icon */}
-                      <div className="w-14 h-14 rounded-2xl bg-[#435826]/10 flex items-center justify-center text-[#435826] shrink-0 group-hover:bg-[#435826] group-hover:text-white transition duration-200">
-                        <Icon size={26} />
-                      </div>
-
-                      <div className="space-y-3">
-                        <h3 className="text-xl font-serif font-bold text-deep-forest">
-                          {service.title}
-                        </h3>
-                        <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
+                  <div className="relative z-10 space-y-3">
+                    <h3 className="text-xl font-serif font-bold text-deep-forest group-hover:text-[#435826] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-charcoal/70 font-light leading-relaxed text-[14.5px] min-[1440px]:text-base">
+                      {service.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -314,30 +255,22 @@ export default function ClientAdvisoryPage() {
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-4 xl:gap-5">
-                {regulatoryMilestones.map((milestone, idx) => {
-                  const Icon = milestone.icon
-                  return (
-                    <div
-                      key={idx}
-                      className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.06] hover:border-[#435826]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                    >
-                      <div>
-                        {/* Icon */}
-                        <div className="w-10 h-10 rounded-xl bg-[#435826]/10 text-[#435826] flex items-center justify-center shrink-0 mb-5 group-hover:bg-[#435826] group-hover:text-white transition-colors">
-                          <Icon size={20} />
-                        </div>
+                {regulatoryMilestones.map((milestone, idx) => (
+                  <div
+                    key={idx}
+                    className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.06] hover:border-[#435826]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div>
+                      <h4 className="text-base sm:text-lg font-serif font-bold text-deep-forest mb-2.5 leading-snug group-hover:text-[#435826] transition-colors">
+                        {milestone.title}
+                      </h4>
 
-                        <h4 className="text-base sm:text-lg font-serif font-bold text-deep-forest mb-2.5 leading-snug group-hover:text-[#435826] transition-colors">
-                          {milestone.title}
-                        </h4>
-
-                        <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed">
-                          {milestone.desc}
-                        </p>
-                      </div>
+                      <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed">
+                        {milestone.desc}
+                      </p>
                     </div>
-                  )
-                })}
+                  </div>
+                ))}
               </div>
             </div>
 
