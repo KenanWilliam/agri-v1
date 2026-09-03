@@ -124,7 +124,7 @@ function generateTeamNotificationEmail(submission: ContactSubmission) {
       </div>
     </div>
     <div class="footer">
-      Agri Experience Website Notification System • Watermark Business Park, Karen, Nairobi, Kenya
+      Agri Experience Website Notification System • Watermark Business Park, Spring Court, Karen, Nairobi, Kenya
     </div>
   </div>
 </body>
@@ -188,8 +188,8 @@ function generateRespondentAcknowledgmentEmail(submission: ContactSubmission) {
     : `The Agri Experience Team`
 
   const officeLocation = isFrench
-    ? `Siège : Watermark Business Park - Spring Court, Karen. Nairobi, Kenya`
-    : `Head Office: Watermark Business Park - Spring Court, Karen. Nairobi, Kenya`
+    ? `Siège : Watermark Business Park, Spring Court, Karen. Nairobi, Kenya`
+    : `Head Office: Watermark Business Park, Spring Court, Karen. Nairobi, Kenya`
 
   const html = `
 <!DOCTYPE html>

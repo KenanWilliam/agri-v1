@@ -137,26 +137,26 @@ export default function Home() {
     {
       title: t('belief_4_title'),
       text: t('belief_4_text'),
-      width: "w-[260px] lg:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
+      width: "w-[250px] lg:w-[275px] xl:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
     },
     {
       title: t('belief_3_title'),
       text: t('belief_3_text'),
-      width: "w-[260px] lg:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
+      width: "w-[250px] lg:w-[275px] xl:w-[300px] min-[1440px]:w-[360px] 2xl:w-[420px]"
     },
     {
       title: t('belief_1_title'),
       text: t('belief_1_text'),
-      width: "w-[280px] lg:w-[330px] min-[1440px]:w-[440px] 2xl:w-[480px]"
+      width: "w-[270px] lg:w-[295px] xl:w-[325px] min-[1440px]:w-[440px] 2xl:w-[480px]"
     },
     {
       title: t('belief_2_title'),
       text: t('belief_2_text'),
-      width: "w-[280px] lg:w-[330px] min-[1440px]:w-[440px] 2xl:w-[480px]"
+      width: "w-[270px] lg:w-[295px] xl:w-[325px] min-[1440px]:w-[440px] 2xl:w-[480px]"
     }
   ]
 
-  const UNIFORM_CARD_WIDTH = "w-[290px] lg:w-[330px] min-[1440px]:w-[410px] 2xl:w-[450px]"
+  const UNIFORM_CARD_WIDTH = "w-[270px] lg:w-[295px] xl:w-[320px] min-[1440px]:w-[410px] 2xl:w-[450px]"
 
   const agriCards = [
     { text: tAgri('card_3'), width: UNIFORM_CARD_WIDTH },
@@ -290,30 +290,30 @@ export default function Home() {
             <div className="relative h-[100dvh] w-full overflow-hidden">
                 
                 {/* Track 1: Why Agri Experience Layer */}
-                <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0 flex lg:max-[1439px]:justify-center">
+                <div ref={track1Ref} className="absolute inset-0 w-full h-full bg-mist z-0 flex">
                   <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,var(--warm-earth)_0%,transparent_60%)] opacity-20 blur-3xl pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
                   <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,var(--primary-green)_0%,transparent_60%)] opacity-[0.05] blur-3xl pointer-events-none rounded-full -translate-x-1/4 translate-y-1/4" />
 
-                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-6 md:px-8 lg:max-[1439px]:px-4 min-[1440px]:px-16 2xl:px-24 gap-6 lg:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:max-[1439px]:pr-4 min-[1440px]:pr-16 2xl:pr-24">
-                    <div className="w-[200px] lg:w-[235px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-4 min-[1440px]:space-y-6">
+                  <div ref={track1InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5rem] px-6 md:px-8 lg:px-10 xl:px-12 min-[1440px]:px-16 2xl:px-24 gap-5 lg:gap-6 xl:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:pr-10 xl:pr-12 min-[1440px]:pr-16 2xl:pr-24">
+                    <div className="w-[190px] lg:w-[210px] xl:w-[240px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-3 lg:space-y-4 min-[1440px]:space-y-6">
                       <motion.div>
-                        <h2 className="text-3xl lg:text-[38px] min-[1440px]:text-5xl 2xl:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-2 mb-3 min-[1440px]:mb-6 leading-[1.12]">
+                        <h2 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] min-[1440px]:text-5xl 2xl:text-6xl font-serif text-deep-forest font-bold tracking-tight pb-1 mb-2 min-[1440px]:mb-6 leading-[1.14]">
                           {tAgri('title')}
                         </h2>
                         <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-3 lg:py-4 h-[clamp(370px,56vh,540px)]">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3 lg:gap-3.5 xl:gap-4 min-[1440px]:gap-6 shrink-0 py-2 lg:py-3 h-[clamp(350px,52vh,520px)]">
                       {agriCards.map((item, idx) => (
                         <div
                           key={idx}
-                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-5 lg:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-all duration-300 group relative overflow-hidden flex flex-col justify-center shadow-sm hover:shadow-md`}
+                          className={`${item.width} h-full shrink-0 bg-white/85 backdrop-blur-xl p-4 lg:p-5 xl:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl border border-white/60 hover:bg-white transition-all duration-300 group relative overflow-hidden flex flex-col justify-center shadow-sm hover:shadow-md`}
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           <div className="relative z-10 flex flex-col justify-center h-full overflow-hidden">
                             <p
-                              className="text-charcoal/90 font-medium leading-relaxed text-xs sm:text-sm lg:text-[14.5px] min-[1440px]:text-[16.5px] 2xl:text-[18px]"
+                              className="text-charcoal/90 font-medium leading-relaxed text-xs sm:text-[13px] lg:text-[13.5px] xl:text-[14.5px] min-[1440px]:text-[16.5px] 2xl:text-[18px]"
                             >
                               {item.text}
                             </p>
@@ -325,27 +325,27 @@ export default function Home() {
                 </div>
 
                 {/* Track 2: What We Believe Layer */}
-                <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full flex lg:max-[1439px]:justify-center">
+                <div ref={track2Ref} className="absolute inset-0 w-full h-full bg-deep-forest z-10 translate-x-full flex">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--primary-green)_0%,transparent_50%)] opacity-20 pointer-events-none"></div>
                   
-                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5.5rem] px-6 md:px-8 lg:max-[1439px]:px-4 min-[1440px]:px-16 2xl:px-24 gap-6 lg:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:max-[1439px]:pr-4 min-[1440px]:pr-16 2xl:pr-24">
-                    <div className="w-[200px] lg:w-[235px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-4 min-[1440px]:space-y-6">
+                  <div ref={track2InnerRef} className="flex h-full items-center pt-[4.5rem] lg:pt-[5rem] px-6 md:px-8 lg:px-10 xl:px-12 min-[1440px]:px-16 2xl:px-24 gap-5 lg:gap-6 xl:gap-8 min-[1440px]:gap-12 2xl:gap-16 relative z-10 w-max pr-6 md:pr-8 lg:pr-10 xl:pr-12 min-[1440px]:pr-16 2xl:pr-24">
+                    <div className="w-[190px] lg:w-[210px] xl:w-[240px] min-[1440px]:w-[340px] 2xl:w-[380px] shrink-0 space-y-3 lg:space-y-4 min-[1440px]:space-y-6">
                       <motion.div>
-                        <h2 className="text-3xl lg:text-[34px] min-[1440px]:text-4xl 2xl:text-5xl font-serif text-white font-bold tracking-tight pb-2 mb-3 min-[1440px]:mb-6 leading-[1.15]">{t('what_we_believe')}</h2>
+                        <h2 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[34px] min-[1440px]:text-4xl 2xl:text-5xl font-serif text-white font-bold tracking-tight pb-1 mb-2 min-[1440px]:mb-6 leading-[1.15]">{t('what_we_believe')}</h2>
                         <div className="w-16 lg:w-20 h-1 bg-primary-green rounded-full"></div>
                       </motion.div>
                     </div>
                     
-                    <div className="grid grid-rows-2 grid-flow-col gap-3.5 lg:gap-4 min-[1440px]:gap-6 xl:gap-8 shrink-0 py-3 lg:py-4 h-[clamp(370px,56vh,540px)]">
+                    <div className="grid grid-rows-2 grid-flow-col gap-3 lg:gap-3.5 xl:gap-4 min-[1440px]:gap-6 shrink-0 py-2 lg:py-3 h-[clamp(350px,52vh,520px)]">
                       {beliefs.map((belief, idx) => (
                         <div
                           key={idx}
-                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-5 lg:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center overflow-hidden`}
+                          className={`${belief.width} h-full shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 p-4 lg:p-5 xl:p-6 min-[1440px]:p-7 2xl:p-8 rounded-2xl xl:rounded-3xl hover:bg-white/10 transition-all duration-300 flex flex-col justify-center overflow-hidden`}
                         >
-                          <div className="flex flex-col justify-center gap-1.5 min-[1440px]:gap-2.5 h-full overflow-hidden">
-                            <h3 className="text-sm sm:text-base min-[1440px]:text-lg 2xl:text-xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
+                          <div className="flex flex-col justify-center gap-1 xl:gap-1.5 min-[1440px]:gap-2.5 h-full overflow-hidden">
+                            <h3 className="text-[13px] sm:text-sm xl:text-base min-[1440px]:text-lg 2xl:text-xl font-serif text-white font-bold leading-snug">{belief.title}</h3>
                             <p
-                              className="text-white/80 font-normal leading-relaxed text-xs sm:text-[13.5px] lg:text-[14px] min-[1440px]:text-[15.5px] 2xl:text-[17px]"
+                              className="text-white/80 font-normal leading-relaxed text-[11.5px] sm:text-xs xl:text-[13.5px] min-[1440px]:text-[15.5px] 2xl:text-[17px]"
                             >
                               {belief.text}
                             </p>

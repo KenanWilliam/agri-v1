@@ -314,7 +314,7 @@ export default function ContactPage() {
                     className="w-full h-64 rounded-3xl overflow-hidden shadow-lg border border-mist mt-8"
                   >
                     <iframe
-                      src="https://maps.google.com/maps?q=Watermark%20Business%20Park,%20Karen,%20Nairobi&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                      src="https://maps.google.com/maps?q=Watermark%20Business%20Park,%20Spring%20Court,%20Karen,%20Nairobi&t=&z=15&ie=UTF8&iwloc=&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}

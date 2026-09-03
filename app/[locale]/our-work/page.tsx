@@ -101,31 +101,27 @@ export default function OurWorkPage() {
         </section>
 
         {/* Cards Section */}
-        <section className="w-full pt-8 md:pt-10 lg:pt-12 pb-20 relative z-10">
+        <section className="w-full pt-6 sm:pt-8 md:pt-10 lg:pt-12 pb-16 md:pb-20 relative z-10">
           <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 xl:gap-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 xl:gap-7">
               {cards.map((card, idx) => {
                 return (
                   <Link key={idx} href={card.link} className="block h-full group">
                     <div
-                      className={`rounded-[20px] md:rounded-[24px] lg:rounded-[26px] border ${card.borderClass} ${card.cardBgClass} flex flex-col justify-between h-full shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
-                      style={{
-                        padding: 'clamp(1.25rem, 1rem + 0.7vw, 1.75rem)',
-                        minHeight: 'clamp(200px, 18vh + 120px, 240px)',
-                      }}
+                      className={`rounded-2xl md:rounded-[24px] lg:rounded-[26px] border ${card.borderClass} ${card.cardBgClass} flex flex-col justify-between h-full shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 sm:p-5 md:p-6 lg:p-7 min-h-0 md:min-h-[210px] lg:min-h-[230px]`}
                     >
                       {/* Mobile Layout (< md) */}
-                      <div className="flex items-center justify-between gap-3.5 sm:gap-4 md:hidden">
-                        <div className="flex-1 flex flex-col gap-0.5 min-w-0">
-                          <h2 className={`text-lg font-serif font-bold ${card.textClass} leading-snug truncate`}>
+                      <div className="flex items-center justify-between gap-3 sm:gap-4 md:hidden py-1">
+                        <div className="flex-1 flex flex-col gap-1 min-w-0">
+                          <h2 className={`text-[16.5px] sm:text-lg font-serif font-bold ${card.textClass} leading-snug`}>
                             {card.title}
                           </h2>
-                          <p className="text-base text-charcoal/85 leading-relaxed line-clamp-2 pr-1">
+                          <p className="text-[13px] sm:text-sm text-charcoal/80 leading-relaxed line-clamp-2 pr-1">
                             {card.mobileDescription}
                           </p>
                         </div>
-                        <div className={`w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full ${card.btnBgClass} flex items-center justify-center shadow-sm`}>
-                          <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
+                        <div className={`w-8 h-8 shrink-0 rounded-full ${card.btnBgClass} flex items-center justify-center shadow-sm`}>
+                          <ArrowRight size={14} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
                         </div>
                       </div>
 

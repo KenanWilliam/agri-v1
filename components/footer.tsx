@@ -201,7 +201,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass}>
-                      Watermark Business Park, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                      Watermark Business Park, Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
                     </a>
                   </li>
                 </ul>
@@ -237,11 +237,6 @@ export default function Footer() {
                 <p style={{ color: '#888', fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>
                   © {year} Agri Experience Ltd.
                 </p>
-                <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#999', fontSize: '11px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
-                  className="hover:text-[#aaa]">
-                  {t('credit')}
-                </a>
               </div>
             </div>
           </div>
@@ -366,7 +361,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="https://maps.google.com/?q=Watermark+Business+Park+Spring+Court,+Karen,+Nairobi,+Kenya" target="_blank" rel="noopener noreferrer" className={linkHoverClass} style={{ display: 'block', padding: '4px 0', lineHeight: 1.5 }}>
-                  Watermark Business Park, Karen<br/>P.O. Box 1720 - 00606, Nairobi
+                  Watermark Business Park, Spring Court, Karen<br/>P.O. Box 1720 - 00606, Nairobi
                 </a>
               </li>
             </ul>
@@ -393,11 +388,6 @@ export default function Footer() {
               <p style={{ color: '#888', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase', margin: 0 }}>
                 © {year} Agri Experience Ltd.
               </p>
-              <a href="https://www.linkedin.com/in/kenanwilliam/" target="_blank" rel="noopener noreferrer"
-                style={{ color: '#999', fontSize: '10px', textDecoration: 'none', letterSpacing: '0.05em', textTransform: 'uppercase', transition: 'color 0.15s' }}
-                className="hover:text-[#aaa]">
-                {t('credit')}
-              </a>
             </div>
           </div>
         </div>
