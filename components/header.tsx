@@ -5,6 +5,7 @@ import { Link, usePathname, useRouter } from '@/i18n/routing'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { createPortal } from 'react-dom'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
@@ -61,6 +62,36 @@ export default function Header() {
   useEffect(() => {
     setClickedPath(null)
   }, [pathname])
+
+  // Language switch inactive status popup state
+  const [mounted, setMounted] = useState(false)
+  const [isLangHovered, setIsLangHovered] = useState(false)
+  const [popupCoords, setPopupCoords] = useState<{ top: number; left: number } | null>(null)
+  const langButtonRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const updatePopupPosition = () => {
+    if (langButtonRef.current) {
+      const rect = langButtonRef.current.getBoundingClientRect()
+      setPopupCoords({
+        top: rect.bottom + 8,
+        left: rect.left + rect.width / 2,
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (!isLangHovered) return
+    window.addEventListener('scroll', updatePopupPosition, { passive: true })
+    window.addEventListener('resize', updatePopupPosition, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', updatePopupPosition)
+      window.removeEventListener('resize', updatePopupPosition)
+    }
+  }, [isLangHovered])
 
   const handleMouseLeave = () => {
     setHoveredPath(null)
@@ -213,7 +244,21 @@ export default function Header() {
 
           <div className="flex items-center gap-4">
             {/* Language Switcher */}
-            <div className="relative group hidden md:flex items-center">
+            <div
+              ref={langButtonRef}
+              onMouseEnter={() => {
+                if (!TRANSLATION_FEATURE_ACTIVE) {
+                  updatePopupPosition();
+                  setIsLangHovered(true);
+                }
+              }}
+              onMouseLeave={() => {
+                if (!TRANSLATION_FEATURE_ACTIVE) {
+                  setIsLangHovered(false);
+                }
+              }}
+              className="relative hidden md:flex items-center"
+            >
               <div
                 className={`flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 transition-all ${
                   !TRANSLATION_FEATURE_ACTIVE
@@ -248,17 +293,6 @@ export default function Header() {
                   )
                 })}
               </div>
-
-              {/* Hover overlay when inactive */}
-              {!TRANSLATION_FEATURE_ACTIVE && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-                  <div className="bg-deep-forest text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-lg whitespace-nowrap flex items-center gap-1.5 border border-white/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                    <span>under linguistic review</span>
-                  </div>
-                  <div className="w-2 h-2 bg-deep-forest rotate-45 absolute top-1 left-1/2 -translate-x-1/2 border-l border-t border-white/10" />
-                </div>
-              )}
             </div>
 
             <Link
@@ -279,6 +313,30 @@ export default function Header() {
 
       </LiquidGlass>
       </motion.div>
+
+      {/* Linguistic Review Glass Popup — portaled outside nav to avoid container clipping and ensure highest z-index */}
+      {mounted && typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {!TRANSLATION_FEATURE_ACTIVE && isLangHovered && popupCoords && (
+            <motion.div
+              key="linguistic-review-popup"
+              initial={{ opacity: 0, y: -4, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -4, scale: 0.96 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+              className="fixed z-[9999] pointer-events-none -translate-x-1/2"
+              style={{ top: popupCoords.top, left: popupCoords.left }}
+            >
+              {/* Glass container adopting the exact same frosted glass aesthetic as the navbar */}
+              <div className="relative px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_12px_36px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)] text-deep-forest text-xs font-semibold whitespace-nowrap flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+                <span className="tracking-tight font-medium">under linguistic review</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* Mobile Navigation Sidebar */}
       <AnimatePresence>
@@ -384,9 +442,9 @@ export default function Header() {
                       })}
                     </div>
                     {!TRANSLATION_FEATURE_ACTIVE && (
-                      <div className="mt-2 text-[11px] text-charcoal/60 font-medium flex items-center gap-1.5 select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                        <span>under linguistic review</span>
+                      <div className="mt-2.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-black/[0.08] shadow-sm text-[11.5px] text-deep-forest font-semibold flex items-center gap-1.5 select-none">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+                        <span className="tracking-tight font-medium">under linguistic review</span>
                       </div>
                     )}
                   </div>
