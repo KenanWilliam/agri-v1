@@ -13,14 +13,8 @@ import {
   Leaf,
   CheckCircle2,
   Handshake,
-  Calendar,
   Shield,
-  FileText,
   Download,
-  Sparkles,
-  Layers,
-  Building2,
-  BookOpen,
 } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
@@ -279,8 +273,8 @@ export default function ProjectImplementationPage() {
 
         {/* ─── Flagship Showcase: USAID's KCDMS Studies ─── */}
         <section className="w-full py-16 lg:py-24 bg-[#F0F4EC] border-y border-[#E0E7DC] overflow-hidden">
-          {/* Header constrained to standard content width for comfortable reading */}
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 mb-10">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-10">
+            {/* ── Title & Explainer Text ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -300,96 +294,92 @@ export default function ProjectImplementationPage() {
                 <p>{t('cs_desc2')}</p>
               </div>
             </motion.div>
-          </div>
 
-          {/* Expanded Container: Extends past the standard 1400px page container */}
-          <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-            <div className="flex items-center gap-2 mb-5 px-1">
-              <BookOpen size={18} className="text-primary-green" />
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-deep-forest">
+            {/* ── 4 Published Studies with Static Previews ── */}
+            <div>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-deep-forest mb-5 px-0.5">
                 {t('cs_studies_title')}
               </h3>
-            </div>
 
-            {/* 4 Study Cards Grid with reduced gap and wider horizontal footprint */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-4 xl:gap-5">
-              {kcdmsStudies.map((study, idx) => (
-                <div
-                  key={idx}
-                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:border-primary-green/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                >
-                  {/* Instant Static Document Preview Thumbnail (No flash on load) */}
-                  <div className="relative w-full aspect-[1/1.12] overflow-hidden bg-mist/60 border-b border-black/[0.05]">
-                    <Image
-                      src={study.preview}
-                      alt={study.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-                      priority={idx < 2}
-                    />
-                    {/* Hover overlay with Open PDF action */}
-                    <a
-                      href={study.file}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="absolute inset-0 bg-primary-green/0 group-hover:bg-primary-green/10 transition-colors duration-200 flex items-center justify-center z-10"
-                      aria-label={`Open ${study.title} PDF`}
-                    >
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/95 backdrop-blur-sm text-deep-forest text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
-                        <ArrowRight size={12} /> Open PDF
-                      </span>
-                    </a>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <p className="text-xs font-bold text-primary-green uppercase tracking-wider">
-                        {t('cs_client_tag')}
-                      </p>
-                      <span className="text-[10px] uppercase font-mono tracking-wider text-charcoal/50 bg-mist px-2 py-0.5 rounded">
-                        PDF
-                      </span>
-                    </div>
-
-                    <h4 className="text-base font-serif font-bold text-deep-forest mb-1.5 leading-snug group-hover:text-primary-green transition-colors line-clamp-2">
-                      {study.title}
-                    </h4>
-
-                    <p className="text-xs text-charcoal/70 font-light leading-relaxed mb-4 flex-grow line-clamp-2">
-                      {study.citation}
-                    </p>
-
-                    <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between mt-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-4 xl:gap-5">
+                {kcdmsStudies.map((study, idx) => (
+                  <div
+                    key={idx}
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:border-primary-green/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    {/* Instant Static Document Preview Thumbnail */}
+                    <div className="relative w-full aspect-[1/1.12] overflow-hidden bg-mist/60 border-b border-black/[0.05]">
+                      <Image
+                        src={study.preview}
+                        alt={study.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                        priority={idx < 2}
+                      />
+                      {/* Hover overlay with Open PDF action */}
                       <a
                         href={study.file}
-                        download
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-deep-forest hover:text-primary-green transition-colors"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="absolute inset-0 bg-primary-green/0 group-hover:bg-primary-green/10 transition-colors duration-200 flex items-center justify-center z-10"
+                        aria-label={`Open ${study.title} PDF`}
                       >
-                        <Download size={13} className="text-primary-green" />
-                        <span>{t('cs_download_pdf')}</span>
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/95 backdrop-blur-sm text-deep-forest text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
+                          <ArrowRight size={12} /> Open PDF
+                        </span>
                       </a>
+                    </div>
 
-                      {study.clientLink && (
+                    {/* Card Content */}
+                    <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <p className="text-xs font-bold text-primary-green uppercase tracking-wider">
+                          {t('cs_client_tag')}
+                        </p>
+                        <span className="text-[10px] uppercase font-mono tracking-wider text-charcoal/50 bg-mist px-2 py-0.5 rounded">
+                          PDF
+                        </span>
+                      </div>
+
+                      <h4 className="text-base font-serif font-bold text-deep-forest mb-1.5 leading-snug group-hover:text-primary-green transition-colors line-clamp-2">
+                        {study.title}
+                      </h4>
+
+                      <p className="text-xs text-charcoal/70 font-light leading-relaxed mb-4 flex-grow line-clamp-2">
+                        {study.citation}
+                      </p>
+
+                      <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between mt-auto">
                         <a
-                          href={study.clientLink}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary-green hover:underline"
+                          href={study.file}
+                          download
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-deep-forest hover:text-primary-green transition-colors"
                         >
-                          <span>Agrilinks</span>
-                          <ArrowRight size={11} />
+                          <Download size={13} className="text-primary-green" />
+                          <span>{t('cs_download_pdf')}</span>
                         </a>
-                      )}
+
+                        {study.clientLink && (
+                          <a
+                            href={study.clientLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary-green hover:underline"
+                          >
+                            <span>Agrilinks</span>
+                            <ArrowRight size={11} />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Bottom Link to Resource Library */}
-            <div className="pt-10 flex items-center justify-start">
+            <div className="pt-2 flex items-center justify-start">
               <Link
                 href="/resources?tab=scoping-studies"
                 className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-3.5 bg-deep-forest text-white rounded-full font-semibold text-sm hover:bg-deep-forest/90 transition-all shadow-md"
@@ -405,7 +395,7 @@ export default function ProjectImplementationPage() {
 
         {/* ─── CTA Section ─── */}
         <section className="w-full">
-          <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] overflow-hidden relative">
+          <div className="w-full bg-deep-forest overflow-hidden relative">
             {/* Radial gradient overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(58,180,74,0.08),transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(36,132,198,0.05),transparent_50%)] pointer-events-none" />
