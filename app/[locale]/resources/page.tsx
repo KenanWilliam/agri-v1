@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { publicDownloads } from '@/lib/public-downloads'
 import { motion } from 'framer-motion'
 import { Link } from '@/i18n/routing'
@@ -23,14 +24,43 @@ const PdfPreview = dynamic(() => import('@/components/pdf-preview'), {
 
 const categories = ['All', 'Reports & Analysis', 'Case Studies', 'Scoping Studies', 'Toolkits & Guides']
 
-export default function ResourcesPage() {
+function ResourcesContent() {
   const t = useTranslations('Resources')
+  const searchParams = useSearchParams()
   const [activeCategory, setActiveCategory] = useState('All')
+
+  // Automatically activate the requested tab/category on load (e.g. ?tab=case-studies)
+  useEffect(() => {
+    const rawParam = searchParams?.get('tab') || searchParams?.get('category')
+    if (rawParam) {
+      const normalized = rawParam.toLowerCase().replace(/[^a-z0-9]/g, '')
+      const matched = categories.find(
+        (cat) => cat.toLowerCase().replace(/[^a-z0-9]/g, '') === normalized
+      )
+      if (matched) {
+        setActiveCategory(matched)
+      }
+    }
+  }, [searchParams])
 
   // Using the index of the category to pull the translated string since the keys map 1:1 with English
   const getCategoryTranslation = (cat: string) => {
     const idx = categories.indexOf(cat);
     return idx >= 0 ? t(`categories.${idx}`) : cat;
+  }
+
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat)
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      if (cat === 'All') {
+        url.searchParams.delete('tab')
+        url.searchParams.delete('category')
+      } else {
+        url.searchParams.set('tab', cat.toLowerCase().replace(/\s+/g, '-'))
+      }
+      window.history.replaceState(null, '', url.toString())
+    }
   }
 
   const filteredDownloads = publicDownloads.filter(download => 
@@ -65,7 +95,7 @@ export default function ResourcesPage() {
                 {categories.map((category) => (
                   <button
                     key={category}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                     className={`group relative overflow-hidden inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-in-out ${
                       activeCategory === category
                         ? 'bg-primary-green text-white shadow-md'
@@ -149,5 +179,13 @@ export default function ResourcesPage() {
         </section>
       </main>
     </>
+  )
+}
+
+export default function ResourcesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[100dvh] bg-white" />}>
+      <ResourcesContent />
+    </Suspense>
   )
 }

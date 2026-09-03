@@ -136,7 +136,7 @@ export default function Footer() {
                     { key: 'digital_tools', href: '/our-work/digital-platforms' },
                     { key: 'field_projects', href: '/our-work/project-implementation' },
                     { key: 'technical_studies', href: '/our-work/technical-studies' },
-                    { key: 'case_studies', href: '/resources' },
+                    { key: 'case_studies', href: '/resources?tab=case-studies' },
                   ].map(item => (
                     <li key={item.key}>
                       <Link href={item.href} className={linkHoverClass}>{t(item.key as any)}</Link>
@@ -311,7 +311,7 @@ export default function Footer() {
                   { key: 'digital_tools', href: '/our-work/digital-platforms' },
                   { key: 'field_projects', href: '/our-work/project-implementation' },
                   { key: 'technical_studies', href: '/our-work/technical-studies' },
-                  { key: 'case_studies', href: '/resources' },
+                  { key: 'case_studies', href: '/resources?tab=case-studies' },
                 ],
               },
               {
