@@ -111,25 +111,6 @@ export default function ProjectImplementationPage() {
     },
   ]
 
-  const tanzaniaModernizationPillars = [
-    {
-      title: t('cs_pillar1_title'),
-      desc: t('cs_pillar1_desc'),
-    },
-    {
-      title: t('cs_pillar2_title'),
-      desc: t('cs_pillar2_desc'),
-    },
-    {
-      title: t('cs_pillar3_title'),
-      desc: t('cs_pillar3_desc'),
-    },
-    {
-      title: t('cs_pillar4_title'),
-      desc: t('cs_pillar4_desc'),
-    },
-  ]
-
   return (
     <>
       <main className="bg-white min-h-[100dvh]">
@@ -268,7 +249,7 @@ export default function ProjectImplementationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="space-y-4 max-w-4xl"
+              className="space-y-6 max-w-4xl"
             >
               <h2
                 className="font-serif font-bold text-deep-forest tracking-tight pb-1"
@@ -277,50 +258,24 @@ export default function ProjectImplementationPage() {
                 {t('cs_title')}
               </h2>
 
-              <div className="space-y-3 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
+              <div className="space-y-4 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
                 <p>{t('cs_desc1')}</p>
                 <p>{t('cs_desc2')}</p>
               </div>
-            </motion.div>
 
-            {/* ── 4 Institutional Modernization Cards ── */}
-            <div>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-deep-forest mb-5 px-0.5">
-                {t('cs_section_title')}
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-4 xl:gap-5">
-                {tanzaniaModernizationPillars.map((pillar, idx) => (
-                  <div
-                    key={idx}
-                    className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.06] hover:border-primary-green/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <div>
-                      <h4 className="text-base sm:text-lg font-serif font-bold text-deep-forest mb-2.5 leading-snug group-hover:text-primary-green transition-colors">
-                        {pillar.title}
-                      </h4>
-
-                      <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              {/* Bottom Action */}
+              <div className="pt-2 flex items-center justify-start">
+                <Link
+                  href="/contact"
+                  className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-3.5 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-primary-green/90 transition-all shadow-md"
+                >
+                  <RollingText className="gap-2">
+                    {t('cs_cta_btn')}
+                    <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
+                  </RollingText>
+                </Link>
               </div>
-            </div>
-
-            {/* Bottom Action */}
-            <div className="pt-2 flex items-center justify-start">
-              <Link
-                href="/contact"
-                className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-3.5 bg-primary-green text-white rounded-full font-semibold text-sm hover:bg-primary-green/90 transition-all shadow-md"
-              >
-                <RollingText className="gap-2">
-                  {t('cs_cta_btn')}
-                  <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
-                </RollingText>
-              </Link>
-            </div>
+            </motion.div>
           </div>
         </section>
 
