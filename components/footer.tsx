@@ -132,11 +132,12 @@ export default function Footer() {
                 <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '14px', marginBottom: '16px' }}>{t('our_work')}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
                   {[
-                    { key: 'seed_systems', href: '/our-work' },
-                    { key: 'digital_tools', href: '/our-work/digital-platforms' },
-                    { key: 'field_projects', href: '/our-work/project-implementation' },
+                    { key: 'digital_platforms', href: '/our-work/digital-platforms' },
                     { key: 'technical_studies', href: '/our-work/technical-studies' },
-                    { key: 'case_studies', href: '/resources?tab=case-studies' },
+                    { key: 'project_implementation', href: '/our-work/project-implementation' },
+                    { key: 'client_advisory', href: '/our-work/client-advisory' },
+                    { key: 'capacity_building', href: '/our-work/capacity-building' },
+                    { key: 'stakeholder_convenings', href: '/our-work/stakeholder-convenings' },
                   ].map(item => (
                     <li key={item.key}>
                       <Link href={item.href} className={linkHoverClass}>{t(item.key as any)}</Link>
@@ -307,11 +308,12 @@ export default function Footer() {
               {
                 titleKey: 'our_work',
                 links: [
-                  { key: 'seed_systems', href: '/our-work' },
-                  { key: 'digital_tools', href: '/our-work/digital-platforms' },
-                  { key: 'field_projects', href: '/our-work/project-implementation' },
+                  { key: 'digital_platforms', href: '/our-work/digital-platforms' },
                   { key: 'technical_studies', href: '/our-work/technical-studies' },
-                  { key: 'case_studies', href: '/resources?tab=case-studies' },
+                  { key: 'project_implementation', href: '/our-work/project-implementation' },
+                  { key: 'client_advisory', href: '/our-work/client-advisory' },
+                  { key: 'capacity_building', href: '/our-work/capacity-building' },
+                  { key: 'stakeholder_convenings', href: '/our-work/stakeholder-convenings' },
                 ],
               },
               {
