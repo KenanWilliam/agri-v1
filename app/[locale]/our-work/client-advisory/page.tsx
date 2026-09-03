@@ -16,6 +16,10 @@ import {
   Target,
   Briefcase,
   ScrollText,
+  ShieldCheck,
+  Sprout,
+  Building2,
+  Globe2,
 } from 'lucide-react'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
@@ -92,6 +96,33 @@ export default function ClientAdvisoryPage() {
       category: t('clients.4.category'),
       names: t('clients.4.names'),
       icon: ScrollText,
+    },
+  ]
+
+  const regulatoryMilestones = [
+    {
+      icon: ShieldCheck,
+      tag: t('cs_pillar1_tag'),
+      title: t('cs_pillar1_title'),
+      desc: t('cs_pillar1_desc'),
+    },
+    {
+      icon: Sprout,
+      tag: t('cs_pillar2_tag'),
+      title: t('cs_pillar2_title'),
+      desc: t('cs_pillar2_desc'),
+    },
+    {
+      icon: Building2,
+      tag: t('cs_pillar3_tag'),
+      title: t('cs_pillar3_title'),
+      desc: t('cs_pillar3_desc'),
+    },
+    {
+      icon: Globe2,
+      tag: t('cs_pillar4_tag'),
+      title: t('cs_pillar4_title'),
+      desc: t('cs_pillar4_desc'),
     },
   ]
 
@@ -274,9 +305,92 @@ export default function ClientAdvisoryPage() {
           </div>
         </section>
 
+        {/* ─── Flagship Advisory Case Study: KEPHIS Regulatory Modernization ─── */}
+        <section className="w-full py-16 lg:py-24 bg-[#F4F7EE] border-y border-[#E2E8D8] overflow-hidden">
+          <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-10">
+            {/* ── Title & Explainer Text ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="space-y-4 max-w-4xl"
+            >
+              <h2
+                className="font-serif font-bold text-deep-forest tracking-tight pb-1"
+                style={{ fontSize: 'clamp(2rem, 1.4rem + 2.2vw, 3.5rem)' }}
+              >
+                {t('cs_title')}
+              </h2>
+
+              <div className="space-y-3 text-charcoal/85 font-normal leading-relaxed text-base sm:text-lg lg:text-[17px]">
+                <p>{t('cs_desc1')}</p>
+                <p>{t('cs_desc2')}</p>
+              </div>
+            </motion.div>
+
+            {/* ── 4 Strategic Advisory Impact Cards ── */}
+            <div>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-deep-forest mb-5 px-0.5">
+                {t('cs_section_title')}
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-4 xl:gap-5">
+                {regulatoryMilestones.map((milestone, idx) => {
+                  const Icon = milestone.icon
+                  return (
+                    <div
+                      key={idx}
+                      className="group flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-black/[0.06] hover:border-[#435826]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <div>
+                        {/* Top Tag & Icon */}
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#435826] bg-[#435826]/10 px-2.5 py-1 rounded-full">
+                            {milestone.tag}
+                          </span>
+                          <div className="w-9 h-9 rounded-xl bg-[#435826]/10 text-[#435826] flex items-center justify-center shrink-0 group-hover:bg-[#435826] group-hover:text-white transition-colors">
+                            <Icon size={18} />
+                          </div>
+                        </div>
+
+                        <h4 className="text-base sm:text-lg font-serif font-bold text-deep-forest mb-2.5 leading-snug group-hover:text-[#435826] transition-colors">
+                          {milestone.title}
+                        </h4>
+
+                        <p className="text-xs sm:text-[13.5px] text-charcoal/75 font-light leading-relaxed mb-4">
+                          {milestone.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-3.5 border-t border-black/[0.05] flex items-center gap-2 text-xs font-semibold text-[#435826]">
+                        <CheckCircle2 size={14} className="text-[#435826] shrink-0" />
+                        <span>Regulatory Co-Regulation</span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Bottom Action */}
+            <div className="pt-2 flex items-center justify-start">
+              <Link
+                href="/contact"
+                className="group relative overflow-hidden inline-flex items-center gap-2 px-8 py-3.5 bg-[#435826] text-white rounded-full font-semibold text-sm hover:bg-[#34441B] transition-all shadow-md"
+              >
+                <RollingText className="gap-2">
+                  {t('cs_cta_btn')}
+                  <ArrowRight size={15} className="transform rotate-[-45deg] group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" />
+                </RollingText>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ─── CTA Section ─── */}
         <section className="w-full">
-          <div className="w-full bg-deep-forest rounded-t-[40px] lg:rounded-t-[80px] overflow-hidden relative">
+          <div className="w-full bg-deep-forest overflow-hidden relative">
             {/* Radial gradient overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(58,180,74,0.08),transparent_60%)] pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(36,132,198,0.05),transparent_50%)] pointer-events-none" />
