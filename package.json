@@ -14,6 +14,7 @@
     "start": "next start",
     "lint": "eslint .",
     "translate": "node scripts/auto-translate.js",
+    "preview:emails": "node scripts/preview-emails.js",
     "prepare": "husky"
   },
   "dependencies": {

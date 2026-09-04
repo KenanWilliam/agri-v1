@@ -65,7 +65,7 @@ function getLogoAttachment() {
 /**
  * Generates the notification email sent to info@agri-experience.com
  */
-function generateTeamNotificationEmail(submission: ContactSubmission) {
+export function generateTeamNotificationEmail(submission: ContactSubmission) {
   const safeName = escapeHtml(submission.name.trim())
   const safeEmail = escapeHtml(submission.email.trim())
   const safeOrg = submission.organization?.trim() ? escapeHtml(submission.organization.trim()) : 'Not specified'
@@ -201,7 +201,7 @@ Simply click "Reply" in your email client to respond to ${submission.name} at ${
 /**
  * Generates the automated acknowledgment email sent to the respondent
  */
-function generateRespondentAcknowledgmentEmail(submission: ContactSubmission) {
+export function generateRespondentAcknowledgmentEmail(submission: ContactSubmission) {
   const isFrench = submission.locale === 'fr'
   const safeName = escapeHtml(submission.name.trim())
   const safeMessage = escapeHtml(submission.message.trim()).replace(/\n/g, '<br/>')

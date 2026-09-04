@@ -6,6 +6,7 @@ node_modules
 
 # Build artifacts
 tsconfig.tsbuildinfo
+.previews/
 
 # Environment variables
 .env*.local
