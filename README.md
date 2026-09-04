@@ -131,8 +131,10 @@ All production environment variables are documented and formatted for direct imp
 ```
 ├── app/
 │   ├── api/
-│   │   └── contact/
-│   │       └── route.ts         # Contact form API endpoint & email dispatch
+│   │   ├── contact/
+│   │   │   └── route.ts         # Contact form API endpoint & email dispatch
+│   │   └── email-preview/
+│   │       └── route.ts         # Interactive local email design preview dashboard
 │   └── [locale]/                # Locale-scoped routes (en, fr)
 │       ├── page.tsx             # Home
 │       ├── about/               # Mission, values, company journey
@@ -175,7 +177,8 @@ All production environment variables are documented and formatted for direct imp
 ├── public/                      # Static assets (images, logos, PDFs, flags)
 ├── hostinger.env                # Pre-configured environment variable template
 └── scripts/
-    └── auto-translate.js        # Auto-translation pipeline (pre-commit hook)
+    ├── auto-translate.js        # Auto-translation pipeline (pre-commit hook)
+    └── preview-emails.js        # Instant standalone local email template previewer
 ```
 
 ---
@@ -204,14 +207,32 @@ The contact form at [`/contact`](app/[locale]/contact/page.tsx) captures user su
 1. **Agri Experience Team Notification**:
    - Sent to: `info@agri-experience.com`
    - `Reply-To`: Set to the respondent's email address so the team can reply immediately.
+   - Header: Linked company logo, status badge, and tricolor accent bar.
    - Includes: Sender Name, Email, Organization, Nairobi Time (EAT), Locale, and formatted message body.
 
 2. **Automated Receipt Acknowledgment**:
    - Sent to: Respondent's email.
    - Language: Dynamically delivered in **English** or **French** based on the respondent's active site locale.
-   - Includes: Official acknowledgment of receipt, follow-up expectations, a reference copy of their submitted message, and official office contact details.
+   - Header: Linked company logo and tricolor accent bar.
+   - Includes: Official acknowledgment of receipt, follow-up expectations, reference copy of their submitted message, 3 core advisory practice highlights, and official office contact details.
 
-3. **Spam Protection**:
+3. **Retina-Crisp Inline Logo & Brand Colors**:
+   - Both email fronts feature the official **Agri Experience logo** ([`public/agri-experience-logo.png`](public/agri-experience-logo.png)) embedded via inline CID attachment (`cid:agri-experience-logo`) so email clients display it natively without prompting to "load remote images".
+   - The logo links directly to [https://agri-experience.com](https://agri-experience.com).
+   - Styled with official brand colors: Deep Forest Green (`#1A4D2E`), Sprout Green (`#3AB44A`), and Ocean Blue (`#2484C6`).
+
+4. **Local Email Previews**:
+   - **Terminal Command**:
+     ```bash
+     npm run preview:emails
+     ```
+     Generates standalone HTML previews and pops open an interactive preview dashboard in your default browser.
+   - **Live In-App Route**:
+     When running `npm run dev` or `pnpm dev`, open:
+     `http://localhost:3000/api/email-preview`
+     Features an interactive tab switcher (Team notification, English respondent receipt, French respondent receipt) with Desktop and Mobile (iPhone frame) viewport toggles.
+
+5. **Spam Protection**:
    - Equipped with an invisible honeypot field that silently drops automated bot submissions without requiring disruptive CAPTCHAs.
 
 > [!NOTE]

@@ -178,7 +178,6 @@ const respEnHtml = `<!DOCTYPE html>
         <a href="https://agri-experience.com" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
           <img src="${logoUri}" alt="Agri Experience" width="190" style="display: block; margin: 0 auto; width: 190px; max-width: 190px; height: auto; border: 0;" />
         </a>
-        <div class="subtitle">Transforming Seed Systems Across Sub-Saharan Africa</div>
       </div>
       <div class="content">
         <div class="status-banner">
@@ -279,7 +278,6 @@ const respFrHtml = `<!DOCTYPE html>
         <a href="https://agri-experience.com" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
           <img src="${logoUri}" alt="Agri Experience" width="190" style="display: block; margin: 0 auto; width: 190px; max-width: 190px; height: auto; border: 0;" />
         </a>
-        <div class="subtitle">Transforming Seed Systems Across Sub-Saharan Africa</div>
       </div>
       <div class="content">
         <div class="status-banner">
